@@ -3,5 +3,34 @@
 @font-face {
   font-family: "sprat";
   src: url("./Sprat-Regularlight.otf") format("otf");
-  font-weight: 100;
+  weight: 300 !important;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sprat";
+  src: url("./Sprat-Regularlight.otf") format("otf");
+  weight: 400 !important;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sprat";
+  src: url("./Sprat-Regularlight.otf") format("otf");
+  weight: 500 !important;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sprat";
+  src: url("./Sprat-Regularlight.otf") format("otf");
+  weight: 600 !important;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "imogen";
+  src: url("./imogen.ttf") format("ttf");
+  weight: 300 !important;
+  font-style: normal;
 }

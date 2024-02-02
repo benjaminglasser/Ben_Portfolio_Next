@@ -15,14 +15,14 @@ const Navbar = () => {
     <>
       <Grid container>
         <Grid xs={12} md={pathname !== "/" ? 12 : 9}>
-          <h1 className="text-black hover:text-pink cursor-pointer font-medium text-center md:text-end md:px-8 font-lato">
+          <h1 className="dark:text-white text-black hover:text-pink cursor-pointer font-medium text-center md:text-end md:px-8 font-lato">
             <Link href="/">BENJAMIN GLASSER</Link>
           </h1>
           <div className="px-0 lg:px-24">
-            <div className="flex justify-center md:justify-end mt-4 md:mt-10 border-y md:border-t md:border-b-0">
+            <div className="flex justify-center md:justify-end mt-4 md:mt-10 border-y md:border-t md:border-b-0 border-black dark:border-white">
               {ROUTES.map((item, idx) => (
                 <Link href={item?.route} key={idx}>
-                  <h2 className="md:tracking-[1em] sm:tracking-[1.5em] text-sm hover:text-white hover:bg-pink w-full md:w-auto md:px-10 md:pl-16 text-center border-r md:border-b border-black cursor-pointer">
+                  <h2 className="md:tracking-[1em] sm:tracking-[1.5em] text-sm text-black dark:text-white hover:text-white hover:bg-pink w-full md:w-auto md:px-10 md:pl-16 text-center border-r md:border-b border-black dark:border-white cursor-pointer">
                     {item?.label}
                   </h2>
                 </Link>

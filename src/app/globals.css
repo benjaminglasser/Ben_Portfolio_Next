@@ -110,3 +110,29 @@ h2 {
 .home-wrapper {
   height: calc(100% - 100px);
 }
+
+section {
+  box-sizing: border-box;
+  width: 100%;
+  /* height: 101vh; */
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  overflow: hidden;
+}
+
+section span {
+  display: block;
+  transform: translateX(-50px);
+  opacity: 0;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: height 0.3s ease; /* Smooth transition */
+}
+
+.thumbnail:hover {
+  height: 410px;
+}

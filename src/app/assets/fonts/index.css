@@ -34,3 +34,10 @@
   weight: 300 !important;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "hellplague";
+  src: url("./hellplague.otf") format("otf");
+  weight: 300 !important;
+  font-style: normal;
+}

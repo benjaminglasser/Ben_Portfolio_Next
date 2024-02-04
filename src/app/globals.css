@@ -136,3 +136,9 @@ section span {
 .thumbnail:hover {
   height: 410px;
 }
+
+@media (max-width: 768px) {
+  .thumbnail {
+    height: 200px; /* Set height to 200px on smaller screens */
+  }
+}

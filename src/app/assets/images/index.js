@@ -32,6 +32,15 @@ import play28 from "./play28.gif";
 import play29 from "./play29.gif";
 import play30 from "./play30.gif";
 import play31 from "./play31.gif";
+import userflow from "./userFlow.png";
+import userflow2 from "./userFlow2.png";
+import userflowTrans from "./userFlowTransparent.png";
+import DesktopMockup from "./DesktopMockup.jpg";
+import board1 from "./boards/board1.png";
+import board2 from "./boards/board2.png";
+import board3 from "./boards/board3.png";
+import board4 from "./boards/board4.png";
+import board5 from "./boards/board5.png";
 
 export const IMAGES = {
   CROSS_HAIR_SM: crosshairSmall,
@@ -68,4 +77,16 @@ export const IMAGES = {
   PLAY_29: play29,
   PLAY_30: play30,
   PLAY_31: play31,
+  USERFLOW: userflow,
+  USERFLOW2: userflow2,
+  USERFLOW_TRANS: userflowTrans,
+  DESKTOP_MOCKUP: DesktopMockup,
+
+  // Boards
+
+  BOARD1: board1,
+  BOARD2: board2,
+  BOARD3: board3,
+  BOARD4: board4,
+  BOARD5: board5,
 };

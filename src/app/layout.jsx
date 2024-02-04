@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   useEffect(() => {
-    if (pathname === "/play") {
+    if (pathname === "/play" || pathname === "/work-detail") {
       document?.documentElement?.classList?.add("dark");
     } else {
       document?.documentElement?.classList?.remove("dark");

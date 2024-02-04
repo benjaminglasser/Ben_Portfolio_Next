@@ -1,3 +1,4 @@
+"use client";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -5,6 +6,7 @@ import Section from "../common/Section";
 import { FancyButton } from "../common/FancyButton";
 import { IMAGES } from "../assets/images";
 import Image from "next/image";
+import { useMediaQuery } from "@mui/material";
 
 const Play = () => {
   // const itemData = [
@@ -91,6 +93,9 @@ const Play = () => {
     IMAGES.PLAY_30,
     IMAGES.PLAY_31,
   ];
+
+  const isMediumScreen = useMediaQuery("(min-width: 768px)");
+
   return (
     <Box className="mt-5">
       <h2 className="text-white py-5 text-lg tracking-wider">
@@ -105,7 +110,7 @@ const Play = () => {
         More expiriments can be found
         <FancyButton className="ml-2 font-hellplague p-1">HERE</FancyButton>
       </div>
-      <ImageList variant="masonry" cols={4} gap={24}>
+      <ImageList variant="masonry" cols={isMediumScreen ? 4 : 1} gap={24}>
         {itemData.map((item, idx) => (
           <Section key={idx}>
             <ImageListItem>

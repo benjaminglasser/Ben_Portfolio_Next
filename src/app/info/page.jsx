@@ -86,7 +86,7 @@ const Info = () => {
             ))}
           </Grid>
           <h1 className="text-2xl mb-2">EDUCATION</h1>
-          <p className="w-1/2 text-justify mt-5">
+          <p className="w-full md:w-1/2 text-justify mt-5">
             MFA Media Design Practices, ArtCenter College of Design BA Cognitive
             Science, University of Southern California General Assembly Web
             Development Immersive
@@ -105,15 +105,14 @@ const Info = () => {
             </Suspense>
           </Canvas> */}
           <div className="links">
-            <h1 className="text-2xl mb-2">EDUCATION</h1>
-            {/* <a href="../pdf/Benjamin Glasser_Resume_Nov_2022.pdf">RESUME</a> */}
-            <FancyButton className="p-1 px-2 mr-2">
+            <h1 className="text-2xl mb-2">LINKS</h1>
+            <FancyButton className="p-1 px-2 mr-2 mb-2">
               <a href="https://github.com/benjaminglasser">GITHUB</a>
             </FancyButton>
-            <FancyButton className="p-1 px-2 mr-2">
+            <FancyButton className="p-1 px-2 mr-2 mb-2">
               <a href="https://www.instagram.com/bbbbb.stuff/">INSTAGRAM</a>
             </FancyButton>
-            <FancyButton className="p-1 px-2 mr-2">
+            <FancyButton className="p-1 px-2 mr-2 mb-2">
               <a href="/contact">CONTACT</a>
             </FancyButton>
           </div>

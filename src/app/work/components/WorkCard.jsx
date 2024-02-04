@@ -1,10 +1,16 @@
 "use client";
 import Image from "next/image";
 import { IMAGES } from "@/app/assets/images";
+import { useRouter } from "next/navigation";
 
 const WorkCard = () => {
+  const router = useRouter();
+
   return (
-    <div className="hover:border-b cursor-pointer pb-1">
+    <div
+      className="hover:border-b cursor-pointer pb-1"
+      onClick={() => router.push("/work-detail")}
+    >
       <Image src={IMAGES.STEMPORT} alt="stemport gif" className="thumbnail" />
       <div className="flex justify-between font-light text-xs border-b-mute border-b py-2">
         <div>Role: UX/UI Designer</div>

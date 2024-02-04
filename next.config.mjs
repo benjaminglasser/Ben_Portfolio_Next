@@ -1,4 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+// import { withNextVideo } from "next-video/process";
 
-export default nextConfig;
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {};
+
+// export default withNextVideo(nextConfig);
+// // export default nextConfig;
+
+import withVideos from "next-videos";
+
+export default withVideos();

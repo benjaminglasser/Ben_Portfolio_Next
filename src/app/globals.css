@@ -53,6 +53,12 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .cross-hairs {
+    grid-template-columns: repeat(3, auto); /* Show only 3 cross-hairs */
+  }
+}
+
 .cross-hair {
   width: 100px;
   overflow: hidden;

@@ -42,8 +42,10 @@ import board3 from "./boards/board3.png";
 import board4 from "./boards/board4.png";
 import board5 from "./boards/board5.png";
 import { BMW } from "./bmw";
+import { SPATIAL } from "./SpatialAge";
 
 export const IMAGES = {
+  SPATIAL_TUNMB: SPATIAL.SPINNING_BENCH,
   DANCING_CAR: BMW.DANCING_CAR,
   CROSS_HAIR_SM: crosshairSmall,
   STEMPORT: stemPort,

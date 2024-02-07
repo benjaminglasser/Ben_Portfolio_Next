@@ -67,12 +67,12 @@ const Work = () => {
       },
     },
     {
-      role: "Product Designer",
-      time: "Fall 2021 - Spring 2022",
-      title: "Mobile Application Design",
+      role: "Spatial Design Research ans Speculation",
+      time: "October 2021 - Spring 2022",
+      title: "The Spatial Page",
       description:
-        "Designed a mobile application focusing on productivity and task management, emphasizing simplicity and user-friendly design.",
-      thumbnail: IMAGES?.STEMPORT,
+        "How spatialization is redefining our reality, memory, and experience",
+      thumbnail: IMAGES?.SPATIAL_TUNMB,
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
     },
   ];

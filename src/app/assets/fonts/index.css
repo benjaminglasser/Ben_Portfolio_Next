@@ -1,43 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
-@font-face {
+/* @font-face {
   font-family: "sprat";
   src: url("./Sprat-Regularlight.otf") format("otf");
-  weight: 300 !important;
-  font-style: normal;
-}
+} */
 
 @font-face {
   font-family: "sprat";
-  src: url("./Sprat-Regularlight.otf") format("otf");
-  weight: 400 !important;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "sprat";
-  src: url("./Sprat-Regularlight.otf") format("otf");
-  weight: 500 !important;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "sprat";
-  src: url("./Sprat-Regularlight.otf") format("otf");
-  weight: 600 !important;
-  font-style: normal;
+  src: url("./sprat/Sprat-RegularThin.otf") format("otf");
+  font-weight: 300;
 }
 
 @font-face {
   font-family: "imogen";
   src: url("./imogen.ttf") format("ttf");
-  weight: 300 !important;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "hellplague";
   src: url("./hellplague.otf") format("otf");
-  weight: 300 !important;
-  font-style: normal;
 }

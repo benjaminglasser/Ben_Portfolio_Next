@@ -41,8 +41,10 @@ import board2 from "./boards/board2.png";
 import board3 from "./boards/board3.png";
 import board4 from "./boards/board4.png";
 import board5 from "./boards/board5.png";
+import { BMW } from "./bmw";
 
 export const IMAGES = {
+  DANCING_CAR: BMW.DANCING_CAR,
   CROSS_HAIR_SM: crosshairSmall,
   STEMPORT: stemPort,
   SKY_GIF: sky,

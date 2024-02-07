@@ -7,6 +7,7 @@ import { FancyButton } from "../common/FancyButton";
 import { IMAGES } from "../assets/images";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const Play = () => {
   // const itemData = [
@@ -94,23 +95,44 @@ const Play = () => {
     IMAGES.PLAY_31,
   ];
 
-  const isMediumScreen = useMediaQuery("(min-width: 768px)");
+  const [cols, setCols] = useState(4);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 900) {
+        setCols(4);
+      } else if (window.innerWidth >= 600) {
+        setCols(3);
+      } else if (window.innerWidth >= 400) {
+        setCols(2);
+      } else {
+        setCols(1);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Box className="mt-5">
-      <h2 className="text-white py-5 text-lg tracking-wider">
+      <p className="text-white py-3">
         I play in the various sandboxes of{" "}
-        <span className="font-sprat text-xl font-light">
+        <span className="font-sprat font-light">
           Blender, Unity, Unreal Engine, Processing, TouchDesigner,
         </span>{" "}
         as well as other creative spaces in pursuit of stumbling upon pleasing
         surprises.
-      </h2>
-      <div className="w-100 flex items-center justify-center text-white py-8">
+      </p>
+      <p className="w-100 flex items-center justify-center text-white py-8">
         More expiriments can be found
-        <FancyButton className="ml-2 font-hellplague p-1">HERE</FancyButton>
-      </div>
-      <ImageList variant="masonry" cols={isMediumScreen ? 4 : 1} gap={24}>
+        <FancyButton className="px-[0.25rem] py-0 ml-2 font-hellplague">
+          <p>HERE</p>
+        </FancyButton>
+      </p>
+      <ImageList variant="masonry" cols={cols} gap={24}>
         {itemData.map((item, idx) => (
           <Section key={idx}>
             <ImageListItem>

@@ -18,13 +18,13 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="one hidden lg:block">
+      <div className="one hidden md:block">
         <div className="box1"></div>
         <div className="box2"></div>
       </div>
       <Grid container className="mt-5 md:mt-10 h-full flex items-center">
         <Grid xs={12} md={9}>
-          <div className="px-0 lg:px-24">
+          <div className="px-0 md:px-8 lg:px-32">
             <Image
               className="sky-gif w-full"
               src={IMAGES.SKY_GIF}

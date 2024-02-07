@@ -5,76 +5,71 @@ import Video from "next-video";
 import { VIDEO } from "../assets/video";
 import ReactPlayer from "react-player";
 import Section from "../common/Section";
+import { Grid } from "@mui/material";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-const workdetail = () => {
-  const DETAILS = [
-    {
-      title: "Visual Identity",
-      description:
-        "To enhance the ML experience, a visual identity was created to signify the AI processes. Inspired by the way in which sound can create beautiful ripples in water, a virtual avatar guides the user along the journey.",
-      images: [IMAGES.USERFLOW_TRANS], // Replace "path/to/image1.jpg" with your actual image path
-    },
-    {
-      title: "Second Item",
-      description:
-        "This is the second item description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      images: [IMAGES.DESKTOP_MOCKUP], // Replace "path/to/image2.jpg" with your actual image path
-    },
-    {
-      title: "Third Item",
-      description:
-        "This is the third item description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      images: [IMAGES.USERFLOW_TRANS], // Replace "path/to/image3.jpg" with your actual image path
-    },
-    {
-      title: "UI Consideration",
-      description:
-        "When rolling out all the screens, careful attention was paid so that the user flow was clear and simple. Negative space and a minimilistic design was used generously to keep the layouts uncluttered.",
-      widthFull: true,
-      images: [
-        IMAGES.BOARD1,
-        IMAGES.BOARD2,
-        IMAGES.BOARD3,
-        IMAGES.BOARD4,
-        IMAGES.BOARD5,
-      ], // Replace "path/to/image4.jpg" with your actual image path
-    },
-  ];
-
+const workdetail = (props) => {
   console.log("VIDEO.STEMPORT", VIDEO.STEMPORT);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const { query } = router;
+
+  // const { role, time, title, description, tools, thumbnail, workDetail } =
+  //   router.query;
+  const role = searchParams?.get("role");
+  const time = searchParams?.get("time");
+  const title = searchParams?.get("title");
+  const description = searchParams?.get("description");
+  const extendedDescription = searchParams?.get("extendedDescription");
+  let tools = searchParams?.get("tools");
+  tools = tools && JSON.parse(tools);
+  let workDetail = searchParams?.get("workDetail");
+
+  workDetail = workDetail && JSON.parse(workDetail);
+
+  console.log("workDetail", workDetail?.innerBox);
+
   return (
     <div className="w-full text-white">
-      {/* <Video
-        src={VIDEO.STEMPORT}
-        autoPlay
-        muted
-        loop
-        playsInline
-        controls={false}
-      /> */}
-      <video autoPlay muted loop src={VIDEO.STEMPORT} />
-      <Section>
-        <div className="text-center mt-5">
-          <h1>CONTEXT</h1>
-          <h2 className="flex justify-center w-full">
-            <div className="w-full md:w-2/3">
-              Music production consists of breaking down individual instrument
-              tracks into many smaller units known as "stems". Organizing and
-              labeling large project files can very quickly become cluttered and
-              difficult to sift through - especially as production teams scale.
-            </div>
-          </h2>
-        </div>
-      </Section>
-      <Section>
-        <h1 className="text-xl md:text-3xl text-left text-justify font-normal my-16">
-          AIM
-          <br /> Stemport uses a machine learning algorithm to analyze,
-          organize, and re-label musical stems to aid in streamlining the
-          creative workflow.
-        </h1>
-      </Section>
-      {DETAILS?.map((detail, idx) => (
+      {workDetail?.video && (
+        <video autoPlay muted loop src={workDetail?.video} />
+      )}
+      {workDetail?.innerBox && (
+        <Grid container className="mt-5">
+          <Grid md={4} className="border-t border-r border-pink p-3">
+            <h1 className="text-xl md:text-3xl">{title}</h1>
+            <h1 className="font-sprat text-xl md:text-3xl">{description}</h1>
+          </Grid>
+          <Grid md={8} className="border-b border-pink p-3">
+            <h2 className="text-base md:text-lg mb-6">{extendedDescription}</h2>
+            <p className="text-xs mt-2">Time: {time}</p>
+            <p className="text-xs mt-2">Role: {role}</p>
+            <p className="text-xs mt-2">Tools: {tools?.join(",")}</p>
+          </Grid>
+        </Grid>
+      )}
+      {workDetail?.context && (
+        <Section>
+          <div className="text-center mt-5">
+            <h1>CONTEXT</h1>
+            <h2 className="flex justify-center w-full">
+              <div className="w-full md:w-2/3">{workDetail?.context}</div>
+            </h2>
+          </div>
+        </Section>
+      )}
+      {workDetail?.aim && (
+        <Section>
+          <h1 className="text-xl md:text-3xl text-left text-justify font-normal my-16">
+            AIM
+            <br /> {workDetail?.aim}
+          </h1>
+        </Section>
+      )}
+      {workDetail?.detail?.map((detail, idx) => (
         <div key={idx}>
           <Section>
             <div
@@ -87,11 +82,15 @@ const workdetail = () => {
                   detail?.widthFull ? "w-full" : "w-full md:w-1/2"
                 } my-10`}
               >
-                <h1 className="text-xl md:text-3xl">{detail.title}</h1>
+                {detail.title && (
+                  <h1 className="text-xl md:text-3xl">{detail.title}</h1>
+                )}
                 <div className="border-b border-pink" />
-                <h1 className="text-justify text-xl mt-3 font-extralight">
-                  {detail.description}
-                </h1>
+                {detail?.description && (
+                  <h1 className="text-justify text-xl mt-3 font-extralight">
+                    {detail?.description}
+                  </h1>
+                )}
               </div>
             </div>
             {detail?.images?.map((image, index) => (

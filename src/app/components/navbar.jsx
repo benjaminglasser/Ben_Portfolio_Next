@@ -18,15 +18,15 @@ const Navbar = () => {
           <h1 className="dark:text-white text-black hover:text-pink cursor-pointer font-medium text-center md:text-end md:px-8 font-lato">
             <Link href="/">BENJAMIN GLASSER</Link>
           </h1>
-          <div className="px-0 lg:px-24">
-            <div className="flex justify-between md:justify-end mt-4 md:mt-10 border-y md:border-t md:border-b-0 border-black dark:border-white">
+          <div className="px-0 md:px-8 lg:px-32">
+            <div className="flex justify-between md:justify-end mt-4 md:mt-10 border-y-[0.4px] md:border-t-[0.4px] md:border-b-0 border-black dark:border-white">
               {ROUTES.map((item, idx) => (
                 <Link
                   href={item?.route}
                   key={idx}
                   className="w-full md:w-auto "
                 >
-                  <h2 className="md:tracking-[1em] sm:tracking-[1.5em] text-sm text-black dark:text-white hover:text-white hover:bg-pink  text-center md:px-10 border-r md:border-b border-black dark:border-white cursor-pointer">
+                  <h2 className="text-xs tracking-[0.6em] sm:tracking-[0.8em] md:tracking-[1em] md:text-sm text-black dark:text-white hover:text-white hover:bg-pink  text-center md:px-5 md:pl-8 border-r md:border-b-[0.4px] border-black dark:border-white cursor-pointer">
                     {item?.label}
                   </h2>
                 </Link>
@@ -35,17 +35,17 @@ const Navbar = () => {
           </div>
         </Grid>
         {pathname === "/" && (
-          <Grid md={3} className="hidden lg:block">
-            <div className="bg-black w-5 h-1/3 absolute top-0" />
-            <div className="pl-10 flex flex-col justify-between h-full">
+          <Grid sm={3} className="extra-info">
+            <div className="bg-black w-4 lg:w-6 h-[17.35rem] absolute top-0" />
+            <div className="pl-10 flex flex-col justify-between h-full relative">
               <p className="tag">
                 <i className="text-sm">media artist, musician + designer</i>
               </p>
-              <div className="description">
-                <p className="text-end text-sm font-semibold">Born 1994</p>
-                <p className="text-end text-sm font-semibold">
+              <div className="description absolute right-0 -bottom-[7rem] text-sm">
+                <p className="text-end font-semibold">Born 1994</p>
+                <p className="text-end font-semibold">
                   Currently in{" "}
-                  <span className="font-extralight text-xl font-sprat">
+                  <span className="font-extralight font-sprat">
                     Los Angeles
                   </span>
                 </p>

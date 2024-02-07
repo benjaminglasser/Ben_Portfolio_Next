@@ -16,15 +16,16 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
+body {
+  /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
-} */
+    rgb(var(--background-start-rgb)); */
+  cursor: crosshair;
+}
 
 @layer utilities {
   .text-balance {
@@ -84,25 +85,29 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(10px, 3vw, 17px);
+  font-size: clamp(10px, 3vw, 17px) !important;
+}
+
+p {
+  font-size: min(3vw, 16px);
 }
 
 .one {
   position: absolute;
-  left: 0;
+  left: 10px;
   bottom: 0;
 }
 
 .box1 {
   height: 35vh;
-  width: 60px;
+  width: 25px;
   border-right: 0.4px dashed black;
   border-top: 0.4px solid black;
 }
 
 .box2 {
   height: 200px;
-  width: 60px;
+  width: 25px;
   border-right: 0.4px dashed black;
   border-top: 0.4px solid black;
 }
@@ -140,5 +145,33 @@ section span {
 @media (max-width: 768px) {
   .thumbnail {
     height: 200px; /* Set height to 200px on smaller screens */
+  }
+}
+
+.bio {
+  font-size: min(3vw, 19px) !important;
+}
+
+@media screen and (max-width: 900px) {
+  .extra-info {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .MuiImageList-root {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .MuiImageList-root {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .MuiImageList-root {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

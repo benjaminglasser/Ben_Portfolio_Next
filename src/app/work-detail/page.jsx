@@ -70,7 +70,7 @@ const workdetail = () => {
       {workDetail?.context && <Context context={workDetail?.context} />}
       {workDetail?.aim && (
         <Section>
-          <h1 className="text-xl md:text-3xl text-left text-justify font-normal my-16">
+          <h1 className="text-xl md:text-3xl text-justify font-normal my-16">
             AIM
             <br /> {workDetail?.aim}
           </h1>

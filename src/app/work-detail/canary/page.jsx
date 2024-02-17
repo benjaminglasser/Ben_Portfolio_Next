@@ -12,6 +12,9 @@ import { FancyButton } from "@/app/common/FancyButton";
 
 const Canary = () => {
   const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
+  const redirectToFinalWebsite = () => {
+    window.location.href = 'https://canary-alt.vercel.app/';
+  };
   return (
     <div className="w-full text-white">
       <Section>
@@ -19,7 +22,7 @@ const Canary = () => {
           <FancyButton
             className="uppercase mt-28 font-sprat  p-1 hover:text-white"
             size="medium"
-            // onClick={()=>}
+            onClick={redirectToFinalWebsite}
           >
             FINAL WEBSITE
           </FancyButton>

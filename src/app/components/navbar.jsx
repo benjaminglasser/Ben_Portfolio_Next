@@ -13,7 +13,7 @@ const Navbar = () => {
   const pathname = usePathname();
   return (
     <>
-      <Grid container>
+      <Grid container className="navbar">
         <Grid xs={12} md={pathname !== "/" ? 12 : 9}>
           <h1 className="dark:text-white text-black hover:text-pink cursor-pointer font-medium text-center md:text-end md:px-8 font-lato">
             <Link href="/">BENJAMIN GLASSER</Link>

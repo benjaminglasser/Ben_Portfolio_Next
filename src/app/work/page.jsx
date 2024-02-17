@@ -12,46 +12,8 @@ const Work = () => {
       title: "Stemport",
       description: "Analyze - Organize - Import",
       thumbnail: IMAGES?.STEMPORT,
+      path: "work-detail/stemport",
       tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-      workDetail: {
-        video: VIDEO.STEMPORT,
-        context:
-          "Music production consists of breaking down individual instrument tracks into many smaller units known as 'stems'. Organizing and labeling large project files can very quickly become cluttered and difficult to sift through - especially as production teams scale.",
-        aim: "Stemport uses a machine learning algorithm to analyze, organize, and re-label musical stems to aid in streamlining the creative workflow.",
-        detail: [
-          {
-            title: "Visual Identity",
-            description:
-              "To enhance the ML experience, a visual identity was created to signify the AI processes. Inspired by the way in which sound can create beautiful ripples in water, a virtual avatar guides the user along the journey.",
-            images: [IMAGES.USERFLOW_TRANS],
-          },
-          {
-            title: "Second Item",
-            description:
-              "This is the second item description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            images: [IMAGES.DESKTOP_MOCKUP],
-          },
-          {
-            title: "Third Item",
-            description:
-              "This is the third item description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            images: [IMAGES.USERFLOW_TRANS],
-          },
-          {
-            title: "UI Consideration",
-            description:
-              "When rolling out all the screens, careful attention was paid so that the user flow was clear and simple. Negative space and a minimilistic design was used generously to keep the layouts uncluttered.",
-            widthFull: true,
-            images: [
-              IMAGES.BOARD1,
-              IMAGES.BOARD2,
-              IMAGES.BOARD3,
-              IMAGES.BOARD4,
-              IMAGES.BOARD5,
-            ],
-          },
-        ],
-      },
     },
     {
       role: "XR Interaction",
@@ -61,6 +23,7 @@ const Work = () => {
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
       thumbnail: IMAGES?.DANCING_CAR,
+      path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
         innerBox: true,
@@ -68,12 +31,107 @@ const Work = () => {
     },
     {
       role: "Spatial Design Research ans Speculation",
-      time: "October 2021 - Spring 2022",
+      time: "October 2022 - April 2023",
       title: "The Spatial Page",
       description:
         "How spatialization is redefining our reality, memory, and experience",
       thumbnail: IMAGES?.SPATIAL_TUNMB,
+      path: "https://radiancefields.com/unlocking-the-spatial-age-how-nerf-technology-is-redefining-our-reality-memory-and-experience/",
+      externalLink: true,
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
+    },
+    {
+      role: "UI / Web Development",
+      time: "Spring 2023",
+      title: "The Canary Test",
+      description:
+        "Web Design and Development for Los Angeles based art gallery",
+      thumbnail: IMAGES?.CANARY_THUMB,
+      path: "work-detail/canary",
+      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
+    },
+    {
+      role: "AR UX / UI Design",
+      time: "FALL 2022",
+      title: "PonitAR",
+      description: "Your personal museum tour guide",
+      thumbnail: IMAGES?.POINTAR_THUMB,
+      path: "work-detail/pointAR",
+      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
+      workDetail: {
+        video: IMAGES.POINTAR_HERO,
+      },
+    },
+    {
+      role: "Engineer, Creative Coder",
+      time: "FALL 2021 // Creative Technology",
+      title: "Plantasia",
+      description: "Custom Musical Instrument",
+      thumbnail: IMAGES?.PLANT_THUMB,
+      path: "work-detail/stemport",
+      tools: [
+        "Arduino",
+        "Capacitive Touch MPR121",
+        "Processing",
+        "Succulent",
+        "Banana",
+        "Lemon",
+        "Rosarita Vegetarian Refried Beans",
+      ],
+      workDetail: {
+        externalVideo: "https://youtu.be/QPqFVQ77BWg",
+      },
+    },
+    {
+      role: "Engineer, Creative Coder",
+      time: "FALL 2021 // Creative Technology",
+      title: "Plantasia",
+      description: "Custom Musical Instrument",
+      thumbnail: IMAGES?.REAKT,
+      path: "work-detail/stemport",
+      tools: [
+        "Arduino",
+        "Capacitive Touch MPR121",
+        "Processing",
+        "Succulent",
+        "Banana",
+        "Lemon",
+        "Rosarita Vegetarian Refried Beans",
+      ],
+    },
+    {
+      role: "Engineer, Creative Coder",
+      time: "FALL 2021 // Creative Technology",
+      title: "Reakt Light",
+      description: "Custom Musical Instrument",
+      thumbnail: IMAGES?.REAKT,
+      path: "work-detail/stemport",
+      tools: [
+        "Arduino",
+        "Capacitive Touch MPR121",
+        "Processing",
+        "Succulent",
+        "Banana",
+        "Lemon",
+        "Rosarita Vegetarian Refried Beans",
+      ],
+    },
+    {
+      role: "Engineer, Creative Coder",
+      time: "FALL 2021 // Creative Technology",
+      title: "Plantasia",
+      description: "Custom Musical Instrument",
+      thumbnail: IMAGES?.MEAN_THUMB,
+      path: "work-detail/stemport",
+      tools: [
+        "Arduino",
+        "Capacitive Touch MPR121",
+        "Processing",
+        "Succulent",
+        "Banana",
+        "Lemon",
+        "Rosarita Vegetarian Refried Beans",
+      ],
     },
   ];
 
@@ -84,6 +142,7 @@ const Work = () => {
           <Section>
             <WorkCard
               role={content?.role}
+              path={content?.path}
               time={content?.time}
               title={content?.title}
               description={content?.description}

@@ -14,6 +14,9 @@ module.exports = {
     //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
     //   },
     // },
+    fontSize: {
+      subheading: "clamp(1rem, 2.5vw, 1.2rem)",
+    },
     fontFamily: {
       sprat: ["sprat"],
       lato: ["Lato", "sans-serif"],

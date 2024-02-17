@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const WorkCard = ({
+  path,
   role,
   time,
   title,
@@ -13,25 +14,15 @@ const WorkCard = ({
   tools,
   thumbnail,
   workDetail,
+  externalLink,
 }) => {
-  console.log("workDetail", role, workDetail);
   return (
     <Link
       href={{
-        pathname: "/work-detail",
-        query: {
-          role,
-          time,
-          title,
-          description,
-          extendedDescription,
-          tools: JSON.stringify(tools),
-          thumbnail,
-          workDetail: JSON.stringify(workDetail),
-        },
+        pathname: path,
       }}
     >
-      <div className="hover:border-b cursor-pointer pb-1 w-full">
+      <div className="hover:border-b cursor-pointer pb-1 w-full workcard">
         <Image src={thumbnail} alt="stemport gif" className="thumbnail" />
         <div className="flex justify-between font-light text-xs border-b-mute border-b py-2">
           <div>Role: {role}</div>

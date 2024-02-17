@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   useEffect(() => {
-    if (pathname === "/play" || pathname === "/work-detail") {
+    if (pathname === "/play" || pathname?.includes("work-detail")) {
       document?.documentElement?.classList?.add("dark");
     } else {
       document?.documentElement?.classList?.remove("dark");
@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.className} p-6 md:pt-12 lg:p-10 bg-white dark:bg-black`}
+        className={`${inter.className} ${
+          pathname?.includes("work-detail") ? "p-0 work-detail" : "p-6  lg:p-10"
+        } md:pt-12 bg-white dark:bg-black`}
       >
         <Navbar />
         {children}

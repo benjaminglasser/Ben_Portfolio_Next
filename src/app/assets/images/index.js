@@ -43,10 +43,26 @@ import board4 from "./boards/board4.png";
 import board5 from "./boards/board5.png";
 import { BMW } from "./bmw";
 import { SPATIAL } from "./SpatialAge";
+import { CANARY } from "./canary";
+import { POINTAR } from "./PointAR";
+import { PLANTASIA } from "./plantasia";
+import { MEAN } from "./meaningfulPursuits";
+import { PLUR } from "./PLUR";
+import { REAKT } from "./reakt";
+import { STEMPORT } from "./stemport";
 
 export const IMAGES = {
+  PLUR: PLUR?.PLUR_HERO,
+  REAKT: REAKT.REAKT_HOME,
+  MEAN_THUMB: MEAN.MEAN_HERO,
+  PLANT_THUMB: PLANTASIA.PLANT_HERO,
+  POINTAR_THUMB: POINTAR.POINTER_HOME,
+  POINTAR_HERO: POINTAR.POINTER_HERO,
+  CANARY_THUMB: CANARY.CANARY_HERO,
   SPATIAL_TUNMB: SPATIAL.SPINNING_BENCH,
   DANCING_CAR: BMW.DANCING_CAR,
+  BG_BMW: BMW.CAR_SIM,
+  BG_BMW_PHONE: BMW.CAR_SIM_PHONE,
   CROSS_HAIR_SM: crosshairSmall,
   STEMPORT: stemPort,
   SKY_GIF: sky,
@@ -86,6 +102,23 @@ export const IMAGES = {
   USERFLOW_TRANS: userflowTrans,
   DESKTOP_MOCKUP: DesktopMockup,
 
+  //STEMPORT
+
+  VISUAL_IDENTITY: STEMPORT.VISUAL_IDENTITY,
+  MOCKUP_SCREEN: STEMPORT.MOCKUP_SCREEN,
+  DARK_LIGHT_MODE: STEMPORT.LIGHT_DARK_MODE,
+  LIGHT_MODE: STEMPORT.LIGHT_MODE,
+  DESKTOP_MOCKUP: STEMPORT.DESKTOP_MOCKUP,
+
+  // Canary
+
+  CANARY_MAIN: CANARY.CANARY_MAIN,
+  UI_CONSIDERATION: CANARY.UI_CONSIDERATION,
+  TRANS_HOME: CANARY.TRANS_HOME,
+  INFO: CANARY.INFO,
+  PRESS: CANARY.PRESS,
+  CMS: CANARY.CMS,
+  MOBILE_VIEW: CANARY.MOBILE_VIEW,
   // Boards
 
   BOARD1: board1,

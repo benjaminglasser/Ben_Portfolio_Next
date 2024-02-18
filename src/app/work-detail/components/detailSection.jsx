@@ -21,9 +21,7 @@ const DetailSection = ({
         <div className={`${widthFull ? "w-full" : "w-full md:w-1/2"} my-6`}>
           {title && <h3>{title}</h3>}
           <div className="border-b border-pink" />
-          {description && (
-            <h4 className="mt-3 font-extralight">{description}</h4>
-          )}
+          {description && <p className="mt-3 font-extralight">{description}</p>}
         </div>
       </div>
       {video && <video autoPlay muted loop src={video} />}

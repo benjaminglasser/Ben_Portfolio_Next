@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} ${
           pathname?.includes("work-detail") ? "p-0 work-detail" : "p-6  lg:p-10"
-        } md:pt-12 bg-white dark:bg-black`}
+        } md:pt-12 bg-white dark:bg-black relative`}
       >
         <Navbar />
         {children}

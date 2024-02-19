@@ -15,7 +15,7 @@ const Navbar = () => {
     <>
       <Grid container className="navbar">
         <Grid xs={12} md={pathname !== "/" ? 12 : 9}>
-          <h1 className="dark:text-white text-black hover:text-pink cursor-pointer font-medium text-center md:text-end md:px-8 font-lato">
+          <h1 className="dark:text-white text-black hover:text-pink cursor-pointer font-medium text-center mt-10 md:mt-0 md:text-end md:px-8 font-lato">
             <Link href="/">BENJAMIN GLASSER</Link>
           </h1>
           <div className="px-0 md:px-8 lg:px-32">

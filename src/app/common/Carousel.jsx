@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import VideoPlayer from "./VerticalVideoPlayer";
@@ -40,9 +40,24 @@ const FancyCarousel = () => {
       url: "https://www.youtube.com/embed/89wx2XuiLt0?autoplay=0&mute=0&controls=0&origin=https%3A%2F%2Fbenjaminglasser.com&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=21",
     },
   ];
+
+  const [showIndicators, setShowIndicators] = useState(true);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= 768) {
+        setShowIndicators(false);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <Carousel
       showStatus={false}
+      showIndicators={showIndicators}
       renderArrowPrev={(onClickHandler, hasPrev) =>
         hasPrev && (
           <div

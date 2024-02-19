@@ -12,11 +12,12 @@ const ZigzagHeader = ({
 }) => {
   return (
     <Section>
-      <Grid container className="mt-10 zigzag-header px-10">
+      <Grid container className="mt-10 zigzag-header px-5 md:px-10">
         <Grid
           item
+          xs={12}
           md={3}
-          className="border-0 lg:border-t lg:border-r border-pink p-3"
+          className="border-t lg:border-t lg:border-r border-pink p-3"
         >
           <h2 className="text-sm sm:text-base md:text-lg lg:text-3xl">
             {title}
@@ -25,7 +26,7 @@ const ZigzagHeader = ({
             {description}
           </h4>
         </Grid>
-        <Grid item md={9} className="border-0 lg:border-b border-pink p-3">
+        <Grid item xs={12} md={9} className="border-l border-b border-pink p-3">
           <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-6">
             {extendedDescription}
           </p>

@@ -1,3 +1,4 @@
+"use client";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkCard from "./components/WorkCard";
 import Section from "../common/Section";
@@ -86,7 +87,8 @@ const Work = () => {
       role: "Web Development, Designs, 3D Models",
       time: "2022 // Freelance",
       title: "Voyager",
-      description: "Interactive gamefied website, branding, and album art for voyager record label",
+      description:
+        "Interactive gamefied website, branding, and album art for voyager record label",
       thumbnail: IMAGES?.PLUR,
       path: "work-detail/voyager",
       tools: [
@@ -127,10 +129,7 @@ const Work = () => {
       description: "Album Visuals",
       thumbnail: IMAGES?.MEAN_THUMB,
       path: "work-detail/meaningfulPursuits",
-      tools: [
-        "TouchDesigner",
-        "Premiere Pro",
-      ],
+      tools: ["TouchDesigner", "Premiere Pro"],
     },
   ];
 

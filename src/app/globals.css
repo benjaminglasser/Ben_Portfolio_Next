@@ -201,13 +201,13 @@ section span {
 
 .thumbnail {
   width: 100%;
-  height: 400px;
+  height: 25vw;
   object-fit: cover;
   transition: height 0.3s ease; /* Smooth transition */
 }
 
 .thumbnail:hover {
-  height: 410px;
+  height: 26vw;
 }
 
 li::marker {

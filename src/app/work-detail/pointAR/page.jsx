@@ -9,6 +9,7 @@ import { Grid } from "@mui/material";
 import Context from "../components/context";
 import AIM from "../components/aim";
 import Section from "@/app/common/Section";
+import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 
 const PointAR = () => {
   const bullets = [
@@ -28,7 +29,13 @@ const PointAR = () => {
           </h1>
         </div>
       </div>
-      <ReactPlayer url="https://youtu.be/fvOwZU6CSh" />
+      <div className="flex justify-center w-full">
+        <VideoPlayer
+          className="w-full md:w-3/4 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem]"
+          widthFull
+          src="https://www.youtube.com/embed/fvOwZU6CShI"
+        />
+      </div>
       <Grid container className="flex justify-between">
         <Grid item md={6}>
           <DetailSection

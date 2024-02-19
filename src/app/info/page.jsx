@@ -44,7 +44,7 @@ const Info = () => {
     "EDUCATION",
   ];
   return (
-    <Grid container className="mt-1" spacing={4}>
+    <Grid container className="mt-1 px-5 md:px-10" spacing={4}>
       <Grid item md={8}>
         <Section>
           <h1 className="text-justify bio">
@@ -72,7 +72,7 @@ const Info = () => {
               </FancyButton>
             </div>
           </h1>
-          <h1 className="text-2xl mb-1">A FEW TOOLS I USE:</h1>
+          <h4 className="mb-2">A FEW TOOLS I USE:</h4>
           <Grid container>
             {tools?.map((item, idx) => (
               <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
@@ -80,7 +80,7 @@ const Info = () => {
               </Grid>
             ))}
           </Grid>
-          <h1 className="text-2xl mb-1">10010110101 WITH:</h1>
+          <h4 className="mb-2">10010110101 WITH:</h4>
           <Grid container>
             {platforms?.map((item, idx) => (
               <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
@@ -88,7 +88,7 @@ const Info = () => {
               </Grid>
             ))}
           </Grid>
-          <h1 className="text-2xl mb-0 mt-5">EDUCATION</h1>
+          <h4 className="mb-0 mt-5">EDUCATION</h4>
           <p className="w-full md:w-1/2 text-justify">
             MFA Media Design Practices, ArtCenter College of Design BA Cognitive
             Science, University of Southern California General Assembly Web
@@ -108,7 +108,7 @@ const Info = () => {
             </Suspense>
           </Canvas> */}
           <div className="links ">
-            <h1 className="text-2xl mb-2">LINKS</h1>
+            <h4 className="mb-2">LINKS</h4>
             <FancyButton className="p-0 px-2 mr-2 mb-2">
               <a
                 href="https://github.com/benjaminglasser"

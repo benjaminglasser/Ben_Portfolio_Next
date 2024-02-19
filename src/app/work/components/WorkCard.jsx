@@ -30,7 +30,7 @@ const WorkCard = ({
         </div>
         <h1 className="text-3xl font-lato py-2">{title}</h1>
         <h2 className="font-sprat pb-1 font-extralight">{description}</h2>
-        <p className="text-xs text-mute">Tool: {tools?.join(",")}</p>
+        <p className="text-xs text-mute">Tool: {tools?.join(", ")}</p>
       </div>
     </Link>
   );

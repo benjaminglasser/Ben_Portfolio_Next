@@ -16,6 +16,7 @@ module.exports = {
     // },
     fontSize: {
       subheading: "clamp(1rem, 2.5vw, 1.2rem)",
+      xxs: "0.8rem",
     },
     fontFamily: {
       sprat: ["sprat"],

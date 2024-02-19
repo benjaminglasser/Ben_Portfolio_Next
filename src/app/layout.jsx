@@ -5,8 +5,6 @@ import "./assets/fonts/index.css";
 import Navbar from "./components/navbar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

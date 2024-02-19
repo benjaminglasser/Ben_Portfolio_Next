@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import ZigzagHeader from "../components/zigzagHeader";
-import ReactPlayer from "react-player";
 import Slider from "react-slick";
+import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import FancyCarousel from "@/app/common/Carousel";
 
 const MeaningfulPursuits = () => {
   const settings = {
@@ -22,75 +25,39 @@ const MeaningfulPursuits = () => {
         role="Animator / Creative Director"
         tools={["TouchDesigner", "Premiere Pro"]}
       />
-      <div className="flex justify-center items-center h-screen">
+      {/* <div className="flex justify-center items-center h-screen">
         <Slider {...settings}>
-          <ReactPlayer
-            url="https://youtu.be/SxJNx4Ymk4M"
-            width="90%"
-            height="90%"
-            controls
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/589537817"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
           />
-          <ReactPlayer
-            url="https://youtu.be/kpQODCM1WYU"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/Uy7GpsWTLS0"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/hK23aSLVaAk"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/HsI6URf6grg"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/CV9ECfroSgU"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/SxJNx4Ymk4M"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/kpQODCM1WYU"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/Uy7GpsWTLS0"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/5Oe320cKOl8"
-            width="90%"
-            height="90%"
-            controls
-          />
-          <ReactPlayer
-            url="https://youtu.be/VghFPjuuXhQ"
-            width="90%"
-            height="90%"
-            controls
-          />
+          <div className="bg-white w-full h-full text-black">
+            <h3>1</h3>
+          </div>
+          <div className="bg-white w-full h-full text-black">
+            <h3>2</h3>
+          </div>
+          <div className="bg-white w-full h-full text-black">
+            <h3>3</h3>
+          </div>
+          <div className="bg-white w-full h-full text-black">
+            <h3>4</h3>
+          </div>
+          <div className="bg-white w-full h-full text-black">
+            <h3>5</h3>
+          </div>
+          <div className="bg-white w-full h-full text-black">
+            <h3>6</h3>
+          </div>
         </Slider>
+      </div> */}
+      <div className="mt-20">
+        <FancyCarousel />
       </div>
     </div>
   );

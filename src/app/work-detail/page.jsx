@@ -63,7 +63,7 @@ const workdetail = () => {
             </h2>
             <p className="text-xs mt-2">Time: {time}</p>
             <p className="text-xs mt-2">Role: {role}</p>
-            <p className="text-xs mt-2">Tools: {tools?.join(",")}</p>
+            <p className="text-xs mt-2">Tools: {tools?.join(", ")}</p>
           </Grid>
         </Grid>
       )}

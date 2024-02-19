@@ -75,6 +75,13 @@ h5 {
   }
 }
 
+.carousel .control-dots .dot {
+  border-radius: 0 !important;
+  width: 30px !important;
+  height: 5px !important;
+  margin: 0 4px !important;
+}
+
 .cross-hair-grid {
   position: absolute;
   z-index: -1;

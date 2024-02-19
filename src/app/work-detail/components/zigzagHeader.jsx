@@ -29,9 +29,9 @@ const ZigzagHeader = ({
           <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-6">
             {extendedDescription}
           </p>
-          <p className="text-xs mt-2">Time: {time}</p>
-          <p className="text-xs mt-2">Role: {role}</p>
-          <p className="text-xs mt-2">Tools: {tools?.join(",")}</p>
+          <div className="text-xxs mt-2">Time: {time}</div>
+          <div className="text-xxs mt-2">Role: {role}</div>
+          <div className="text-xxs mt-2">Tools: {tools?.join(", ")}</div>
         </Grid>
       </Grid>
     </Section>

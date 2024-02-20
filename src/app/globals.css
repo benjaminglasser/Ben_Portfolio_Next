@@ -232,7 +232,10 @@ li::marker {
 }
 @media (max-width: 768px) {
   .thumbnail {
-    height: 200px; /* Set height to 200px on smaller screens */
+    height: 265px; /* Set height to 200px on smaller screens */
+  }
+  .thumbnail:hover {
+    height: 275px; /* Set height to 200px on smaller screens */
   }
 }
 

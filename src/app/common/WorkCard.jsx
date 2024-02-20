@@ -1,7 +1,5 @@
 "use client";
 import Image from "next/image";
-import { IMAGES } from "@/app/assets/images";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const WorkCard = ({
@@ -10,11 +8,8 @@ const WorkCard = ({
   time,
   title,
   description,
-  extendedDescription,
   tools,
   thumbnail,
-  workDetail,
-  externalLink,
 }) => {
   return (
     <Link

@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import { IMAGES } from "@/app/assets/images";
 import { POINTAR } from "@/app/assets/images/PointAR";
-import ReactPlayer from "react-player";
 import DetailSection from "../../common/detailSection";
 import Image from "next/image";
 import { Grid } from "@mui/material";

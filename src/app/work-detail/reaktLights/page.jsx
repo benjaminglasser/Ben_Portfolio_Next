@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 import ZigzagHeader from "../../common/zigzagHeader";
 import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { VIDEO } from "../../assets/video";
 import Context from "../../common/context";

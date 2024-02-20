@@ -2,7 +2,6 @@
 import React from "react";
 import ZigzagHeader from "../../common/zigzagHeader";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 import Section from "@/app/common/Section";
 import { PLUR } from "@/app/assets/images/PLUR";
 import DetailSection from "../../common/detailSection";

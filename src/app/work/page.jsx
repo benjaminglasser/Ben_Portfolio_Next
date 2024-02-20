@@ -1,9 +1,8 @@
 "use client";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import WorkCard from "./components/WorkCard";
+import WorkCard from "../common/WorkCard";
 import Section from "../common/Section";
 import { IMAGES } from "../assets/images";
-import { VIDEO } from "../assets/video";
 
 const Work = () => {
   const WORK_CONTENT = [

@@ -2,7 +2,6 @@
 import React from "react";
 import DetailSection from "../../common/detailSection";
 import { Grid } from "@mui/material";
-import dynamic from "next/dynamic";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 import Section from "@/app/common/Section";
 
@@ -10,13 +9,6 @@ const plantasia = () => {
   return (
     <div className="w-full text-white">
       <div className="flex justify-center items-center mt-8 px-10">
-        {/* <ReactPlayer
-          url="https://youtu.be/QPqFVQ77BWg"
-          width="60%"
-          height="80%"
-          controls
-          fallback={<Loader />}
-        /> */}
         <VideoPlayer
           className="w-full md:w-3/4 h-full md:h-[28rem]"
           widthFull

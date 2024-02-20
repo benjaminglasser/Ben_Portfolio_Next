@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import DetailSection from "../components/detailSection";
+import DetailSection from "../../common/detailSection";
 import { Grid } from "@mui/material";
 import dynamic from "next/dynamic";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";

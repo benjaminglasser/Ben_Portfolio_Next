@@ -8,8 +8,8 @@ import Section from "../common/Section";
 import { Grid } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import ResponsiveBMWVideo from "./components/bmwVideo";
-import Context from "./components/context";
+import ResponsiveBMWVideo from "../common/bmwVideo";
+import Context from "../common/context";
 
 const workdetail = () => {
   const searchParams = useSearchParams();

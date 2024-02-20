@@ -3,11 +3,11 @@ import React from "react";
 import { IMAGES } from "@/app/assets/images";
 import { POINTAR } from "@/app/assets/images/PointAR";
 import ReactPlayer from "react-player";
-import DetailSection from "../components/detailSection";
+import DetailSection from "../../common/detailSection";
 import Image from "next/image";
 import { Grid } from "@mui/material";
-import Context from "../components/context";
-import AIM from "../components/aim";
+import Context from "../../common/context";
+import AIM from "../../common/aim";
 import Section from "@/app/common/Section";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ZigzagHeader from "../components/zigzagHeader";
+import ZigzagHeader from "../../common/zigzagHeader";
 import Slider from "react-slick";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 import "slick-carousel/slick/slick.css";

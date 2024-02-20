@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { VIDEO } from "../../assets/video";
 import Context from "../components/context";
@@ -13,7 +14,7 @@ import { FancyButton } from "@/app/common/FancyButton";
 const Canary = () => {
   const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
   const redirectToFinalWebsite = () => {
-    window.location.href = 'https://canary-alt.vercel.app/';
+    window.location.href = "https://canary-alt.vercel.app/";
   };
   return (
     <div className="w-full text-white">

@@ -1,18 +1,10 @@
 "use client";
 import React from "react";
 import Context from "../../common/context";
-import { IMAGES } from "@/app/assets/images";
 import ZigzagHeader from "../../common/zigzagHeader";
 import ResponsiveBMWVideo from "../../common/bmwVideo";
 
 const bmw = () => {
-  const BOARDS = [
-    IMAGES.BOARD1,
-    IMAGES.BOARD2,
-    IMAGES.BOARD3,
-    IMAGES.BOARD4,
-    IMAGES.BOARD5,
-  ];
   return (
     <div className="w-full text-white">
       <ResponsiveBMWVideo />

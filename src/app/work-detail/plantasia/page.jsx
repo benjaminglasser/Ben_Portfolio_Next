@@ -18,7 +18,7 @@ const plantasia = () => {
           fallback={<Loader />}
         /> */}
         <VideoPlayer
-          className="w-full md:w-3/4 h-full md:h-[28rem]"
+          className="w-full md:w-3/5 h-full md:h-[36rem]"
           widthFull
           src="https://www.youtube.com/embed/QPqFVQ77BWg"
         />

@@ -17,7 +17,11 @@ const stemport = () => {
   ];
   return (
     <div className="w-full text-white">
-      <video autoPlay muted loop src={VIDEO.STEMPORT} />
+    
+      <video autoPlay muted loop>
+        <source src={VIDEO.STEMPORT} type="video/mp4"/>
+      </video>
+
       <Context
         title="CONTEXT"
         context='Music production consists of breaking down individual instrument tracks into many smaller units known as "stems". Organizing and labeling large project files can very quickly become cluttered and difficult to sift through - especially as production teams scale.'

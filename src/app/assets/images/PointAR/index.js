@@ -14,7 +14,7 @@ import TOUR5 from "./tour5.gif";
 import TOUR6 from "./tour6.gif";
 import POINTAR_FLOW from "./pointar_flow.png";
 import HAND from "./hand.gif";
-import STATUE from "./StatueTransition_3.mp4";
+import STATUE from "./StatueTransition_compressed.mp4";
 import POINTAR_UI from "./pointarUI.png";
 import PARTICLE_STREAM from "./ParticleStream.mp4";
 import MOBILE_VIEW_INTRO from "./mobileView.gif";

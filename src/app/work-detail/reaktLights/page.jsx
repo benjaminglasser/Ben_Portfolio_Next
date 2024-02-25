@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import ReactPlayer from "react-player";
-import ZigzagHeader from "../components/zigzagHeader";
+import ZigzagHeader from "../../common/zigzagHeader";
 import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";
-import DetailSection from "../components/detailSection";
+import DetailSection from "../../common/detailSection";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 
 const reaktLights = () => {

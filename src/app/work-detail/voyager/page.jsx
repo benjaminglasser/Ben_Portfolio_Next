@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import ZigzagHeader from "../components/zigzagHeader";
+import ZigzagHeader from "../../common/zigzagHeader";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 import Section from "@/app/common/Section";
 import { PLUR } from "@/app/assets/images/PLUR";
-import DetailSection from "../components/detailSection";
+import DetailSection from "../../common/detailSection";
 import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayer from "@/app/common/VerticalVideoPlayer";
 

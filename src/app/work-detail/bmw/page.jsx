@@ -1,22 +1,10 @@
+"use client";
 import React from "react";
-import { VIDEO } from "../../assets/video";
-import Context from "../components/context";
-import AIM from "../components/aim";
-import DetailSection from "../components/detailSection";
-import { IMAGES } from "@/app/assets/images";
-import Section from "@/app/common/Section";
-import Image from "next/image";
-import ZigzagHeader from "../components/zigzagHeader";
-import ResponsiveBMWVideo from "../components/bmwVideo";
+import Context from "../../common/context";
+import ZigzagHeader from "../../common/zigzagHeader";
+import ResponsiveBMWVideo from "../../common/bmwVideo";
 
 const bmw = () => {
-  const BOARDS = [
-    IMAGES.BOARD1,
-    IMAGES.BOARD2,
-    IMAGES.BOARD3,
-    IMAGES.BOARD4,
-    IMAGES.BOARD5,
-  ];
   return (
     <div className="w-full text-white">
       <ResponsiveBMWVideo />

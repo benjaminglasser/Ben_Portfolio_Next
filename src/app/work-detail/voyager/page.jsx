@@ -14,6 +14,17 @@ const voyager = () => {
   };
   return (
     <div className="w-full text-white">
+
+      <div className="flex justify-center items-center">
+          <div className="mt-10 px-10 w-4/5 md:w-full">
+            <VideoPlayer
+                  widthFull
+                  className="aspect-w-16 aspect-h-9"
+              src="https://www.youtube.com/embed/JksvVszrUDM"
+            />
+          </div>
+      </div>
+
       <ZigzagHeader
         title="Voyager"
         description="Interactive gamefied website, branding, and album art for voyager record label"
@@ -46,13 +57,7 @@ const voyager = () => {
         </div>
       </Section>
 
-      <div className="flex justify-center items-center mt-10 px-10">
-        <VideoPlayer
-          widthFull
-          className="h-full md:h-[36rem] w-full"
-          src="https://www.youtube.com/embed/JksvVszrUDM"
-        />
-      </div>
+
       <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left />
       <Section>
         <p className="px-10 flex items-center">

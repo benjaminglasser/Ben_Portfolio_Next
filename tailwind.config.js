@@ -7,22 +7,17 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // extend: {
-    //   backgroundImage: {
-    //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-    //     "gradient-conic":
-    //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-    //   },
-    // },
-    fontSize: {
-      subheading: "clamp(1rem, 2.5vw, 1.2rem)",
-      xxs: "0.8rem",
+    extend: {
+      fontSize: {
+        subheading: "clamp(1rem, 2.5vw, 1.2rem)",
+        xxs: "0.8rem",
+      },
     },
     fontFamily: {
       sprat: ["sprat"],
       lato: ["Lato", "sans-serif"],
-      imogen: ["imogen"],
-      hellplague: ["hellplague"],
+      // imogen: ["imogen"],
+      // hellplague: ["hellplague"],
     },
     colors: {
       mute: "#808080",
@@ -31,5 +26,7 @@ module.exports = {
       white: "#fff",
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };

@@ -1,5 +1,5 @@
 "use client";
-import { Inter } from "next/font/google";
+// import { Lato } from "next/font/google";
 import "./globals.css";
 import "./assets/fonts/index.css";
 import Navbar from "./components/navbar";
@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import Loader from "./common/Loader";
 
-const inter = Inter({ subsets: ["latin"] });
+// const lato = Lato({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${
+        className={` ${
           pathname?.includes("work-detail") ? "p-0 work-detail" : "p-6  lg:p-10"
         } md:pt-12 bg-white dark:bg-black relative`}
       >

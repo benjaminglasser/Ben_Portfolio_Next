@@ -8,7 +8,7 @@ import play4 from "./play4.gif";
 import play5 from "./play5.gif";
 import play6 from "./play6.gif";
 import play7 from "./play7.gif";
-import play8 from "./play8.gif";
+// import play8 from "./play8.gif";
 import play9 from "./play9.gif";
 import play10 from "./play10.gif";
 import play11 from "./play11.gif";
@@ -73,7 +73,7 @@ export const IMAGES = {
   PLAY_5: play5,
   PLAY_6: play6,
   PLAY_7: play7,
-  PLAY_8: play8,
+  // PLAY_8: play8,
   PLAY_9: play9,
   PLAY_10: play10,
   PLAY_11: play11,

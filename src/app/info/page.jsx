@@ -85,7 +85,7 @@ const Info = () => {
               </Grid>
             ))}
           </Grid>
-          <h4 className="mb-2 font-normal">10010110101 WITH:</h4>
+          <h4 className="mb-2 mt-4 font-normal">10010110101 WITH:</h4>
           <Grid container >
             {platforms?.map((item, idx) => (
               <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>

@@ -206,7 +206,7 @@ const PointAR = () => {
         <h5>Feature #4</h5>
         <h1>Mixed Reality</h1>
         <Grid container className="w-full" spacing={3}>
-          <Grid item xs={12} md={1}>
+          <Grid item xs={12} md={3}>
             <p>
               The current state of the art technology allows for novel
               interactions with sculptures and pieces that could not have been
@@ -216,7 +216,7 @@ const PointAR = () => {
             </p>
           </Grid>
 
-          <Grid item xs={12} md={11}>
+          <Grid item xs={12} md={9}>
             <video
               autoPlay
               muted
@@ -380,6 +380,9 @@ const PointAR = () => {
           </div>
         </div>
       </Section>
+      <br/>
+      <br/>
+      <br/>
     </div>
   );
 };

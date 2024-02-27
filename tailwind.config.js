@@ -16,8 +16,6 @@ module.exports = {
     fontFamily: {
       sprat: ["sprat"],
       lato: ["Lato", "sans-serif"],
-      // imogen: ["imogen"],
-      // hellplague: ["hellplague"],
     },
     colors: {
       mute: "#808080",

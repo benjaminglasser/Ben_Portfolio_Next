@@ -1,4 +1,4 @@
-import canaryHero from "./canaryHero.gif";
+import canaryHero from "./canaryHero4.gif";
 import canaryMain from "./mainVIdCanary.mp4";
 import UI_CONSIDERATION from "./CanaryHome.png";
 import TRANS_HOME from "./Shows.png";

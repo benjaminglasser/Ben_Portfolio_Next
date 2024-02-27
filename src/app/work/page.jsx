@@ -65,7 +65,7 @@ const Work = () => {
     {
       role: "AR UX / UI Design",
       time: "FALL 2022",
-      title: "PonitAR",
+      title: "PointAR",
       description: "Your personal museum tour guide",
       thumbnail: IMAGES?.POINTAR_THUMB,
       path: "work-detail/pointAR",

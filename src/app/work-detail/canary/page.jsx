@@ -27,9 +27,9 @@ const Canary = () => {
         </div>
       </Section>
       
-      <video autoplay muted loop id="stemport">
-        <source src={IMAGES.CANARY_MAIN} type="video/mp4" />
-      </video>
+      
+      <video autoPlay muted loop src={IMAGES.CANARY_MAIN} />
+      
 
       <Context
         title="CONTEXT"

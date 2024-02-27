@@ -18,9 +18,7 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
-        <video autoplay muted loop id="stemport">
-          <source src={POINTAR.POINTEAR_MAIN} type="video/mp4" />
-        </video>
+        <video autoPlay muted loop src={POINTAR.POINTEAR_MAIN} />
 
 
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">

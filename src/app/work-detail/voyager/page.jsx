@@ -6,7 +6,7 @@ import Section from "@/app/common/Section";
 import { PLUR } from "@/app/assets/images/PLUR";
 import DetailSection from "../../common/detailSection";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 
 const voyager = () => {
   const redirectToFinalWebsite = () => {

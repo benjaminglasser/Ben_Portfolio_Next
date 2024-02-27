@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import VideoPlayer from "./VerticalVideoPlayer";
+import VideoPlayer from "./CenteredVideoPlayer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const FancyCarousel = () => {

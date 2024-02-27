@@ -7,7 +7,7 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 
 const Canary = () => {
   const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
@@ -17,14 +17,14 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
 
-        <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <div className="mt-10 px-10 w-4/5 md:w-3/5">
             <VideoPlayer
                 widthFull
                 className="aspect-w-16 aspect-h-9"
                 src="https://www.youtube.com/embed/wsxNn9A56BQ?si=ntoM4eAVuQhC5n6S"
             />
-      </div>
+        </div>
       </div>
 
       <Section>

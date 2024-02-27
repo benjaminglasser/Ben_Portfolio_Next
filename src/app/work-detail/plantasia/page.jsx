@@ -1,36 +1,58 @@
 "use client";
 import React, { Suspense } from "react";
 import DetailSection from "../../common/detailSection";
+import Context from "../../common/context";
 import { Grid } from "@mui/material";
-import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 import Section from "@/app/common/Section";
 
 const plantasia = () => {
   return (
     <div className="w-full text-white">
-      <div className="flex justify-center items-center mt-8 px-10">
-        <Suspense fallback={<p>Loading video...</p>}>
-          <VideoPlayer
-            className="w-full md:w-3/4 h-full md:h-[28rem]"
-            widthFull
-            src="https://www.youtube.com/embed/QPqFVQ77BWg"
-          />
-        </Suspense>
-      </div>
-      <DetailSection
+      {/* <div className="flex justify-center items-center mt-8 px-10"> */}
+      <Suspense fallback={<p className="text-white">Loading video...</p>}>
+              <VideoPlayer
+                widthFull
+                className="aspect-w-16 aspect-h-9"
+                src="https://www.youtube.com/embed/QPqFVQ77BWg"
+              />
+      </Suspense>
+
+      {/* </div> */}
+      {/* <DetailSection
         className="px-5 md:px-10 "
         title="BRIEF"
         description={`Create a system that allows you to play music (and possibly video) from your computer using a physical custom interface of your own design and creation. Will you make it for your own personal use or more general, usable by a larger group of people? Is it mean for solo preformance or multiple people? Will it be specific to a genre of music? How do you select the parameters that you can manipulate.`}
         widthFull
         left
+      /> */}
+
+      <Context
+        title="CONTEXT"
+        context="Create a system that allows you to play music (and possibly video) from your computer using a physical custom interface of your own design and creation. Will you make it for your own personal use or more general, usable by a larger group of people? Is it mean for solo preformance or multiple people? Will it be specific to a genre of music? How do you select the parameters that you can manipulate."
       />
+
       <DetailSection
         className="px-5 md:px-10 "
         title="VERSION 1"
-        widthFull
-        left
+        description="My initial idea was to use piezo touch sensors as a way to drive the
+            sound. My first test was to simply get the piezo working and hooked
+            up to my plant to see how the interaction felt"
+        left={false}
       />
-      <Grid container className="w-full px-5 md:px-10">
+
+              <VideoPlayer
+                widthFull
+                className="aspect-w-16 aspect-h-9"
+                src="https://www.youtube.com/embed/Hc8VXcVx78s"
+                caption="My initial idea was to use piezo touch sensors as a way to drive the
+                sound. My first test was to simply get the piezo working and hooked
+                up to my plant to see how the interaction felt."
+              />
+
+
+
+      {/* <Grid container className="w-full px-5 md:px-10">
         <Grid xs={12} md={7} className="mt-14">
           <p>
             My initial idea was to use piezo touch sensors as a way to drive the
@@ -40,8 +62,10 @@ const plantasia = () => {
         </Grid>
         <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
           <VideoPlayer src="https://www.youtube.com/embed/Hc8VXcVx78s" />
-        </Grid>
-        <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
+        </Grid> */}
+
+        
+        {/* <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
           <VideoPlayer src="https://www.youtube.com/embed/XA7ckpYhOTw" />
         </Grid>
         <Grid xs={12} md={7} className="mt-14">
@@ -80,7 +104,7 @@ const plantasia = () => {
             src="https://www.youtube.com/embed/nJkmiRYUuxQ"
           />
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <DetailSection
         className="px-5 md:px-10 "
@@ -204,23 +228,24 @@ const plantasia = () => {
         left
       />
 
-      <div className="w-full flex justify-center items-center mt-10 px-10">
-        <VideoPlayer
-          widthFull
-          className="h-full md:h-[28rem] w-full"
-          src="https://www.youtube.com/embed/QPqFVQ77BWg"
-        />
-      </div>
-      <DetailSection
+  
+
+
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9 mb-40"
+        src="https://www.youtube.com/embed/QPqFVQ77BWg"
+      />
+
+
+
+      {/* <DetailSection
         className="px-5 md:px-10 "
         title="REFLECTIONS"
         description="This was a very exciting and useful project for myself. Getting to bring my background in music into this instrument was a very fun and rewarding way to apply some basic yet important hardware principles all together in one unified project. I would like to expand on the idea by adding more notes to make up a full 12 note scale, restricting to specific keys, and synthesizing a more unique sound rather than a simple sine wave (Which I will admit does work well with the plant theme as is). I look forward to utilizing these tools in future projects!."
         widthFull
         left
-      />
-      <Section>
-        <p className="px-5 md:px-10 ">Instructor: Maxim Safioulline</p>
-      </Section>
+      /> */}
     </div>
   );
 };

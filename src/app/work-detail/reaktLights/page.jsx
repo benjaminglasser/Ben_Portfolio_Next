@@ -5,7 +5,7 @@ import ZigzagHeader from "../../common/zigzagHeader";
 import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
-import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 
 const reaktLights = () => {
   return (

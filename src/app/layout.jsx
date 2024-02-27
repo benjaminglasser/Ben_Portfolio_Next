@@ -1,5 +1,5 @@
 "use client";
-// import { Lato } from "next/font/google";
+import Head from 'next/head'; // Import Head from next/head
 import "./globals.css";
 import "./assets/fonts/index.css";
 import Navbar from "./components/navbar";
@@ -21,6 +21,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+    <Head>
+        <title>Ben's Portfolio</title> {/* Set a default title for your app */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon2-32x32.png" /> {/* Link your favicon here */}
+        {/* Include any other head elements you need here */}
+    </Head>
       <body
         className={` ${
           pathname?.includes("work-detail") 

@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
 import Section from "@/app/common/Section";
-import VideoPlayer from "@/app/common/VerticalVideoPlayer";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 
 const PointAR = () => {
   const bullets = [

@@ -18,7 +18,11 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
-        <video autoPlay muted loop src={POINTAR.POINTEAR_MAIN} />
+        <video autoplay muted loop id="stemport">
+          <source src={POINTAR.POINTEAR_MAIN} type="video/mp4" />
+        </video>
+
+
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
           <h1 className="w-full md:w-2/3 px-6">
             An Augmented Reality museum guide tailor-made to each user. It can

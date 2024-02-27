@@ -26,7 +26,11 @@ const Canary = () => {
           </FancyButton>
         </div>
       </Section>
-      <video autoPlay muted loop src={IMAGES.CANARY_MAIN} />
+      
+      <video autoplay muted loop id="stemport">
+        <source src={IMAGES.CANARY_MAIN} type="video/mp4" />
+      </video>
+
       <Context
         title="CONTEXT"
         context="Canary is a program for sound, video, performance, and installation work. Through site-specific exhibitions they expect artists to use their unique resources and platform to challenge audiences with critical work and subject matter."

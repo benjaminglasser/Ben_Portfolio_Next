@@ -20,9 +20,9 @@ const stemport = () => {
     <div className="w-full text-white">
     
 
-        <video autoPlay muted loop>
-          <source src={VIDEO.STEMPORT} type="video/mp4"/>
-        </video>
+      <video autoplay muted loop id="stemport">
+        <source src={VIDEO.STEMPORT} type="video/mp4" />
+      </video>
         
       <Context
         title="CONTEXT"

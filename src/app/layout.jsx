@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
           pathname?.includes("work-detail") 
           // | pathname?.includes("play") 
           ? "p-0 work-detail" : "p-6  lg:p-10"
-        } md:pt-12 bg-white dark:bg-black relative`}
+        } md:pt-0 bg-white dark:bg-black relative`}
       >
         <Navbar />
         <Suspense fallback={<Loader />}>{children}</Suspense>

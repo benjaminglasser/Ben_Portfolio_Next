@@ -1,6 +1,6 @@
 import pointAR_Home from "./pointAR_Home.gif";
 import pointerHero from "./PointAR_Hero_AdobeExpress_AdobeExpress_wegd2s.gif";
-import POINTEAR_MAIN from "./PointAR_Hero.mp4";
+import POINTEAR_MAIN from "./PointAR2_Hero.mp4";
 import ERA from "./era.png";
 import START from "./start.gif";
 import NEXT from "./Tour.png";

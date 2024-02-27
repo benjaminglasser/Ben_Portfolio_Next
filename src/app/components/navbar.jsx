@@ -90,6 +90,7 @@ const Navbar = () => {
         ):
 
         (
+        <div className="hidden">
         <Grid xs={12} md={pathname !== "/" ? 12 : 9}>
               <h1 className="dark:text-white  text-black cursor-pointer font-medium text-center mt-10 md:mt-0 md:text-end md:px-10 font-lato">
                 <Link className="hover:text-pink dark:hover:text-pink" href="/">BENJAMIN GLASSER</Link>
@@ -112,6 +113,7 @@ const Navbar = () => {
               </div>
             </div>
           </Grid>
+          </div>
         )}
 
 

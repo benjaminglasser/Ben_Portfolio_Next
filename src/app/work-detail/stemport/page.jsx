@@ -20,7 +20,7 @@ const stemport = () => {
     <div className="w-full text-white">
     
 
-    <section className="aspect-w-16 aspect-h-9">
+      <section className="aspect-w-16 aspect-h-9">
         <video autoPlay muted loop>
           <source src={VIDEO.STEMPORT} type="video/mp4"/>
         </video>

@@ -15,15 +15,24 @@ const voyager = () => {
   return (
     <div className="w-full text-white">
 
-      <div className="flex justify-center items-center">
-          <div className="mt-10 px-10 w-4/5 md:w-full">
-            <VideoPlayer
-                  widthFull
-                  className="aspect-w-16 aspect-h-9"
-              src="https://www.youtube.com/embed/JksvVszrUDM"
-            />
-          </div>
+      {/* <video autoPlay muted loop src={PLUR.TD_TEST} className="h-[1080px]"/> */}
+
+      {/* <section className="aspect-w-16 aspect-h-9">
+        <video autoPlay muted loop>
+          <source src={PLUR.TD_TEST} type="video/mp4"/>
+        </video>
+      </section> */}
+
+      {/* <!-- Hero Header Container --> */}
+      <div className="h-[700px] overflow-hidden flex items-center justify-center">
+        {/* <!-- Video Tag --> */}
+        <video autoPlay loop muted playsinline className="object-cover min-w-full min-h-full">
+          <source src={PLUR.TD_TEST} type="video/mp4"/>
+          {/* Your browser does not support the video tag. */}
+        </video>
       </div>
+
+  
 
       <ZigzagHeader
         title="Voyager"
@@ -45,6 +54,7 @@ const voyager = () => {
           "Illustrator",
         ]}
       />
+
       <Section>
         <div className="w-full text-center">
           <FancyButton
@@ -57,11 +67,21 @@ const voyager = () => {
         </div>
       </Section>
 
+      <VideoPlayer
+                widthFull
+                className="aspect-w-16 aspect-h-9"
+                src="https://www.youtube.com/embed/JksvVszrUDM"
+      />
+
 
       <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left />
       <Section>
         <p className="px-10 flex items-center">
-          For their <span className="text-sprat mx-3"> Voyager </span> series,
+          For their Voyager series,
+        {/* <span className="font-sprat">
+          Voyager
+        </span>  */}
+        
           <FancyButton
             className="uppercase font-sprat  p-1 hover:text-white"
             size="medium"
@@ -101,7 +121,10 @@ const voyager = () => {
         />
       </Section>
       <Section>
-        <video autoPlay muted loop src={PLUR.TD_TEST} />
+
+      
+
+        
         <p className="px-5 md:px-10 mt-5">
           Final vinyl artwork + shirt design for the first release:
         </p>
@@ -163,13 +186,13 @@ const voyager = () => {
       <Section>
         <video autoPlay muted loop src={PLUR.HORSE} />
       </Section>
-      <div className="w-full px-10 my-14 pb-14">
+      
         <VideoPlayer
           widthFull
-          className="h-full md:h-[36rem] w-full"
+          className="h-full md:h-[36rem] w-full mb-24"
           src="https://player.vimeo.com/video/588617470"
         />
-      </div>
+   
     </div>
   );
 };

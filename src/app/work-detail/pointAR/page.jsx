@@ -18,6 +18,8 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
+
+      
         <video autoPlay muted loop src={POINTAR.POINTEAR_MAIN} />
 
 
@@ -29,13 +31,21 @@ const PointAR = () => {
           </h1>
         </div>
       </div>
-      <div className="flex justify-center w-full">
-        <VideoPlayer
-          className="w-full md:w-3/4 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem]"
-          widthFull
-          src="https://www.youtube.com/embed/fvOwZU6CShI"
-        />
-      </div>
+      {/* <div className="flex justify-center w-full"> */}
+
+      <VideoPlayer
+                widthFull
+                className="aspect-w-16 aspect-h-9"
+                src="https://www.youtube.com/embed/fvOwZU6CShI"
+      />
+
+      <Context
+        title="CONTEXT"
+        context="Museums with huge collections are bound to their geographical location, as well as their building size. Their curatorial layouts are far from customized to the interests of the visitors by attempting to encompass massive timespans, materials and dimensional scopes that overwhelm the visitors and leave them feeling as though their visit was incomplete. This is heightened by experiencing a sense of distance from the intimacy that is desired with particular pieces."
+      />
+      <AIM aim="How might we leverage the power of Augmented Reality to enhance the way visitors experience a museum visually and tactilely?" />
+
+      {/* </div> */}
       <Grid container className="flex justify-between">
         <Grid item md={6}>
           <DetailSection
@@ -69,11 +79,7 @@ const PointAR = () => {
           </Grid>
         </Grid>
       </div>
-      <Context
-        title="CONTEXT"
-        context="Museums with huge collections are bound to their geographical location, as well as their building size. Their curatorial layouts are far from customized to the interests of the visitors by attempting to encompass massive timespans, materials and dimensional scopes that overwhelm the visitors and leave them feeling as though their visit was incomplete. This is heightened by experiencing a sense of distance from the intimacy that is desired with particular pieces."
-      />
-      <AIM aim="How might we leverage the power of Augmented Reality to enhance the way visitors experience a museum visually and tactilely?" />
+    
       <Image src={POINTAR.DIVIDER} className="w-full my-10" />
       {/* Feature 1 */}
       <div className="px-5 md:px-10 mt-5 md:mt-10">

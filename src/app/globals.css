@@ -294,6 +294,10 @@ li::marker {
   .thumbnail {
     height: 100%; /* Set height to 200px on smaller screens */
   }
+
+  .thumbnail:hover {
+    height: 100%;
+  }
 }
 
 .bio {

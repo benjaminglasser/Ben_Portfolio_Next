@@ -26,11 +26,11 @@ const bmw = () => {
       <ResponsiveBMWVideo />
         <Context
           title="CONTEXT"
-          className="mt-72 mb-24"
+          className="mt-24 md:mt-72 mb-24"
           context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
         />
         <div className="flex justify-center">
-        <div className="w-full md:w-3/5 text-pink">
+        <div className="w-full px-10 md:w-3/5 text-pink">
           <h4 className="font-normal">UPDATE!</h4>
         </div>
         </div>
@@ -40,7 +40,7 @@ const bmw = () => {
             src="https://www.youtube.com/embed/zwOfrRDtd9E?si=gCmbaaHFXlUoL5zl"
           />  
 
-        <div className="mt-12 flex justify-center">
+        <div className="px-10 mt-12 flex justify-center">
           <p>During CES 2024, the BMW team presented work that I contributed to during my time.</p>
         </div>
         

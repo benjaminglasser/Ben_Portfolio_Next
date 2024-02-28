@@ -49,10 +49,16 @@ const voyager = () => {
         ]}
       />
 
+      <VideoPlayer
+                widthFull
+                className="aspect-w-16 aspect-h-9"
+                src="https://www.youtube.com/embed/JksvVszrUDM"
+      />
+
       <Section>
-        <div className="w-full text-center">
+        <div className="w-full text-center px-10">
           <FancyButton
-            className="uppercase mt-28 font-sprat  p-1 hover:text-white"
+            className=" uppercase w-full mt-28 font-sprat p-1 hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >
@@ -61,17 +67,12 @@ const voyager = () => {
         </div>
       </Section>
 
-      <VideoPlayer
-                widthFull
-                className="aspect-w-16 aspect-h-9"
-                src="https://www.youtube.com/embed/JksvVszrUDM"
-      />
-
 
       {/* <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left /> */}
 
       <Context
         title="CONTEXT"
+        className="mt-24"
         context="For their Voyager series, Fantastic Voyage Records commisioned me to create a new brand identity inspired by retro space
           aesthetics."
       />

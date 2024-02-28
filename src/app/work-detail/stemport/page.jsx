@@ -21,7 +21,7 @@ const stemport = () => {
     
 
       <section className="aspect-w-16 aspect-h-9">
-        <video autoPlay muted loop>
+        <video autoPlay muted loop className="mt-10 md:mt-0">
           <source src={VIDEO.STEMPORT} type="video/mp4"/>
         </video>
       </section>
@@ -43,8 +43,13 @@ const stemport = () => {
         title="User Flow"
         description="Due to the fact that this application is meant to streamline the process of stem organization so that musicians can get to the music making process quicker, It was integral to have the least amount of screens possible to mitigate any risk of adding any friction to the user flow. Therefore, it was necessary early on to clarify the user's journey so that the shortest path to completion could be created while still having all the necessary tools available at hand."
         left={false}
-        images={[IMAGES.USERFLOW_TRANS]}
+        // images={[IMAGES.USERFLOW_TRANS]}
       />
+
+      <div className="flex justify-center w-full px-10 mt-5">
+        <Image src={IMAGES.USERFLOW_TRANS} alt="light mode" />
+      </div>
+
       <DetailSection
         className="px-10 "
         title="UI Considerations"

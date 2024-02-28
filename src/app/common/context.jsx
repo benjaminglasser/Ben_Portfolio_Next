@@ -29,7 +29,7 @@ const Context = ({
         )}
         {context && (
           <h2 className="flex text-left justify-center w-full">
-            <div className="w-full md:w-3/5 text-left text-subheading">
+            <div className="w-full px-10 md:w-3/5 text-left text-subheading">
               {context}
             </div>
           </h2>

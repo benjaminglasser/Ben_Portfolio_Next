@@ -49,7 +49,7 @@ const Info = () => {
 
 
   return (
-    <Grid container className="mt-1 px-5 md:px-14 mt-6" spacing={4}>
+    <Grid container className="mt-1 px-0 md:px-14 md:mt-6" spacing={4}>
       <Grid item md={8}>
         <Section>
           <h1 className="text-justify bio">

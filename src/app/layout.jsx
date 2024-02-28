@@ -20,22 +20,25 @@ export default function RootLayout({ children }) {
   }, [pathname]);
 
   return (
-    <html lang="en">
-    <Head>
-        <title>Ben's Portfolio</title> {/* Set a default title for your app */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon2-32x32.png" /> {/* Link your favicon here */}
-        {/* Include any other head elements you need here */}
-    </Head>
-      <body
-        className={` ${
-          pathname?.includes("work-detail") 
-          // | pathname?.includes("play") 
-          ? "p-0 work-detail" : "p-6  lg:p-10"
-        } md:pt-0 bg-white dark:bg-black relative`}
-      >
-        <Navbar />
-        <Suspense fallback={<Loader />}>{children}</Suspense>
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <Head>
+            <title>Ben's Portfolio</title> {/* Set a default title for your app */}
+            <link rel="icon" type="image/png" href="/favicon2-32x32.png" /> {/* Link your favicon here */}
+        </Head>
+        <body
+          className={` ${
+            pathname?.includes("work-detail") 
+            // | pathname?.includes("play") 
+            ? "p-0 work-detail" : "p-6  lg:p-10"
+          } md:pt-0 bg-white dark:bg-black relative`}
+        >
+          <Suspense fallback={<Loader />}>
+          <Navbar />
+          {children}
+          </Suspense>
+        </body>
+      </html>
+    </>
   );
 }

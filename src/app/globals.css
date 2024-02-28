@@ -79,6 +79,29 @@ h5 {
   text-align: justify;
 }
 
+@media (max-width: 768px) {
+  .navCntr {
+    width: 100%;
+  }
+}
+
+/* .navCntr2 {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: clamp(10px, 3vw, 17px);
+  width: clamp(160px, 8vw, 400px);
+  text-transform: uppercase;
+  align-self: flex-end;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .navCntr2 {
+    width: 110%;
+  }
+} */
+
 .link {
   /* justify-content: center; */
   letter-spacing: 1em;
@@ -86,6 +109,7 @@ h5 {
   display: inline-block;
   text-indent: -1em;
 }
+
 @media (min-width: 1200px) {
   .h1,
   h1 {
@@ -266,12 +290,9 @@ li::marker {
 .MuiButtonBase-root.MuiButton-sizeLarge {
   font-size: 1.25rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .thumbnail {
-    height: 265px; /* Set height to 200px on smaller screens */
-  }
-  .thumbnail:hover {
-    height: 275px; /* Set height to 200px on smaller screens */
+    height: 100%; /* Set height to 200px on smaller screens */
   }
 }
 

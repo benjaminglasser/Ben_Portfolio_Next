@@ -14,7 +14,7 @@ const Context = ({
       <div
         className={`${
           titleLeft ? "text-left" : "text-center"
-        } mt-5 px-10 ${className}`}
+        } mt-5  ${className}`}
       >
         {title && (
           <h1
@@ -29,7 +29,7 @@ const Context = ({
         )}
         {context && (
           <h2 className="flex text-left justify-center w-full">
-            <div className="w-full md:w-2/3 text-left text-subheading">
+            <div className="w-full md:w-3/5 text-left text-subheading">
               {context}
             </div>
           </h2>

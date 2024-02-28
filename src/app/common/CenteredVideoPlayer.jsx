@@ -6,7 +6,7 @@ const VideoPlayer = ({ src, widthFull, className, caption }) => {
   const isInView = useInView(ref, { once: true });
   return (
     <div className="flex justify-center items-center">
-        <div className="mt-10 px-10 w-4/5 md:w-3/5">
+        <div className="mt-10 w-full md:w-3/5">
             <div>
                 {caption && <p className="mb-5 font-thin">{caption}</p>}
             </div>

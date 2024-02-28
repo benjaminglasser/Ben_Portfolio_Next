@@ -19,10 +19,10 @@ const ZigzagHeader = ({
           md={3}
           className="border-t lg:border-t lg:border-r border-pink p-3"
         >
-          <h2 className="text-sm sm:text-base md:text-lg lg:text-3xl">
+          <h2 className="font-normal text-3xl">
             {title}
           </h2>
-          <h4 className="font-sprat text-xs sm:text-sm md:text-base lg:text-2xl">
+          <h4 className="font-sprat font-light lg:text-2xl">
             {description}
           </h4>
         </Grid>

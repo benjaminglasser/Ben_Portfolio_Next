@@ -57,7 +57,7 @@ const stemport = () => {
         <Section>
           <div className="w-full flex justify-center mt-16">
             <Image
-              className="w-full md:w-3/5"
+              className="w-4/5 md:w-3/5"
               src={image}
               key={idx}
               alt="boards"

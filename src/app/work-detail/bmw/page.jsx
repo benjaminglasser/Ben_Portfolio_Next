@@ -1,29 +1,58 @@
 "use client";
 import React from "react";
 import Context from "../../common/context";
-import ZigzagHeader from "../../common/zigzagHeader";
+// import ZigzagHeader from "../../common/zigzagHeader";
 import ResponsiveBMWVideo from "../../common/bmwVideo";
 import Section from "@/app/common/Section";
+import DetailSection from "../../common/detailSection";
+import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import { FancyButton } from "@/app/common/FancyButton";
 
 const bmw = () => {
   const bullets = [
-          "Developed a real time interactive XR experience using Unreal Engine on a fast paced, corporate deadline.",
+          "Led the end-to-end development of a real-time, interactive Mixed Reality (MR) product utilizing Unreal Engine and state-of-the-art headsets under fast paced, tight corporate deadline.",
           "Designed various AR applications to express ideas and present to my team for weekly reviews. Packaged and handed off approved assets to the engineering team for integration.",
           "Created 3D renderings in Blender, Unity, and Unreal Engine to be displayed on various displays. Tasks included virtual cinematics, materials and texturing using PBR based workflows, Unity scripting and UE blueprints, special effects, character rigging and animation, and workflows between various software.",
           "Worked extensively with VFX graph (Unity), Niagara (Unreal Engine), and Particle Systems (Blender) as well as built custom shaders to prototype novel effects that translate across multiple platforms.",
+          "I was invited to present my work to the BMW board at their annual conference. The project then was approved and selected for the next rounds of innovation.",
+          "Proposed and collaborated on several novel inventions culminating in being credited with signing two patents (details coming soon)",
   ];
 
   return (
+
+    
+    
     <div className="w-full text-white">
       <ResponsiveBMWVideo />
-      <ZigzagHeader
+        <Context
+          title="CONTEXT"
+          className="mt-72 mb-24"
+          context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
+        />
+        <div className="flex justify-center">
+        <div className="w-full md:w-3/5 text-pink">
+          <h4 className="font-normal">UPDATE!</h4>
+        </div>
+        </div>
+          <VideoPlayer
+            widthFull
+            className="aspect-w-16 aspect-h-9"
+            src="https://www.youtube.com/embed/zwOfrRDtd9E?si=gCmbaaHFXlUoL5zl"
+          />  
+
+        <div className="mt-12 flex justify-center">
+          <p>During CES 2024, the BMW team presented work that I contributed to during my time.</p>
+        </div>
+        
+      {/* </div> */}
+      {/* <ZigzagHeader
         title="BMW"
         description="Developing next-generation XR products and systems"
         extendedDescription="Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich."
         time="Summer 2022 - Fall 2022"
         role="XR Interaction"
         tools={["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"]}
-      />
+      /> */}
       {/* <Context
         title="Experience"
         className="pt-16 my-16"
@@ -37,20 +66,31 @@ const bmw = () => {
       /> */}
 
       <Section>
-        <div className="text-center px-10 mt-16 mb-72">
-          <h1 className="mb-3">EXPERIENCE</h1>
-          <div className="w-full flex justify-center">
-            <ul className="w-full md:w-2/3 lg:w-3/6 text-left list-disc">
+        <div className="text-center px-10 mt-16 mb-72 ">
+          {/* <h1 className="mb-3">EXPERIENCE</h1> */}
+          <DetailSection
+            className=" mb-3 "
+            title="EXPERIENCE"
+            center
+          />
+          <div className="w-full flex flex-col items-center justify-center">
+          <h6 className="mb-3 font-normal">DETAILS LIMITED BY NDA</h6>
+            <ul className="w-full  px-4 md:w-1/2 text-left list-disc">
               {bullets?.map((bullet, idx) => (
                 <li className="leading-8 text-base">{bullet}</li>
               ))}
-            <p>By the end of my time there, I was fortunate enough to present one of my high fidelity prototypes to the BMW Board at their yearly conference. I also had the pleasure of being part of signing two novel invention patents that are currently pending.</p>
             </ul>
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mt-8 mb-2 hover:text-white">
+              <a href="mailto:glasserben@gmail.com" target="_blank" >
+                CONTACT FOR MORE INFO
+              </a>
+            </FancyButton>
           </div>
         </div>
       </Section>
 
     </div>
+
   );
 };
 

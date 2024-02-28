@@ -61,7 +61,7 @@ const FancyCarousel = () => {
       renderArrowPrev={(onClickHandler, hasPrev) =>
         hasPrev && (
           <div
-            className="absolute left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center border border-pink hover:bg-pink hover:opacity-80 cursor-pointer ml-10"
+            className="absolute  left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center  hover:text-pink cursor-pointer ml-10"
             onClick={onClickHandler}
           >
             <IoIosArrowBack size={30} />
@@ -71,7 +71,7 @@ const FancyCarousel = () => {
       renderArrowNext={(onClickHandler, hasNext) =>
         hasNext && (
           <div
-            className="absolute right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center border border-pink hover:bg-pink hover:opacity-80 cursor-pointer mr-10"
+            className="absolute  right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-pink cursor-pointer mr-10"
             onClick={onClickHandler}
           >
             <IoIosArrowForward size={30} />
@@ -82,11 +82,11 @@ const FancyCarousel = () => {
       {SOURCE?.map((item, idx) => (
         <div
           key={idx}
-          className="w-full h-full flex justify-center items-center relative"
+          // className="w-full h-full flex justify-center items-center relative"
         >
           <VideoPlayer
             widthFull
-            className="h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] w-full"
+          className="aspect-w-16 aspect-h-9"
             src={item?.url}
           />
         </div>

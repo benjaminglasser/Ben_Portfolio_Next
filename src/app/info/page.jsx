@@ -54,7 +54,12 @@ const Info = () => {
                 className="normal-case ml-2 p-0 text-xl p-1 hover:text-white"
                 size="large"
               >
+                <a
+                href="https://www.easelapps.ai"
+                target="_blank"
+              >
                 Easel
+              </a>
               </FancyButton>
             {/* <span className="font-sprat inline opacity-100">
               {" "}
@@ -70,10 +75,16 @@ const Info = () => {
             <div className="w-100 flex items-center justify-start text-black py-4">
               I also create music sometimes under the name
               <FancyButton
-                className="normal-case ml-2 p-0 text-xl p-1 hover:text-white"
+                className="normal-case ml-2 text-xl hover:text-white"
                 size="large"
               >
+
+                <a
+                href="https://open.spotify.com/artist/4lP1lKWYqNLYWYtnuTh8OF?si=Z19kgdcvRzyKWn0C8BK3cQ"
+                target="_blank"
+              >
                 Benny Bridges
+              </a>
               </FancyButton>
             </div>
           </h1>
@@ -121,7 +132,7 @@ const Info = () => {
             <FancyButton className="p-0 px-2 mr-2 mb-2 hover:text-white">
               <a
                 href="https://github.com/benjaminglasser"
-                
+                target="_blank"
               >
                 GITHUB
               </a>
@@ -129,7 +140,7 @@ const Info = () => {
             <FancyButton className="p-0 px-2 mr-2 mb-2 hover:text-white">
               <a
                 href="https://www.instagram.com/bbbbb.stuff/"
-                
+                target="_blank"
               >
                 INSTAGRAM
               </a>

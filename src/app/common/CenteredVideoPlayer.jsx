@@ -7,6 +7,9 @@ const VideoPlayer = ({ src, widthFull, className, caption }) => {
   return (
     <div className="flex justify-center items-center">
         <div className="mt-10 px-10 w-4/5 md:w-3/5">
+            <div>
+                {caption && <p className="mb-5 font-thin">{caption}</p>}
+            </div>
             <div
             ref={ref}
             className={
@@ -32,9 +35,7 @@ const VideoPlayer = ({ src, widthFull, className, caption }) => {
                 loading="lazy"
             />
             </div>
-            <div>
-                {caption && <p className="mt-5 font-thin">{caption}</p>}
-            </div>
+            
         </div>
     </div>
   );

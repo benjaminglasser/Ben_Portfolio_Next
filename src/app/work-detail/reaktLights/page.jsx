@@ -10,6 +10,13 @@ import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 const reaktLights = () => {
   return (
     <div className="w-full text-white">
+
+      {/* <!-- Hero Header Container --> */}
+      <div className="h-[600px] w-full overflow-hidden flex items-center justify-center bg-black">
+        {/* <!-- GIF Image --> */}
+        <Image src={REAKT.REAKT_HOME} alt="reakt Hero" className="object-cover min-w-full min-h-full"/>
+      </div>
+
       <ZigzagHeader
         title="REAKT LIGHTS"
         description="Customizable audio reactive lighting system"
@@ -21,91 +28,64 @@ const reaktLights = () => {
           "Chauvet DMX Dimmer/Switch Pack",
           "DMXKing eDMX1 PRO Ethernet DMX Controller",
         ]}
-      />
-      <div className="flex justify-center items-center mt-10">
+      />  
+
         <VideoPlayer
           widthFull
-          className="w-full md:w-3/5 h-full md:h-[36rem]"
+          className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/7znbWZne4Nk"
         />
-      </div>
-      <div className="flex justify-center items-center mt-10">
         <VideoPlayer
           widthFull
-          className="w-full md:w-3/5 h-full md:h-[36rem]"
+          className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/d45Ef3S-61w"
         />
-      </div>
-      <div className="flex justify-center items-center mt-10">
         <VideoPlayer
           widthFull
-          className="w-full md:w-3/5 h-full md:h-[36rem]"
+          className="aspect-w-16 aspect-h-9"
           src="https://player.vimeo.com/video/589537817"
         />
-      </div>
+
 
       <DetailSection
         className="px-5 md:px-10 "
         title="BACKEND + INTERFACE BUILD"
-        description={`nput audio signals are fed to TouchDesigner where set frequencies can be isolated, normalized then convert DMX. The signal is then converted and fed into a Chauvet DMX Dimmer/Switch Pack that can break out up to 4 channels.`}
+        description={`Input audio signals are fed to TouchDesigner where set frequencies can be isolated, normalized then convert DMX. The signal is then converted and fed into a Chauvet DMX Dimmer/Switch Pack that can break out up to 4 channels.`}
         widthFull
         left
       />
       <Image src={REAKT.system} alt="reakt" className="w-full h-full" />
-      <Grid container className="w-full px-5 md:px-10">
-        <Grid
-          xs={12}
-          md={6}
-          className="flex justify-center w-full px-0 md:px-20 mt-10"
-        >
-          <VideoPlayer
-            widthFull
-            className="h-full md:h-[24rem] w-full"
-            src="https://www.youtube.com/embed/ZXU8C1nDULM"
-          />
-        </Grid>
-        <Grid
-          xs={12}
-          md={6}
-          className="flex justify-center w-full px-0 md:px-20 mt-10"
-        >
-          <VideoPlayer
-            widthFull
-            className="h-full md:h-[24rem] w-full"
-            src="https://www.youtube.com/embed/HJ8bRSWIQpQ"
-          />
-        </Grid>
-      </Grid>
+
+
+      <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/ZXU8C1nDULM"
+        />
+      <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/HJ8bRSWIQpQ"
+        />
+
+      
       <DetailSection
         className="px-5 md:px-10 "
         title="EARLY TESTS"
         widthFull
         left
       />
-      <Grid container className="w-full px-5 md:px-10 mb-20">
-        <Grid
-          xs={12}
-          md={6}
-          className="flex justify-center w-full px-0 md:px-20 mt-10"
-        >
-          <VideoPlayer
-            widthFull
-            className="h-full md:h-[24rem] w-full"
-            src="https://www.youtube.com/embed/pXBFflD6ALo"
-          />
-        </Grid>
-        <Grid
-          xs={12}
-          md={6}
-          className="flex justify-center w-full px-0 md:px-20 mt-10"
-        >
-          <VideoPlayer
-            widthFull
-            className="h-full md:h-[24rem] w-full"
-            src="https://www.youtube.com/embed/8Mm1Mv-THHY"
-          />
-        </Grid>
-      </Grid>
+
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/pXBFflD6ALo"
+        />
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9 mb-24"
+          src="https://www.youtube.com/embed/8Mm1Mv-THHY"
+        />
     </div>
   );
 };

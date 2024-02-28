@@ -79,7 +79,12 @@ const Play = () => {
       <p className="w-100 flex items-center justify-center text-white py-8">
         More expiriments can be found
         <FancyButton className="px-[0.25rem] py-0 ml-2">
-          <p>HERE</p>
+              <a
+                href="https://www.instagram.com/bbbbb.stuff/"
+                target="_blank"
+              >
+                HERE
+              </a>
         </FancyButton>
       </p>
       <ImageList variant="masonry" cols={cols} gap={24}>

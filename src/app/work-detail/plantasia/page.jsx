@@ -5,10 +5,33 @@ import Context from "../../common/context";
 import { Grid } from "@mui/material";
 import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 import Section from "@/app/common/Section";
+import { PLANTASIA } from "@/app/assets/images/plantasia";
+import Image from "next/image";
+import ZigzagHeader from "../../common/zigzagHeader";
+
 
 const plantasia = () => {
   return (
     <div className="w-full text-white">
+
+
+      {/* <!-- Hero Header Container --> */}
+      <div className="h-[600px] w-full overflow-hidden flex items-center justify-center bg-black">
+        {/* <!-- GIF Image --> */}
+        <Image src={PLANTASIA.PLANT_HERO} alt="Plantasia Hero" className="object-cover min-w-full min-h-full"/>
+      </div>
+
+      <ZigzagHeader
+        title="Plantasia"
+        description="Custom Plant Based Musical Instrument"
+        extendedDescription="A capacitive touch based instrument that can connect to any water/metal based items to control a C major scale and animation via serial communication on a computer"
+        time="FALL 2021 // Personal Project"
+        role="Engineer, Creative Coder"
+        tools={[
+          "Arduino", "Capacitive Touch MPR121", "Processing", "Succulent", "Banana", "Lemon", "Rosarita Vegetarian", "Refried Beans"
+        ]}
+      />
+
       {/* <div className="flex justify-center items-center mt-8 px-10"> */}
       <Suspense fallback={<p className="text-white">Loading video...</p>}>
               <VideoPlayer
@@ -40,81 +63,106 @@ const plantasia = () => {
             up to my plant to see how the interaction felt"
         left={false}
       />
-
-              <VideoPlayer
-                widthFull
-                className="aspect-w-16 aspect-h-9"
-                src="https://www.youtube.com/embed/Hc8VXcVx78s"
-                caption="My initial idea was to use piezo touch sensors as a way to drive the
-                sound. My first test was to simply get the piezo working and hooked
-                up to my plant to see how the interaction felt."
-              />
-
-
-
-      {/* <Grid container className="w-full px-5 md:px-10">
-        <Grid xs={12} md={7} className="mt-14">
-          <p>
-            My initial idea was to use piezo touch sensors as a way to drive the
-            sound. My first test was to simply get the piezo working and hooked
-            up to my plant to see how the interaction felt
-          </p>
-        </Grid>
-        <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
-          <VideoPlayer src="https://www.youtube.com/embed/Hc8VXcVx78s" />
-        </Grid> */}
-
-        
-        {/* <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
-          <VideoPlayer src="https://www.youtube.com/embed/XA7ckpYhOTw" />
-        </Grid>
-        <Grid xs={12} md={7} className="mt-14">
-          <p>
-            Before connecting it to processing, I hooked up a simple piezo
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/Hc8VXcVx78s"
+          caption="My initial idea was to use piezo touch sensors as a way to drive the
+          sound. My first test was to simply get the piezo working and hooked
+          up to my plant to see how the interaction felt."
+        />
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/XA7ckpYhOTw"
+          caption="Before connecting it to processing, I hooked up a simple piezo
             speaker to test out the system. I started to become hesitant about
             using piezo touch sensors for this instrument as they wouldn't
             trigger the note reliably which is an important aspect of music
-            creation
-          </p>
-        </Grid>
-        <Grid xs={12} md={7} className="mt-14">
-          <p>Nonetheless, I finished the build to give it a solid chance</p>
-        </Grid>
-        <Grid xs={12} md={5} className="flex justify-center w-full mt-14">
-          <VideoPlayer src="https://www.youtube.com/embed/afN5NSKE45s" />
-        </Grid>
-      </Grid>
-      <p className="w-full px-5 md:px-10 mt-5">
-        Some initial musical tests with the piezo setup:
-      </p>
-      <Grid container className="w-full px-5 md:px-10">
-        <Grid xs={12} md={6} className="px-0 mt-5 md:px-8">
-          <VideoPlayer
-            widthFull
-            src="https://www.youtube.com/embed/k9XjZfkSzuw"
-          />
-        </Grid>
-        <Grid
-          xs={12}
-          md={6}
-          className="flex justify-center w-full mt-5 px-0 md:px-8"
-        >
-          <VideoPlayer
-            widthFull
-            src="https://www.youtube.com/embed/nJkmiRYUuxQ"
-          />
-        </Grid>
-      </Grid> */}
+            creation"
+        />
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/afN5NSKE45s"
+          caption="Nonetheless, I finished the build to give it a solid chance"
+        />
+        <VideoPlayer
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/nJkmiRYUuxQ"
+          caption="Initial musical tests with the piezo setup:"
+        />
+
 
       <DetailSection
         className="px-5 md:px-10 "
         title="VERSION 2"
-        description={`While researching this project, I stumbled across a capacitive touch breakout board built for arduino that seemed like it may be a more reliable alternative and, if it worked correctly, would include the plant into the system more directly rather than being more of an illusion gimmick.
-            `}
-        widthFull
+        description="While researching this project, I stumbled across a capacitive touch breakout board built for arduino that seemed like it may be a more reliable alternative and, if it worked correctly, would include the plant into the system more directly rather than being more of an illusion gimmick."
         left
       />
-      <p className="px-5 mt-5 md:px-10 ">
+
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/65gG3CXnHwYs"
+        caption="First, I needed to test if my plant would function well as a capacitive
+        sensor:"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/CAaADyYSqOs"
+        caption="With the succesful first test, I decided to move forward with this
+        build. Due to the fact that the breakout board allowed for multiple
+        connections via one data stream, It was relatively straightforward to
+        connect more inputs to communicate with processing. I built out a basic
+        synth in processing that would randomly cycle through various octaves
+        per note trigger to create an ambient but musical interaction"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/8qa0jOqhEsE"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/K3gu2yQ1a1o"
+        caption="Instead of having the octaves jump around randomly, I felt it would be
+        more playable to put the octave control onto a slider as well as give
+        the user attack and release controls on a knob. Enter the multiple
+        serial communication basics!"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/sMfN2c0luGI"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/51GiHw1cHqg"
+        caption="Control surface + prototype casing:"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/kdhnHj_8S-g"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/Cen5mqOoNO0"
+        caption="Lastly, I created a visual component to supplement the note choices that the user would input"
+      />
+      <VideoPlayer
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/l0bzxHGF-24"
+      />
+
+      {/* <p className="px-5 mt-5 md:px-10 ">
         First, I needed to test if my plant would function well as a capacitive
         sensor:
       </p>
@@ -220,7 +268,7 @@ const plantasia = () => {
             src="https://www.youtube.com/embed/8qa0jOqhEsE"
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <DetailSection
         className="px-5 md:px-10 mt-5"
         title="FINAL PERFORMANCE"

@@ -7,6 +7,8 @@ import { PLUR } from "@/app/assets/images/PLUR";
 import DetailSection from "../../common/detailSection";
 import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import Context from "../../common/context";
+import AIM from "../../common/aim";
 
 const voyager = () => {
   const redirectToFinalWebsite = () => {
@@ -15,16 +17,8 @@ const voyager = () => {
   return (
     <div className="w-full text-white">
 
-      {/* <video autoPlay muted loop src={PLUR.TD_TEST} className="h-[1080px]"/> */}
-
-      {/* <section className="aspect-w-16 aspect-h-9">
-        <video autoPlay muted loop>
-          <source src={PLUR.TD_TEST} type="video/mp4"/>
-        </video>
-      </section> */}
-
       {/* <!-- Hero Header Container --> */}
-      <div className="h-[700px] overflow-hidden flex items-center justify-center">
+      <div className="h-[600px] overflow-hidden flex items-center justify-center">
         {/* <!-- Video Tag --> */}
         <video autoPlay loop muted playsinline className="object-cover min-w-full min-h-full">
           <source src={PLUR.TD_TEST} type="video/mp4"/>
@@ -74,13 +68,17 @@ const voyager = () => {
       />
 
 
-      <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left />
-      <Section>
+      {/* <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left /> */}
+
+      <Context
+        title="CONTEXT"
+        context="For their Voyager series, Fantastic Voyage Records commisioned me to create a new brand identity inspired by retro space
+          aesthetics."
+      />
+
+      {/* <Section>
         <p className="px-10 flex items-center">
           For their Voyager series,
-        {/* <span className="font-sprat">
-          Voyager
-        </span>  */}
         
           <FancyButton
             className="uppercase font-sprat  p-1 hover:text-white"
@@ -92,12 +90,17 @@ const voyager = () => {
           commisioned me to create a new brand identity inspired by retro space
           aesthetics.
         </p>
-        <p className="px-5 mt-10 md:px-10">
-          First, I created a mood board with various sources of inspiration.
+      </Section> */}
+
+        <DetailSection
+        className="px-5 md:px-10"
+        title="TOUR VISUALS PACKAGE"
+        description={`First, I created a mood board with various sources of inspiration.
           This included radar, weather graphics, 80s video games, futurism,
-          heads up displays, terminal screens, and airline cockpits
-        </p>
-      </Section>
+          heads up displays, terminal screens, and airline cockpits`}
+        left={false}
+        />
+        
       <Section>
         <Image
           src={PLUR.INSPO}
@@ -120,15 +123,15 @@ const voyager = () => {
           className="w-full h-full px-5 mt-4 md:px-10"
         />
       </Section>
-      <Section>
+
+      <DetailSection
+        className="px-5 md:px-10"
+        title="Vinyl + Merch"
+        description={`Using the design language that we settled on, vinyl artwork and shirts were created for the first release`}
+        left
+      />
 
       
-
-        
-        <p className="px-5 md:px-10 mt-5">
-          Final vinyl artwork + shirt design for the first release:
-        </p>
-      </Section>
       <Section>
         <Image
           src={PLUR.VINYL}
@@ -150,13 +153,16 @@ const voyager = () => {
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>
-      <Section>
-        <p className="px-5 md:px-10 mt-5">
-          After this was finalized, I took the concepts into figma to create
+
+      <DetailSection
+        className="px-5 md:px-10"
+        title="Web Design"
+        description={`After this was finalized, I took the concepts into figma to create
           various ideas for the first version of the website which would be
-          centered around a tour announcement.
-        </p>
-      </Section>
+          centered around a tour announcement.`}
+        left={false}
+      />
+
       <Section>
         <Image
           src={PLUR.PROCESS}
@@ -181,7 +187,6 @@ const voyager = () => {
         title="TOUR VISUALS PACKAGE"
         description={`Lastly, for the lead artist on the label (Justin Jay), I created a cohesive visual package that combined Voyager aesthetics with thematic elements from his most recent album. The 3D objects were created in Blender and animated/iterated upon in TouchDesigner. In the future, we have plans to implement live video manipulation to compliment his musical performance.`}
         widthFull
-        left
       />
       <Section>
         <video autoPlay muted loop src={PLUR.HORSE} />

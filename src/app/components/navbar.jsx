@@ -90,20 +90,21 @@ const Navbar = () => {
         ):
 
         (
-        <div className="hidden">
-        <Grid xs={12} md={pathname !== "/" ? 12 : 9}>
-              <h1 className="dark:text-white  text-black cursor-pointer font-medium text-center mt-10 md:mt-0 md:text-end md:px-10 font-lato">
+          
+        <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-10">
+        <Grid xs={12} md={pathname !== "/" ? 12 : 9} >
+              {/* <h1 className="dark:text-white  text-black cursor-pointer font-medium text-center mt-10 md:mt-0 md:text-end md:px-10 font-lato">
                 <Link className="hover:text-pink dark:hover:text-pink" href="/">BENJAMIN GLASSER</Link>
-              </h1> 
+              </h1>  */}
             <div className="px-0 md:px-8 lg:px-10">
-              <div className="flex justify-between md:justify-end mt-4 md:mt-10 border-y-[0.4px] md:border-t-[0.4px] md:border-b-0 border-black dark:border-white">
+              <div className="flex justify-between md:justify-end mt-4 md:mt-4 border-y border-l md:border-t md:border-b-0 border-black dark:border-white">
                 {ROUTES.map((item, idx) => (
                   <Link
                     href={item?.route}
                     key={idx}
                     className="w-full md:w-auto "
                   >
-                    <div className="navCntr text-sm md: text-pink hover:text-white dark:text-pink hover:bg-pink dark:hover:text-white text-center border-r border-b-[0.4px] border-black dark:border-white cursor-pointer">
+                    <div className="navCntr text-sm md: bg-black text-pink hover:text-white dark:text-pink hover:bg-pink dark:hover:text-white text-center border-r border-b-[0.4px] border-black dark:border-white cursor-pointer">
                     <h2 className="link">
                       {item?.label}
                     </h2>
@@ -114,6 +115,7 @@ const Navbar = () => {
             </div>
           </Grid>
           </div>
+          
         )}
 
 

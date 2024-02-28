@@ -2,8 +2,9 @@ import { Grid } from "@mui/material";
 import { FancyButton } from "../common/FancyButton";
 import Section from "../common/Section";
 import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import Three from "./three";
+
+// import ThreeComponent from './three'
+import dynamic from 'next/dynamic';
 
 const Info = () => {
   const tools = [
@@ -43,6 +44,10 @@ const Info = () => {
     "Three.js",
     "EDUCATION",
   ];
+
+  const ThreeComponent = dynamic(() => import('./three'), { ssr: false });
+
+
   return (
     <Grid container className="mt-1 px-5 md:px-14 mt-6" spacing={4}>
       <Grid item md={8}>
@@ -61,15 +66,7 @@ const Info = () => {
                 Easel
               </a>
               </FancyButton>
-            {/* <span className="font-sprat inline opacity-100">
-              {" "}
-              MFA in Media Design Practices
-            </span>{" "}
-            from
-            <span className="font-sprat inline opacity-100">
-              {" "}
-              ArtCenter College of Design in Pasadena, CA.
-            </span> */}
+          
 
 
             <div className="w-100 flex items-center justify-start text-black py-4">
@@ -117,19 +114,28 @@ const Info = () => {
         </Section>
       </Grid>
       <Grid item md={4}>
+
         <Section>
-          {/* <Canvas
-            shadowMap
-            colorManagement
-            camera={{ position: [-12, 2, 10], fov: 6 }}
-          >
+          <div className="h-[500px]">
             <Suspense fallback={<Loader />}>
-              <Three />
+              <ThreeComponent className="h-2px"/>
             </Suspense>
-          </Canvas> */}
-          <div className="links ">
+          </div>
+
+
+
+
+          <div className="links mx-0">
             <h4 className="mb-2 font-normal">LINKS</h4>
-            <FancyButton className="p-0 px-2 mr-2 mb-2 hover:text-white">
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
+              <a
+                href="@/app/assets/pdf/Benjamin Glasser_Resume_Oct_2023.pdf"
+                target="_blank"
+              >
+                RESUME
+              </a>
+            </FancyButton>
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
               <a
                 href="https://github.com/benjaminglasser"
                 target="_blank"
@@ -137,7 +143,7 @@ const Info = () => {
                 GITHUB
               </a>
             </FancyButton>
-            <FancyButton className="p-0 px-2 mr-2 mb-2 hover:text-white">
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
               <a
                 href="https://www.instagram.com/bbbbb.stuff/"
                 target="_blank"
@@ -145,7 +151,7 @@ const Info = () => {
                 INSTAGRAM
               </a>
             </FancyButton>
-            <FancyButton className="p-0 px-2 mr-2 mb-2 hover:text-white">
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
               <a href="mailto:glasserben@gmail.com" target="_blank" >
                 CONTACT
               </a>

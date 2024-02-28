@@ -18,7 +18,7 @@ const Navbar = () => {
 
         {pathname === "/work" | pathname === "/play" | pathname === "/info" ? (
           <Grid xs={12} md={pathname !== "/" ? 12 : 9} className="relative">
-              <h1 className="dark:text-white  text-black   cursor-pointer font-medium text-center md:mt-10 md:text-end md:px-0 font-lato">
+              <h1 className="dark:text-white  text-black   cursor-pointer font-medium text-center gmd:mt-10 md:text-end md:px-0 font-lato">
                 <Link className="hover:text-pink dark:hover:text-pink" href="/">BENJAMIN GLASSER</Link>
               </h1> 
             <div className="px-0">

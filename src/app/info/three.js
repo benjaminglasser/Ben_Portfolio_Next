@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useGLTF } from "@react-three/drei";
+import { Canvas } from '@react-three/fiber';
 
 function SpinningMesh(props) {
   const group = useRef(null);
@@ -20,7 +21,7 @@ function SpinningMesh(props) {
         receiveShadow
         geometry={nodes.mesh_0.geometry}
         material={nodes.mesh_0.material}
-        // ref={ref}
+      // ref={ref}
       />
     </group>
   );
@@ -50,7 +51,7 @@ function Controls() {
 const Lights = () => {
   return (
     <>
-      <ambientLight intensity={1} />
+      <ambientLight intensity={5} />
     </>
   );
 };
@@ -65,14 +66,17 @@ function BenMesh() {
   );
 }
 
-const Three = () => {
+const ThreeComponent = () => {
   return (
-    <>
+    <Canvas
+      shadowMap
+      colorManagement
+      camera={{ position: [-12, 2, 10], fov: 6 }}>
       <Lights />
       <BenMesh />
       <Controls />
-    </>
+    </Canvas>
   );
 };
 
-export default Three;
+export default ThreeComponent;

@@ -1,5 +1,5 @@
 import reaktHero3 from "./reaktHero3.gif";
-import reaktWEBM from "./heroReaktwebm.webm";
+// import reaktWEBM from "./heroReaktwebm.webm";
 // import HeroReaktVid from "./HeroReaktVid.mp4";
 import system from "./reaktSystems_1.gif"
 

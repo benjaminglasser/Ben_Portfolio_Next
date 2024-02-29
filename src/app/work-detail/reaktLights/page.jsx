@@ -18,7 +18,8 @@ const reaktLights = () => {
         {/* <!-- Video Tag --> */}
         <video autoPlay loop muted playsinline className="object-cover w-[140%] min-h-full ">
           <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
-          {/* Your browser does not support the video tag. */}
+          <source src={REAKT.REAKT_HERO_WEBM} type="video/webm" />
+          Your browser does not support the video tag.
         </video>
       </div>
 

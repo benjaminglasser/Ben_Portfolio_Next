@@ -13,14 +13,28 @@ const reaktLights = () => {
 
    
 
-    {/* <!-- Hero Header Container --> */}
       <div className="h-[600px] overflow-hidden flex items-center justify-center">
-        {/* <!-- Video Tag --> */}
         <video autoPlay loop muted playsinline className="object-cover w-[140%] min-h-full ">
           <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
           <source src={REAKT.REAKT_HERO_WEBM} type="video/webm" />
           Your browser does not support the video tag.
         </video>
+      </div>
+
+      <div className="relative w-full flex flex-col items-cente">
+        <video autoPlay loop muted playsinline className="w-full h-auto">
+          <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
+          <source src={REAKT.REAKT_HERO_WEBM} type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div className=" relative w-full flex flex-col items-center">
+      <video className="w-full h-auto" autoPlay loop playsInline muted >
+        <source src={"/EaselSizzle_v10.mp4"} type="video/mp4" />
+        <source src={"/EaselSizzle_Vertical.webm"} type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
       </div>
 
       <ZigzagHeader

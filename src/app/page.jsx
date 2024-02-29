@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { IMAGES } from "./assets/images";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import VideoPlayer from '@/app/components/VideoPlayer.jsx'
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
               src={IMAGES.SKY_GIF}
               alt="generative sky"
             />
+          <VideoPlayer/>
+            
             </a>
             <div className="border-b mt-5 md:mt-10" />
           </div>

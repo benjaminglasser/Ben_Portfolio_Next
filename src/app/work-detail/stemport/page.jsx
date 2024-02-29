@@ -7,6 +7,7 @@ import DetailSection from "../../common/detailSection";
 import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
+import VideoPlayer from '@/app/components/VideoPlayer.jsx'
 
 const stemport = () => {
   const BOARDS = [
@@ -16,6 +17,8 @@ const stemport = () => {
     IMAGES.BOARD4,
     IMAGES.BOARD5,
   ];
+
+
   return (
     <div className="w-full text-white">
     
@@ -25,12 +28,14 @@ const stemport = () => {
           <source src={VIDEO.STEMPORT} type="video/mp4"/>
         </video>
       </section>
+
         
       <Context
         title="CONTEXT"
         context='Music production consists of breaking down individual instrument tracks into many smaller units known as "stems". Organizing and labeling large project files can very quickly become cluttered and difficult to sift through - especially as production teams scale.'
       />
       <AIM aim="Stemport uses a machine learning algorithm to analyze, organize, and re-label musical stems to aid in streamlining the creative workflow." />
+      <VideoPlayer/>
       <DetailSection
         className="px-10 "
         title="Visual Identity"

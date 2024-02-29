@@ -77,7 +77,7 @@ const Navbar = () => {
                   <p className="text-end ">Born 1994</p>
                   <p className="text-end">
                     Currently at{" "}
-                    <span className="text-pink font-sprat">
+                    <span className="font-medium font-sprat hover:text-pink">
                       <a href="https://easelapps.ai" target="_blank" >
                       Easel AI
                       </a>

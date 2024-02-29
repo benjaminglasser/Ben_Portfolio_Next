@@ -136,7 +136,7 @@ const Work = () => {
     {
       role: "Animator / Creative Director",
       time: "2021 // Artist Album AV",
-      title: "MEANINGFUL PURSUITS",
+      title: "Meaningful Pursuits",
       description: "Album Visuals",
       thumbnail: IMAGES?.MEAN_THUMB,
       path: "work-detail/meaningfulPursuits",

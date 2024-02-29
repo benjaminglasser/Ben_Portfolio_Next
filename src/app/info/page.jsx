@@ -56,23 +56,23 @@ const Info = () => {
           I like to make things that I don't know how to make. There's a lot I don't yet understand, but I seek to learn a bit more every day by exploring the unknown with wide-eyed curiosity. I frequently work with various 2D + 3D software tools, mixed-media illustration, code, and physical computing. Currently, I'm leading Product Design at 
           
             <FancyButton
-                className="normal-case ml-2 text-md p-0  hover:text-white"
+                className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
                 // size="large"
               >
                 <a
                 href="https://www.easelapps.ai"
                 target="_blank"
               >
-                Easel
+                Easel AI
               </a>
               </FancyButton>
           
 
 
-            <div className="w-100 flex flex-col md:flex-row md:items-center md:justify-start text-black py-4">
+            <div className="w-100 flex  md:items-center md:justify-start text-black py-4">
               I also create music sometimes under the name
               <FancyButton
-                className="normal-case text-md p-0 mt-2 m-0 md:mt-0 md:ml-2 md:p-2 md:py-0 hover:text-white"
+                className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
                 // size="large"
               >
 

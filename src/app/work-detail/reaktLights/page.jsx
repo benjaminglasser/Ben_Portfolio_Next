@@ -13,10 +13,10 @@ const reaktLights = () => {
 
    
 
-              {/* <!-- Hero Header Container --> */}
+    {/* <!-- Hero Header Container --> */}
       <div className="h-[600px] overflow-hidden flex items-center justify-center">
         {/* <!-- Video Tag --> */}
-        <video autoPlay loop muted playsinline className="object-cover w-[140%] min-h-full">
+        <video autoPlay loop muted playsinline className="object-cover w-[140%] min-h-full ">
           <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
           {/* Your browser does not support the video tag. */}
         </video>

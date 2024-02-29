@@ -25,11 +25,14 @@ export default function Home() {
       <Grid container className="mt-5 md:mt-10 h-full flex items-center">
         <Grid xs={12} md={9}>
           <div className="px-0 md:px-8 lg:px-32">
+          <a href="mailto:glasserben@gmail.com" target="_blank" >
+            
             <Image
               className="sky-gif w-full"
               src={IMAGES.SKY_GIF}
               alt="generative sky"
             />
+            </a>
             <div className="border-b mt-5 md:mt-10" />
           </div>
         </Grid>

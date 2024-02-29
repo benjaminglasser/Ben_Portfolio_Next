@@ -73,12 +73,15 @@ const Navbar = () => {
                 <p className="tag">
                   <i className="text-sm">media artist, musician + designer</i>
                 </p>
-                <div className="description absolute right-0 -bottom-[7rem] ">
+                <div className="description absolute right-[2rem] -bottom-[8rem] ">
                   <p className="text-end ">Born 1994</p>
                   <p className="text-end">
-                    Currently in{" "}
-                    <span className="font-sprat">
-                      Los Angeles
+                    Currently at{" "}
+                    <span className="text-pink font-sprat">
+                      <a href="https://easelapps.ai" target="_blank" >
+                      Easel AI
+                      </a>
+                      
                     </span>
                   </p>
                 </div>

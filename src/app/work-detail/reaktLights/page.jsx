@@ -21,8 +21,8 @@ const reaktLights = () => {
         </video>
       </div> */}
 
-      <div className="h-auto  md:overflow-hidden md:h-[600px] relative  flex  justify-center">
-        <video autoPlay loop muted playsinline className="md:object-cover w-full h-auto ">
+      <div className="relative w-full flex flex-col items-center">
+        <video autoPlay loop muted playsinline className="w-full h-auto">
           <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
           <source src={REAKT.REAKT_HERO_WEBM} type="video/webm" />
           Your browser does not support the video tag.

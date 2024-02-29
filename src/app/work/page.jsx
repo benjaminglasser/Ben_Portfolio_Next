@@ -23,7 +23,7 @@ const Work = () => {
       time: "Spring 2023",
       title: "Stemport",
       description: "Analyze - Organize - Import",
-      thumbnail: IMAGES?.STEMPORT,
+      thumbnail: "/StemportHero.gif",
       path: "work-detail/stemport",
       tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     },

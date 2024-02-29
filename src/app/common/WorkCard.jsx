@@ -18,7 +18,7 @@ const WorkCard = ({
       }}
     >
       <div className="hover:border-b-[0.4px] cursor-pointer pb-1 w-full workcard">
-        <Image src={thumbnail} alt="stemport gif" className="thumbnail" />
+        <Image src={thumbnail} alt="stemport gif" width="100" height="100" className="thumbnail" />
         <div className="flex justify-between text-[11px] font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>
           <div>Time: {time}</div>

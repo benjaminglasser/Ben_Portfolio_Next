@@ -7,7 +7,7 @@ import DetailSection from "../../common/detailSection";
 import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
-import VideoPlayer from '@/app/components/VideoPlayer.jsx'
+import VideoPlayer from '@/app/common/VideoPlayerHero.jsx'
 
 const stemport = () => {
   const BOARDS = [

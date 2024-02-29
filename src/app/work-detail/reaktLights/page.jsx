@@ -6,6 +6,7 @@ import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
 import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 const reaktLights = () => {
   return (
@@ -21,14 +22,16 @@ const reaktLights = () => {
         </video>
       </div> */}
 
-      <div className="relative w-full overflow-hidden flex md:h-[600px] justify-center items-center">
+      {/* <div className="relative w-full overflow-hidden flex md:h-[600px] justify-center items-center">
         <video className="w-full h-auto">
           <source src={"/HeroReaktVid.mp4"} type="video/mp4"/>
           <source src={"/HeroReaktwebm.webm"} type="video/webm"/>
           Your browser does not support the video tag.
         </video>
-      </div>
-      
+      </div> */}
+
+      <VideoPlayerHero/>
+
       {/* <div className="relative w-full overflow-hidden flex md:h-[600px] justify-center items-center">
         <video className="w-full h-auto" autoPlay loop playsInline muted>
           <source src={"/HeroReaktVid.mp4"} type="video/mp4"/>

@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import "./assets/fonts/index.css";
-import Navbar from "./components/navbar";
+import Navbar from "./common/navbar";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import Loader from "./common/Loader";

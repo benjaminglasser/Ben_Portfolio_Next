@@ -33,7 +33,7 @@ export default function Home() {
               src={IMAGES.SKY_GIF}
               alt="generative sky"
             />
-          <VideoPlayer/>
+          {/* <VideoPlayer/> */}
             
             </a>
             <div className="border-b mt-5 md:mt-10" />

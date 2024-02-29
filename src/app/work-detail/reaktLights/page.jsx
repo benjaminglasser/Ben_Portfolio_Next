@@ -11,10 +11,15 @@ const reaktLights = () => {
   return (
     <div className="w-full text-white">
 
-      {/* <!-- Hero Header Container --> */}
-      <div className="h-[600px] w-full overflow-hidden flex items-center justify-center bg-black">
-        {/* <!-- GIF Image --> */}
-        <Image src={REAKT.REAKT_HOME} alt="reakt Hero" className="object-cover min-w-full min-h-full"/>
+   
+
+              {/* <!-- Hero Header Container --> */}
+      <div className="h-[600px] overflow-hidden flex items-center justify-center">
+        {/* <!-- Video Tag --> */}
+        <video autoPlay loop muted playsinline className="object-cover w-[140%] min-h-full">
+          <source src={REAKT.REAKT_HERO_VID} type="video/mp4"/>
+          {/* Your browser does not support the video tag. */}
+        </video>
       </div>
 
       <ZigzagHeader

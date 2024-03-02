@@ -106,6 +106,7 @@ export const IMAGES = {
 
   //Meaningful Pursuits
   MEAN_THUMB: MEAN.MEAN_HERO,
+  MEAN_MAIN_HERO: MEAN.MEAN_MAIN_HERO,
 
   //Plantasia
   PLANT_THUMB: PLANTASIA.PLANT_HERO,

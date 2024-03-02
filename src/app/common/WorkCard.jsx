@@ -25,7 +25,7 @@ const WorkCard = ({
         </div>
         <div className="py-2 text-[2.25em] font-light">{title}</div>
         <h2 className="font-sprat pb-1">{description}</h2>
-        <p className="text-[11px] text-mute">Tool: {tools?.join(", ")}</p>
+        <p className="text-[11px] text-mute">Tools: {tools?.join(", ")}</p>
       </div>
     </Link>
   );

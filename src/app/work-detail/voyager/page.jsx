@@ -9,6 +9,7 @@ import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayer from "@/app/common/CenteredVideoPlayer";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 const voyager = () => {
   const redirectToFinalWebsite = () => {
@@ -17,14 +18,11 @@ const voyager = () => {
   return (
     <div className="w-full text-white">
 
-      {/* <!-- Hero Header Container --> */}
-      <div className="h-[600px] overflow-hidden flex items-center justify-center">
-        {/* <!-- Video Tag --> */}
-        <video autoPlay loop muted playsinline className="object-cover min-w-full min-h-full">
-          <source src={PLUR.TD_TEST} type="video/mp4"/>
-          {/* Your browser does not support the video tag. */}
-        </video>
-      </div>
+
+      <VideoPlayerHero 
+        className="md:h-[600px]"
+        video={PLUR.TD_TEST}
+      />
 
   
 

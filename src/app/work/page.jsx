@@ -11,12 +11,12 @@ const Work = () => {
   const WORK_CONTENT = [
     {
       role: "Lead Product Designer",
-      time: "Spring 2024-Present",
+      time: "Spring 2023-Present",
       title: "Easel",
       description: "Express with Easel",
       thumbnail: IMAGES?.EASEL_HERO,
       path: "https://www.easelapps.ai/",
-      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
+      tools: ["Figma", "Stable Diffusion XL", "After Effects", "Unreal Engine", "Premiere Pro", "Design Thinking", "User Studies"],
     },    
     {
       role: "UX/UI Designer",

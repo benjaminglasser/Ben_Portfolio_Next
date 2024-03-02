@@ -8,6 +8,7 @@ import Section from "@/app/common/Section";
 import { PLANTASIA } from "@/app/assets/images/plantasia";
 import Image from "next/image";
 import ZigzagHeader from "../../common/zigzagHeader";
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 
 const plantasia = () => {
@@ -15,15 +16,19 @@ const plantasia = () => {
     <div className="w-full text-white">
 
 
+      <VideoPlayerHero 
+        className="md:h-[600px]"
+        video={PLANTASIA.PLANT_HERO_VID}
+      />
 
-            {/* <!-- Hero Header Container --> */}
-            <div className="h-[600px] overflow-hidden flex items-center justify-center pt-[110px]">
-        {/* <!-- Video Tag --> */}
+   
+            {/* <div className="h-[600px] overflow-hidden flex items-center justify-center pt-[110px]">
+
         <video autoPlay loop muted playsinline className="object-cover mt-400px min-w-full min-h-full">
           <source src={PLANTASIA.PLANT_HERO_VID} type="video/mp4"/>
-          {/* Your browser does not support the video tag. */}
+
         </video>
-      </div>
+      </div> */} 
 
       <ZigzagHeader
         title="Plantasia"

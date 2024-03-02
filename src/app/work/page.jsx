@@ -9,21 +9,21 @@ const WorkCard = dynamic(() => import("../common/WorkCard"), { ssr: false });
 
 const Work = () => {
   const WORK_CONTENT = [
-    // {
-    //   role: "Lead Product Designer",
-    //   time: "Spring 2024-Present",
-    //   title: "Easel",
-    //   description: "Express with Easel",
-    //   thumbnail: IMAGES?.STEMPORT,
-    //   path: "work-detail/easel",
-    //   tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-    // },    
+    {
+      role: "Lead Product Designer",
+      time: "Spring 2024-Present",
+      title: "Easel",
+      description: "Express with Easel",
+      thumbnail: IMAGES?.EASEL_HERO,
+      path: "https://www.easelapps.ai/",
+      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
+    },    
     {
       role: "UX/UI Designer",
       time: "Spring 2023",
       title: "Stemport",
       description: "Analyze - Organize - Import",
-      thumbnail: IMAGES?.STEMPORT,
+      thumbnail: IMAGES?.STEMPORT_THUMB,
       path: "work-detail/stemport",
       tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     },

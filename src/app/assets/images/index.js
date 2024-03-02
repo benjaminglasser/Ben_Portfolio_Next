@@ -1,6 +1,6 @@
 import crosshairSmall from "./crosshairSmall.svg";
 import sky from "./sky.gif";
-import stemPort from "./StemportHero.gif";
+
 import play1 from "./play1.gif";
 import play2 from "./play2.gif";
 import play3 from "./play3.gif";
@@ -8,7 +8,6 @@ import play4 from "./play4.gif";
 import play5 from "./play5.gif";
 import play6 from "./play6.gif";
 import play7 from "./play7.gif";
-// import play8 from "./play8.gif";
 import play9 from "./play9.gif";
 import play10 from "./play10.gif";
 import play11 from "./play11.gif";
@@ -32,16 +31,21 @@ import play28 from "./play28.gif";
 import play29 from "./play29.gif";
 import play30 from "./play30.gif";
 import play31 from "./play31.gif";
+
+
 import userflow from "./userFlow.png";
 import userflow2 from "./userFlow2.png";
 import userflowTrans from "./userFlowTransparent.png";
 import DesktopMockup from "./DesktopMockup.jpg";
+
 import board1 from "./boards/board1.png";
 import board2 from "./boards/board2.png";
 import board3 from "./boards/board3.png";
 import board4 from "./boards/board4.png";
 import board5 from "./boards/board5.png";
+
 import { BMW } from "./bmw";
+import { EASEL } from "./easel";
 import { SPATIAL } from "./SpatialAge";
 import { CANARY } from "./canary";
 import { POINTAR } from "./PointAR";
@@ -52,20 +56,12 @@ import { REAKT } from "./reakt";
 import { STEMPORT } from "./stemport";
 
 export const IMAGES = {
-  PLUR: PLUR?.PLUR_HERO,
-  REAKT: REAKT.REAKT_HOME,
-  MEAN_THUMB: MEAN.MEAN_HERO,
-  PLANT_THUMB: PLANTASIA.PLANT_HERO,
-  POINTAR_THUMB: POINTAR.POINTER_HOME,
-  POINTAR_HERO: POINTAR.POINTER_HERO,
-  CANARY_THUMB: CANARY.CANARY_HERO,
-  SPATIAL_TUNMB: SPATIAL.SPINNING_BENCH,
-  DANCING_CAR: BMW.DANCING_CAR,
-  BG_BMW: BMW.CAR_SIM,
-  BG_BMW_PHONE: BMW.CAR_SIM_PHONE,
+
   CROSS_HAIR_SM: crosshairSmall,
-  STEMPORT: stemPort,
+
   SKY_GIF: sky,
+
+  //Play Section
   PLAY_1: play1,
   PLAY_2: play2,
   PLAY_3: play3,
@@ -73,7 +69,6 @@ export const IMAGES = {
   PLAY_5: play5,
   PLAY_6: play6,
   PLAY_7: play7,
-  // PLAY_8: play8,
   PLAY_9: play9,
   PLAY_10: play10,
   PLAY_11: play11,
@@ -97,10 +92,35 @@ export const IMAGES = {
   PLAY_29: play29,
   PLAY_30: play30,
   PLAY_31: play31,
+
   USERFLOW: userflow,
   USERFLOW2: userflow2,
   USERFLOW_TRANS: userflowTrans,
   DESKTOP_MOCKUP: DesktopMockup,
+
+  //Voyager
+  PLUR: PLUR?.PLUR_HERO,
+
+  //Reakt
+  REAKT: REAKT.REAKT_HOME,
+
+  //Meaningful Pursuits
+  MEAN_THUMB: MEAN.MEAN_HERO,
+
+  //Plantasia
+  PLANT_THUMB: PLANTASIA.PLANT_HERO,
+
+  //Pointar
+  POINTAR_THUMB: POINTAR.POINTER_HOME,
+  POINTAR_HERO: POINTAR.POINTER_HERO,
+
+  // Spatial Age
+  SPATIAL_TUNMB: SPATIAL.SPINNING_BENCH,
+
+  //BMW
+  DANCING_CAR: BMW.DANCING_CAR,
+  BG_BMW: BMW.CAR_SIM,
+  BG_BMW_PHONE: BMW.CAR_SIM_PHONE,
 
   //STEMPORT
 
@@ -109,6 +129,7 @@ export const IMAGES = {
   DARK_LIGHT_MODE: STEMPORT.LIGHT_DARK_MODE,
   LIGHT_MODE: STEMPORT.LIGHT_MODE,
   DESKTOP_MOCKUP: STEMPORT.DESKTOP_MOCKUP,
+  STEMPORT_THUMB: STEMPORT.STEMPORT_THUMB,
 
   // Canary
 
@@ -119,8 +140,12 @@ export const IMAGES = {
   PRESS: CANARY.PRESS,
   CMS: CANARY.CMS,
   MOBILE_VIEW: CANARY.MOBILE_VIEW,
-  // Boards
+  CANARY_THUMB: CANARY.CANARY_HERO,
 
+  // Easel
+  EASEL_HERO: EASEL.EASEL_HERO,
+
+  // Boards
   BOARD1: board1,
   BOARD2: board2,
   BOARD3: board3,

@@ -20,7 +20,7 @@ module.exports = {
     colors: {
       mute: "#808080",
       pink: "#ff477b",
-      black: "#000",
+      black: "#0f0f0f",
       white: "#fff",
     },
   },

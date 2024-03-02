@@ -18,17 +18,8 @@ const plantasia = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video={PLANTASIA.PLANT_HERO_VID}
+        video="/plantasiaHero.mp4"
       />
-
-   
-            {/* <div className="h-[600px] overflow-hidden flex items-center justify-center pt-[110px]">
-
-        <video autoPlay loop muted playsinline className="object-cover mt-400px min-w-full min-h-full">
-          <source src={PLANTASIA.PLANT_HERO_VID} type="video/mp4"/>
-
-        </video>
-      </div> */} 
 
       <ZigzagHeader
         title="Plantasia"

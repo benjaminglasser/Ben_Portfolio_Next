@@ -32,6 +32,7 @@ const stemport = () => {
 
 
       <VideoPlayerHero 
+       classname="mt-40"
         video="/Videos/Stemport/stemportHeroCompressed.mp4"
       />
         
@@ -90,13 +91,7 @@ const stemport = () => {
         context="The client requested light and dark mode options for their designs so it was imperative to keep in mind elements that would work on both a light and dark backdrop"
         titleBorder
       />
-      {/* <video
-        autoPlay
-        muted
-        loop
-        src={IMAGES.DARK_LIGHT_MODE}
-        className="mt-10"
-      /> */}
+
 
       <VideoPlayerHero 
         className="mt-10"

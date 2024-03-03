@@ -236,7 +236,7 @@ const PointAR = () => {
             /> */}
 
             <VideoPlayerHero 
-              video="/Videos/Pointar/StatueTransition_compressed.mp4"
+              video="/Videos/Pointar/StatueTransition_3_1.mp4"
             />
             
 

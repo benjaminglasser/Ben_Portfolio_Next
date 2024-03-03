@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/Voyager/VoyagerMazeHero.mp4"
+        video="/Videos/Voyager/voyagerPlanetHero.mp4"
       />
 
   
@@ -199,7 +199,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/Voyager/jjvisualpost.mp4"
+        video="/Videos/Voyager/gallery editWeb_2.mp4"
       />
       
         <VideoPlayer

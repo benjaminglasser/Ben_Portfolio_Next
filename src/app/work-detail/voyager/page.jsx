@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/Voyager/voyagerHero_2_1.mp4"
+        video="/Videos/Voyager/VoyagerMazeHero.mp4"
       />
 
   
@@ -90,6 +90,7 @@ const voyager = () => {
           aesthetics.
         </p>
       </Section> */}
+      
 
         <DetailSection
         className="px-5 md:px-10"
@@ -122,6 +123,11 @@ const voyager = () => {
           className="w-full h-full px-5 mt-4 md:px-10"
         />
       </Section>
+
+      <VideoPlayerHero 
+        className="mt-12"
+        video="/Videos/Voyager/voyagerHero_2_1.mp4"
+      />
 
       <DetailSection
         className="px-5 md:px-10"

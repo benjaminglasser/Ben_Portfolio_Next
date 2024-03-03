@@ -19,9 +19,11 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
+
         <VideoPlayerHero 
           video="/Videos/Pointar/PointAR2_Hero.mp4"
         />
+
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
           <h1 className="w-full md:w-2/3 px-6">
             An Augmented Reality museum guide tailor-made to each user. It can
@@ -225,23 +227,33 @@ const PointAR = () => {
           </Grid>
 
           <Grid item xs={12} md={9}>
-            <video
+            {/* <video
               autoPlay
               muted
               loop
               src="/Videos/Pointar/StatueTransition_compressed.mp4"
               className="w-full"
+            /> */}
+
+            <VideoPlayerHero 
+              video="/Videos/Pointar/StatueTransition_compressed.mp4"
             />
+            
+
           </Grid>
         </Grid>
       </div>
-      <video
+      {/* <video
         autoPlay
         muted
         loop
         src="public/Videos/Pointar/ParticleStream.mp4"
         className="w-full"
+      /> */}
+      <VideoPlayerHero 
+        video="/Videos/Pointar/ParticleStream.mp4"
       />
+
       <div>
         <Section>
           <div className="flex justify-center w-full my-5 px-10">

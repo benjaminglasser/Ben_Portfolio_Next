@@ -30,7 +30,7 @@ const bmw = () => {
           <div className="absolute top-0">
             <Context
               title="CONTEXT"
-              className="mt-40 md:mt-72 mb-24"
+              className="mt-72 md:mt-72 mb-24"
               context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
             />
 

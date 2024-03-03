@@ -8,6 +8,7 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import VideoPlayer from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 const stemport = () => {
   const BOARDS = [
@@ -22,27 +23,36 @@ const stemport = () => {
   return (
     <div className="w-full text-white">
     
-
+    {/* 
       <section className="block aspect-w-16 aspect-h-9">
         <video autoPlay muted loop className="block mt-10 md:mt-0">
           <source src="/Videos/Stemport/stemportHeroCompressed.mp4" type="video/mp4"/>
         </video>
-      </section>
+      </section> */}
 
+
+      <VideoPlayerHero 
+        video="/Videos/Stemport/stemportHeroCompressed.mp4"
+      />
         
       <Context
         title="CONTEXT"
         context='Music production consists of breaking down individual instrument tracks into many smaller units known as "stems". Organizing and labeling large project files can very quickly become cluttered and difficult to sift through - especially as production teams scale.'
       />
       <AIM aim="Stemport uses a machine learning algorithm to analyze, organize, and re-label musical stems to aid in streamlining the creative workflow." />
-      <VideoPlayer/>
+      {/* <VideoPlayer/> */}
       <DetailSection
         className="px-10 "
         title="Visual Identity"
         description="To enhance the ML experience, a visual identity was created to signify the AI processes. Inspired by the way in which sound can create beautiful ripples in water, a virtual avatar guides the user along the journey."
         left
-        video={IMAGES.VISUAL_IDENTITY}
+        // video={IMAGES.VISUAL_IDENTITY}
       />
+
+      <VideoPlayerHero 
+        video="/Videos/Stemport/MlLearning.mp4"
+      />
+      
       <DetailSection
         className="px-10 "
         title="User Flow"
@@ -80,12 +90,17 @@ const stemport = () => {
         context="The client requested light and dark mode options for their designs so it was imperative to keep in mind elements that would work on both a light and dark backdrop"
         titleBorder
       />
-      <video
+      {/* <video
         autoPlay
         muted
         loop
         src={IMAGES.DARK_LIGHT_MODE}
         className="mt-10"
+      /> */}
+
+      <VideoPlayerHero 
+        className="mt-10"
+        video="/Videos/Stemport/lightDark_AdobeExpress.mp4"
       />
       <div className="flex justify-center w-full mt-5">
         <Image src={IMAGES.LIGHT_MODE} alt="light mode" />

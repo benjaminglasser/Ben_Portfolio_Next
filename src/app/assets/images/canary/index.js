@@ -1,4 +1,4 @@
-import canaryHero from "./canaryHero4.gif";
+import canaryThumb from "./canaryHero4.gif";
 // import canaryMain from "./mainVIdCanary.mp4";
 import UI_CONSIDERATION from "./CanaryHome.png";
 import TRANS_HOME from "./Shows.png";
@@ -8,7 +8,7 @@ import PRESS from "./Press.png";
 import MOBILE_VIEW from "./mobileBoards.png";
 
 export const CANARY = {
-  CANARY_HERO: canaryHero,
+  CANARY_THUMB: canaryThumb,
   // CANARY_MAIN: canaryMain,
   UI_CONSIDERATION,
   TRANS_HOME,

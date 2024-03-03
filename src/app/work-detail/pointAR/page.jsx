@@ -20,7 +20,7 @@ const PointAR = () => {
       <div className="relative">
 
       
-        <video autoPlay muted loop src={POINTAR.POINTEAR_MAIN} />
+        <video autoPlay muted loop src="/Videos/Pointar/PointAR2_Hero.mp4" />
 
 
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
@@ -229,7 +229,7 @@ const PointAR = () => {
               autoPlay
               muted
               loop
-              src={POINTAR.STATUE}
+              src="/Videos/Pointar/StatueTransition_compressed.mp4"
               className="w-full"
             />
           </Grid>
@@ -239,7 +239,7 @@ const PointAR = () => {
         autoPlay
         muted
         loop
-        src={POINTAR.PARTICLE_STREAM}
+        src="public/Videos/Pointar/ParticleStream.mp4"
         className="w-full"
       />
       <div>

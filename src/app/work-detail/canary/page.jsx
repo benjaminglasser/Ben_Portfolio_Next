@@ -7,6 +7,8 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+
 
 const Canary = () => {
   const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
@@ -16,16 +18,13 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
       
-      
-      {/* <video autoPlay muted loop src={IMAGES.CANARY_MAIN} /> */}
 
-      {/* <!-- Hero Header Container --> */}
-      <div className="h-auto mt-12 md:h-[750px] md:mt-0 w-full overflow-hidden flex items-center justify-center bg-black">
-        {/* <!-- GIF Image --> */}
-        <video autoPlay muted loop src="/Videos/Canary/canaryHero.mp4" />
-        {/* <Image src={REAKT.REAKT_HOME} alt="reakt Hero" className="object-cover min-w-full min-h-full"/> */}
-      </div>
-      
+      <VideoPlayerHero 
+        className="mt-12 md:h-[750px] md:mt-0"
+        video="/Videos/Canary/canaryHero.mp4"
+      />
+
+
       <Section>
         <div className="w-full text-center px-10">
           <FancyButton
@@ -83,9 +82,15 @@ const Canary = () => {
         description="It was necessary to build a headless CMS for the client to easily update and add specfic content while also allowing for the customizability and flexibility of a modern frontend framework. Therfore, it was decided to use Contentful for the content management that would easily hook into a Next JS custom front end. Careful consideration was given to the designs to allow for the flexibility of ever changing content."
         left
       />
-      <div className="flex justify-center w-full">
+
+      {/* <div className="flex justify-center w-full">
         <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Videos/Canary/CMS.mp4" />
-      </div>
+      </div> */}
+
+      <VideoPlayerHero 
+        video="/Videos/Canary/CMS.mp4"
+      />
+
       <DetailSection
         className="px-10 "
         title="Mobile Responsiveness"

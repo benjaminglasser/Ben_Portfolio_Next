@@ -8,6 +8,7 @@ import Context from "../../common/context";
 import AIM from "../../common/aim";
 import Section from "@/app/common/Section";
 import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 const PointAR = () => {
   const bullets = [
@@ -18,11 +19,9 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
-
-      
-        <video autoPlay muted loop src="/Videos/Pointar/PointAR2_Hero.mp4" />
-
-
+        <VideoPlayerHero 
+          video="/Videos/Pointar/PointAR2_Hero.mp4"
+        />
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
           <h1 className="w-full md:w-2/3 px-6">
             An Augmented Reality museum guide tailor-made to each user. It can
@@ -31,6 +30,7 @@ const PointAR = () => {
           </h1>
         </div>
       </div>
+
       {/* <div className="flex justify-center w-full"> */}
 
       <VideoPlayer

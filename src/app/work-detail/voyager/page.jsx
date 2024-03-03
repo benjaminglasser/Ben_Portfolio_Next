@@ -187,9 +187,14 @@ const voyager = () => {
         description={`Lastly, for the lead artist on the label (Justin Jay), I created a cohesive visual package that combined Voyager aesthetics with thematic elements from his most recent album. The 3D objects were created in Blender and animated/iterated upon in TouchDesigner. In the future, we have plans to implement live video manipulation to compliment his musical performance.`}
         widthFull
       />
-      <Section>
+      {/* <Section>
         <video autoPlay muted loop src="/Videos/Voyager/jjvisualpost.mp4" />
-      </Section>
+      </Section> */}
+
+      <VideoPlayerHero 
+        className="md:h-[600px]"
+        video="/Videos/Voyager/jjvisualpost.mp4"
+      />
       
         <VideoPlayer
           widthFull

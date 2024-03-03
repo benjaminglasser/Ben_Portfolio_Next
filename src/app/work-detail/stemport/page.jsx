@@ -32,7 +32,7 @@ const stemport = () => {
 
 
       <VideoPlayerHero 
-       classname="mt-40"
+        className="mt-20"
         video="/Videos/Stemport/stemportHeroCompressed.mp4"
       />
         
@@ -94,7 +94,7 @@ const stemport = () => {
 
 
       <VideoPlayerHero 
-        className="mt-10"
+        // className="mt-10"
         video="/Videos/Stemport/lightDark_AdobeExpress.mp4"
       />
       <div className="flex justify-center w-full mt-5">

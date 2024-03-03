@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/Voyager/voyagerHero.mp4"
+        video="/Videos/Voyager/voyagerHero_2_1.mp4"
       />
 
   

@@ -10,8 +10,8 @@ import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 const MeaningfulPursuits = () => {
   return (
     <div className="w-full text-white">
-{/* 
-      <VideoPlayerHero 
+
+      {/* <VideoPlayerHero 
         className="md:h-[600px]"
         video={MEAN.MEAN_HERO_MAIN}
       /> */}

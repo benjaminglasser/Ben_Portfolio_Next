@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video={PLUR.TD_TEST}
+        video="/Videos/voyagerHero.mp4"
       />
 
   

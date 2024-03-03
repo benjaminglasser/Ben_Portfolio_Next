@@ -18,7 +18,7 @@ const plantasia = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/plantasiaHero.mp4"
+        video="/Videos/plantasiaHero.mp4"
       />
 
       <ZigzagHeader

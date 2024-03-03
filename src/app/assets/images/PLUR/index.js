@@ -6,7 +6,7 @@ import VINYL from "./vinylSleeve.png";
 import LABEL from "./label.png";
 import SHIRT from "./shirt.png";
 // import TD_TEST from "./TDTest2.mp4";
-import HORSE from "./jjvisualpost.mp4";
+// import HORSE from "./jjvisualpost.mp4";
 
 
 export const PLUR = {
@@ -18,5 +18,5 @@ export const PLUR = {
   LABEL,
   SHIRT,
   // TD_TEST,
-  HORSE,
+  // HORSE,
 };

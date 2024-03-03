@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { VIDEO } from "../../assets/video";
+// import { VIDEO } from "../../assets/video";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
@@ -25,7 +25,7 @@ const stemport = () => {
 
       <section className="block aspect-w-16 aspect-h-9">
         <video autoPlay muted loop className="block mt-10 md:mt-0">
-          <source src={VIDEO.STEMPORT} type="video/mp4"/>
+          <source src="/Videos/Stemport/stemportHeroCompressed.mp4" type="video/mp4"/>
         </video>
       </section>
 

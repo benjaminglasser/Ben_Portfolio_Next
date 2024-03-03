@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/voyagerHero.mp4"
+        video="/Videos/Voyager/voyagerHero.mp4"
       />
 
   
@@ -48,9 +48,9 @@ const voyager = () => {
       />
 
       <VideoPlayer
-                widthFull
-                className="aspect-w-16 aspect-h-9"
-                src="https://www.youtube.com/embed/JksvVszrUDM"
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/JksvVszrUDM"
       />
 
       <Section>
@@ -188,7 +188,7 @@ const voyager = () => {
         widthFull
       />
       <Section>
-        <video autoPlay muted loop src={PLUR.HORSE} />
+        <video autoPlay muted loop src="/Videos/Voyager/jjvisualpost.mp4" />
       </Section>
       
         <VideoPlayer

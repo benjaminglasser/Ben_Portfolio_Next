@@ -22,7 +22,7 @@ const Canary = () => {
       {/* <!-- Hero Header Container --> */}
       <div className="h-auto mt-12 md:h-[750px] md:mt-0 w-full overflow-hidden flex items-center justify-center bg-black">
         {/* <!-- GIF Image --> */}
-        <video autoPlay muted loop src={IMAGES.CANARY_MAIN} />
+        <video autoPlay muted loop src="/Videos/Canary/canaryHero.mp4" />
         {/* <Image src={REAKT.REAKT_HOME} alt="reakt Hero" className="object-cover min-w-full min-h-full"/> */}
       </div>
       
@@ -84,7 +84,7 @@ const Canary = () => {
         left
       />
       <div className="flex justify-center w-full">
-        <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src={IMAGES.CMS} />
+        <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Videos/Canary/CMS.mp4" />
       </div>
       <DetailSection
         className="px-10 "

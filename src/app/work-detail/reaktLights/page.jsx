@@ -15,7 +15,7 @@ const reaktLights = () => {
 
       <VideoPlayerHero 
         className="md:h-[600px]"
-        video="/Videos/reaktHero.mp4"
+        video="/Videos/Reakt/reaktHero.mp4"
       />
 
       <ZigzagHeader

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { IMAGES } from "./assets/images";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+// import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
 
 export default function Home() {
   return (

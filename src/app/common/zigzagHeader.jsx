@@ -24,9 +24,16 @@ const ZigzagHeader = ({
         </Grid>
         <Grid item xs={12} md={9} className="border-l border-b border-pink p-3">
           <p className="mb-6">{extendedDescription}</p>
-          <div className="text-xxs mt-2">Time: {time}</div>
-          <div className="text-xxs mt-2">Role: {role}</div>
-          <div className="text-xxs mt-2">Tools: {tools?.join(", ")}</div>
+          <div className="text-xxs mt-2 flex">
+            <div className="text-mute mr-2">Time:</div> {time}
+          </div>
+          <div className="text-xxs mt-2 flex">
+            <div className="text-mute mr-2">Role: </div>
+            {role}
+          </div>
+          <div className="text-xxs mt-2 flex">
+            <div className="text-mute mr-2">Tools:</div> {tools?.join(", ")}
+          </div>
         </Grid>
       </Grid>
     </Section>

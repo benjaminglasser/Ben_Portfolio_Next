@@ -18,7 +18,7 @@ module.exports = {
       lato: ["Lato", "sans-serif"],
     },
     colors: {
-      mute: "#848484",
+      mute: "#afafaf",
       pink: "#ff477b",
       black: "#000",
       white: "#fff",

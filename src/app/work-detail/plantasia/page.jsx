@@ -172,7 +172,7 @@ const plantasia = () => {
   
 
 
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9 mb-40"
         src="https://www.youtube.com/embed/QPqFVQ77BWg"

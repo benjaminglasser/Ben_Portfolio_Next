@@ -7,8 +7,8 @@ import DetailSection from "../../common/detailSection";
 import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
-import VideoPlayer from '@/app/common/VideoPlayerHero.jsx'
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 const stemport = () => {
   const BOARDS = [
@@ -31,7 +31,7 @@ const stemport = () => {
       </section> */}
 
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="mt-20"
         video="/Videos/Stemport/stemportHeroCompressed.mp4"
       />
@@ -50,7 +50,7 @@ const stemport = () => {
         // video={IMAGES.VISUAL_IDENTITY}
       />
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         video="/Videos/Stemport/MlLearning.mp4"
       />
       
@@ -93,7 +93,7 @@ const stemport = () => {
       />
 
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         // className="mt-10"
         video="/Videos/Stemport/lightDark_AdobeExpress.mp4"
       />

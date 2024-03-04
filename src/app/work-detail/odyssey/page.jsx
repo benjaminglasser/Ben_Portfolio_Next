@@ -7,9 +7,9 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 import ZigzagHeader from "../../common/zigzagHeader";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 
 
 const Canary = () => {
@@ -18,7 +18,7 @@ const Canary = () => {
     <div className="w-full text-white">
       
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="md:h-[550px] md:mt-0"
         video="/Videos/Odyssey/odysseyHero.mp4"
       />
@@ -35,7 +35,7 @@ const Canary = () => {
         ]}
       />      
 
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/ssOC4cfJClI?si=fRwBrms03D-CBvkd"
@@ -57,32 +57,16 @@ const Canary = () => {
         className="px-10 "
         title="Background"
         description="The project leveraged the cutting-edge technology soundstages equipped with large-scale LED screens, to create immersive virtual backgrounds using game engines like Unreal Engine. This innovative approach, popularized by its use in the TV series &quot;The Mandalorian,&quot; offers numerous advantages for film production. It enables realistic bounce lighting, parallax effects through the synchronization of virtual and physical cameras, and interactivity, allowing for real-time changes in background scenery. This technology not only enhances the visual storytelling but also creates a more engaging environment for actors, facilitating a more authentic performance. The use of volumes represents a significant shift in filmmaking, merging the physical and digital worlds to achieve unprecedented levels of realism and flexibility on set."
+        center
         widthFull
       />
 
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/bErPsq5kPzE?si=3lF1h4aCi103ZZG0"
         />
-      {/* <div className="flex justify-center w-full px-5 md:px-0 mt-5">
-        <Image src={IMAGES.UI_CONSIDERATION} alt="light mode" />
-      </div> */}
-      
-    
 
-      {/* {TRANPARENCY_IMAGES?.map((image, idx) => (
-        <Section>
-          <div className="w-full flex justify-center mt-16">
-            <Image
-              className="w-4/5 md:w-3/5"
-              src={image}
-              key={idx}
-              alt="transparency images"
-            />
-          </div>
-        </Section>
-      ))} */}
       <DetailSection
         className="px-10 "
         title="Process"
@@ -91,44 +75,27 @@ const Canary = () => {
         left
       />
 
-        {/* <VideoPlayerHero 
-            className="px-10 md:px-72"
+        <VideoPlayerInternal 
+            className="mt-10 w-full px-10 md:w-3/5"
             video="/Videos/Odyssey/Process.mp4"
-        /> */}
-
-        <VideoPlayer
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="/Videos/Odyssey/Process.mp4"
+            centered
         />
-        <VideoPlayerHero 
-            className="px-10 mt-10 md:px-72 "
+
+        <VideoPlayerInternal 
             video="/Videos/Odyssey/Process_1.mp4"
+            centered
         />
 
       <DetailSection
-        className="px-10 "
+        className="px-10 mb-20"
         title="Project Outcomes"
         description="The project was a resounding success, achieving its aim of demonstrating the potential of in-house virtual production technologies and attracting interest from industry professionals.It highlighted the benefits of using LED volumes for enhanced realism and storytelling, sparking interest in the future of virtual production. The positive reception affirmed the industry's readiness for innovative filmmaking technologies."
         center
         widthFull
+
       />
    
 
-      {/* <VideoPlayerHero 
-        video="/Videos/Canary/CMS.mp4"
-      /> */}
-
-      {/* <DetailSection
-        className="px-10 "
-        title="Mobile Responsiveness"
-        description="The site needed to be available on mobile as well because a large demographic would be visiting on their phones."
-        left={false}
-
-      /> */}
-      {/* <div className="flex justify-center w-full px-5 mt-5">
-        <Image src={IMAGES.MOBILE_VIEW} alt="light mode" />
-      </div>  */}
     </div>
   );
 };

@@ -7,8 +7,8 @@ import { Grid } from "@mui/material";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
 import Section from "@/app/common/Section";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 const PointAR = () => {
   const bullets = [
@@ -20,7 +20,7 @@ const PointAR = () => {
     <div className="w-full text-white">
       <div className="relative">
 
-        <VideoPlayerHero 
+        <VideoPlayerInternal 
           video="/Videos/Pointar/PointAR2_Hero.mp4"
         />
 
@@ -35,7 +35,7 @@ const PointAR = () => {
 
       {/* <div className="flex justify-center w-full"> */}
 
-      <VideoPlayer
+      <VideoPlayerExternal
                 widthFull
                 className="aspect-w-16 aspect-h-9"
                 src="https://www.youtube.com/embed/fvOwZU6CShI"
@@ -235,7 +235,7 @@ const PointAR = () => {
               className="w-full"
             /> */}
 
-            <VideoPlayerHero 
+            <VideoPlayerInternal 
               video="/Videos/Pointar/StatueTransition_3_1.mp4"
             />
             
@@ -250,7 +250,7 @@ const PointAR = () => {
         src="public/Videos/Pointar/ParticleStream.mp4"
         className="w-full"
       /> */}
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         video="/Videos/Pointar/ParticleStream.mp4"
       />
 

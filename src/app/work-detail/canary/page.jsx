@@ -7,7 +7,7 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 
 const Canary = () => {
@@ -19,7 +19,7 @@ const Canary = () => {
     <div className="w-full text-white">
       
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="mt-12 md:h-[750px] md:mt-0"
         video="/Videos/Canary/canaryHero.mp4"
       />
@@ -87,7 +87,7 @@ const Canary = () => {
         <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Videos/Canary/CMS.mp4" />
       </div> */}
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         video="/Videos/Canary/CMS.mp4"
       />
 

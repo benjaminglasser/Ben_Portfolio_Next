@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useInView } from "framer-motion";
 
-const VideoPlayer = ({ src, widthFull, className, caption }) => {
+const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   return (
@@ -41,4 +41,4 @@ const VideoPlayer = ({ src, widthFull, className, caption }) => {
   );
 };
 
-export default VideoPlayer;
+export default VideoPlayerExternal;

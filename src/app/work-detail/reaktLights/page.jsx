@@ -5,15 +5,15 @@ import ZigzagHeader from "../../common/zigzagHeader";
 import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 const reaktLights = () => {
   return (
     <div className="w-full text-white">
 
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="md:h-[600px]"
         video="/Videos/Reakt/reaktHero.mp4"
       />
@@ -31,17 +31,17 @@ const reaktLights = () => {
         ]}
       />  
 
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/7znbWZne4Nk"
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/d45Ef3S-61w"
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://player.vimeo.com/video/589537817"
@@ -58,12 +58,12 @@ const reaktLights = () => {
       <Image src={REAKT.system} alt="reakt" className="w-full h-full" />
 
 
-      <VideoPlayer
+      <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/ZXU8C1nDULM"
         />
-      <VideoPlayer
+      <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/HJ8bRSWIQpQ"
@@ -77,12 +77,12 @@ const reaktLights = () => {
         left
       />
 
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/pXBFflD6ALo"
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9 mb-24"
           src="https://www.youtube.com/embed/8Mm1Mv-THHY"

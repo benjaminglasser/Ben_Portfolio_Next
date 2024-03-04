@@ -6,10 +6,10 @@ import Section from "@/app/common/Section";
 import { PLUR } from "@/app/assets/images/PLUR";
 import DetailSection from "../../common/detailSection";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 const voyager = () => {
   const redirectToFinalWebsite = () => {
@@ -19,7 +19,7 @@ const voyager = () => {
     <div className="w-full text-white">
 
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="md:h-[600px]"
         video="/Videos/Voyager/voyagerPlanetHero.mp4"
       />
@@ -47,7 +47,7 @@ const voyager = () => {
         ]}
       />
 
-      <VideoPlayer
+      <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/JksvVszrUDM"
@@ -124,7 +124,7 @@ const voyager = () => {
         />
       </Section>
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="mt-12"
         video="/Videos/Voyager/voyagerHero_2_1.mp4"
       />
@@ -197,12 +197,12 @@ const voyager = () => {
         <video autoPlay muted loop src="/Videos/Voyager/jjvisualpost.mp4" />
       </Section> */}
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="md:h-[600px]"
         video="/Videos/Voyager/gallery editWeb_2.mp4"
       />
       
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="h-full md:h-[36rem] w-full mb-24"
           src="https://player.vimeo.com/video/588617470"

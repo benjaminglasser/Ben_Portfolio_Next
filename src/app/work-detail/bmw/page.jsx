@@ -5,7 +5,7 @@ import Context from "../../common/context";
 import ResponsiveBMWVideo from "../../common/bmwVideo";
 import Section from "@/app/common/Section";
 import DetailSection from "../../common/detailSection";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import { FancyButton } from "@/app/common/FancyButton";
 
 const bmw = () => {
@@ -40,7 +40,7 @@ const bmw = () => {
               </div>
             </div>
 
-            <VideoPlayer
+            <VideoPlayerExternal
               widthFull
               className="aspect-w-16 aspect-h-9"
               src="https://www.youtube.com/embed/zwOfrRDtd9E?si=gCmbaaHFXlUoL5zl"

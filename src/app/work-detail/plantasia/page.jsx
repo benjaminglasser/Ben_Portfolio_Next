@@ -3,12 +3,12 @@ import React, { Suspense } from "react";
 import DetailSection from "../../common/detailSection";
 import Context from "../../common/context";
 import { Grid } from "@mui/material";
-import VideoPlayer from "@/app/common/CenteredVideoPlayer";
+import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import Section from "@/app/common/Section";
 import { PLANTASIA } from "@/app/assets/images/plantasia";
 import Image from "next/image";
 import ZigzagHeader from "../../common/zigzagHeader";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 
 const plantasia = () => {
@@ -16,7 +16,7 @@ const plantasia = () => {
     <div className="w-full text-white">
 
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="md:h-[600px]"
         video="/Videos/Plantasia/plantasiaHero.mp4"
       />
@@ -34,7 +34,7 @@ const plantasia = () => {
 
       {/* <div className="flex justify-center items-center mt-8 px-10"> */}
       <Suspense fallback={<p className="text-white">Loading video...</p>}>
-              <VideoPlayer
+              <VideoPlayerExternal
                 widthFull
                 className="aspect-w-16 aspect-h-9"
                 src="https://www.youtube.com/embed/QPqFVQ77BWg"
@@ -63,7 +63,7 @@ const plantasia = () => {
             up to my plant to see how the interaction felt"
         left={false}
       />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/Hc8VXcVx78s"
@@ -71,7 +71,7 @@ const plantasia = () => {
           sound. My first test was to simply get the piezo working and hooked
           up to my plant to see how the interaction felt."
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/XA7ckpYhOTw"
@@ -81,13 +81,13 @@ const plantasia = () => {
             trigger the note reliably which is an important aspect of music
             creation"
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/afN5NSKE45s"
           caption="Nonetheless, I finished the build to give it a solid chance"
         />
-        <VideoPlayer
+        <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/nJkmiRYUuxQ"
@@ -102,14 +102,14 @@ const plantasia = () => {
         left
       />
 
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/65gG3CXnHwYs"
         caption="First, I needed to test if my plant would function well as a capacitive
         sensor:"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/CAaADyYSqOs"
@@ -120,12 +120,12 @@ const plantasia = () => {
         synth in processing that would randomly cycle through various octaves
         per note trigger to create an ambient but musical interaction"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/8qa0jOqhEsE"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/K3gu2yQ1a1o"
@@ -134,29 +134,29 @@ const plantasia = () => {
         the user attack and release controls on a knob. Enter the multiple
         serial communication basics!"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/sMfN2c0luGI"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/51GiHw1cHqg"
         caption="Control surface + prototype casing:"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/kdhnHj_8S-g"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/Cen5mqOoNO0"
         caption="Lastly, I created a visual component to supplement the note choices that the user would input"
       />
-      <VideoPlayer
+      <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/l0bzxHGF-24"

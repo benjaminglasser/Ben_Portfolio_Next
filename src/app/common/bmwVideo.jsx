@@ -1,6 +1,6 @@
 import { IMAGES } from "@/app/assets/images";
 import React from "react";
-import VideoPlayerHero from '@/app/common/VideoPlayerHero.jsx'
+import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 function ResponsiveBMWVideo() {
   return (
@@ -13,11 +13,11 @@ function ResponsiveBMWVideo() {
         src="/Videos/BMW/car-sim.mp4"
       /> */}
 
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="fixed hidden lg:block"
         video="/Videos/BMW/car-sim.mp4"
       />
-      <VideoPlayerHero 
+      <VideoPlayerInternal 
         className="fixed block lg:hidden"
         video="/Videos/BMW/carSimPhone.mp4"
       />

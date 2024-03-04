@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import VideoPlayer from "./CenteredVideoPlayer";
+import VideoPlayerExternal from "./VideoPlayerExternal";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const FancyCarousel = () => {
@@ -84,7 +84,7 @@ const FancyCarousel = () => {
           key={idx}
           // className="w-full h-full flex justify-center items-center relative"
         >
-          <VideoPlayer
+          <VideoPlayerExternal
             widthFull
           className="aspect-w-16 aspect-h-9"
             src={item?.url}

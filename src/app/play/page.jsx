@@ -73,7 +73,7 @@ const Play = () => {
     <Box className="mt-5">
       <p className="text-white text-lg py-3 text-center">
         I play in the various sandboxes of{" "}
-        <span className="font-sprat text-base">
+        <span className="sprat text-base">
           Blender, Unity, Unreal Engine, Processing, TouchDesigner,
         </span>{" "}
         as well as other creative spaces in pursuit of stumbling upon pleasing

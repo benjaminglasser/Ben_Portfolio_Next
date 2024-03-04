@@ -21,10 +21,15 @@ const Canary = () => {
         video="/Media/Canary/canaryHero.mp4"
       />
 
+      <Context
+        title="CONTEXT"
+        className="mt-24"
+        context="Canary is a program for sound, video, performance, and installation work. Through site-specific exhibitions they expect artists to use their unique resources and platform to challenge audiences with critical work and subject matter."
+      />
       <Section>
-        <div className="w-full text-center px-10">
+        <div className="w-full text-center px-5">
           <FancyButton
-            className="uppercase w-full p-1 ojuju hover:text-white"
+            className=" uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >
@@ -32,12 +37,6 @@ const Canary = () => {
           </FancyButton>
         </div>
       </Section>
-
-      <Context
-        title="CONTEXT"
-        className="mt-24"
-        context="Canary is a program for sound, video, performance, and installation work. Through site-specific exhibitions they expect artists to use their unique resources and platform to challenge audiences with critical work and subject matter."
-      />
       <AIM
         className="mt-16"
         aim="The gallery requested a sleak and minimal website that allows for them to showcase the multiplicity of artists that come through their space."

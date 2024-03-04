@@ -16,7 +16,7 @@ const Context = ({
       >
         {title && (
           <h1
-            className={`ojuju text-mute mb-3 ${
+            className={`ojuju text-grey mb-3 ${
               titleBorder
                 ? "underline underline-offset-8 decoration-2 decoration-pink"
                 : ""
@@ -27,7 +27,7 @@ const Context = ({
         )}
         {context && (
           <h2 className="flex text-left justify-center w-full">
-            <div className="w-full text-mute px-10 md:w-3/5 text-left text-subheading">
+            <div className="w-full text-grey px-5 md:w-3/5 text-left text-subheading">
               {context}
             </div>
           </h2>

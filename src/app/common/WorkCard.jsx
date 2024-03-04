@@ -31,8 +31,8 @@ const WorkCard = ({
           <div>Role: {role}</div>
           <div>Time: {time}</div>
         </div>
-        <div className="pt-2 leading-10 text-[2.25em] font-light">{title}</div>
-        <h2 className="ojuju pb-4">{description}</h2>
+        <div className="pt-2 leading-12 text-[2.25em] font-light">{title}</div>
+        <h4 className="ojuju pb-4 text-mute">{description}</h4>
         <p className="text-[11px] text-mute">Tools: {tools?.join(", ")}</p>
       </div>
     </Link>

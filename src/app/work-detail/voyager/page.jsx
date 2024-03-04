@@ -50,9 +50,9 @@ const voyager = () => {
       />
 
       <Section>
-        <div className="w-full text-center px-10">
+        <div className="w-full text-center px-5">
           <FancyButton
-            className=" uppercase w-full mt-28 ojuju p-1 hover:text-white"
+            className=" uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >
@@ -191,7 +191,7 @@ const voyager = () => {
       </Section> */}
       <VideoPlayerExternal
         widthFull
-        className="h-full md:h-[36rem] w-full mb-24"
+        className="aspect-w-16 aspect-h-9 mb-24"
         src="https://player.vimeo.com/video/588617470"
       />
 

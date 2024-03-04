@@ -31,7 +31,7 @@ const bmw = () => {
           />
 
           <div className="flex justify-center">
-            <div className="w-full px-10 md:w-3/5 text-pink">
+            <div className="w-full px-5 md:w-3/5 text-pink">
               <h4 className="font-normal">UPDATE!</h4>
             </div>
           </div>

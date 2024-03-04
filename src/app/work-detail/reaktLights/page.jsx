@@ -105,7 +105,7 @@ const reaktLights = () => {
         /> */}
 
       <div className="my-20">
-        <FancyCarousel SOURCE={source2} />
+        <FancyCarousel SOURCE={source3} />
       </div>
     </div>
   );

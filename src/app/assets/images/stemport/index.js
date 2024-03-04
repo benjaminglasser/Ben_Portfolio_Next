@@ -1,15 +1,23 @@
 import mockupsScreens from "./mockupsScreens.jpg";
-// import visualIdentity from "./MlLearning.mp4";
-// import lightDarkMode from "./lightDark_AdobeExpress.mp4";
 import lightMode from "./lightMode.png";
 import desktopModekup from "./DesktopMockup.jpg";
 import stemportThumb from "./stemportHeroThumb.gif";
+import userFlowTransparent from "./userFlowTransparent.png";
+import board1 from "./boards/board1.png";
+import board2 from "./boards/board2.png";
+import board3 from "./boards/board3.png";
+import board4 from "./boards/board4.png";
+import board5 from "./boards/board5.png";
 
 export const STEMPORT = {
-  // VISUAL_IDENTITY: visualIdentity,
   MOCKUP_SCREEN: mockupsScreens,
-  // LIGHT_DARK_MODE: lightDarkMode,
+  USERFLOW_TRANS: userFlowTransparent,
   LIGHT_MODE: lightMode,
   DESKTOP_MOCKUP: desktopModekup,
   STEMPORT_THUMB: stemportThumb,
+  BOARD1: board1,
+  BOARD2: board2,
+  BOARD3: board3,
+  BOARD4: board4,
+  BOARD5: board5,
 };

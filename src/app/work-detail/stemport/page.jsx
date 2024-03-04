@@ -7,7 +7,7 @@ import DetailSection from "../../common/detailSection";
 import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
-import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'
+// import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'
 import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
 
 const stemport = () => {
@@ -23,12 +23,6 @@ const stemport = () => {
   return (
     <div className="w-full text-white">
     
-    {/* 
-      <section className="block aspect-w-16 aspect-h-9">
-        <video autoPlay muted loop className="block mt-10 md:mt-0">
-          <source src="/Media/Stemport/stemportHeroCompressed.mp4" type="video/mp4"/>
-        </video>
-      </section> */}
 
 
       <VideoPlayerInternal 
@@ -47,7 +41,6 @@ const stemport = () => {
         title="Visual Identity"
         description="To enhance the ML experience, a visual identity was created to signify the AI processes. Inspired by the way in which sound can create beautiful ripples in water, a virtual avatar guides the user along the journey."
         left
-        // video={IMAGES.VISUAL_IDENTITY}
       />
 
       <VideoPlayerInternal 
@@ -59,7 +52,6 @@ const stemport = () => {
         title="User Flow"
         description="Due to the fact that this application is meant to streamline the process of stem organization so that musicians can get to the music making process quicker, It was integral to have the least amount of screens possible to mitigate any risk of adding any friction to the user flow. Therefore, it was necessary early on to clarify the user's journey so that the shortest path to completion could be created while still having all the necessary tools available at hand."
         left={false}
-        // images={[IMAGES.USERFLOW_TRANS]}
       />
 
       <div className="flex justify-center w-full px-10 mt-5">
@@ -86,6 +78,7 @@ const stemport = () => {
           </div>
         </Section>
       ))}
+
       <Context
         title="Light / Dark mode"
         context="The client requested light and dark mode options for their designs so it was imperative to keep in mind elements that would work on both a light and dark backdrop"
@@ -94,12 +87,13 @@ const stemport = () => {
 
 
       <VideoPlayerInternal 
-        // className="mt-10"
         video="/Media/Stemport/lightDark_AdobeExpress.mp4"
       />
+      
       <div className="flex justify-center w-full mt-5">
         <Image src={IMAGES.LIGHT_MODE} alt="light mode" />
       </div>
+
       <div className="flex justify-center w-full mt-5">
         <Image src={IMAGES.DESKTOP_MOCKUP} alt="light mode" />
       </div>

@@ -1,49 +1,5 @@
-import crosshairSmall from "./crosshairSmall.svg";
-import sky from "./sky.gif";
-
-import play1 from "./play/play1.gif";
-import play2 from "./play/play2.gif";
-import play3 from "./play/play3.gif";
-import play4 from "./play/play4.gif";
-import play5 from "./play/play5.gif";
-import play6 from "./play/play6.gif";
-import play7 from "./play/play7.gif";
-import play9 from "./play/play9.gif";
-import play10 from "./play/play10.gif";
-import play11 from "./play/play11.gif";
-import play12 from "./play/play12.gif";
-import play13 from "./play/play13.gif";
-import play14 from "./play/play14.gif";
-import play15 from "./play/play15.gif";
-import play16 from "./play/play16.gif";
-import play17 from "./play/play17.gif";
-import play18 from "./play/play18.gif";
-import play19 from "./play/play19.gif";
-import play20 from "./play/play20.gif";
-import play21 from "./play/play21.gif";
-import play22 from "./play/play22.gif";
-import play23 from "./play/play23.gif";
-import play24 from "./play/play24.gif";
-import play25 from "./play/play25.gif";
-import play26 from "./play/play26.gif";
-import play27 from "./play/play27.gif";
-import play28 from "./play/play28.gif";
-import play29 from "./play/play29.gif";
-import play30 from "./play/play30.gif";
-import play31 from "./play/play31.gif";
-
-
-import userflow from "./userFlow.png";
-import userflow2 from "./userFlow2.png";
-import userflowTrans from "./userFlowTransparent.png";
-import DesktopMockup from "./DesktopMockup.jpg";
-
-import board1 from "./boards/board1.png";
-import board2 from "./boards/board2.png";
-import board3 from "./boards/board3.png";
-import board4 from "./boards/board4.png";
-import board5 from "./boards/board5.png";
-
+import { HOME } from "./home";
+import { PLAY } from "./play";
 import { BMW } from "./bmw";
 import { EASEL } from "./easel";
 import { SPATIAL } from "./SpatialAge";
@@ -57,46 +13,43 @@ import { STEMPORT } from "./stemport";
 
 export const IMAGES = {
 
-  CROSS_HAIR_SM: crosshairSmall,
-
-  SKY_GIF: sky,
+  // HOME
+  CROSS_HAIR_SM: HOME.CROSSHAIR,
+  SKY_GIF: HOME.SKY,
 
   //Play Section
-  PLAY_1: play1,
-  PLAY_2: play2,
-  PLAY_3: play3,
-  PLAY_4: play4,
-  PLAY_5: play5,
-  PLAY_6: play6,
-  PLAY_7: play7,
-  PLAY_9: play9,
-  PLAY_10: play10,
-  PLAY_11: play11,
-  PLAY_12: play12,
-  PLAY_13: play13,
-  PLAY_14: play14,
-  PLAY_15: play15,
-  PLAY_16: play16,
-  PLAY_17: play17,
-  PLAY_18: play18,
-  PLAY_19: play19,
-  PLAY_20: play20,
-  PLAY_21: play21,
-  PLAY_22: play22,
-  PLAY_23: play23,
-  PLAY_24: play24,
-  PLAY_25: play25,
-  PLAY_26: play26,
-  PLAY_27: play27,
-  PLAY_28: play28,
-  PLAY_29: play29,
-  PLAY_30: play30,
-  PLAY_31: play31,
+  PLAY_1: PLAY.PLAY1,
+  PLAY_2: PLAY.PLAY2,
+  PLAY_3: PLAY.PLAY3,
+  PLAY_4: PLAY.PLAY4,
+  PLAY_5: PLAY.PLAY5,
+  PLAY_6: PLAY.PLAY6,
+  PLAY_7: PLAY.PLAY7,
+  PLAY_9: PLAY.PLAY9,
+  PLAY_10: PLAY.PLAY10,
+  PLAY_11: PLAY.PLAY11,
+  PLAY_12: PLAY.PLAY12,
+  PLAY_13: PLAY.PLAY13,
+  PLAY_14: PLAY.PLAY14,
+  PLAY_15: PLAY.PLAY15,
+  PLAY_16: PLAY.PLAY16,
+  PLAY_17: PLAY.PLAY17,
+  PLAY_18: PLAY.PLAY18,
+  PLAY_19: PLAY.PLAY19,
+  PLAY_20: PLAY.PLAY20,
+  PLAY_21: PLAY.PLAY21,
+  PLAY_22: PLAY.PLAY22,
+  PLAY_23: PLAY.PLAY23,
+  PLAY_24: PLAY.PLAY24,
+  PLAY_25: PLAY.PLAY25,
+  PLAY_26: PLAY.PLAY26,
+  PLAY_27: PLAY.PLAY27,
+  PLAY_28: PLAY.PLAY28,
+  PLAY_29: PLAY.PLAY29,
+  PLAY_30: PLAY.PLAY30,
+  PLAY_31: PLAY.PLAY31,
 
-  USERFLOW: userflow,
-  USERFLOW2: userflow2,
-  USERFLOW_TRANS: userflowTrans,
-  DESKTOP_MOCKUP: DesktopMockup,
+
 
   //Voyager
   PLUR: PLUR?.PLUR_HERO,
@@ -120,17 +73,19 @@ export const IMAGES = {
 
   //BMW
   DANCING_CAR: BMW.DANCING_CAR,
-  // BG_BMW: BMW.CAR_SIM,
-  // BG_BMW_PHONE: BMW.CAR_SIM_PHONE,
+
 
   //STEMPORT
-
-  // VISUAL_IDENTITY: STEMPORT.VISUAL_IDENTITY,
   MOCKUP_SCREEN: STEMPORT.MOCKUP_SCREEN,
-  // DARK_LIGHT_MODE: STEMPORT.LIGHT_DARK_MODE,
+  USERFLOW_TRANS: STEMPORT.USERFLOW_TRANS,
   LIGHT_MODE: STEMPORT.LIGHT_MODE,
   DESKTOP_MOCKUP: STEMPORT.DESKTOP_MOCKUP,
   STEMPORT_THUMB: STEMPORT.STEMPORT_THUMB,
+  BOARD1: STEMPORT.BOARD1,
+  BOARD2: STEMPORT.BOARD2,
+  BOARD3: STEMPORT.BOARD3,
+  BOARD4: STEMPORT.BOARD4,
+  BOARD5: STEMPORT.BOARD5,
 
   // Canary
 
@@ -146,10 +101,4 @@ export const IMAGES = {
   // Easel
   EASEL_HERO: EASEL.EASEL_HERO,
 
-  // Boards
-  BOARD1: board1,
-  BOARD2: board2,
-  BOARD3: board3,
-  BOARD4: board4,
-  BOARD5: board5,
 };

@@ -12,16 +12,17 @@ import { useEffect, useState } from "react";
 const Play = () => {
 
   const itemData = [
+    "/Media/Play/play18.gif",
     IMAGES.PLAY_18,
     IMAGES.PLAY_1,
     IMAGES.PLAY_2,
     IMAGES.PLAY_3,
+    IMAGES.PLAY_34,
     IMAGES.PLAY_4,
     IMAGES.PLAY_6,
-    // IMAGES.PLAY_8,
-    // IMAGES.PLAY_9,
     IMAGES.PLAY_10,
     IMAGES.PLAY_11,
+    IMAGES.PLAY_35,
     IMAGES.PLAY_12,
     IMAGES.PLAY_13,
     IMAGES.PLAY_14,
@@ -30,8 +31,10 @@ const Play = () => {
     IMAGES.PLAY_5,
     IMAGES.PLAY_17,
     IMAGES.PLAY_16,
+    IMAGES.PLAY_33,
     IMAGES.PLAY_19,
     IMAGES.PLAY_20,
+    IMAGES.PLAY_32,
     IMAGES.PLAY_21,
     IMAGES.PLAY_22,
     IMAGES.PLAY_23,
@@ -87,15 +90,22 @@ const Play = () => {
               </a>
         </FancyButton>
       </p>
+
+      {/* <Image src="/Media/Play/play18.gif"
+      width={500}
+      height={500}
+      alt="play pic"/> */}
+
       <ImageList variant="masonry" cols={cols} gap={24}>
         {itemData.map((item, idx) => (
           <Section key={idx}>
             <ImageListItem>
               <Image
                 className="w-full"
-                // srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 src={item}
                 loading="lazy"
+                width="100"
+                height="100"
               />
             </ImageListItem>
           </Section>

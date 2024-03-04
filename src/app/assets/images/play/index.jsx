@@ -28,6 +28,10 @@ import play28 from "./play28.gif";
 import play29 from "./play29.gif";
 import play30 from "./play30.gif";
 import play31 from "./play31.gif";
+import play32 from "./play32.png";
+import play33 from "./play33.png";
+import play34 from "./play34.png";
+import play35 from "./play35.png";
 
 export const PLAY = {
   PLAY1: play1,
@@ -60,4 +64,8 @@ export const PLAY = {
   PLAY29: play29,
   PLAY30: play30,
   PLAY31: play31,
+  PLAY32: play32,
+  PLAY33: play33,
+  PLAY34: play34,
+  PLAY35: play35,
 };

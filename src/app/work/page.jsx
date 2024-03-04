@@ -28,15 +28,6 @@ const Work = () => {
       tools: ["Unreal Engine"],
     },
     {
-      role: "UX/UI Designer",
-      time: "Spring 2023",
-      title: "Stemport",
-      description: "Analyze - Organize - Import",
-      thumbnail: IMAGES?.STEMPORT_THUMB,
-      path: "work-detail/stemport",
-      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-    },
-    {
       role: "XR Interaction",
       time: "Summer 2022 - Fall 2022",
       title: "BMW",
@@ -49,6 +40,15 @@ const Work = () => {
       workDetail: {
         innerBox: true,
       },
+    },
+    {
+      role: "UX/UI Designer",
+      time: "Spring 2023",
+      title: "Stemport",
+      description: "Analyze - Organize - Import",
+      thumbnail: IMAGES?.STEMPORT_THUMB,
+      path: "work-detail/stemport",
+      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     },
     {
       role: "Spatial Design Research ans Speculation",

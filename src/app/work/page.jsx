@@ -12,12 +12,21 @@ const Work = () => {
     {
       role: "Lead Product Designer",
       time: "Spring 2023-Present",
-      title: "Easel",
+      title: "Easel AI",
       description: "Express with Easel",
       thumbnail: IMAGES?.EASEL_HERO,
       path: "https://www.easelapps.ai/",
       tools: ["Figma", "Stable Diffusion XL", "After Effects", "Unreal Engine", "Premiere Pro", "Design Thinking", "User Studies"],
     },    
+    {
+      role: "Virtual Production, In Camera VFX",
+      time: "Spring 2023",
+      title: "Beyond The Infinite",
+      description: "A Virtual Production Odyssey",
+      thumbnail: "/Videos/Odyssey/mainThumb_1.gif",
+      path: "work-detail/odyssey",
+      tools: ["Unreal Engine"],
+    },
     {
       role: "UX/UI Designer",
       time: "Spring 2023",

@@ -6,10 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import FancyCarousel from "@/app/common/Carousel";
 // import { MEAN } from "@/app/assets/images/meaningfulPursuits";
 
-
-
 const MeaningfulPursuits = () => {
-
   const source = [
     {
       url: "https://www.youtube.com/embed/hK23aSLVaAk?autoplay=0&mute=0&controls=0&origin=https%3A%2F%2Fbenjaminglasser.com&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=1",
@@ -49,20 +46,18 @@ const MeaningfulPursuits = () => {
   return (
     <div className="w-full text-white">
       <div className="mt-10">
-      <ZigzagHeader
-        title="MEANINGFUL PURSUITS"
-        description="Album Visuals"
-        extendedDescription="A series of live video vignettes commissioned by an electronic musician for their album as well as to be projected behind their performance. This was for an album entitled “Meaningful Pursuits” by Danny Goliger"
-        time="2021 // Artist Album AV"
-        role="Animator / Creative Director"
-        tools={["TouchDesigner", "Premiere Pro"]}
-      />
-      <div className="mt-20">
-        <FancyCarousel 
-          SOURCE={source}
+        <ZigzagHeader
+          title="MEANINGFUL PURSUITS"
+          description="Album Visuals"
+          extendedDescription="A series of live video vignettes commissioned by an electronic musician for their album as well as to be projected behind their performance. This was for an album entitled “Meaningful Pursuits” by Danny Goliger"
+          time="2021 // Artist Album AV"
+          role="Animator / Creative Director"
+          tools={["TouchDesigner", "Premiere Pro"]}
         />
+        <div className="my-20">
+          <FancyCarousel SOURCE={source} />
+        </div>
       </div>
-    </div>
     </div>
   );
 };

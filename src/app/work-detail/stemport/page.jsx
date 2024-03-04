@@ -34,7 +34,7 @@ const stemport = () => {
       <AIM aim="Stemport uses a machine learning algorithm to analyze, organize, and re-label musical stems to aid in streamlining the creative workflow." />
       {/* <VideoPlayer/> */}
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="Visual Identity"
         description="To enhance the ML experience, a visual identity was created to signify the AI processes. Inspired by the way in which sound can create beautiful ripples in water, a virtual avatar guides the user along the journey."
         left
@@ -43,18 +43,18 @@ const stemport = () => {
       <VideoPlayerInternal video="/Media/Stemport/MlLearning.mp4" />
 
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="User Flow"
         description="Due to the fact that this application is meant to streamline the process of stem organization so that musicians can get to the music making process quicker, It was integral to have the least amount of screens possible to mitigate any risk of adding any friction to the user flow. Therefore, it was necessary early on to clarify the user's journey so that the shortest path to completion could be created while still having all the necessary tools available at hand."
         left={false}
       />
 
-      <div className="flex justify-center w-full px-10 mt-5">
+      <div className="flex justify-center w-full px-5 md:px-10 mt-5">
         <Image src={IMAGES.USERFLOW_TRANS} alt="light mode" />
       </div>
 
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="UI Considerations"
         description="When rolling out all the screens, careful attention was paid so that the user flow was clear and simple. Negative space and a minimilistic design was used generously to keep the layouts uncluttered."
         left={false}

@@ -42,7 +42,7 @@ const Canary = () => {
         aim="The gallery requested a sleak and minimal website that allows for them to showcase the multiplicity of artists that come through their space."
       />
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="UI Considerations"
         description="A key feature of this build involved including a 24hr livestream of the gallery at all times to be displayed soley on the landing page. It was important to create a design language that wouldn't overshadow this focal point."
         left={false}
@@ -54,7 +54,7 @@ const Canary = () => {
       </div>
 
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="Transparency"
         description='The main theme of this website was centered around transparency. Therefore, transparent "glasslike" modals were used to reinforce this concept to display necesarry information about the gallery, press information, and specific shows (current and previous).'
         center
@@ -72,7 +72,7 @@ const Canary = () => {
         </Section>
       ))}
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="Tech Stack"
         description="It was necessary to build a headless CMS for the client to easily update and add specfic content while also allowing for the customizability and flexibility of a modern frontend framework. Therfore, it was decided to use Contentful for the content management that would easily hook into a Next JS custom front end. Careful consideration was given to the designs to allow for the flexibility of ever changing content."
         left
@@ -85,7 +85,7 @@ const Canary = () => {
       <VideoPlayerInternal video="/Media/Canary/CMS.mp4" />
 
       <DetailSection
-        className="px-10 "
+        className="px-5 md:px-10 "
         title="Mobile Responsiveness"
         description="The site needed to be available on mobile as well because a large demographic would be visiting on their phones."
         left={false}

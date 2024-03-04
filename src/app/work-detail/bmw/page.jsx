@@ -42,7 +42,7 @@ const bmw = () => {
             src="https://www.youtube.com/embed/zwOfrRDtd9E?si=gCmbaaHFXlUoL5zl"
           />
 
-          <div className="px-10 mt-12 flex justify-center">
+          <div className=" px-5 md:px-10 mt-12 flex justify-center">
             <p>
               During CES 2024, the BMW team presented work that I contributed to
               during my time.
@@ -50,7 +50,7 @@ const bmw = () => {
           </div>
 
           <Section>
-            <div className="text-center px-10 mt-16 mb-72 ">
+            <div className="text-center px-5 md:px-10 mt-16 mb-72 ">
               <DetailSection className=" mb-3 " title="EXPERIENCE" center />
               <div className="w-full flex flex-col items-center justify-center">
                 <h6 className="mb-3 font-normal">DETAILS LIMITED BY NDA</h6>

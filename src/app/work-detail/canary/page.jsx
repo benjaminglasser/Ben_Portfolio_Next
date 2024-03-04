@@ -7,8 +7,7 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
-
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 const Canary = () => {
   const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
@@ -17,13 +16,10 @@ const Canary = () => {
   };
   return (
     <div className="w-full text-white">
-      
-
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="mt-12 md:h-[750px] md:mt-0"
         video="/Media/Canary/canaryHero.mp4"
       />
-
 
       <Section>
         <div className="w-full text-center px-10">
@@ -57,7 +53,7 @@ const Canary = () => {
       <div className="flex justify-center w-full px-5 md:px-0 mt-5">
         <Image src={IMAGES.UI_CONSIDERATION} alt="light mode" />
       </div>
-      
+
       <DetailSection
         className="px-10 "
         title="Transparency"
@@ -87,9 +83,7 @@ const Canary = () => {
         <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Media/Canary/CMS.mp4" />
       </div> */}
 
-      <VideoPlayerInternal 
-        video="/Media/Canary/CMS.mp4"
-      />
+      <VideoPlayerInternal video="/Media/Canary/CMS.mp4" />
 
       <DetailSection
         className="px-10 "

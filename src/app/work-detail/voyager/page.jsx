@@ -9,7 +9,7 @@ import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 const voyager = () => {
   const redirectToFinalWebsite = () => {
@@ -17,14 +17,10 @@ const voyager = () => {
   };
   return (
     <div className="w-full text-white">
-
-
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="md:h-[600px]"
         video="/Media/Voyager/voyagerPlanetHero.mp4"
       />
-
-  
 
       <ZigzagHeader
         title="Voyager"
@@ -48,9 +44,9 @@ const voyager = () => {
       />
 
       <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/JksvVszrUDM"
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/JksvVszrUDM"
       />
 
       <Section>
@@ -64,7 +60,6 @@ const voyager = () => {
           </FancyButton>
         </div>
       </Section>
-
 
       {/* <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left /> */}
 
@@ -90,17 +85,16 @@ const voyager = () => {
           aesthetics.
         </p>
       </Section> */}
-      
 
-        <DetailSection
+      <DetailSection
         className="px-5 md:px-10"
         title="TOUR VISUALS PACKAGE"
         description={`First, I created a mood board with various sources of inspiration.
           This included radar, weather graphics, 80s video games, futurism,
           heads up displays, terminal screens, and airline cockpits`}
         left={false}
-        />
-        
+      />
+
       <Section>
         <Image
           src={PLUR.INSPO}
@@ -124,7 +118,7 @@ const voyager = () => {
         />
       </Section>
 
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="mt-12"
         video="/Media/Voyager/voyagerHero_2_1.mp4"
       />
@@ -136,7 +130,6 @@ const voyager = () => {
         left
       />
 
-      
       <Section>
         <Image
           src={PLUR.VINYL}
@@ -196,18 +189,16 @@ const voyager = () => {
       {/* <Section>
         <video autoPlay muted loop src="/Media/Voyager/jjvisualpost.mp4" />
       </Section> */}
-        <VideoPlayerExternal
-          widthFull
-          className="h-full md:h-[36rem] w-full mb-24"
-          src="https://player.vimeo.com/video/588617470"
-        />
+      <VideoPlayerExternal
+        widthFull
+        className="h-full md:h-[36rem] w-full mb-24"
+        src="https://player.vimeo.com/video/588617470"
+      />
 
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="md:h-[600px]"
         video="/Media/Voyager/gallery editWeb_2.mp4"
       />
-      
-   
     </div>
   );
 };

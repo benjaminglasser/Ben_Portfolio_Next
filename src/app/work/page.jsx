@@ -12,15 +12,24 @@ const Work = () => {
       role: "Lead Product Designer",
       time: "Spring 2023 - Present",
       title: "Easel AI",
-      description: "Express with Easel. An AI-powered personal avatar app directly in iMessage",
+      description:
+        "Express with Easel. An AI-powered personal avatar app directly in iMessage",
       thumbnail: IMAGES?.EASEL_HERO,
       path: "https://www.easelapps.ai/",
       externalLink: true,
-      tools: ["Figma", "Stable Diffusion XL", "After Effects", "Unreal Engine", "Premiere Pro", "Design Thinking", "User Studies"],
-    },    
+      tools: [
+        "Figma",
+        "Stable Diffusion XL",
+        "After Effects",
+        "Unreal Engine",
+        "Premiere Pro",
+        "Design Thinking",
+        "User Studies",
+      ],
+    },
     {
       role: "Virtual Production, In Camera VFX",
-      time: "Spring 2023  // Standard Vision",
+      time: "Spring 2023",
       title: "Beyond The Infinite",
       description: "A Virtual Production Odyssey",
       thumbnail: "/Media/Odyssey/odysseyThumb.gif",
@@ -54,7 +63,7 @@ const Work = () => {
     },
     {
       role: "Web Development, Designs, 3D Models",
-      time: "2022 // Freelance",
+      time: "2022",
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for voyager record label",
@@ -85,7 +94,7 @@ const Work = () => {
     },
     {
       role: "UI / Web Development",
-      time: "Spring 2023 // Canary Gallery",
+      time: "Spring 2023",
       title: "The Canary Test",
       description:
         "Web Design and Development for Los Angeles based art gallery",
@@ -107,7 +116,7 @@ const Work = () => {
     },
     {
       role: "Engineer, Creative Coder",
-      time: "FALL 2021 // Creative Technology",
+      time: "FALL 2021",
       title: "Reakt Light",
       description: "Custom Musical Instrument",
       thumbnail: IMAGES?.REAKT,
@@ -144,7 +153,7 @@ const Work = () => {
     // },
     {
       role: "Animator / Creative Director",
-      time: "2021 // Artist Album AV",
+      time: "2021",
       title: "Meaningful Pursuits",
       description: "Album Visuals",
       thumbnail: IMAGES?.MEAN_THUMB,

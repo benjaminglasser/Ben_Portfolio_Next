@@ -8,7 +8,7 @@ import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 // import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 const stemport = () => {
   const BOARDS = [
@@ -19,17 +19,13 @@ const stemport = () => {
     IMAGES.BOARD5,
   ];
 
-
   return (
     <div className="w-full text-white">
-    
-
-
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="mt-20"
         video="/Media/Stemport/stemportHeroCompressed.mp4"
       />
-        
+
       <Context
         className="mt-10"
         title="CONTEXT"
@@ -44,10 +40,8 @@ const stemport = () => {
         left
       />
 
-      <VideoPlayerInternal 
-        video="/Media/Stemport/MlLearning.mp4"
-      />
-      
+      <VideoPlayerInternal video="/Media/Stemport/MlLearning.mp4" />
+
       <DetailSection
         className="px-10 "
         title="User Flow"
@@ -86,11 +80,8 @@ const stemport = () => {
         titleBorder
       />
 
+      <VideoPlayerInternal video="/Media/Stemport/lightDark_AdobeExpress.mp4" />
 
-      <VideoPlayerInternal 
-        video="/Media/Stemport/lightDark_AdobeExpress.mp4"
-      />
-      
       <div className="flex justify-center w-full mt-5">
         <Image src={IMAGES.LIGHT_MODE} alt="light mode" />
       </div>

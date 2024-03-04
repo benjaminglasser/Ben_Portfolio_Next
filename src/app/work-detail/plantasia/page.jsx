@@ -8,15 +8,12 @@ import Section from "@/app/common/Section";
 import { PLANTASIA } from "@/app/assets/images/plantasia";
 import Image from "next/image";
 import ZigzagHeader from "../../common/zigzagHeader";
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
-
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 const plantasia = () => {
   return (
     <div className="w-full text-white">
-
-
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="md:h-[600px]"
         video="/Media/Plantasia/plantasiaHero.mp4"
       />
@@ -28,17 +25,24 @@ const plantasia = () => {
         time="FALL 2021 // Personal Project"
         role="Engineer, Creative Coder"
         tools={[
-          "Arduino", "Capacitive Touch MPR121", "Processing", "Succulent", "Banana", "Lemon", "Rosarita Vegetarian", "Refried Beans"
+          "Arduino",
+          "Capacitive Touch MPR121",
+          "Processing",
+          "Succulent",
+          "Banana",
+          "Lemon",
+          "Rosarita Vegetarian",
+          "Refried Beans",
         ]}
       />
 
       {/* <div className="flex justify-center items-center mt-8 px-10"> */}
       <Suspense fallback={<p className="text-white">Loading video...</p>}>
-              <VideoPlayerExternal
-                widthFull
-                className="aspect-w-16 aspect-h-9"
-                src="https://www.youtube.com/embed/QPqFVQ77BWg"
-              />
+        <VideoPlayerExternal
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/QPqFVQ77BWg"
+        />
       </Suspense>
 
       {/* </div> */}
@@ -51,7 +55,7 @@ const plantasia = () => {
       /> */}
 
       <Context
-      className="mt-10"
+        className="mt-10"
         title="CONTEXT"
         context="Create a system that allows you to play music (and possibly video) from your computer using a physical custom interface of your own design and creation. Will you make it for your own personal use or more general, usable by a larger group of people? Is it mean for solo preformance or multiple people? Will it be specific to a genre of music? How do you select the parameters that you can manipulate."
       />
@@ -64,33 +68,31 @@ const plantasia = () => {
             up to my plant to see how the interaction felt"
         left={false}
       />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/Hc8VXcVx78s"
-          caption="My initial idea was to use piezo touch sensors as a way to drive the
+      <VideoPlayerExternal
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/Hc8VXcVx78s"
+        caption="My initial idea was to use piezo touch sensors as a way to drive the
           sound. My first test was to simply get the piezo working and hooked
           up to my plant to see how the interaction felt."
-        />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/XA7ckpYhOTw"
-          
-        />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/afN5NSKE45s"
-          caption="Nonetheless, I finished the build to give it a solid chance"
-        />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/nJkmiRYUuxQ"
-          caption="Initial musical tests with the piezo setup:"
-        />
-
+      />
+      <VideoPlayerExternal
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/XA7ckpYhOTw"
+      />
+      <VideoPlayerExternal
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/afN5NSKE45s"
+        caption="Nonetheless, I finished the build to give it a solid chance"
+      />
+      <VideoPlayerExternal
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/nJkmiRYUuxQ"
+        caption="Initial musical tests with the piezo setup:"
+      />
 
       <DetailSection
         className="px-5 md:px-10 "
@@ -166,16 +168,11 @@ const plantasia = () => {
         left
       />
 
-  
-
-
       <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9 mb-40"
         src="https://www.youtube.com/embed/QPqFVQ77BWg"
       />
-
-
 
       {/* <DetailSection
         className="px-5 md:px-10 "

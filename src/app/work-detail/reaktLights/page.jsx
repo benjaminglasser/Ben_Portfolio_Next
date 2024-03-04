@@ -6,11 +6,10 @@ import { REAKT } from "@/app/assets/images/reakt";
 import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import FancyCarousel from "@/app/common/Carousel";
 
 const reaktLights = () => {
-
   const source = [
     {
       url: "https://www.youtube.com/embed/7znbWZne4Nk",
@@ -41,9 +40,7 @@ const reaktLights = () => {
 
   return (
     <div className="w-full text-white">
-
-
-      <VideoPlayerInternal 
+      <VideoPlayerInternal
         className="md:h-[600px]"
         video="/Media/Reakt/reaktHero.mp4"
       />
@@ -59,15 +56,11 @@ const reaktLights = () => {
           "Chauvet DMX Dimmer/Switch Pack",
           "DMXKing eDMX1 PRO Ethernet DMX Controller",
         ]}
-      />  
+      />
 
       <div className="mt-20">
-        <FancyCarousel 
-          SOURCE={source}
-        />
+        <FancyCarousel SOURCE={source} />
       </div>
-
-      
 
       <DetailSection
         className="px-5 md:px-10 "
@@ -77,7 +70,6 @@ const reaktLights = () => {
         left
       />
       <Image src={REAKT.system} alt="reakt" className="w-full h-full" />
-
 
       {/* <VideoPlayerExternal
           widthFull
@@ -91,11 +83,9 @@ const reaktLights = () => {
         /> */}
 
       <div className="mt-20">
-        <FancyCarousel 
-          SOURCE={source2}
-        />
+        <FancyCarousel SOURCE={source2} />
       </div>
-      
+
       <DetailSection
         className="px-5 md:px-10 "
         title="EARLY TESTS"
@@ -103,7 +93,7 @@ const reaktLights = () => {
         left
       />
 
-        {/* <VideoPlayerExternal
+      {/* <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/pXBFflD6ALo"
@@ -115,9 +105,7 @@ const reaktLights = () => {
         /> */}
 
       <div className="my-20">
-        <FancyCarousel 
-          SOURCE={source2}
-        />
+        <FancyCarousel SOURCE={source2} />
       </div>
     </div>
   );

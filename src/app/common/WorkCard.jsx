@@ -10,12 +10,14 @@ const WorkCard = ({
   description,
   tools,
   thumbnail,
+  externalLink
 }) => {
   return (
     <Link
       href={{
         pathname: path,
       }}
+      target={externalLink ? "_blank" : "_self"}
     >
       <div className="hover:border-b-[0.4px] cursor-pointer pb-1 w-full workcard">
         <Image src={thumbnail} alt="stemport gif" width="100" height="100" className="thumbnail" />

@@ -1,6 +1,5 @@
 "use client";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-// import WorkCard from "../common/WorkCard";
 import Section from "../common/Section";
 import { IMAGES } from "../assets/images";
 import dynamic from "next/dynamic";
@@ -16,6 +15,7 @@ const Work = () => {
       description: "Express with Easel",
       thumbnail: IMAGES?.EASEL_HERO,
       path: "https://www.easelapps.ai/",
+      externalLink: true,
       tools: ["Figma", "Stable Diffusion XL", "After Effects", "Unreal Engine", "Premiere Pro", "Design Thinking", "User Studies"],
     },    
     {
@@ -168,6 +168,7 @@ const Work = () => {
               thumbnail={content?.thumbnail}
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
+              externalLink={content?.externalLink}
             />
           </Section>
         </Grid>

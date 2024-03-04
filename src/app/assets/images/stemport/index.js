@@ -3,11 +3,11 @@ import lightMode from "./lightMode.png";
 import desktopModekup from "./DesktopMockup.jpg";
 import stemportThumb from "./stemportHeroThumb.gif";
 import userFlowTransparent from "./userFlowTransparent.png";
-import board1 from "./boards/board1.png";
-import board2 from "./boards/board2.png";
-import board3 from "./boards/board3.png";
-import board4 from "./boards/board4.png";
-import board5 from "./boards/board5.png";
+import board1 from "./board1.png";
+import board2 from "./board2.png";
+import board3 from "./board3.png";
+import board4 from "./board4.png";
+import board5 from "./board5.png";
 
 export const STEMPORT = {
   MOCKUP_SCREEN: mockupsScreens,

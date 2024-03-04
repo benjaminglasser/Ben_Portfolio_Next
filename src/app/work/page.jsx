@@ -23,7 +23,7 @@ const Work = () => {
       time: "Spring 2023",
       title: "Beyond The Infinite",
       description: "A Virtual Production Odyssey",
-      thumbnail: "/Videos/Odyssey/mainThumb_1.gif",
+      thumbnail: "/Videos/Odyssey/odysseyThumb.gif",
       path: "work-detail/odyssey",
       tools: ["Unreal Engine"],
     },

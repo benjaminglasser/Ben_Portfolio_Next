@@ -5,7 +5,7 @@ const AIM = ({ aim, className }) => {
   return (
     <Section>
       <div className={`${className} mt-10 px-10`}>
-        <h2>AIM</h2>
+        <h2 className="ojuju">AIM</h2>
         <h1>{aim}</h1>
       </div>
     </Section>

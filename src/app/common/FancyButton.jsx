@@ -8,7 +8,7 @@ export const FancyButton = styled(Button)(() => ({
   // margin: '8px',
   borderRadius: 0,
   color: "#ff477b",
-  fontFamily: "'sprat', sans-serif",
+  fontFamily: "'ojuju', sans-serif",
   fontWeight: "300",
   "&:hover": {
     backgroundColor: "#ff477b",

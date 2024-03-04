@@ -44,11 +44,11 @@ const Canary = () => {
         src="https://www.youtube.com/embed/w1dcv-u8B8Y?si=6d-IPrKqSVz8dc0b"
       />
 
-      <Context
+      {/* <Context
         title="CONTEXT"
         className="mt-24"
         context="This project, premiered at the Cinegear Expo, highlighted the evolution of filmmaking through the integration of traditional methods and emerging virtual production technologies. It featured the innovative use of the companies LED screens that could be used for shooting in-camera VFX (ICVFX) and leveraged Unreal Engine for building virtual sets with high-fidelity world creation assets, showcasing the company's commitment to pioneering cutting-edge storytelling techniques in their in-house virtual production space."
-      />
+      /> */}
       <AIM
         className="mt-16"
         aim="Our goal was to spotlight the virtual production space's potential, attracting new business and networking opportunities at the expo."

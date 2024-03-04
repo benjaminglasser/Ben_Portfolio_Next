@@ -24,7 +24,7 @@ const Canary = () => {
       <Section>
         <div className="w-full text-center px-10">
           <FancyButton
-            className="uppercase w-full p-1 font-sprat hover:text-white"
+            className="uppercase w-full p-1 ojuju hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >

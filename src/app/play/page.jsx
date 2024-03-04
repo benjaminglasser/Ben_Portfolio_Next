@@ -10,7 +10,6 @@ import { useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const Play = () => {
-
   const itemData = [
     // "/Media/Play/play18.gif",
     IMAGES.PLAY_18,
@@ -73,7 +72,7 @@ const Play = () => {
     <Box className="mt-5">
       <p className="text-white text-lg py-3 text-center">
         I play in the various sandboxes of{" "}
-        <span className="sprat text-base">
+        <span className="ojuju text-base">
           Blender, Unity, Unreal Engine, Processing, TouchDesigner,
         </span>{" "}
         as well as other creative spaces in pursuit of stumbling upon pleasing
@@ -82,12 +81,9 @@ const Play = () => {
       <p className="w-100 flex items-center justify-center text-white py-8">
         More expiriments can be found
         <FancyButton className="px-[0.25rem] py-0 ml-2">
-              <a
-                href="https://www.instagram.com/bbbbb.stuff/"
-                target="_blank"
-              >
-                HERE
-              </a>
+          <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
+            HERE
+          </a>
         </FancyButton>
       </p>
 

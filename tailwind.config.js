@@ -14,7 +14,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sprat: ["sprat"],
+      sprat: ["sprat", "sans-serif"],
       lato: ["Lato", "sans-serif"],
     },
     colors: {

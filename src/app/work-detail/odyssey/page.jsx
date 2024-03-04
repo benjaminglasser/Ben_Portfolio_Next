@@ -24,10 +24,20 @@ const Canary = () => {
       />
       
 
-      <ZigzagHeader
+      {/* <ZigzagHeader
         title="Beyond The Infinite"
         description="A Virtual Production Odyssey"
         extendedDescription="For the 2023 Cinegear Expo in Los Angeles, our team embarked on an ambitious project to showcase potential use cases for an in house soundstage while simultaneously celebrating the rich history of cinema through an interactive virtual production experience. To do this, we seamlessly blended the physical with the digital to recreate the iconic opening sequence of &quot;2001: A Space Odyssey.&quot; By utilizing Unreal Engine, I meticulously crafted a realistic desert scene that integrated effortlessly with practical physical props. This immersive experience not only paid homage to a cinematic masterpiece but also demonstrated the boundless possibilities of combining traditional and cutting-edge filmmaking methods, offering attendees a glimpse into the future of storytelling."
+        time="2023 // Standard Vision"
+        role="Virtual Production, In Camera VFX"
+        tools={[
+          "Unreal Engine"
+        ]}
+      />       */}
+      <ZigzagHeader
+        title="Beyond The Infinite"
+        description="A Virtual Production Odyssey"
+        extendedDescription="For the 2023 Cinegear Expo in Los Angeles, our team showcased our in-house soundstage's capabilities by blending physical and digital elements to recreate &quot;2001: A Space Odyssey's&quot; opening sequence. Using Unreal Engine, I crafted a realistic desert scene that integrated with physical props, demonstrating the fusion of traditional and innovative filmmaking techniques. This immersive experience paid homage to cinema's history while previewing the future of storytelling."
         time="2023 // Standard Vision"
         role="Virtual Production, In Camera VFX"
         tools={[

@@ -76,7 +76,7 @@ const Navbar = () => {
                 <div className="description absolute right-[2rem] -bottom-[8rem] ">
                   <p className="text-end ">Born 1994</p>
                   <p className="text-end">
-                    Currently at{" "}
+                  Currently at{" "}
                     <span className="sprat hover:text-pink">
                       <a href="https://easelapps.ai" target="_blank" >
                       Easel AI
@@ -84,6 +84,7 @@ const Navbar = () => {
                       
                     </span>
                   </p>
+                  <p className="text-end ">30.2672°N, 97.7431°W</p>
                 </div>
               </div>
             </Grid>

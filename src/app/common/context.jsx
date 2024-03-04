@@ -14,7 +14,7 @@ const Context = ({
       <div
         className={`${
           titleLeft ? "text-left" : "text-center"
-        } mt-5  ${className}`}
+        }  ${className}`}
       >
         {title && (
           <h1

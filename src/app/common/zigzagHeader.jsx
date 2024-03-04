@@ -27,7 +27,7 @@ const ZigzagHeader = ({
           </h4>
         </Grid>
         <Grid item xs={12} md={9} className="border-l border-b border-pink p-3">
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-6">
+          <p className="mb-6">
             {extendedDescription}
           </p>
           <div className="text-xxs mt-2">Time: {time}</div>

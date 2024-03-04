@@ -13,7 +13,7 @@ function SpinningMesh(props) {
     }
   });
 
-  const { nodes } = useGLTF("/ben.glb");
+  const { nodes } = useGLTF("/3D/ben.glb");
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
@@ -27,7 +27,7 @@ function SpinningMesh(props) {
   );
 }
 
-useGLTF.preload("/ben.glb");
+useGLTF.preload("/3D/ben.glb");
 
 console.log("OrbitControls", OrbitControls);
 

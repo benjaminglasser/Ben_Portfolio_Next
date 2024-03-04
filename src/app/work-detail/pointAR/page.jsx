@@ -42,6 +42,7 @@ const PointAR = () => {
       />
 
       <Context
+        className="mt-10"
         title="CONTEXT"
         context="Museums with huge collections are bound to their geographical location, as well as their building size. Their curatorial layouts are far from customized to the interests of the visitors by attempting to encompass massive timespans, materials and dimensional scopes that overwhelm the visitors and leave them feeling as though their visit was incomplete. This is heightened by experiencing a sense of distance from the intimacy that is desired with particular pieces."
       />

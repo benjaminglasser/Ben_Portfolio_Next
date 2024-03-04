@@ -196,17 +196,17 @@ const voyager = () => {
       {/* <Section>
         <video autoPlay muted loop src="/Media/Voyager/jjvisualpost.mp4" />
       </Section> */}
+        <VideoPlayerExternal
+          widthFull
+          className="h-full md:h-[36rem] w-full mb-24"
+          src="https://player.vimeo.com/video/588617470"
+        />
 
       <VideoPlayerInternal 
         className="md:h-[600px]"
         video="/Media/Voyager/gallery editWeb_2.mp4"
       />
       
-        <VideoPlayerExternal
-          widthFull
-          className="h-full md:h-[36rem] w-full mb-24"
-          src="https://player.vimeo.com/video/588617470"
-        />
    
     </div>
   );

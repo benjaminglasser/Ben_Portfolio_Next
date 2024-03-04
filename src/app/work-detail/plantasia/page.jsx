@@ -51,6 +51,7 @@ const plantasia = () => {
       /> */}
 
       <Context
+      className="mt-10"
         title="CONTEXT"
         context="Create a system that allows you to play music (and possibly video) from your computer using a physical custom interface of your own design and creation. Will you make it for your own personal use or more general, usable by a larger group of people? Is it mean for solo preformance or multiple people? Will it be specific to a genre of music? How do you select the parameters that you can manipulate."
       />
@@ -75,11 +76,7 @@ const plantasia = () => {
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/XA7ckpYhOTw"
-          caption="Before connecting it to processing, I hooked up a simple piezo
-            speaker to test out the system. I started to become hesitant about
-            using piezo touch sensors for this instrument as they wouldn't
-            trigger the note reliably which is an important aspect of music
-            creation"
+          
         />
         <VideoPlayerExternal
           widthFull

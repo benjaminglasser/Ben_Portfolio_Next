@@ -8,7 +8,7 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
     <div className="flex justify-center items-center">
         <div className="mt-10 w-full px-10 md:w-3/5">
             <div>
-                {caption && <p className="mb-5 font-thin">{caption}</p>}
+                {caption && <p className="mb-5 md:font-thin">{caption}</p>}
             </div>
             <div
             ref={ref}

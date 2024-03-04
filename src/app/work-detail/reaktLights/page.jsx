@@ -7,8 +7,38 @@ import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
+import FancyCarousel from "@/app/common/Carousel";
 
 const reaktLights = () => {
+
+  const source = [
+    {
+      url: "https://www.youtube.com/embed/7znbWZne4Nk",
+    },
+    {
+      url: "https://www.youtube.com/embed/d45Ef3S-61w",
+    },
+    {
+      url: "https://player.vimeo.com/video/589537817",
+    },
+  ];
+  const source2 = [
+    {
+      url: "https://www.youtube.com/embed/HJ8bRSWIQpQ",
+    },
+    {
+      url: "https://www.youtube.com/embed/ZXU8C1nDULM",
+    },
+  ];
+  const source3 = [
+    {
+      url: "https://www.youtube.com/embed/pXBFflD6ALo",
+    },
+    {
+      url: "https://www.youtube.com/embed/8Mm1Mv-THHY",
+    },
+  ];
+
   return (
     <div className="w-full text-white">
 
@@ -31,22 +61,13 @@ const reaktLights = () => {
         ]}
       />  
 
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/7znbWZne4Nk"
+      <div className="mt-20">
+        <FancyCarousel 
+          SOURCE={source}
         />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://www.youtube.com/embed/d45Ef3S-61w"
-        />
-        <VideoPlayerExternal
-          widthFull
-          className="aspect-w-16 aspect-h-9"
-          src="https://player.vimeo.com/video/589537817"
-        />
+      </div>
 
+      
 
       <DetailSection
         className="px-5 md:px-10 "
@@ -58,7 +79,7 @@ const reaktLights = () => {
       <Image src={REAKT.system} alt="reakt" className="w-full h-full" />
 
 
-      <VideoPlayerExternal
+      {/* <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/ZXU8C1nDULM"
@@ -67,8 +88,13 @@ const reaktLights = () => {
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/HJ8bRSWIQpQ"
-        />
+        /> */}
 
+      <div className="mt-20">
+        <FancyCarousel 
+          SOURCE={source2}
+        />
+      </div>
       
       <DetailSection
         className="px-5 md:px-10 "
@@ -77,7 +103,7 @@ const reaktLights = () => {
         left
       />
 
-        <VideoPlayerExternal
+        {/* <VideoPlayerExternal
           widthFull
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/pXBFflD6ALo"
@@ -86,7 +112,13 @@ const reaktLights = () => {
           widthFull
           className="aspect-w-16 aspect-h-9 mb-24"
           src="https://www.youtube.com/embed/8Mm1Mv-THHY"
+        /> */}
+
+      <div className="my-20">
+        <FancyCarousel 
+          SOURCE={source2}
         />
+      </div>
     </div>
   );
 };

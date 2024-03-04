@@ -10,7 +10,7 @@ const Work = () => {
   const WORK_CONTENT = [
     {
       role: "Lead Product Designer",
-      time: "Spring 2023-Present",
+      time: "Spring 2023 - Present",
       title: "Easel AI",
       description: "Express with Easel",
       thumbnail: IMAGES?.EASEL_HERO,
@@ -20,7 +20,7 @@ const Work = () => {
     },    
     {
       role: "Virtual Production, In Camera VFX",
-      time: "Spring 2023",
+      time: "Spring 2023  // Standard Vision",
       title: "Beyond The Infinite",
       description: "A Virtual Production Odyssey",
       thumbnail: "/Media/Odyssey/odysseyThumb.gif",
@@ -42,15 +42,6 @@ const Work = () => {
       },
     },
     {
-      role: "UX/UI Designer",
-      time: "Spring 2023",
-      title: "Stemport",
-      description: "Analyze - Organize - Import",
-      thumbnail: IMAGES?.STEMPORT_THUMB,
-      path: "work-detail/stemport",
-      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-    },
-    {
       role: "Spatial Design Research ans Speculation",
       time: "October 2022 - April 2023",
       title: "The Spatial Page",
@@ -60,48 +51,6 @@ const Work = () => {
       path: "https://radiancefields.com/unlocking-the-spatial-age-how-nerf-technology-is-redefining-our-reality-memory-and-experience/",
       externalLink: true,
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
-    },
-    {
-      role: "UI / Web Development",
-      time: "Spring 2023",
-      title: "The Canary Test",
-      description:
-        "Web Design and Development for Los Angeles based art gallery",
-      thumbnail: IMAGES?.CANARY_THUMB,
-      path: "work-detail/canary",
-      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-    },
-    {
-      role: "AR UX / UI Design",
-      time: "FALL 2022",
-      title: "PointAR",
-      description: "Your personal museum tour guide",
-      thumbnail: IMAGES?.POINTAR_THUMB,
-      path: "work-detail/pointAR",
-      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-      workDetail: {
-        video: IMAGES.POINTAR_HERO,
-      },
-    },
-    {
-      role: "Engineer, Creative Coder",
-      time: "FALL 2021 // Creative Technology",
-      title: "Plantasia",
-      description: "Custom Musical Instrument",
-      thumbnail: IMAGES?.PLANT_THUMB,
-      path: "work-detail/plantasia",
-      tools: [
-        "Arduino",
-        "Capacitive Touch MPR121",
-        "Processing",
-        "Succulent",
-        "Banana",
-        "Lemon",
-        "Rosarita Vegetarian Refried Beans",
-      ],
-      workDetail: {
-        externalVideo: "https://youtu.be/QPqFVQ77BWg",
-      },
     },
     {
       role: "Web Development, Designs, 3D Models",
@@ -126,6 +75,37 @@ const Work = () => {
       ],
     },
     {
+      role: "UX/UI Designer",
+      time: "Spring 2023",
+      title: "Stemport",
+      description: "Analyze - Organize - Import",
+      thumbnail: IMAGES?.STEMPORT_THUMB,
+      path: "work-detail/stemport",
+      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
+    },
+    {
+      role: "UI / Web Development",
+      time: "Spring 2023 // Canary Gallery",
+      title: "The Canary Test",
+      description:
+        "Web Design and Development for Los Angeles based art gallery",
+      thumbnail: IMAGES?.CANARY_THUMB,
+      path: "work-detail/canary",
+      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
+    },
+    {
+      role: "AR UX / UI Design",
+      time: "FALL 2022",
+      title: "PointAR",
+      description: "Your personal museum tour guide",
+      thumbnail: IMAGES?.POINTAR_THUMB,
+      path: "work-detail/pointAR",
+      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
+      workDetail: {
+        video: IMAGES.POINTAR_HERO,
+      },
+    },
+    {
       role: "Engineer, Creative Coder",
       time: "FALL 2021 // Creative Technology",
       title: "Reakt Light",
@@ -142,6 +122,26 @@ const Work = () => {
         "Rosarita Vegetarian Refried Beans",
       ],
     },
+    // {
+    //   role: "Engineer, Creative Coder",
+    //   time: "FALL 2021 // Creative Technology",
+    //   title: "Plantasia",
+    //   description: "Custom Musical Instrument",
+    //   thumbnail: IMAGES?.PLANT_THUMB,
+    //   path: "work-detail/plantasia",
+    //   tools: [
+    //     "Arduino",
+    //     "Capacitive Touch MPR121",
+    //     "Processing",
+    //     "Succulent",
+    //     "Banana",
+    //     "Lemon",
+    //     "Rosarita Vegetarian Refried Beans",
+    //   ],
+    //   workDetail: {
+    //     externalVideo: "https://youtu.be/QPqFVQ77BWg",
+    //   },
+    // },
     {
       role: "Animator / Creative Director",
       time: "2021 // Artist Album AV",

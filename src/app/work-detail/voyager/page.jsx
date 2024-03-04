@@ -21,7 +21,7 @@ const voyager = () => {
 
       <VideoPlayerInternal 
         className="md:h-[600px]"
-        video="/Videos/Voyager/voyagerPlanetHero.mp4"
+        video="/Media/Voyager/voyagerPlanetHero.mp4"
       />
 
   
@@ -126,7 +126,7 @@ const voyager = () => {
 
       <VideoPlayerInternal 
         className="mt-12"
-        video="/Videos/Voyager/voyagerHero_2_1.mp4"
+        video="/Media/Voyager/voyagerHero_2_1.mp4"
       />
 
       <DetailSection
@@ -194,12 +194,12 @@ const voyager = () => {
         widthFull
       />
       {/* <Section>
-        <video autoPlay muted loop src="/Videos/Voyager/jjvisualpost.mp4" />
+        <video autoPlay muted loop src="/Media/Voyager/jjvisualpost.mp4" />
       </Section> */}
 
       <VideoPlayerInternal 
         className="md:h-[600px]"
-        video="/Videos/Voyager/gallery editWeb_2.mp4"
+        video="/Media/Voyager/gallery editWeb_2.mp4"
       />
       
         <VideoPlayerExternal

@@ -21,7 +21,7 @@ const Canary = () => {
 
       <VideoPlayerInternal 
         className="mt-12 md:h-[750px] md:mt-0"
-        video="/Videos/Canary/canaryHero.mp4"
+        video="/Media/Canary/canaryHero.mp4"
       />
 
 
@@ -84,11 +84,11 @@ const Canary = () => {
       />
 
       {/* <div className="flex justify-center w-full">
-        <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Videos/Canary/CMS.mp4" />
+        <video className="w-full mx-10 md:w-5/6 md:mx-0" autoPlay muted loop src="/Media/Canary/CMS.mp4" />
       </div> */}
 
       <VideoPlayerInternal 
-        video="/Videos/Canary/CMS.mp4"
+        video="/Media/Canary/CMS.mp4"
       />
 
       <DetailSection

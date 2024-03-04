@@ -20,7 +20,7 @@ const Canary = () => {
 
       <VideoPlayerInternal 
         className="md:h-[550px] md:mt-0"
-        video="/Videos/Odyssey/odysseyHero.mp4"
+        video="/Media/Odyssey/odysseyHero.mp4"
       />
       
 
@@ -77,12 +77,12 @@ const Canary = () => {
 
         <VideoPlayerInternal 
             className="mt-10 w-full px-10 md:w-3/5"
-            video="/Videos/Odyssey/Process.mp4"
+            video="/Media/Odyssey/Process.mp4"
             centered
         />
 
         <VideoPlayerInternal 
-            video="/Videos/Odyssey/Process_1.mp4"
+            video="/Media/Odyssey/Process_1.mp4"
             centered
         />
 

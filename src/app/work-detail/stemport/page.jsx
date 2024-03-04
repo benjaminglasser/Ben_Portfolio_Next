@@ -26,14 +26,14 @@ const stemport = () => {
     {/* 
       <section className="block aspect-w-16 aspect-h-9">
         <video autoPlay muted loop className="block mt-10 md:mt-0">
-          <source src="/Videos/Stemport/stemportHeroCompressed.mp4" type="video/mp4"/>
+          <source src="/Media/Stemport/stemportHeroCompressed.mp4" type="video/mp4"/>
         </video>
       </section> */}
 
 
       <VideoPlayerInternal 
         className="mt-20"
-        video="/Videos/Stemport/stemportHeroCompressed.mp4"
+        video="/Media/Stemport/stemportHeroCompressed.mp4"
       />
         
       <Context
@@ -51,7 +51,7 @@ const stemport = () => {
       />
 
       <VideoPlayerInternal 
-        video="/Videos/Stemport/MlLearning.mp4"
+        video="/Media/Stemport/MlLearning.mp4"
       />
       
       <DetailSection
@@ -95,7 +95,7 @@ const stemport = () => {
 
       <VideoPlayerInternal 
         // className="mt-10"
-        video="/Videos/Stemport/lightDark_AdobeExpress.mp4"
+        video="/Media/Stemport/lightDark_AdobeExpress.mp4"
       />
       <div className="flex justify-center w-full mt-5">
         <Image src={IMAGES.LIGHT_MODE} alt="light mode" />

@@ -21,7 +21,7 @@ const PointAR = () => {
       <div className="relative">
 
         <VideoPlayerInternal 
-          video="/Videos/Pointar/PointAR2_Hero.mp4"
+          video="/Media/Pointar/PointAR2_Hero.mp4"
         />
 
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
@@ -231,12 +231,12 @@ const PointAR = () => {
               autoPlay
               muted
               loop
-              src="/Videos/Pointar/StatueTransition_compressed.mp4"
+              src="/Media/Pointar/StatueTransition_compressed.mp4"
               className="w-full"
             /> */}
 
             <VideoPlayerInternal 
-              video="/Videos/Pointar/StatueTransition_3_1.mp4"
+              video="/Media/Pointar/StatueTransition_3_1.mp4"
             />
             
 
@@ -247,11 +247,11 @@ const PointAR = () => {
         autoPlay
         muted
         loop
-        src="public/Videos/Pointar/ParticleStream.mp4"
+        src="public/Media/Pointar/ParticleStream.mp4"
         className="w-full"
       /> */}
       <VideoPlayerInternal 
-        video="/Videos/Pointar/ParticleStream.mp4"
+        video="/Media/Pointar/ParticleStream.mp4"
       />
 
       <div>

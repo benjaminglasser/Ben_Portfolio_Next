@@ -19,7 +19,7 @@ const ZigzagHeader = ({
           md={3}
           className="border-t lg:border-t lg:border-r border-pink p-3"
         >
-          <h2 className=" text-4xl mb-3">
+          <h2 className="text-4xl mb-3">
             {title}
           </h2>
           <h4 className="font-sprat font-light lg:text-2xl">

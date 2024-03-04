@@ -12,7 +12,7 @@ const Work = () => {
       role: "Lead Product Designer",
       time: "Spring 2023 - Present",
       title: "Easel AI",
-      description: "Express with Easel",
+      description: "Express with Easel. An AI-powered personal avatar app directly in iMessage",
       thumbnail: IMAGES?.EASEL_HERO,
       path: "https://www.easelapps.ai/",
       externalLink: true,

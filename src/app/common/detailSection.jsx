@@ -19,7 +19,7 @@ const DetailSection = ({
         } detail-section`}
       >
         <div className={`${widthFull ? "w-full" : "w-full md:w-1/2 lg:3/6"} my-6`}>
-          {title && <h3>{title}</h3>}
+          {title && <h3 className="sprat">{title}</h3>}
           <div className="border-b border-pink" />
           {description && <h4 className="mt-3 md:font-thin">{description}</h4>}
         </div>

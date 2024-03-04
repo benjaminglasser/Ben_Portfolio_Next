@@ -60,11 +60,12 @@ const bmw = () => {
                 />
                 <div className="w-full flex flex-col items-center justify-center">
                 <h6 className="mb-3 font-normal">DETAILS LIMITED BY NDA</h6>
-                  <ul className="w-full  px-4 md:w-1/2 text-left list-disc">
-                    {bullets?.map((bullet, idx) => (
-                      <li className="leading-8 text-base">{bullet}</li>
-                    ))}
-                  </ul>
+                <ul className="w-full px-4 md:w-1/2 text-left list-disc">
+  {bullets?.map((bullet, idx) => (
+    // Adjust "mb-4" for more space between bullets and "leading-snug" for tighter line spacing within a bullet
+    <li className="mb-4 leading-snug text-base">{bullet}</li>
+  ))}
+</ul>
                   <FancyButton className="p-0 ml-0 px-2 mr-2 mt-8 mb-2 hover:text-white">
                     <a href="mailto:glasserben@gmail.com" target="_blank" >
                       CONTACT FOR MORE INFO

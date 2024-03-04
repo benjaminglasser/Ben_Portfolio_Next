@@ -77,7 +77,7 @@ const Canary = () => {
           src="https://www.youtube.com/embed/bErPsq5kPzE?si=3lF1h4aCi103ZZG0"
         />
 
-      <h4 className="px-10 mt-16 md:font-thin">ICVFX enables realistic bounce lighting, parallax effects through the synchronization of virtual and physical cameras, and interactivity, allowing for real-time changes in background scenery. This technology not only enhances the visual storytelling but also creates a more engaging environment for actors, facilitating a more authentic performance. The use of ICVFX represents a significant shift in filmmaking, merging the physical and digital worlds to achieve unprecedented levels of realism and flexibility on set.</h4>
+      <h4 className="px-10 mt-16 md:font-thin">ICVFX enables realistic bounce lighting, parallax effects through the synchronization of virtual and physical cameras, and the affordance of controlled environments that also allow for real-time changes in background scenery. This technology not only enhances the visual storytelling but also creates a more engaging environment for actors, facilitating a more authentic performance. The use of ICVFX represents a significant shift in filmmaking, merging the physical and digital worlds to achieve unprecedented levels of realism and flexibility on set.</h4>
       
       <DetailSection
         className="px-10 "

@@ -22,6 +22,7 @@ const Canary = () => {
         className="md:h-[550px] md:mt-0"
         video="/Videos/Odyssey/odysseyHero.mp4"
       />
+      
 
       <ZigzagHeader
         title="Beyond The Infinite"
@@ -88,6 +89,15 @@ const Canary = () => {
         description="For this project, the challenge was to compose a desert scene reminiscent of the iconic intro scene from &quot;2001: A Space Odyssey.&quot; This involved careful shot composition, including a detailed day/night sequence, to capture the essence of the original film while showcasing the capabilities of our virtual production space. The process required a robust pipeline for color correction, especially challenging given that the assets were delivered just a day before the event. This tight turnaround necessitated quick adaptation and precise calibration to ensure that the digital environment seamlessly matched the physical set pieces. The goal was to create an experience that was not only visually stunning but also faithful to the atmospheric and thematic elements of the source material, demonstrating the potential of virtual production technology to recreate and enhance classic cinematic moments."
         left
       />
+
+        <VideoPlayerHero 
+            className="px-10 md:px-72"
+            video="/Videos/Odyssey/Process.mp4"
+        />
+        <VideoPlayerHero 
+            className="px-10 mt-10 md:px-72 "
+            video="/Videos/Odyssey/Process_1.mp4"
+        />
 
       <DetailSection
         className="px-10 "

@@ -3,18 +3,30 @@ import React from "react";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
-import { IMAGES } from "@/app/assets/images";
-import Section from "@/app/common/Section";
-import Image from "next/image";
-import { FancyButton } from "@/app/common/FancyButton";
+// import { IMAGES } from "@/app/assets/images";
+// import Section from "@/app/common/Section";
+// import Image from "next/image";
+// import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
+import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
 
 const NRF = () => {
   return (
     <div className="w-full text-white">
-      <VideoPlayerInternal className="mt-0" video="/Media/NRF/NRF_Hero.mp4" />
+      <div className="relative">
+        <div class="absolute top-0 z-1 left-0 w-full h-full bg-gradient-to-b from-black to-transparent" />
+        <div className="z-0">
+          <VideoPlayerResponsiveBG
+            vidDesktop="/Media/NRF/BubbleBG.mp4"
+            vidMobile="/Media/NRF/BubbleBGMobile.mp4"
+          />
+        </div>
+      </div>
+
+      <VideoPlayerInternal video="/Media/NRF/NRF_Hero.mp4" />
+      <div className="bg-gradient-to-b from-black to-transparentw-full h-24" />
 
       <ZigzagHeader
         title="Clear Canvas"

@@ -28,6 +28,17 @@ const Work = () => {
       ],
     },
     {
+      role: "3D Graphic Design",
+      time: "Spring 2023 // NRF",
+      title: "Clear Canvas",
+      description:
+        "Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage",
+      thumbnail:
+        "/Media/NRF/Clear_Canvas_SV_SoloNoText_v3_ProRes_422_HQ_UPSAMPLE.gif",
+      path: "work-detail/nrf",
+      tools: ["Blender"],
+    },
+    {
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",

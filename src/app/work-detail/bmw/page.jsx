@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import Context from "../../common/context";
-// import ZigzagHeader from "../../common/zigzagHeader";
-import ResponsiveBMWVideo from "../../common/bmwVideo";
+import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
 import Section from "@/app/common/Section";
 import DetailSection from "../../common/detailSection";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
@@ -21,7 +20,10 @@ const bmw = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
-        <ResponsiveBMWVideo />
+        <VideoPlayerResponsiveBG
+          vidDesktop="/Media/BMW/car-sim.mp4"
+          vidMobile="/Media/BMW/carSimPhone.mp4"
+        />
 
         <div className="absolute top-0">
           <Context
@@ -39,7 +41,7 @@ const bmw = () => {
           <VideoPlayerExternal
             widthFull
             className="aspect-w-16 aspect-h-9"
-            src="https://www.youtube.com/embed/zwOfrRDtd9E?si=gCmbaaHFXlUoL5zl"
+            src="https://www.youtube.com/embed/zwOfrRDtd9E?si=rBPDZ6Qhx4Q0dW2L"
           />
 
           <div className=" px-5 md:px-10 mt-12 flex justify-center">

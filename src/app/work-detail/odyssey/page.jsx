@@ -11,7 +11,7 @@ import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 
-const Canary = () => {
+const Odyssey = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
@@ -124,4 +124,4 @@ const Canary = () => {
   );
 };
 
-export default Canary;
+export default Odyssey;

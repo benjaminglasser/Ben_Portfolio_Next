@@ -14,7 +14,7 @@ const Work = () => {
       title: "Easel AI",
       description:
         "Express with Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: IMAGES?.EASEL_HERO,
+      thumbnail: "/Media/Easel/EaselThumb.gif",
       path: "https://www.easelapps.ai/",
       externalLink: true,
       tools: [
@@ -29,7 +29,7 @@ const Work = () => {
     },
     {
       role: "3D Graphic Design",
-      time: "Spring 2023 // NRF",
+      time: "Spring 2023",
       title: "Clear Canvas",
       description:
         "Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage",
@@ -54,7 +54,7 @@ const Work = () => {
       description: "Developing next-generation XR products and systems",
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
-      thumbnail: IMAGES?.DANCING_CAR,
+      thumbnail: "/Media/BMW/dancingCarBlack.gif",
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
@@ -78,7 +78,7 @@ const Work = () => {
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for voyager record label",
-      thumbnail: IMAGES?.PLUR,
+      thumbnail: "/Media/Voyager/VoyagerThumb.gif",
       path: "work-detail/voyager",
       tools: [
         "HTML",
@@ -126,20 +126,16 @@ const Work = () => {
       },
     },
     {
-      role: "Engineer, Creative Coder",
-      time: "FALL 2021",
+      role: "Designer / Engineer",
+      time: "Fall 2021",
       title: "Reakt Light",
-      description: "Custom Musical Instrument",
+      description: "Customizable audio reactive lighting system",
       thumbnail: IMAGES?.REAKT,
       path: "work-detail/reaktLights",
       tools: [
-        "Arduino",
-        "Capacitive Touch MPR121",
-        "Processing",
-        "Succulent",
-        "Banana",
-        "Lemon",
-        "Rosarita Vegetarian Refried Beans",
+        "TouchDesigner",
+        "Chauvet DMX Dimmer/Switch Pack",
+        "DMXKing eDMX1 PRO Ethernet DMX Controller",
       ],
     },
     // {
@@ -162,15 +158,15 @@ const Work = () => {
     //     externalVideo: "https://youtu.be/QPqFVQ77BWg",
     //   },
     // },
-    {
-      role: "Animator / Creative Director",
-      time: "2021",
-      title: "Meaningful Pursuits",
-      description: "Album Visuals",
-      thumbnail: IMAGES?.MEAN_THUMB,
-      path: "work-detail/meaningfulPursuits",
-      tools: ["TouchDesigner", "Premiere Pro"],
-    },
+    // {
+    //   role: "Animator / Creative Director",
+    //   time: "2021",
+    //   title: "Meaningful Pursuits",
+    //   description: "Album Visuals",
+    //   thumbnail: IMAGES?.MEAN_THUMB,
+    //   path: "work-detail/meaningfulPursuits",
+    //   tools: ["TouchDesigner", "Premiere Pro"],
+    // },
   ];
 
   return (

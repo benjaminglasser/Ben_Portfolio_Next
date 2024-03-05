@@ -15,18 +15,16 @@ import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
 const NRF = () => {
   return (
     <div className="w-full text-white">
-      <div className="relative">
-        <div class="absolute top-0 z-1 left-0 w-full h-full bg-gradient-to-b from-black to-transparent" />
-        <div className="z-0">
-          <VideoPlayerResponsiveBG
-            vidDesktop="/Media/NRF/BubbleBG.mp4"
-            vidMobile="/Media/NRF/BubbleBGMobile.mp4"
-          />
-        </div>
-      </div>
+      <VideoPlayerResponsiveBG
+        vidDesktop="/Media/NRF/BubbleBG.mp4"
+        vidMobile="/Media/NRF/BubbleBGMobile.mp4"
+      />
 
-      <VideoPlayerInternal video="/Media/NRF/NRF_Hero.mp4" />
-      <div className="bg-gradient-to-b from-black to-transparentw-full h-24" />
+      <VideoPlayerInternal
+        className="mt-12 md:mt-0"
+        video="/Media/NRF/NRF_Hero.mp4"
+      />
+      <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" />
 
       <ZigzagHeader
         title="Clear Canvas"

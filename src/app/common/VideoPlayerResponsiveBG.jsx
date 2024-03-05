@@ -10,7 +10,7 @@ function VideoPlayerResponsiveBG({ vidDesktop, vidMobile }) {
         video={vidDesktop}
       />
       <VideoPlayerInternal
-        className="fixed block md:hidden"
+        className="-z-10 fixed block md:hidden"
         video={vidMobile}
       />
     </>

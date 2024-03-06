@@ -14,7 +14,7 @@ const Work = () => {
       title: "Easel AI",
       description:
         "Express with Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: "/Media/Easel/EaselThumb.gif",
+      thumbnail: "/Media/Easel/EaselThumbPrimary.gif",
       path: "https://www.easelapps.ai/",
       externalLink: true,
       tools: [

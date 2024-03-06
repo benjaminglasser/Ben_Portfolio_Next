@@ -5,13 +5,14 @@ import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
 // import { IMAGES } from "@/app/assets/images";
 // import Section from "@/app/common/Section";
-// import Image from "next/image";
+
 // import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
 import VideoGrid from "@/app/common/VideoGrid";
+import ImageGrid from "@/app/common/ImageGrid";
 
 const NRF = () => {
   const videos = [
@@ -37,17 +38,46 @@ const NRF = () => {
     },
   ];
 
+  const videos2 = [
+    {
+      url: "/Media/NRF/Clear_Canvas_Proj.mp4",
+      // caption: "01 // Transparency Effect",
+    },
+    {
+      url: "/Media/NRF/Purse_Proj.mp4",
+      // caption: "02 // Bounding Box Scale",
+    },
+  ];
+
+  const images = [
+    {
+      url: "/Media/NRF/NRFBooth1.png",
+      // caption: "Image 1 Caption",
+      width: 1600,
+      height: 900,
+    },
+    {
+      url: "/Media/NRF/NRFBooth2.png",
+      // caption: "Image 2 Caption",
+      width: 1600,
+      height: 900,
+    },
+    // Add more images as needed
+  ];
+
+  function MyPage() {
+    return <ImageGrid images={images} />;
+  }
+
   return (
     <div className="w-full text-white">
       <VideoPlayerResponsiveBG
         vidDesktop="/Media/NRF/BubbleBG.mp4"
         vidMobile="/Media/NRF/BubbleBGMobile.mp4"
       />
-
       <div className="bg-black h-12 md:h-0" />
       <VideoPlayerInternal video="/Media/NRF/NRF_Hero.mp4" />
       <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" />
-
       <ZigzagHeader
         title="Clear Canvas"
         description="Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage"
@@ -56,14 +86,12 @@ const NRF = () => {
         role="3D Graphic Design"
         tools={["Blender"]}
       />
-
       <VideoPlayerInternal centered video="/Media/NRF/FinalNRFDisplay.mp4" />
       {/* <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/w1dcv-u8B8Y?si=6d-IPrKqSVz8dc0b"
       /> */}
-
       <Context
         title="CONTEXT"
         className="mt-24"
@@ -73,14 +101,13 @@ const NRF = () => {
         className="mt-16"
         aim="Our goal was to create modern, visually captivating graphics that underscore the innovative capabilities of Clear Canvas's transparent screen technology for retail experiences."
       />
-
       <DetailSection
         className="px-5 md:px-10 "
         title="Results"
         description="Each graphic we developed serves to highlight a distinct affordance of the transparent screen technology:"
         left
       />
-      <div className="px-10">
+      <div className="px-5 md:px-10">
         <div className="bg-greyDark pb-10">
           <div>
             <VideoGrid videos={videos} />
@@ -93,13 +120,20 @@ const NRF = () => {
           </h2>
         </div>
       </div>
-
       <DetailSection
         className="px-5 md:px-10 "
         title="Process"
         description="Collaboration was key in our journey to innovation. Working closely with the Clear Canvas team, we brainstormed ideas, developed concepts, and iterated designs. Our focus remained on creating high-quality assets that adhere to specific specifications, ensuring each graphic not only looked stunning but also served its purpose effectively."
         widthFull
       />
+      <ImageGrid images={images} />;
+      <VideoPlayerInternal
+        className="px-5 md:px-10"
+        video="/Media/NRF/TestNRF.mp4"
+      />
+      <div>
+        <VideoGrid videos={videos2} />
+      </div>
     </div>
   );
 };

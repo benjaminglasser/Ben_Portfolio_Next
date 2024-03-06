@@ -11,19 +11,29 @@ import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
-import ImageGrid from "@/app/common/ImageGrid";
+import VideoGrid from "@/app/common/VideoGrid";
 
 const NRF = () => {
-  const images = [
+  const videos = [
     {
-      url: "/Media/BMW/dancingCarBlack.gif",
-      title: "Title1",
-      caption: "Caption for image 1",
+      url: "/Media/NRF/Clear_Canvas_Proj.mp4",
+      title: "Title2",
+      caption: "01 // Transparency Effect",
     },
     {
-      url: "/Media/Easel/EaselThumbPrimary.gif",
-      title: "Title2",
-      caption: "Caption for image 2",
+      url: "/Media/NRF/Purse_Proj.mp4",
+      title: "Title3",
+      caption: "02 // Bounding Box Scale",
+    },
+    {
+      url: "/Media/NRF/SALE_Proj.mp4",
+      title: "Title4",
+      caption: "03 // Dynamic Content Integration",
+    },
+    {
+      url: "/Media/NRF/Bubbles_Glass_Proj.mp4",
+      title: "Title1",
+      caption: "04 // Creative Posibilities",
     },
   ];
 
@@ -47,11 +57,12 @@ const NRF = () => {
         tools={["Blender"]}
       />
 
-      <VideoPlayerExternal
+      <VideoPlayerInternal centered video="/Media/NRF/FinalNRFDisplay.mp4" />
+      {/* <VideoPlayerExternal
         widthFull
         className="aspect-w-16 aspect-h-9"
         src="https://www.youtube.com/embed/w1dcv-u8B8Y?si=6d-IPrKqSVz8dc0b"
-      />
+      /> */}
 
       <Context
         title="CONTEXT"
@@ -70,46 +81,24 @@ const NRF = () => {
         left
       />
       <div className="px-10">
-        <div>
-          <ImageGrid images={images} />
+        <div className="bg-greyDark pb-10">
+          <div>
+            <VideoGrid videos={videos} />
+          </div>
+          <h2 className="px-5 md:px-10 md:font-thin">
+            Each of these graphics not only underscores the innovative features
+            of Clear Canvas's transparent screen technology but also showcases
+            our ability to blend creativity with technology to push the
+            boundaries of retail experiences.
+          </h2>
         </div>
-
-        <p>
-          Bounding Box Scale: A sleek bubble animation demonstrates the
-          technology's capability to display graphics from edge to edge,
-          emphasizing the expansive scale of the screen.
-        </p>
-        <p>
-          Transparency Effect: We created a glass effect graphic to showcase the
-          screen's clear nature, allowing for an immersive viewing experience
-          that maintains visibility of the physical products behind it.
-        </p>
-        <p>
-          Retail Use Case - Sale: A vibrant, eye-catching graphic designed to
-          attract attention to sales and promotions, demonstrating the
-          technology's potential to enhance retail marketing strategies.
-        </p>
-        <p>
-          Dynamic Content Integration: Featuring a purse from one of the
-          designers, displayed on a mannequin behind the screen. This graphic
-          exemplifies how the content can dynamically change based on what's
-          physically present behind the screen, offering a unique, context-aware
-          presentation
-        </p>
       </div>
-
-      <h4 className="px-5 md:px-10 mt-16 md:font-thin">
-        Each of these graphics not only underscores the innovative features of
-        Clear Canvas's transparent screen technology but also showcases our
-        ability to blend creativity with technology to push the boundaries of
-        retail experiences.
-      </h4>
 
       <DetailSection
         className="px-5 md:px-10 "
         title="Process"
         description="Collaboration was key in our journey to innovation. Working closely with the Clear Canvas team, we brainstormed ideas, developed concepts, and iterated designs. Our focus remained on creating high-quality assets that adhere to specific specifications, ensuring each graphic not only looked stunning but also served its purpose effectively."
-        left={false}
+        widthFull
       />
     </div>
   );

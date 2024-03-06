@@ -19,7 +19,8 @@ module.exports = {
     },
     colors: {
       mute: "#808080",
-      grey: "#919191",
+      greyLight: "#919191",
+      greyDark: "#141415",
       pink: "#ff477b",
       black: "#000",
       white: "#fff",

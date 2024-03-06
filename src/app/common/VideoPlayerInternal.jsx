@@ -7,11 +7,7 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
     >
       <div
         className={` ${className} w-full overflow-hidden flex justify-center 
-                    ${
-                      centered
-                        ? "mt-10 w-full px-5 md:px-10 md:w-3/5"
-                        : "md:w-full"
-                    }
+                    ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}
                   `}
       >
         <video
@@ -20,6 +16,7 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
           loop
           playsInline
           muted
+          loading="lazy"
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.

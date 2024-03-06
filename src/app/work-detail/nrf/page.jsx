@@ -11,8 +11,22 @@ import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
+import ImageGrid from "@/app/common/ImageGrid";
 
 const NRF = () => {
+  const images = [
+    {
+      url: "/Media/BMW/dancingCarBlack.gif",
+      title: "Title1",
+      caption: "Caption for image 1",
+    },
+    {
+      url: "/Media/Easel/EaselThumbPrimary.gif",
+      title: "Title2",
+      caption: "Caption for image 2",
+    },
+  ];
+
   return (
     <div className="w-full text-white">
       <VideoPlayerResponsiveBG
@@ -56,6 +70,10 @@ const NRF = () => {
         left
       />
       <div className="px-10">
+        <div>
+          <ImageGrid images={images} />
+        </div>
+
         <p>
           Bounding Box Scale: A sleek bubble animation demonstrates the
           technology's capability to display graphics from edge to edge,

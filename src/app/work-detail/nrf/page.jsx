@@ -40,11 +40,11 @@ const NRF = () => {
 
   const videos2 = [
     {
-      url: "/Media/NRF/Clear_Canvas_Proj.mp4",
+      url: "/Media/NRF/TestNRF_1.mp4",
       // caption: "01 // Transparency Effect",
     },
     {
-      url: "/Media/NRF/Purse_Proj.mp4",
+      url: "/Media/NRF/TestNRF_2.mp4",
       // caption: "02 // Bounding Box Scale",
     },
   ];
@@ -126,13 +126,18 @@ const NRF = () => {
         description="Collaboration was key in our journey to innovation. Working closely with the Clear Canvas team, we brainstormed ideas, developed concepts, and iterated designs. Our focus remained on creating high-quality assets that adhere to specific specifications, ensuring each graphic not only looked stunning but also served its purpose effectively."
         widthFull
       />
-      <ImageGrid images={images} />;
-      <VideoPlayerInternal
-        className="px-5 md:px-10"
-        video="/Media/NRF/TestNRF.mp4"
-      />
-      <div>
-        <VideoGrid videos={videos2} />
+
+      <div className="px-5 md:px-10 pb-20">
+        <div className="bg-greyDark py-1">
+          <ImageGrid images={images} />;
+          <VideoPlayerInternal
+            className="px-5 md:px-10"
+            video="/Media/NRF/TestNRF.mp4"
+          />
+          <div>
+            <VideoGrid videos={videos2} />
+          </div>
+        </div>
       </div>
     </div>
   );

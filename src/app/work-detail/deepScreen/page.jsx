@@ -40,7 +40,6 @@ const Canary = () => {
 
   return (
     <div className="w-full text-white">
-      <div className="bg-black h-12 md:h-0" />
       <VideoPlayerInternal
         // className="h-[600px]"
         video="/Media/DeepScreen/WaterTest.mp4"
@@ -49,7 +48,7 @@ const Canary = () => {
       <ZigzagHeader
         title="Circa DeepScreen"
         description="Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa’s Curved Display"
-        extendedDescription="We developed a cutting-edge advertising concept for Polestar, utilizing the Circa building's curved display in Downtown LA to showcase Standard Vision's DeepScreen technology. The design featured a 3D deep field effect paired with interactive water simulations across three screens, creating an immersive triptych visual effect. Through creative iteration, a final concept emerged that married technology with design to captivate viewers and ultimately showcase new horizons in digital advertising."
+        extendedDescription="We developed a cutting-edge advertising concept for Polestar, utilizing the Circa building's curved display in Downtown LA to showcase Standard Vision's DeepScreen technology. The design featured a 3D depth effect paired with interactive water simulations across three screens, creating an immersive triptych visual effect. Through creative iteration, a final concept emerged that married technology with design to captivate viewers and ultimately showcase new horizons in digital advertising."
         time="Fall 2023"
         role="3D Graphics and Simulation"
         tools={["Blender"]}

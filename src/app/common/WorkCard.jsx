@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { PuffLoader } from "react-spinners";
 
 const WorkCard = ({
   path,
@@ -12,6 +14,7 @@ const WorkCard = ({
   thumbnail,
   externalLink,
 }) => {
+  const [isLoading, setLoading] = useState(true);
   return (
     <Link
       href={{
@@ -20,13 +23,29 @@ const WorkCard = ({
       target={externalLink ? "_blank" : "_self"}
     >
       <div className="hover:border-b-[0.2px] border-white cursor-pointer pb-1 w-full workcard">
-        <Image
-          src={thumbnail}
-          alt="stemport gif"
-          width="100"
-          height="100"
-          className="thumbnail "
-        />
+        <div className="hover:border-b-[0.2px] border-white cursor-pointer pb-1 w-full workcard">
+          {isLoading ? (
+            <div className="w-auto h-auto flex justify-center items-center">
+              <PuffLoader
+                color="#ff477b"
+                loading
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            <Image
+              src={thumbnail}
+              alt="stemport gif"
+              width="100"
+              height="100"
+              className="thumbnail"
+              onLoadingComplete={() => setLoading(false)}
+              style={{ display: isLoading ? "none" : "block" }}
+            />
+          )}
+        </div>
         <div className="flex justify-between text-[11px] text-white font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>
           <div>Time: {time}</div>

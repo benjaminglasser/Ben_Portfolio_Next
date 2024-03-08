@@ -1,10 +1,11 @@
-import React from "react";
-import { CircleLoader } from "react-spinners";
+"use client";
+import React, { useState, useEffect } from "react";
+import { PuffLoader } from "react-spinners";
 
 const Loader = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <CircleLoader
+      <PuffLoader
         color="#ff477b"
         loading
         size={100}

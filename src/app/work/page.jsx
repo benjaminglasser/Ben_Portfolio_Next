@@ -39,6 +39,16 @@ const Work = () => {
       tools: ["Blender"],
     },
     {
+      role: "3D Graphics and Simulation",
+      time: "Fall 2023",
+      title: "Circa DeepScreen",
+      description:
+        "Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa’s Curved Display",
+      thumbnail: "/Media/DeepScreen/_WaterTest.gif",
+      path: "work-detail/deepScreen",
+      tools: ["Blender"],
+    },
+    {
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",

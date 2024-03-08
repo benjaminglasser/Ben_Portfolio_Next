@@ -87,11 +87,6 @@ const Play = () => {
         </FancyButton>
       </p>
 
-      {/* <Image src="/Media/Play/play18.gif"
-      width={500}
-      height={500}
-      alt="play pic"/> */}
-
       <ImageList variant="masonry" cols={cols} gap={24}>
         {itemData.map((item, idx) => (
           <Section key={idx}>

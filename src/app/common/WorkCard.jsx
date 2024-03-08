@@ -25,8 +25,7 @@ const WorkCard = ({
           alt="stemport gif"
           width="100"
           height="100"
-          className="thumbnail"
-          loading="lazy"
+          className="thumbnail "
         />
         <div className="flex justify-between text-[11px] text-white font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>

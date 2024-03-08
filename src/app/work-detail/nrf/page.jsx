@@ -136,7 +136,7 @@ const NRF = () => {
       <Section>
         <div className="px-5 md:px-10 pb-20">
           <div className="bg-greyDark py-1">
-            <ImageGrid images={images} />;
+            <ImageGrid images={images} />
             <VideoPlayerInternal
               className="px-5 md:px-10"
               video="/Media/NRF/TestNRF.mp4"

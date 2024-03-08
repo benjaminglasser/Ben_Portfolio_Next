@@ -168,15 +168,15 @@ const Work = () => {
     //     externalVideo: "https://youtu.be/QPqFVQ77BWg",
     //   },
     // },
-    // {
-    //   role: "Animator / Creative Director",
-    //   time: "2021",
-    //   title: "Meaningful Pursuits",
-    //   description: "Album Visuals",
-    //   thumbnail: IMAGES?.MEAN_THUMB,
-    //   path: "work-detail/meaningfulPursuits",
-    //   tools: ["TouchDesigner", "Premiere Pro"],
-    // },
+    {
+      role: "Animator / Creative Director",
+      time: "2021",
+      title: "Meaningful Pursuits",
+      description: "Album Visuals",
+      thumbnail: IMAGES?.MEAN_THUMB,
+      path: "work-detail/meaningfulPursuits",
+      tools: ["TouchDesigner", "Premiere Pro"],
+    },
   ];
 
   return (

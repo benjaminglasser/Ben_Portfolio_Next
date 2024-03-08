@@ -3,7 +3,7 @@ import Image from "next/image";
 function ImageGrid({ images }) {
   return (
     <div className="my-8 md:my-12 px-5 md:px-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-24 md:gap-x-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-x-10">
         {images.map((img, index) => (
           <div
             key={index}

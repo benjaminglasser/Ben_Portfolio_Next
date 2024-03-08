@@ -73,6 +73,13 @@ const Canary = () => {
         />
       </Section>
 
+      <Section>
+        <VideoPlayerInternal
+          className="mt-24"
+          video="/Media/DeepScreen/Waterfall.mp4"
+        />
+      </Section>
+
       <DetailSection
         className="px-5 md:px-10 "
         title="Process"

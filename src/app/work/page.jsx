@@ -33,8 +33,7 @@ const Work = () => {
       title: "Clear Canvas",
       description:
         "Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage",
-      thumbnail:
-        "/Media/NRF/Clear_Canvas_SV_SoloNoText_v3_ProRes_422_HQ_UPSAMPLE.gif",
+      thumbnail: "/Media/NRF/Clear_Canvas_Thumb.gif",
       path: "work-detail/nrf",
       tools: ["Blender"],
     },

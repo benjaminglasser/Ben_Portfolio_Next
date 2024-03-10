@@ -4,9 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import VideoPlayerExternal from "./VideoPlayerExternal";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const FancyCarousel = ({SOURCE}) => {
-  
-
+const FancyCarousel = ({ SOURCE }) => {
   const [showIndicators, setShowIndicators] = useState(true);
   useEffect(() => {
     function handleResize() {
@@ -52,7 +50,7 @@ const FancyCarousel = ({SOURCE}) => {
         >
           <VideoPlayerExternal
             widthFull
-          className="aspect-w-16 aspect-h-9"
+            className="aspect-w-16 aspect-h-9"
             src={item?.url}
           />
         </div>

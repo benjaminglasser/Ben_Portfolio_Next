@@ -15,8 +15,9 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
     <div
       className={`${centered ? "flex justify-center items-center" : "block"}`}
     >
-      {/* {loading && (
-        <div className="w-full h-screen flex justify-center items-center">
+      {/* Loader will be displayed when video is loading */}
+      {loading && (
+        <div className="absolute flex justify-center items-center w-full h-full">
           <PuffLoader
             color="#ff477b"
             loading
@@ -25,7 +26,8 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
             data-testid="loader"
           />
         </div>
-      )} */}
+      )}
+
       {/* Video container */}
       <div
         className={`${className} w-full overflow-hidden flex justify-center 

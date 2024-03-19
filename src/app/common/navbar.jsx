@@ -17,16 +17,20 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="px-10 flex justify-between items-center border-b border-black">
+    <div className="sticky top-0 z-50 flex justify-between items-center border-b border-black dark:border-white bg-white dark:bg-black">
       <h3>
-        <Link href="/" className="hover:text-pink ">
+        <Link
+          href="/"
+          className="hover:text-pink dark:text-white dark:hover:text-pink"
+        >
           BENJAMIN GLASSER
         </Link>
       </h3>
       <div className="flex">
-        {/* <h3
+        {/* Uncomment and apply dark mode styles as needed
+        <h3
           onClick={navigateToWork}
-          className="cursor-pointer hover:text-pink px-2.5 py-0.5 border-r border-t border-black dark:border-white"
+          className="cursor-pointer hover:text-pink px-2.5 py-0.5 border-r border-t border-black dark:border-white dark:text-white dark:hover:text-pink"
         >
           WORK
         </h3> */}
@@ -34,7 +38,7 @@ const Navbar = () => {
           <Link
             href={item.route}
             key={idx}
-            className={`border-r border-t border-black dark:border-white px-2.5 py-0.5 hover:text-pink dark:hover:text-pink ${
+            className={`border-r border-t border-black dark:border-white dark:text-white px-2.5 py-0.5 hover:text-pink dark:hover:text-pink ${
               idx < ROUTES.length - 1 ? "mr-2" : ""
             }`}
           >

@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
     if (
       pathname === "/work" ||
       pathname === "/play" ||
+      // pathname === "/" ||
       pathname?.includes("work-detail")
     ) {
       document?.documentElement?.classList?.add("dark");
@@ -45,14 +46,7 @@ export default function RootLayout({ children }) {
           <link rel="stylesheet" href="styles.css" />
           <link rel="icon" type="image/png" href="/favicon2-32x32.png" />
         </head>
-        <body
-          className={` ${
-            pathname?.includes("work-detail")
-              ? // | pathname?.includes("play")
-                "p-0 work-detail"
-              : "p-6  lg:p-10"
-          } md:pt-0 bg-white dark:bg-black relative`}
-        >
+        <body className="p-5 md:p-10 bg-white dark:bg-black relative">
           <Suspense fallback={<Loader />}>
             <Navbar />
             {children}

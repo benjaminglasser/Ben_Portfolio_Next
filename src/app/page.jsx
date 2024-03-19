@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { IMAGES } from "./assets/images";
+import { IMAGES } from "../../public/images";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
 

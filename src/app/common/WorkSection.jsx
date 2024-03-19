@@ -72,7 +72,7 @@ const WorkSection = () => {
       title: "The Spatial Page",
       description:
         "How spatialization is redefining our reality, memory, and experience",
-      //   thumbnail: IMAGES?.SPATIAL_TUNMB,
+      thumbnail: "/images/SpatialAge/spatialAge.gif",
       path: "https://radiancefields.com/unlocking-the-spatial-age-how-nerf-technology-is-redefining-our-reality-memory-and-experience/",
       externalLink: true,
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
@@ -104,7 +104,7 @@ const WorkSection = () => {
       time: "Spring 2023",
       title: "Stemport",
       description: "Analyze - Organize - Import",
-      //   thumbnail: IMAGES?.STEMPORT_THUMB,
+      thumbnail: "/images/stemport/stemportHeroThumb.gif",
       path: "work-detail/stemport",
       tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     },
@@ -114,7 +114,7 @@ const WorkSection = () => {
       title: "The Canary Test",
       description:
         "Web Design and Development for Los Angeles based art gallery",
-      //   thumbnail: IMAGES?.CANARY_THUMB,
+      thumbnail: "/images/canary/canaryHero4.gif",
       path: "work-detail/canary",
       tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
     },
@@ -123,7 +123,7 @@ const WorkSection = () => {
       time: "FALL 2022",
       title: "PointAR",
       description: "Your personal museum tour guide",
-      //   thumbnail: IMAGES?.POINTAR_THUMB,
+      thumbnail: "/images/PointAR/pointAR_Home.gif",
       path: "work-detail/pointAR",
       tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
       //   workDetail: {
@@ -135,7 +135,7 @@ const WorkSection = () => {
       time: "Fall 2021",
       title: "Reakt Light",
       description: "Customizable audio reactive lighting system",
-      //   thumbnail: IMAGES?.REAKT,
+      thumbnail: "/images/reakt/reaktHero3.gif",
       path: "work-detail/reaktLights",
       tools: [
         "TouchDesigner",
@@ -168,7 +168,7 @@ const WorkSection = () => {
       time: "2021",
       title: "Meaningful Pursuits",
       description: "Album Visuals",
-      //   thumbnail: IMAGES?.MEAN_THUMB,
+      thumbnail: "/images/meaningfulPursuits/Hero1.gif",
       path: "work-detail/meaningfulPursuits",
       tools: ["TouchDesigner", "Premiere Pro"],
     },

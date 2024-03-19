@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import ZigzagHeader from "../../common/zigzagHeader";
-import { REAKT } from "@/app/assets/images/reakt";
+import { REAKT } from "../../../../public/images/reakt";
 import { Grid } from "@mui/material";
 import DetailSection from "../../common/detailSection";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";

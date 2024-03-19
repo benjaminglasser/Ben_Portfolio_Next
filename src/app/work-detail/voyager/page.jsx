@@ -3,7 +3,7 @@ import React from "react";
 import ZigzagHeader from "../../common/zigzagHeader";
 import Image from "next/image";
 import Section from "@/app/common/Section";
-import { PLUR } from "@/app/assets/images/PLUR";
+import { PLUR } from "../../../../public/images/PLUR";
 import DetailSection from "../../common/detailSection";
 import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";

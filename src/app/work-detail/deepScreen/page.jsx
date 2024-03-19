@@ -41,7 +41,7 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
-        // className="h-[600px]"
+        className="h-[600px]"
         video="/Media/DeepScreen/WaterTest.mp4"
       />
       {/* <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" /> */}

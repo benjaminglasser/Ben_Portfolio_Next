@@ -1,15 +1,37 @@
 "use client";
-import Image from "next/image";
-import { IMAGES } from "../../public/images";
-import Grid from "@mui/system/Unstable_Grid/Grid";
+// import Image from "next/image";
+// import { IMAGES } from "../../public/images";
+// import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 export default function Home() {
   return (
-    <div
-    // className="home-wrapper" style={{ height: "calc(100vh - 300px)" }}
-    >
-      {/* <div className="cross-hair-grid">
+    <div>
+      {/* <div
+        className="home-wrapper"
+        style={{ height: "calc(100vh - 300px)" }}
+      ></div> */}
+
+      <VideoPlayerInternal
+        className="h-[600px]"
+        video="/Media/Home/Wave_Hero.mp4"
+      />
+      <h4 className="text-mute mt-20">
+        <strong>SELECTED WORKS</strong>
+      </h4>
+      <div className="mt-8">
+        <WorkSection />
+      </div>
+    </div>
+  );
+}
+
+// <div
+// className="home-wrapper" style={{ height: "calc(100vh - 300px)" }}
+// >
+{
+  /* <div className="cross-hair-grid">
         <div className="cross-hairs">
           {[...Array(20)].map((_, index) => (
             <div className="cross-hair" key={index}>
@@ -21,13 +43,19 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div> */}
-      {/* <div className="one hidden md:block">
+      </div> */
+}
+{
+  /* <div className="one hidden md:block">
         <div className="box1"></div>
         <div className="box2"></div>
-      </div> */}
-      <Grid container className="mt-5 md:mt-10 h-full flex items-center">
-        {/* <Grid xs={12} md={9}>
+      </div> */
+}
+{
+  /* <Grid container className="mt-5 md:mt-10 h-full flex items-center"> */
+}
+{
+  /* <Grid xs={12} md={9}>
           <div className="px-0 md:px-8 lg:px-32">
             <a href="mailto:glasserben@gmail.com" target="_blank">
               <Image
@@ -38,11 +66,8 @@ export default function Home() {
             </a>
             <div className="border-b mt-5 md:mt-10" />
           </div>
-        </Grid> */}
-      </Grid>
-      <div>
-        <WorkSection />
-      </div>
-    </div>
-  );
+        </Grid> */
+}
+{
+  /* </Grid> */
 }

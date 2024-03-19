@@ -6,9 +6,10 @@ import WorkSection from "@/app/common/WorkSection";
 
 export default function Home() {
   return (
-    <div className="home-wrapper" style={{ height: "calc(100vh - 300px)" }}>
-      <div className="cross-hair-grid">
-        {/* <YouTubeBackground/> */}
+    <div
+    // className="home-wrapper" style={{ height: "calc(100vh - 300px)" }}
+    >
+      {/* <div className="cross-hair-grid">
         <div className="cross-hairs">
           {[...Array(20)].map((_, index) => (
             <div className="cross-hair" key={index}>
@@ -20,11 +21,11 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
-      <div className="one hidden md:block">
+      </div> */}
+      {/* <div className="one hidden md:block">
         <div className="box1"></div>
         <div className="box2"></div>
-      </div>
+      </div> */}
       <Grid container className="mt-5 md:mt-10 h-full flex items-center">
         {/* <Grid xs={12} md={9}>
           <div className="px-0 md:px-8 lg:px-32">

@@ -175,7 +175,7 @@ const WorkSection = () => {
   ];
 
   return (
-    <div class="md:px-11 grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {WORK_CONTENT?.map((content, idx) => (
         <div key={idx} class="col-span-1">
           <Section>

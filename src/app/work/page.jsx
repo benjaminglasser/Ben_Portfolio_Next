@@ -1,7 +1,7 @@
 "use client";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import Section from "../common/Section";
-import { IMAGES } from "../assets/images";
+import { IMAGES } from "../../../public/images";
 import dynamic from "next/dynamic";
 
 const WorkCard = dynamic(() => import("../common/WorkCard"), { ssr: false });

@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import { IMAGES } from "./assets/images";
+import { IMAGES } from "../../public/images";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import WorkSection from "@/app/common/WorkSection";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
         <div className="box2"></div>
       </div>
       <Grid container className="mt-5 md:mt-10 h-full flex items-center">
-        <Grid xs={12} md={9}>
+        {/* <Grid xs={12} md={9}>
           <div className="px-0 md:px-8 lg:px-32">
             <a href="mailto:glasserben@gmail.com" target="_blank">
               <Image
@@ -36,8 +37,11 @@ export default function Home() {
             </a>
             <div className="border-b mt-5 md:mt-10" />
           </div>
-        </Grid>
+        </Grid> */}
       </Grid>
+      <div>
+        <WorkSection />
+      </div>
     </div>
   );
 }

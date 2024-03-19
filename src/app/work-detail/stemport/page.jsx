@@ -4,7 +4,7 @@ import React from "react";
 import Context from "../../common/context";
 import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
-import { IMAGES } from "@/app/assets/images";
+import { IMAGES } from "../../../../public/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 // import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'

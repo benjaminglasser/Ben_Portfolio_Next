@@ -4,7 +4,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Section from "../common/Section";
 import { FancyButton } from "../common/FancyButton";
-import { IMAGES } from "../assets/images";
+import { IMAGES } from "../../../public/images";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";

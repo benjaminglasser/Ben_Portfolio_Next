@@ -1,4 +1,4 @@
-import { IMAGES } from "@/app/assets/images";
+import { IMAGES } from "../../../public/images";
 import React from "react";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 

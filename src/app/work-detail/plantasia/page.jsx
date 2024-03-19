@@ -5,7 +5,7 @@ import Context from "../../common/context";
 import { Grid } from "@mui/material";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 import Section from "@/app/common/Section";
-import { PLANTASIA } from "@/app/assets/images/plantasia";
+import { PLANTASIA } from "../../../../public/images/plantasia";
 import Image from "next/image";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";

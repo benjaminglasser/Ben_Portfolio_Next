@@ -5,6 +5,7 @@ import Navbar from "./common/navbar";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import Loader from "./common/Loader";
+// import { useRouter } from "next/router";
 
 // const lato = Lato({ subsets: ["latin"] });
 
@@ -21,6 +22,15 @@ export default function RootLayout({ children }) {
       document?.documentElement?.classList?.remove("dark");
     }
   }, [pathname]);
+
+  // const router = useRouter();
+  // const workRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (router.query.scrollTo === "work") {
+  //     workRef.current?.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [router.query.scrollTo]);
 
   return (
     <>

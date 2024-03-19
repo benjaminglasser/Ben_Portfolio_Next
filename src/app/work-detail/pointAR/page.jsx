@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { POINTAR } from "@/app/assets/images/PointAR";
+import { POINTAR } from "../../../../public/images/PointAR";
 import DetailSection from "../../common/detailSection";
 import Image from "next/image";
 import { Grid } from "@mui/material";
@@ -8,7 +8,7 @@ import Context from "../../common/context";
 import AIM from "../../common/aim";
 import Section from "@/app/common/Section";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
-import VideoPlayerInternal from '@/app/common/VideoPlayerInternal.jsx'
+import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 const PointAR = () => {
   const bullets = [
@@ -19,10 +19,7 @@ const PointAR = () => {
   return (
     <div className="w-full text-white">
       <div className="relative">
-
-        <VideoPlayerInternal 
-          video="/Media/Pointar/PointAR2_Hero.mp4"
-        />
+        <VideoPlayerInternal video="/Media/Pointar/PointAR2_Hero.mp4" />
 
         <div className="font-bold absolute bottom-0 md:bottom-1/3 w-full text-center flex justify-center">
           <h1 className="w-full md:w-2/3 px-6">
@@ -36,9 +33,9 @@ const PointAR = () => {
       {/* <div className="flex justify-center w-full"> */}
 
       <VideoPlayerExternal
-                widthFull
-                className="aspect-w-16 aspect-h-9"
-                src="https://www.youtube.com/embed/fvOwZU6CShI"
+        widthFull
+        className="aspect-w-16 aspect-h-9"
+        src="https://www.youtube.com/embed/fvOwZU6CShI"
       />
 
       <Context
@@ -82,7 +79,7 @@ const PointAR = () => {
           </Grid>
         </Grid>
       </div>
-    
+
       <Image src={POINTAR.DIVIDER} className="w-full my-10" />
       {/* Feature 1 */}
       <div className="px-5 md:px-10 mt-5 md:mt-10">
@@ -236,11 +233,7 @@ const PointAR = () => {
               className="w-full"
             /> */}
 
-            <VideoPlayerInternal 
-              video="/Media/Pointar/StatueTransition_3_1.mp4"
-            />
-            
-
+            <VideoPlayerInternal video="/Media/Pointar/StatueTransition_3_1.mp4" />
           </Grid>
         </Grid>
       </div>
@@ -251,9 +244,7 @@ const PointAR = () => {
         src="public/Media/Pointar/ParticleStream.mp4"
         className="w-full"
       /> */}
-      <VideoPlayerInternal 
-        video="/Media/Pointar/ParticleStream.mp4"
-      />
+      <VideoPlayerInternal video="/Media/Pointar/ParticleStream.mp4" />
 
       <div>
         <Section>
@@ -401,9 +392,9 @@ const PointAR = () => {
           </div>
         </div>
       </Section>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

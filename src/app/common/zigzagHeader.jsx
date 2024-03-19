@@ -12,7 +12,7 @@ const ZigzagHeader = ({
 }) => {
   return (
     <Section>
-      <Grid container className="mt-10 zigzag-header px-5 md:px-10">
+      <Grid container className="mt-10 zigzag-header">
         <Grid
           item
           xs={12}

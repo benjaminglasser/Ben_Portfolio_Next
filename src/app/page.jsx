@@ -2,8 +2,6 @@
 import Image from "next/image";
 import { IMAGES } from "./assets/images";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import YouTubeBackground from "@/app/common/YouTubeBackground";
-// import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 
 export default function Home() {
   return (

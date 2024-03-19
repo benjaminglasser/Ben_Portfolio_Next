@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
           <link rel="stylesheet" href="styles.css" />
           <link rel="icon" type="image/png" href="/favicon2-32x32.png" />
         </head>
-        <body className="p-5 md:p-10 bg-white dark:bg-black relative">
+        <body className="px-5 pt-3 pb-3 md:px-10 md:pt-8 md:pb-10 bg-white dark:bg-black relative">
           <Suspense fallback={<Loader />}>
             <Navbar />
             {children}

@@ -17,7 +17,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="sticky top-0 z-50 flex justify-between items-center border-b border-black dark:border-white bg-white dark:bg-black">
+    <div className="sticky top-0 pt-2 z-50 flex justify-between items-center border-b border-black dark:border-white bg-white dark:bg-black">
       <h3>
         <Link
           href="/"

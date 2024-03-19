@@ -42,7 +42,7 @@ const Navbar = () => {
               idx < ROUTES.length - 1 ? "mr-2" : ""
             }`}
           >
-            <h3 className="ml-8">{item.label}</h3>
+            <h3 className="ml-4 md:ml-8">{item.label}</h3>
           </Link>
         ))}
       </div>

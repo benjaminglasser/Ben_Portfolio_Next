@@ -52,15 +52,13 @@ const Info = () => {
       <Grid item md={8}>
         <Section>
           <h1 className="text-justify bio">
-            As a designer and musician, I thrive at the intersection of
-            creativity and technology, constantly exploring the unknown with a
-            blend of wide-eyed curiosity and a deep passion for immersive
-            storytelling. My work reflects a commitment to blending audio-visual
-            narratives with innovative design in 2D, 3D, and mixed reality.
-            Driven by the harmony between nature and technology, light and
-            sound, I seek to uncover humanity within their convergence, crafting
-            experiences that resonate at the core of human expression.Currently,
-            I'm leading Product Design at
+            Exploring the unknown with curiosity and passion, I blend
+            audio-visual storytelling with innovative design across 2D, 3D, and
+            mixed reality. I am drawn to the reciprocity between seemingly
+            disparate realms: nature and architecture, the analog and digital
+            worlds, light and sound, and chaos and order. Ultimately, I seek to
+            uncover the humanity nestled within their convergences. Currently
+            leading Product Design at
             <FancyButton
               className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
               // size="large"

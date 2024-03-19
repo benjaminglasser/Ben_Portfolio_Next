@@ -1,110 +1,48 @@
 "use client";
-import Grid from "@mui/system/Unstable_Grid/Grid";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import { useRouter } from "next/router";
 
 const Navbar = () => {
+  // const router = useRouter();
+
+  const navigateToWork = () => {
+    // Set a flag in sessionStorage before navigating
+    sessionStorage.setItem("navigateToWork", "true");
+    router.push("/?scrollTo=work");
+  };
+
   const ROUTES = [
-    { label: "WORK", route: "/work" },
     { label: "PLAY", route: "/play" },
     { label: "INFO", route: "/info" },
   ];
 
-  const pathname = usePathname();
   return (
-    <>
-      <Grid container className="navbar">
-        {(pathname === "/work") |
-        (pathname === "/play") |
-        (pathname === "/info") ? (
-          <Grid xs={12} md={pathname !== "/" ? 12 : 9} className="relative">
-            <h1 className="dark:text-white  text-black   cursor-pointer font-medium text-center gmd:mt-10 md:text-end md:px-0 font-lato">
-              <Link className="hover:text-pink dark:hover:text-pink" href="/">
-                BENJAMIN GLASSER
-              </Link>
-            </h1>
-            <div className="px-0">
-              <div className="flex  justify-end mt-10 border-t-[0.4px]  border-black dark:border-white">
-                {ROUTES.map((item, idx) => (
-                  <Link
-                    href={item?.route}
-                    key={idx}
-                    className="size-full md:w-auto"
-                  >
-                    <div className="navCntr text-sm md: text-pink hover:text-white dark:text-pink hover:bg-pink dark:hover:text-white text-center border-r border-b-[0.4px] border-black dark:border-white cursor-pointer">
-                      <h2 className="link">{item?.label}</h2>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </Grid>
-        ) : pathname === "/" ? (
-          <>
-            <Grid xs={12} md={pathname !== "/" ? 12 : 9} className="relative">
-              <div className="bg-black w-6 lg:w-6 h-[22rem] absolute right-0 top-0 mt-[-60px] extra-info" />
-              <h1 className="dark:text-white  text-black  cursor-pointer font-medium text-center mt-10 md:mt-10 md:text-end md:pr-14 pt-2 font-lato">
-                <Link className="hover:text-pink dark:hover:text-pink" href="/">
-                  BENJAMIN GLASSER
-                </Link>
-              </h1>
-              <div className="px-0 md:px-8 lg:px-32">
-                <div className="flex justify-between md:justify-end mt-4 md:mt-10 border-t-[0.4px]  border-black dark:border-white">
-                  {ROUTES.map((item, idx) => (
-                    <Link
-                      href={item?.route}
-                      key={idx}
-                      className="w-full md:w-auto "
-                    >
-                      <div className="navCntr text-sm md: text-pink hover:text-white dark:text-pink hover:bg-pink dark:hover:text-white text-center border-r border-b-[0.4px] border-black dark:border-white cursor-pointer">
-                        <h2 className="link">{item?.label}</h2>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </Grid>
-            <Grid sm={3} className="extra-info">
-              <div className="pl-4 pt-9 flex flex-col justify-between h-full relative">
-                <p className="tag">
-                  <i className="text-sm">media artist, musician + designer</i>
-                </p>
-                <div className="description absolute right-[2rem] -bottom-[8rem] ">
-                  <p className="text-end ">Born 1994</p>
-                  <p className="text-end">
-                    Currently at{" "}
-                    <span className="ojuju hover:text-pink">
-                      <a href="https://easelapps.ai" target="_blank">
-                        Easel AI
-                      </a>
-                    </span>
-                  </p>
-                  <p className="text-end ">30.2672°N, 97.7431°W</p>
-                </div>
-              </div>
-            </Grid>
-          </>
-        ) : (
-          <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-10">
-            <div className="w-screen px-8 md:w-auto lg:px-10">
-              <div className=" flex justify-between md:justify-end mt-4 md:mt-4 border-t border-l md:border-t md:border-b-0 border-black dark:border-white">
-                {ROUTES.map((item, idx) => (
-                  <Link
-                    href={item?.route}
-                    key={idx}
-                    className="w-full md:w-auto "
-                  >
-                    <div className="navCntr text-sm md: bg-black text-pink hover:text-white dark:text-pink hover:bg-pink dark:hover:text-white text-center border-r border-b-[0.4px] border-black dark:border-white cursor-pointer">
-                      <h2 className="link">{item?.label}</h2>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </Grid>
-    </>
+    <div className="px-10 flex justify-between items-center border-b border-black">
+      <h3>
+        <Link href="/" className="hover:text-pink ">
+          BENJAMIN GLASSER
+        </Link>
+      </h3>
+      <div className="flex">
+        {/* <h3
+          onClick={navigateToWork}
+          className="cursor-pointer hover:text-pink px-2.5 py-0.5 border-r border-t border-black dark:border-white"
+        >
+          WORK
+        </h3> */}
+        {ROUTES.map((item, idx) => (
+          <Link
+            href={item.route}
+            key={idx}
+            className={`border-r border-t border-black dark:border-white px-2.5 py-0.5 hover:text-pink dark:hover:text-pink ${
+              idx < ROUTES.length - 1 ? "mr-2" : ""
+            }`}
+          >
+            <h3 className="ml-8">{item.label}</h3>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };
 

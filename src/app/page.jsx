@@ -20,10 +20,10 @@ export default function Home() {
         className="h-[500px] md:h-[600px]"
         video="/Media/Home/Wave_Hero.mp4"
       />
-      <h4 className="text-mute mt-20">
+      <h4 className="text-mute mt-8 md:mt-14">
         <strong>SELECTED WORKS</strong>
       </h4>
-      <div className="mt-8">
+      <div className="mt-4 md:mt-8">
         <WorkSection />
       </div>
     </div>

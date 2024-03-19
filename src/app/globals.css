@@ -315,7 +315,7 @@ li::marker {
 }
 
 .bio {
-  font-size: min(3vw, 19px) !important;
+  font-size: min(4vw, 30px) !important;
 }
 
 @media screen and (max-width: 900px) {

@@ -48,17 +48,17 @@ const Info = () => {
   const ThreeComponent = dynamic(() => import("./three"), { ssr: false });
 
   return (
-    <Grid container className="mt-1 px-0 md:px-14 md:mt-6" spacing={4}>
+    <Grid container className="mt-1 px-0  md:mt-6" spacing={4}>
       <Grid item md={8}>
         <Section>
-          <h1 className="text-justify bio">
+          <h1 className="text-justify ojuju mb-10 bio">
             Exploring the unknown with curiosity and passion, I blend
             audio-visual storytelling with innovative design across 2D, 3D, and
-            mixed reality. I am drawn to the reciprocity between seemingly
+            mixed reality. Currently leading Product Design at
+            {/* I am drawn to the reciprocity between seemingly
             disparate realms: nature and architecture, the analog and digital
             worlds, light and sound, and chaos and order. Ultimately, I seek to
-            uncover the humanity nestled within their convergences. Currently
-            leading Product Design at
+            uncover the humanity nestled within their convergences.  */}
             <FancyButton
               className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
               // size="large"
@@ -67,7 +67,7 @@ const Info = () => {
                 Easel AI
               </a>
             </FancyButton>
-            <div className="w-100 flex  md:items-center md:justify-start text-black py-4">
+            {/* <div className="w-100 flex  md:items-center md:justify-start text-black py-4">
               I also create music sometimes under the name
               <FancyButton
                 className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
@@ -80,9 +80,9 @@ const Info = () => {
                   Benny Bridges
                 </a>
               </FancyButton>
-            </div>
+            </div> */}
           </h1>
-          <h4 className="mb-2 font-normal ">A FEW TOOLS I USE:</h4>
+          <h4 className="mb-2 mt-16 font-normal ">A FEW TOOLS I USE:</h4>
           <Grid container>
             {tools?.map((item, idx) => (
               <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
@@ -90,7 +90,7 @@ const Info = () => {
               </Grid>
             ))}
           </Grid>
-          <h4 className="mb-2 mt-4 font-normal">10010110101 WITH:</h4>
+          <h4 className="mb-2 mt-16 font-normal">10010110101 WITH:</h4>
           <Grid container>
             {platforms?.map((item, idx) => (
               <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
@@ -98,7 +98,7 @@ const Info = () => {
               </Grid>
             ))}
           </Grid>
-          <h4 className="mb-0 mt-10 font-normal">EDUCATION</h4>
+          <h4 className="mb-0 mt-16 font-normal">EDUCATION</h4>
           <p className="w-full md:w-1/2 text-justify">
             MFA Media Design Practices, ArtCenter College of Design{" "}
           </p>
@@ -141,6 +141,14 @@ const Info = () => {
             <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
               <a href="mailto:glasserben@gmail.com" target="_blank">
                 CONTACT
+              </a>
+            </FancyButton>
+            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
+              <a
+                href="https://open.spotify.com/artist/4lP1lKWYqNLYWYtnuTh8OF?si=Z19kgdcvRzyKWn0C8BK3cQ"
+                target="_blank"
+              >
+                Music
               </a>
             </FancyButton>
           </div>

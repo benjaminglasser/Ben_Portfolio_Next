@@ -18,7 +18,7 @@ const WorkCard = ({
       }}
       target={externalLink ? "_blank" : "_self"}
     >
-      <div className="hover:border-b-[0.2px] border-mute cursor-pointer pb-1 w-full workcard">
+      <div className="hover:border-b-[0.2px] border-mute cursor-pointer pb-1 mb-10 w-full workcard">
         <Image
           src={thumbnail}
           alt="stemport gif"
@@ -33,7 +33,7 @@ const WorkCard = ({
         <div className="pt-2 text-black leading-12 text-[2.25em] font-light">
           {title}
         </div>
-        <h4 className="ojuju pb-4 text-mute">{description}</h4>
+        <h4 className="ojuju pb-0 md:pb-4 text-mute">{description}</h4>
         <p className="text-[11px] text-mute">Tools: {tools?.join(", ")}</p>
       </div>
     </Link>

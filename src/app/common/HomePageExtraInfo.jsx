@@ -2,12 +2,12 @@ import Link from "next/link";
 
 const HomePageExtraInfo = () => {
   return (
-    <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[350px] md:h-[450px] z-10">
+    <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[600px] z-10">
       <div className="flex flex-col justify-between h-full relative">
         <p className="tag">
           <i className="text-sm">media artist, musician + designer</i>
         </p>
-        <div className="description absolute right-[2rem] -bottom-[8rem]">
+        <div className="description absolute right-0 bottom-0">
           <p className="text-end">Born 1994</p>
           <p className="text-end">
             Currently at{" "}

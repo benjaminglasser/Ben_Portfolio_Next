@@ -52,11 +52,15 @@ const Info = () => {
       <Grid item md={8}>
         <Section>
           <h1 className="text-justify bio">
-            I like to make things that I don't know how to make. There's a lot I
-            don't yet understand, but I seek to learn a bit more every day by
-            exploring the unknown with wide-eyed curiosity. I frequently work
-            with various 2D + 3D software tools, mixed-media illustration, code,
-            and physical computing. Currently, I'm leading Product Design at
+            As a designer and musician, I thrive at the intersection of
+            creativity and technology, constantly exploring the unknown with a
+            blend of wide-eyed curiosity and a deep passion for immersive
+            storytelling. My work reflects a commitment to blending audio-visual
+            narratives with innovative design in 2D, 3D, and mixed reality.
+            Driven by the harmony between nature and technology, light and
+            sound, I seek to uncover humanity within their convergence, crafting
+            experiences that resonate at the core of human expression.Currently,
+            I'm leading Product Design at
             <FancyButton
               className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
               // size="large"

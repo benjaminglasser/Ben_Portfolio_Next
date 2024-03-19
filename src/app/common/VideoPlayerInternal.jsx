@@ -1,21 +1,21 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { PuffLoader } from "react-spinners";
+// import { PuffLoader } from "react-spinners";
 
 const VideoPlayerInternal = ({ video, className, centered }) => {
   // State to manage if the video is loading
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   // Function to handle video load state
-  const handleVideoLoad = () => {
-    setLoading(false); // Video is ready, so set loading to false
-  };
+  // const handleVideoLoad = () => {
+  //   setLoading(false); // Video is ready, so set loading to false
+  // };
 
   return (
     <div
       className={`${centered ? "flex justify-center items-center" : "block"}`}
     >
-      {loading && (
+      {/* {loading && (
         <div className="w-full h-screen flex justify-center items-center">
           <PuffLoader
             color="#ff477b"
@@ -25,7 +25,7 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
             data-testid="loader"
           />
         </div>
-      )}
+      )} */}
 
       {/* Video container */}
       <div
@@ -40,7 +40,7 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
           playsInline
           muted
           loading="lazy"
-          onCanPlayThrough={handleVideoLoad} // Event when video can play through without stopping
+          // onCanPlayThrough={handleVideoLoad}
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.

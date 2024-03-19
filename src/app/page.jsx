@@ -3,18 +3,21 @@
 // import { IMAGES } from "../../public/images";
 // import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
+import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
+
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative">
       {/* <div
         className="home-wrapper"
         style={{ height: "calc(100vh - 300px)" }}
       ></div> */}
-
+      {/* <TickerCntr /> */}
+      <HomePageExtraInfo />
       <VideoPlayerInternal
-        className="h-[600px]"
+        className="h-[500px] md:h-[600px]"
         video="/Media/Home/Wave_Hero.mp4"
       />
       <h4 className="text-mute mt-20">

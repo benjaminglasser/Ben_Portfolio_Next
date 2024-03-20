@@ -176,9 +176,9 @@ const WorkSection = () => {
   ];
 
   return (
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       {WORK_CONTENT?.map((content, idx) => (
-        <div key={idx} class="col-span-1">
+        <div key={idx} className="col-span-1">
           <Section>
             <WorkCard
               role={content?.role}

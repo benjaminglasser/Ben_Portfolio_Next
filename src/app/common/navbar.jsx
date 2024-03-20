@@ -1,39 +1,28 @@
-"use client";
+import Grid from "@mui/material/Grid";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  // const router = useRouter();
-
-  const navigateToWork = () => {
-    // Set a flag in sessionStorage before navigating
-    sessionStorage.setItem("navigateToWork", "true");
-    router.push("/?scrollTo=work");
-  };
-
   const ROUTES = [
     { label: "PLAY", route: "/play" },
     { label: "INFO", route: "/info" },
   ];
 
+  const pathname = usePathname();
+
   return (
-    <div className="sticky top-0 pt-2 z-50 flex justify-between items-center border-b border-black dark:border-white bg-white dark:bg-black">
-      <h3>
-        <Link
-          href="/"
-          className="hover:text-pink dark:text-white dark:hover:text-pink"
-        >
-          BENJAMIN GLASSER
+    <Grid
+      container
+      className="navbar sticky top-0 pt-2 z-50 flex justify-between items-center border-b border-black dark:border-white bg-white dark:bg-black"
+    >
+      <Grid item xs={6} className="flex items-center ">
+        <Link href="/">
+          <h3 className="text-black dark:text-white cursor-pointer hover:text-pink dark:hover:text-pink">
+            BENJAMIN GLASSER
+          </h3>
         </Link>
-      </h3>
-      <div className="flex">
-        {/* Uncomment and apply dark mode styles as needed
-        <h3
-          onClick={navigateToWork}
-          className="cursor-pointer hover:text-pink px-2.5 py-0.5 border-r border-t border-black dark:border-white dark:text-white dark:hover:text-pink"
-        >
-          WORK
-        </h3> */}
+      </Grid>
+      <Grid item xs={6} className="flex justify-end items-center ">
         {ROUTES.map((item, idx) => (
           <Link
             href={item.route}
@@ -45,8 +34,8 @@ const Navbar = () => {
             <h3 className="ml-4 md:ml-8">{item.label}</h3>
           </Link>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -72,7 +72,7 @@ const Info = () => {
           <h4 className="mb-2 mt-16 font-normal ">A FEW TOOLS I USE:</h4>
           <Grid container>
             {tools?.map((item, idx) => (
-              <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
+              <Grid item className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
                 <p>{item}</p>
               </Grid>
             ))}
@@ -80,7 +80,7 @@ const Info = () => {
           <h4 className="mb-2 mt-16 font-normal">10010110101 WITH:</h4>
           <Grid container>
             {platforms?.map((item, idx) => (
-              <Grid className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
+              <Grid item className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
                 <p>{item}</p>
               </Grid>
             ))}

@@ -1,3 +1,4 @@
+"use client";
 import { Grid } from "@mui/material";
 import { FancyButton } from "../common/FancyButton";
 import Section from "../common/Section";
@@ -67,20 +68,6 @@ const Info = () => {
                 Easel AI
               </a>
             </FancyButton>
-            {/* <div className="w-100 flex  md:items-center md:justify-start text-black py-4">
-              I also create music sometimes under the name
-              <FancyButton
-                className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
-                // size="large"
-              >
-                <a
-                  href="https://open.spotify.com/artist/4lP1lKWYqNLYWYtnuTh8OF?si=Z19kgdcvRzyKWn0C8BK3cQ"
-                  target="_blank"
-                >
-                  Benny Bridges
-                </a>
-              </FancyButton>
-            </div> */}
           </h1>
           <h4 className="mb-2 mt-16 font-normal ">A FEW TOOLS I USE:</h4>
           <Grid container>

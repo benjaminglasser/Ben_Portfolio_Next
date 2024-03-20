@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
     if (
       pathname === "/work" ||
       pathname === "/play" ||
-      // pathname === "/" ||
       pathname?.includes("work-detail")
     ) {
       document?.documentElement?.classList?.add("dark");

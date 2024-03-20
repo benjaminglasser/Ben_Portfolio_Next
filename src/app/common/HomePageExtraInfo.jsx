@@ -21,7 +21,7 @@ const HomePageExtraInfo = () => {
               </Link>
             </span>
           </p>
-          <p className="text-end">30.2672°N, 97.7431°W</p>
+          <p className="text-end">34.0766°N, -118.2593°W</p>
         </div>
       </div>
     </div>

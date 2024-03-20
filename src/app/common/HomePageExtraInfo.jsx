@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const HomePageExtraInfo = () => {
   return (
-    <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[600px] z-10">
+    <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[70vh] z-10">
       <div className="flex flex-col justify-between h-full relative">
         <p className="tag">
           <i className="text-sm">media artist, musician + designer</i>

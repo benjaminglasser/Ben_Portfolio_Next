@@ -17,8 +17,8 @@ export default function Home() {
       {/* <TickerCntr /> */}
       <HomePageExtraInfo />
       <VideoPlayerInternal
-        className="h-[500px] md:h-[600px]"
-        video="/Media/Home/Wave_Hero.mp4"
+        className="h-[500px] md:h-[70vh]"
+        video="/Media/Home/wave_hero_2.mp4"
       />
       <h4 className="text-mute mt-8 md:mt-14">
         <strong>SELECTED WORKS</strong>

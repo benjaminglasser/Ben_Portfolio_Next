@@ -108,10 +108,7 @@ const Info = () => {
           <div className="links mx-0">
             <h4 className="mb-2 font-normal">LINKS</h4>
             <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a
-                href="/pdf/Benjamin_Glasser_Resume_Oct_2023.pdf"
-                target="_blank"
-              >
+              <a href="/pdf/Benjamin_Glasser_Resume.pdf" target="_blank">
                 RESUME
               </a>
             </FancyButton>

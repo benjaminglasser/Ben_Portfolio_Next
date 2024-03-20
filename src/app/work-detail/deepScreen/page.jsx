@@ -52,6 +52,8 @@ const Canary = () => {
         time="Fall 2023"
         role="3D Graphics and Simulation"
         tools={["Blender"]}
+        collaborator={"Sunny Chen"}
+        collaboratorLink={"https://sunny.design/"}
       />
 
       <Section>

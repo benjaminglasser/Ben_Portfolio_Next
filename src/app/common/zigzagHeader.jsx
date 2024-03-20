@@ -1,6 +1,7 @@
 import Section from "@/app/common/Section";
 import { Grid } from "@mui/material";
 import React from "react";
+import Link from "next/link";
 
 const ZigzagHeader = ({
   title,
@@ -9,6 +10,8 @@ const ZigzagHeader = ({
   time,
   role,
   tools,
+  collaborator,
+  collaboratorLink,
 }) => {
   return (
     <Section>
@@ -36,6 +39,20 @@ const ZigzagHeader = ({
           <div className="text-xxs mt-2 flex">
             <div className="text-grey mr-2">Tools:</div> {tools?.join(", ")}
           </div>
+          {collaborator ? (
+            <div className="text-xxs mt-2 flex">
+              <div className="text-grey mr-2">Collaborator:</div>
+              <Link
+                href={collaboratorLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {collaborator}
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
         </Grid>
       </Grid>
     </Section>

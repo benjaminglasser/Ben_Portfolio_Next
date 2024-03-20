@@ -70,10 +70,6 @@ const NRF = () => {
 
   return (
     <div className="w-full text-white">
-      {/* <VideoPlayerResponsiveBG
-        vidDesktop="/Media/NRF/BubbleBG.mp4"
-        vidMobile="/Media/NRF/BubbleBGMobile.mp4"
-      /> */}
       <div className="bg-black h-12 md:h-0" />
       <VideoPlayerInternal video="/Media/NRF/NRF_Hero.mp4" />
       <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" />
@@ -85,6 +81,8 @@ const NRF = () => {
           time="2023 // Standard Vision"
           role="3D Graphic Design"
           tools={["Blender"]}
+          collaborator={"Sunny Chen"}
+          collaboratorLink={"https://sunny.design/"}
         />
       </Section>
       <Section>

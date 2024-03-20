@@ -24,6 +24,20 @@ const WorkSection = () => {
       ],
     },
     {
+      role: "XR Interaction",
+      time: "Summer 2022 - Fall 2022",
+      title: "BMW",
+      description: "Developing next-generation XR products and systems",
+      extendedDescription:
+        "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
+      thumbnail: "/Media/BMW/dancingCarBlack.gif",
+      path: "work-detail/bmw",
+      tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
+      workDetail: {
+        innerBox: true,
+      },
+    },
+    {
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
@@ -52,20 +66,7 @@ const WorkSection = () => {
       path: "work-detail/odyssey",
       tools: ["Unreal Engine"],
     },
-    {
-      role: "XR Interaction",
-      time: "Summer 2022 - Fall 2022",
-      title: "BMW",
-      description: "Developing next-generation XR products and systems",
-      extendedDescription:
-        "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
-      thumbnail: "/Media/BMW/dancingCarBlack.gif",
-      path: "work-detail/bmw",
-      tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
-      workDetail: {
-        innerBox: true,
-      },
-    },
+
     {
       role: "Spatial Design Research ans Speculation",
       time: "October 2022 - April 2023",

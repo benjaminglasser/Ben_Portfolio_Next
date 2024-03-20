@@ -168,7 +168,7 @@ const voyager = () => {
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>
-      <Section>
+      {/* <Section>
         <p className="px-5 md:px-10 mt-5">
           I worked on a team with one other to help turn around a finished
           product in time for the deadline. The HUD elements were created using
@@ -179,7 +179,7 @@ const voyager = () => {
           We will continue to integrate more 3D objects to build out the website
           as more music releases come out.
         </p>
-      </Section>
+      </Section> */}
       <DetailSection
         className="px-5 md:px-10"
         title="TOUR VISUALS PACKAGE"

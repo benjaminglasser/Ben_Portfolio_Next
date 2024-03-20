@@ -9,8 +9,7 @@ import Section from "@/app/common/Section";
 // import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ZigzagHeader from "../../common/zigzagHeader";
-import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
-import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
+
 import VideoGrid from "@/app/common/VideoGrid";
 import ImageGrid from "@/app/common/ImageGrid";
 
@@ -82,7 +81,7 @@ const NRF = () => {
         <ZigzagHeader
           title="Clear Canvas"
           description="Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage"
-          extendedDescription="Unveiled at NRF Expo 2024, Standard Vision introduced Clear Canvas, a transparent screen technology set to transform retail spaces. In collaboration with their team, we created eye-catching graphics that illustrate the technology’s unique capabilities, from enhancing customer engagement to showcasing products in novel ways."
+          extendedDescription="Unveiled at the NRF Retail technology Expo in 2024, Standard Vision introduced Clear Canvas, a transparent screen technology set to transform retail spaces. In collaboration with their team, we created eye-catching graphics that illustrate the technology’s unique capabilities, from enhancing customer engagement to showcasing products in novel ways."
           time="2023 // Standard Vision"
           role="3D Graphic Design"
           tools={["Blender"]}

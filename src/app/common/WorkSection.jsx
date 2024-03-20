@@ -83,7 +83,7 @@ const WorkSection = () => {
       time: "2022",
       title: "Voyager",
       description:
-        "Interactive gamefied website, branding, and album art for voyager record label",
+        "Interactive gamefied website, branding, and album art for the Voyager record label",
       thumbnail: "/Media/Voyager/VoyagerThumb.gif",
       path: "work-detail/voyager",
       tools: [

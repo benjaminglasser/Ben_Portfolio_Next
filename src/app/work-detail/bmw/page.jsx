@@ -14,7 +14,7 @@ const bmw = () => {
     "Created 3D renderings in Blender, Unity, and Unreal Engine to be displayed on various displays. Tasks included virtual cinematics, materials and texturing using PBR based workflows, Unity scripting and UE blueprints, special effects, character rigging and animation, and workflows between various software.",
     "Worked extensively with VFX graph (Unity), Niagara (Unreal Engine), and Particle Systems (Blender) as well as built custom shaders to prototype novel effects that translate across multiple platforms.",
     "I was invited to present my work to the BMW board at their annual conference. The project then was approved and selected for the next rounds of innovation.",
-    "Proposed and collaborated on several novel inventions culminating in being credited with signing two patents (details coming soon)",
+    "Proposed and collaborated on several novel inventions culminating in being credited with signing two patents (details coming soon).",
   ];
 
   return (

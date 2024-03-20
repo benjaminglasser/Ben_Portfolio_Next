@@ -91,7 +91,7 @@ const voyager = () => {
         title="TOUR VISUALS PACKAGE"
         description={`First, I created a mood board with various sources of inspiration.
           This included radar, weather graphics, 80s video games, futurism,
-          heads up displays, terminal screens, and airline cockpits`}
+          heads up displays, terminal screens, and airplane cockpits`}
         left={false}
       />
 
@@ -107,7 +107,7 @@ const voyager = () => {
           The team setteld on the idea of using wireframes of 3D space objects
           as a place to start. I created some concepts in Blender and overlayed
           some heads up display elements. I created a feedback texture in
-          TouchDesigner to mimic old vhs distortion
+          TouchDesigner to mimic old VHS distortion.
         </p>
       </Section>
       <Section>
@@ -155,7 +155,7 @@ const voyager = () => {
       <DetailSection
         className="px-5 md:px-10"
         title="Web Design"
-        description={`After this was finalized, I took the concepts into figma to create
+        description={`After this was finalized, I took the concepts into Figma to create
           various ideas for the first version of the website which would be
           centered around a tour announcement.`}
         left={false}

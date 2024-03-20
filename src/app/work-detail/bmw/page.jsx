@@ -25,31 +25,44 @@ const bmw = () => {
           vidMobile="/Media/BMW/carSimPhone.mp4"
         />
 
-        <div className="absolute top-0">
-          <Context
-            title="CONTEXT"
-            className="mt-24 md:mt-24 mb-24"
-            context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
-          />
-
-          <div className="flex justify-center">
-            <div className="w-full px-5 md:w-3/5 text-pink">
-              <h4 className="font-normal">UPDATE!</h4>
+        <div className="">
+          <Section>
+            <div className="mt-20 w-full text-center flex justify-center">
+              <h1 className="w-full md:w-2/3 px-6">
+                Developing next-generation XR products and systems at{" "}
+                <strong className="text-7xl">BMW</strong>
+              </h1>
             </div>
-          </div>
-
-          <VideoPlayerExternal
-            widthFull
-            className="aspect-w-16 aspect-h-9"
-            src="https://www.youtube.com/embed/zwOfrRDtd9E?si=rBPDZ6Qhx4Q0dW2L"
-          />
-
-          <div className=" px-5 md:px-10 mt-12 flex justify-center">
-            <p>
-              During CES 2024, the BMW team presented work that I contributed to
-              during my time.
-            </p>
-          </div>
+          </Section>
+          <Section>
+            <Context
+              title="CONTEXT"
+              className="mt-24 md:mt-24 mb-24"
+              context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
+            />
+          </Section>
+          <Section>
+            <div className="flex justify-center">
+              <div className="w-full px-5 md:w-3/5 text-pink">
+                <h4 className="font-normal">UPDATE!</h4>
+              </div>
+            </div>
+          </Section>
+          <Section>
+            <VideoPlayerExternal
+              widthFull
+              className="aspect-w-16 aspect-h-9"
+              src="https://www.youtube.com/embed/zwOfrRDtd9E?si=rBPDZ6Qhx4Q0dW2L"
+            />
+          </Section>
+          <Section>
+            <div className=" px-5 md:px-10 mt-12 flex justify-center">
+              <p>
+                During CES 2024, the BMW team presented work that I contributed
+                to during my time.
+              </p>
+            </div>
+          </Section>
 
           <Section>
             <div className="text-center px-5 md:px-10 mt-16 mb-72 ">

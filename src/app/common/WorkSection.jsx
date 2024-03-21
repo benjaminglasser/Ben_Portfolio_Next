@@ -66,7 +66,18 @@ const WorkSection = () => {
       path: "work-detail/odyssey",
       tools: ["Unreal Engine"],
     },
-
+    {
+      role: "AR UX / UI Design",
+      time: "FALL 2022",
+      title: "PointAR",
+      description: "Your personal museum tour guide",
+      thumbnail: "/images/PointAR/pointAR_Home.gif",
+      path: "work-detail/pointAR",
+      tools: ["Unity, Unreal Engine, Blender"],
+      //   workDetail: {
+      //     video: IMAGES.POINTAR_HERO,
+      //   },
+    },
     {
       role: "Spatial Design Research ans Speculation",
       time: "October 2022 - April 2023",
@@ -118,18 +129,6 @@ const WorkSection = () => {
       thumbnail: "/images/canary/canaryHero4.gif",
       path: "work-detail/canary",
       tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-    },
-    {
-      role: "AR UX / UI Design",
-      time: "FALL 2022",
-      title: "PointAR",
-      description: "Your personal museum tour guide",
-      thumbnail: "/images/PointAR/pointAR_Home.gif",
-      path: "work-detail/pointAR",
-      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-      //   workDetail: {
-      //     video: IMAGES.POINTAR_HERO,
-      //   },
     },
     {
       role: "Designer / Engineer",

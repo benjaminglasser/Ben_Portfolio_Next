@@ -25,7 +25,7 @@ const WorkSection = () => {
     },
     {
       role: "XR Interaction",
-      time: "Summer 2022 - Fall 2022",
+      time: "April 2022 - February 2023",
       title: "BMW",
       description: "Developing next-generation XR products and systems",
       extendedDescription:

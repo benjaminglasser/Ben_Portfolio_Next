@@ -28,7 +28,7 @@ const WorkCard = ({
         />
         <div className="flex justify-between text-[11px] text-black font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>
-          <div>Time: {time}</div>
+          <div>{time}</div>
         </div>
         <div className="pt-2 text-black leading-12 text-[2.25em] font-light">
           {title}

@@ -79,7 +79,7 @@ const WorkSection = () => {
       //   },
     },
     {
-      role: "Spatial Design Research ans Speculation",
+      role: "Spatial Design Research and Speculation",
       time: "October 2022 - April 2023",
       title: "The Spatial Page",
       description:

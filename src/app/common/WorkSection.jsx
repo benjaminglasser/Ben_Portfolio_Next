@@ -68,7 +68,7 @@ const WorkSection = () => {
     },
     {
       role: "AR UX / UI Design",
-      time: "FALL 2022",
+      time: "Fall 2022",
       title: "PointAR",
       description: "Your personal museum tour guide",
       thumbnail: "/images/PointAR/pointAR_Home.gif",
@@ -122,7 +122,7 @@ const WorkSection = () => {
     },
     {
       role: "UI / Web Development",
-      time: "Spring 2023",
+      time: "Spring 2022",
       title: "The Canary Test",
       description:
         "Web Design and Development for Los Angeles based art gallery",

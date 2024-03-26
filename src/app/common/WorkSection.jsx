@@ -6,7 +6,7 @@ const WorkSection = () => {
   const WORK_CONTENT = [
     {
       role: "Lead Product Designer",
-      time: "Spring 2023 - Present",
+      time: "2023 - Present",
       title: "Easel AI",
       description:
         "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",

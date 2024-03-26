@@ -8,10 +8,10 @@ const HomePageExtraInfo = () => {
           <i className="text-sm">product designer, media artist + musician</i>
         </p>
         <div className="description absolute right-0 bottom-0">
-          <p className="text-end">Born 1994</p>
-          <p className="text-end">
+          <p className="text-end text-white">Born 1994</p>
+          <p className="text-end text-white">
             Leading product design at{" "}
-            <span className="ojuju hover:text-pink">
+            <span className="ojuju text-white hover:text-black">
               <Link
                 href="https://easelapps.ai"
                 target="_blank"
@@ -21,7 +21,7 @@ const HomePageExtraInfo = () => {
               </Link>
             </span>
           </p>
-          <p className="text-end">34.0766°N, -118.2593°W</p>
+          <p className="text-end text-white">34.0766°N, -118.2593°W</p>
         </div>
       </div>
     </div>

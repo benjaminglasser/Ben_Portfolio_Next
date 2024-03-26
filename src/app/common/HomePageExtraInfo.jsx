@@ -5,12 +5,12 @@ const HomePageExtraInfo = () => {
     <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[70vh] z-10">
       <div className="flex flex-col justify-between h-full relative">
         <p className="tag">
-          <i className="text-sm">Product Designer, Media Artist + Musician</i>
+          <i className="text-sm">product designer, media artist + musician</i>
         </p>
         <div className="description absolute right-0 bottom-0">
           <p className="text-end">Born 1994</p>
           <p className="text-end">
-            Currently at{" "}
+            Currently leading product design at{" "}
             <span className="ojuju hover:text-pink">
               <Link
                 href="https://easelapps.ai"

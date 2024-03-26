@@ -10,7 +10,7 @@ const HomePageExtraInfo = () => {
         <div className="description absolute right-0 bottom-0">
           <p className="text-end">Born 1994</p>
           <p className="text-end">
-            Currently leading product design at{" "}
+            Leading product design at{" "}
             <span className="ojuju hover:text-pink">
               <Link
                 href="https://easelapps.ai"

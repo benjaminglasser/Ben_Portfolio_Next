@@ -9,7 +9,7 @@ const WorkSection = () => {
       time: "Spring 2023 - Present",
       title: "Easel AI",
       description:
-        "Express with Easel. An AI-powered personal avatar app directly in iMessage",
+        "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
       thumbnail: "/Media/Easel/EaselThumbPrimary.gif",
       path: "https://www.easelapps.ai/",
       externalLink: true,

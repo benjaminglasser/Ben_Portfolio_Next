@@ -5,7 +5,9 @@ const HomePageExtraInfo = () => {
     <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[70vh] z-10">
       <div className="flex flex-col justify-between h-full relative">
         <p className="tag">
-          <i className="text-sm">product designer, media artist + musician</i>
+          <i className="text-sm text-white">
+            product designer, media artist + musician
+          </i>
         </p>
         <div className="description absolute right-0 bottom-0">
           <p className="text-end text-white">Born 1994</p>

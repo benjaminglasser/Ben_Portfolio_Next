@@ -30,7 +30,7 @@ const Canary = () => {
         <ZigzagHeader
           title="Easel AI"
           description="Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage"
-          extendedDescription="An AI-first social chat experience, Easel AI transforms how users connect and express themselves through photorealistic and creative avatars. Integrated seamlessly within iMessage, it invites users to create, remix, and share avatars in novel and imaginative ways. As Lead Product Designer, I spearheaded the design process, from conceptualization to the development of a cohesive design system, ensuring every interface is intuitive, brand-aligned, and fosters a creative social interaction"
+          extendedDescription="As Lead Product Designer, I spearheaded the design process, from conceptualization to the development of a cohesive design system, ensuring every interface is intuitive, brand-aligned, and fosters a creative social interaction. An AI-first social chat experience, Easel AI transforms how users connect and express themselves through photorealistic and creative avatars. Integrated seamlessly within iMessage, it invites users to create, remix, and share avatars in novel and imaginative ways."
           time="2023 - Present"
           role="Lead Product Designer"
           tools={["Figma, After Effects, Design Thinking, UX/UI"]}
@@ -123,13 +123,24 @@ const Canary = () => {
       </Section>
 
       <Section>
-        <h6 className="mt-8 md:font-thin px-5 md:px-10">
+        <h4 className="mt-8 md:font-thin px-5 md:px-10">
           Collaborating with a skilled engineering team, we crafted a backend
           system that abstracts intricate prompt engineering, accepting simple
           user inputs. This method demystifies AI for users, encouraging
           everyday creativity while ensuring outputs are diverse, realistic, and
           deeply personal, thereby enhancing the social chat experience."
-        </h6>
+        </h4>
+
+        <Section>
+          <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+            <Image
+              src="/images/easel/EaselScreens.png"
+              alt="font design"
+              width="1920"
+              height="611"
+            />
+          </div>
+        </Section>
       </Section>
       {/* <DetailSection
         className="px-10 "

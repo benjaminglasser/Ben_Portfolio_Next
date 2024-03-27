@@ -10,8 +10,8 @@ const WorkSection = () => {
       title: "Easel AI",
       description:
         "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: "/Media/Easel/EaselThumbPrimary.gif",
-      path: "https://www.easelapps.ai/",
+      thumbnail: "/Media/Easel/EaselThumb2.gif",
+      path: "work-detail/easel",
       externalLink: true,
       tools: [
         "Figma",

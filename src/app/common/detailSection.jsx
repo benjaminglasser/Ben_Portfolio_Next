@@ -26,7 +26,7 @@ const DetailSection = ({
         } detail-section`}
       >
         <div
-          className={`${widthFull ? "w-full" : "w-full md:w-1/2 lg:3/6"} my-6`}
+          className={`${widthFull ? "w-full" : "w-full md:w-3/5 lg:3/6"} my-6`}
         >
           {title && <h3 className="ojuju">{title}</h3>}
           <div ref={ref}>

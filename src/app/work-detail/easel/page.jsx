@@ -1,92 +1,174 @@
 "use client";
 import React from "react";
 import Context from "../../common/context";
-import AIM from "../../common/aim";
+import ZigzagHeader from "../../common/zigzagHeader";
 import DetailSection from "../../common/detailSection";
-import { IMAGES } from "../../../../public/images";
 import Section from "@/app/common/Section";
 import Image from "next/image";
 import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 
 const Canary = () => {
-  const TRANPARENCY_IMAGES = [IMAGES.TRANS_HOME, IMAGES.INFO, IMAGES.PRESS];
   const redirectToFinalWebsite = () => {
-    window.location.href = "https://canary-alt.vercel.app/";
+    window.location.href = "https://www.easelapps.ai/";
   };
+
   return (
     <div className="w-full text-white">
-      <div className="flex justify-center items-center">
-        <div className="mt-10 px-10 w-4/5 md:w-3/5">
-          <VideoPlayerExternal
-            widthFull
-            className="aspect-w-16 aspect-h-9"
-            src="https://www.youtube.com/embed/wsxNn9A56BQ?si=ntoM4eAVuQhC5n6S"
+      <Section>
+        <div>
+          <Image
+            src="/images/easel/banner.png"
+            alt="font design"
+            width="1920"
+            height="891"
           />
         </div>
-      </div>
+      </Section>
 
       <Section>
-        <div className="w-full text-center">
+        <ZigzagHeader
+          title="Easel AI"
+          description="Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage"
+          extendedDescription="An AI-first social chat experience, Easel AI transforms how users connect and express themselves through photorealistic and creative avatars. Integrated seamlessly within iMessage, it invites users to create, remix, and share avatars in novel and imaginative ways. As Lead Product Designer, I spearheaded the design process, from conceptualization to the development of a cohesive design system, ensuring every interface is intuitive, brand-aligned, and fosters a creative social interaction"
+          time="2023 - Present"
+          role="Lead Product Designer"
+          tools={["Figma, After Effects, Design Thinking, UX/UI"]}
+        />
+      </Section>
+
+      <Section>
+        <VideoPlayerExternal
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/wsxNn9A56BQ?si=ntoM4eAVuQhC5n6S"
+        />
+      </Section>
+
+      <Section>
+        <div className="w-full text-center px-5 pb-10">
           <FancyButton
-            className="uppercase mt-28 ojuju  p-1 hover:text-white"
+            className="uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >
-            FINAL WEBSITE
+            PRODUCT WEBSITE
           </FancyButton>
         </div>
       </Section>
-      <video autoPlay muted loop src={IMAGES.CANARY_MAIN} />
-      <Context
-        title="CONTEXT"
-        context="Canary is a program for sound, video, performance, and installation work. Through site-specific exhibitions they expect artists to use their unique resources and platform to challenge audiences with critical work and subject matter."
-      />
-      <AIM
-        className="mt-16"
-        aim="The gallery requested a sleak and minimal website that allows for them to showcase the multiplicity of artists that come through their space."
-      />
-      <DetailSection
+
+      <Section>
+        <Context
+          title="CONTEXT"
+          context="In a rapidly evolving digital landscape, Easel AI stands out by enriching communication with personalized, AI-powered avatars, making every interaction memorable and uniquely expressive."
+        />
+      </Section>
+
+      <Section>
+        <DetailSection
+          className="px-5 md:px-10 "
+          title="Brand Identity and Design System Development"
+          description="Defined and evolved the Easel AI brand, establishing a visual language through logos, typefaces, and color schemes that resonate with our diverse user base."
+          left
+        />
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/LogoDesign.png"
+            alt="logo design"
+            width="1920"
+            height="611"
+          />
+        </div>
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/ColorDesign.png"
+            alt="color design"
+            width="1920"
+            height="611"
+          />
+        </div>
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/fontDesign.png"
+            alt="font design"
+            width="1920"
+            height="891"
+          />
+        </div>
+      </Section>
+      <Section>
+        <DetailSection
+          className="px-5 md:px-10"
+          title="User Interface Design"
+          description="Crafted user-centric interfaces for Easel AI's app, emphasizing simplicity and intuitiveness while remaining true to our brand guidelines. My role extended to designing a low-friction onboarding process for avatar training and implementing a system for gathering and acting on user feedback for continual updates."
+          center
+          widthFull
+        />
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/Flow.png"
+            alt="font design"
+            width="1920"
+            height="611"
+          />
+        </div>
+      </Section>
+
+      <Section>
+        <h6 className="mt-8 md:font-thin px-5 md:px-10">
+          Collaborating with a skilled engineering team, we crafted a backend
+          system that abstracts intricate prompt engineering, accepting simple
+          user inputs. This method demystifies AI for users, encouraging
+          everyday creativity while ensuring outputs are diverse, realistic, and
+          deeply personal, thereby enhancing the social chat experience."
+        </h6>
+      </Section>
+      {/* <DetailSection
         className="px-10 "
-        title="UI Considerations"
-        description="A key feature of this build involved including a 24hr livestream of the gallery at all times to be displayed soley on the landing page. It was important to create a design language that wouldn't overshadow this focal point."
+        title="Collaboration and Workflow Management"
+        description="Led a synergistic effort between product, engineering, and AI teams, ensuring seamless workflows and the successful realization of product features."
         left={false}
-        images={[IMAGES.UI_CONSIDERATION]}
-      />
-      <DetailSection
-        className="px-10 "
-        title="Transparency"
-        description='The main theme of this website was centered around transparency. Therefore, transparent "glasslike" modals were used to reinforce this concept to display necesarry information about the gallery, press information, and specific shows (current and previous).'
-        center
-      />
-      {TRANPARENCY_IMAGES?.map((image, idx) => (
-        <Section>
-          <div className="w-full flex justify-center mt-16">
-            <Image
-              className="w-full md:w-1/2"
-              src={image}
-              key={idx}
-              alt="transparency images"
-            />
-          </div>
-        </Section>
-      ))}
-      <DetailSection
-        className="px-10 "
-        title="Tech Stack"
-        description="It was necessary to build a headless CMS for the client to easily update and add specfic content while also allowing for the customizability and flexibility of a modern frontend framework. Therfore, it was decided to use Contentful for the content management that would easily hook into a Next JS custom front end. Careful consideration was given to the designs to allow for the flexibility of ever changing content."
-        left
-      />
-      <div className="flex justify-center w-full">
-        <video className="w-5/6" autoPlay muted loop src={IMAGES.CMS} />
-      </div>
-      <DetailSection
-        className="px-10 "
-        title="Mobile Responsiveness"
-        description="The site needed to be available on mobile as well because a large demographic would be visiting on their phones."
-        left={false}
-        images={[IMAGES.MOBILE_VIEW]}
-      />
+      /> */}
+      <Section>
+        <DetailSection
+          className="px-5 md:px-10"
+          title="Feature Development"
+          description="Developed a comprehensive design system that scales, fostering the integration of key features such as diverse avatar styles, text overlays, and an explore feed, thereby enriching user interaction. Simultaneously, I led a synergistic effort among product, engineering, and AI teams to ensure seamless workflows, facilitating the successful realization of these product features."
+          center
+          widthFull
+        />
+      </Section>
+      <Section>
+        <VideoPlayerExternal
+          center
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/smcIkta5rR8?si=K-_T4XT4l7POqkda"
+        />
+      </Section>
+      <Section>
+        <DetailSection
+          className="px-5 md:px-10"
+          title="Multiplayer"
+          description="Oversaw the design, implementation, and launch of our most recent major feature: multiplayer capabilities, a complex project that emphasized ethical consent and real-time user interaction. This role involved navigating the challenges of integrating seamless, consent-based multiplayer experiences, culminating in the development of compelling launch assets to ensure user engagement and understanding"
+          center
+          widthFull
+        />
+      </Section>
+      <Section>
+        <VideoPlayerExternal
+          widthFull
+          className="aspect-w-16 aspect-h-9"
+          src="https://www.youtube.com/embed/l8W-Vv5kQ-4?si=SpxebEcIPqc1_7Q2"
+        />
+      </Section>
     </div>
   );
 };

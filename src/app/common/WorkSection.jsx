@@ -30,7 +30,7 @@ const WorkSection = () => {
       description: "Developing next-generation XR products and systems",
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
-      thumbnail: "/Media/BMW/dancingCarBlack.gif",
+      thumbnail: "/images/bmw/dancingCar.gif",
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {

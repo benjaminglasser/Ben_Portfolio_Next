@@ -11,6 +11,7 @@ const Info = () => {
   const tools = [
     "Unity",
     "Unreal Engine",
+    "Figma",
     "MadMapper",
     "TouchDesigner",
     "Raspberry Pi",
@@ -21,7 +22,6 @@ const Info = () => {
     "Premiere",
     "After Effects",
     "InDesign",
-    "XD",
     "Ableton",
     "Pencils + Paper",
   ];

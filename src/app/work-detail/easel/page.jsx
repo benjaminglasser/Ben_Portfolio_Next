@@ -74,44 +74,6 @@ const Canary = () => {
 
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
-          title="Brand Identity and Design System Development"
-          description="Defined and evolved the Easel AI brand, establishing a visual language through logos, typefaces, and color schemes that resonate with our diverse user base."
-          left
-        />
-      </Section>
-      <Section>
-        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
-          <Image
-            src="/images/easel/LogoDesign.png"
-            alt="logo design"
-            width="1920"
-            height="611"
-          />
-        </div>
-      </Section>
-      <Section>
-        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
-          <Image
-            src="/images/easel/ColorDesign.png"
-            alt="color design"
-            width="1920"
-            height="611"
-          />
-        </div>
-      </Section>
-      <Section>
-        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
-          <Image
-            src="/images/easel/fontDesign.png"
-            alt="font design"
-            width="1920"
-            height="891"
-          />
-        </div>
-      </Section>
-      <Section>
-        <DetailSection
           className="px-5 md:px-10"
           title="User Interface Design"
           description="Crafted user-centric interfaces for Easel AI's app, emphasizing simplicity and intuitiveness while remaining true to our brand guidelines. My role extended to designing a low-friction onboarding process for avatar training and implementing a system for gathering and acting on user feedback for continual updates."
@@ -187,6 +149,44 @@ const Canary = () => {
           className="aspect-w-16 aspect-h-9"
           src="https://www.youtube.com/embed/l8W-Vv5kQ-4?si=SpxebEcIPqc1_7Q2"
         />
+      </Section>
+      <Section>
+        <DetailSection
+          className="px-5 md:px-10 "
+          title="Brand Identity and Design System Development"
+          description="Defined and evolved the Easel AI brand, establishing a visual language through logos, typefaces, and color schemes that resonate with our diverse user base."
+          left
+        />
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/LogoDesign.png"
+            alt="logo design"
+            width="1920"
+            height="611"
+          />
+        </div>
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/ColorDesign.png"
+            alt="color design"
+            width="1920"
+            height="611"
+          />
+        </div>
+      </Section>
+      <Section>
+        <div className="flex justify-center w-full px-5 md:px-10 mt-5">
+          <Image
+            src="/images/easel/fontDesign.png"
+            alt="font design"
+            width="1920"
+            height="891"
+          />
+        </div>
       </Section>
     </div>
   );

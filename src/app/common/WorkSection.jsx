@@ -12,7 +12,6 @@ const WorkSection = () => {
         "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
       thumbnail: "/Media/Easel/EaselThumb2.gif",
       path: "work-detail/easel",
-      externalLink: true,
       tools: [
         "Figma",
         "Stable Diffusion XL",

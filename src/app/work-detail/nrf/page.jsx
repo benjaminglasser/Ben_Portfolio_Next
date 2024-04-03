@@ -16,7 +16,7 @@ import ImageGrid from "@/app/common/ImageGrid";
 const NRF = () => {
   const videos = [
     {
-      url: "/Media/NRF/Clear_Canvas_Proj.mp4",
+      url: "/Media/NRF/clear_canvas.mp4",
       title: "Title2",
       caption: "01 // Transparency Effect",
     },

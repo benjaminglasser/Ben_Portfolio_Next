@@ -43,7 +43,6 @@ const Info = () => {
     "P5.js",
     "Processing",
     "Three.js",
-    "EDUCATION",
   ];
 
   const ThreeComponent = dynamic(() => import("./three"), { ssr: false });

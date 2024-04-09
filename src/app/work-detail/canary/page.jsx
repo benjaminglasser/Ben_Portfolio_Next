@@ -17,7 +17,7 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
-        className="mt-12 md:h-[750px] md:mt-0"
+        className="mt-12 md:px-24"
         video="/Media/Canary/canaryHero.mp4"
       />
 

@@ -79,7 +79,7 @@ const WorkSection = () => {
     },
     {
       role: "Spatial Design Research and Speculation",
-      time: "October 2022 - April 2023",
+      time: "October 2022",
       title: "The Spatial Page",
       description:
         "How spatialization is redefining our reality, memory, and experience",

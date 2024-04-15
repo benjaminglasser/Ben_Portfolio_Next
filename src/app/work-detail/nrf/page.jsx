@@ -88,6 +88,7 @@ const NRF = () => {
       <Section>
         <VideoPlayerInternal centered video="/Media/NRF/FinalNRFDisplay.mp4" />
       </Section>
+
       <Section>
         <Context
           title="CONTEXT"
@@ -143,6 +144,9 @@ const NRF = () => {
             </div>
           </div>
         </div>
+      </Section>
+      <Section>
+        <VideoPlayerInternal video="/Media/NRF/Bubbles_Web.mp4" />
       </Section>
     </div>
   );

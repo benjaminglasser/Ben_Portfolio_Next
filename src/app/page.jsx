@@ -18,7 +18,7 @@ export default function Home() {
       <HomePageExtraInfo />
       <VideoPlayerInternal
         className="h-[500px] md:h-[70vh]"
-        video="/Media/Home/water_main_hero_v4.mp4"
+        video="/Media/Home/water_main_hero_v3.mp4"
       />
       <h4 className="text-mute mt-8 md:mt-14">
         <strong>SELECTED WORKS</strong>

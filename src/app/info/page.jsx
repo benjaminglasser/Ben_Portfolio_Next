@@ -39,7 +39,6 @@ const Info = () => {
     "MongoDB",
     "Express",
     "NodeJS",
-    "Blender",
     "P5.js",
     "Processing",
     "Three.js",

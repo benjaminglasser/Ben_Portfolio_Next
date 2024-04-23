@@ -12,6 +12,9 @@ const Canary = () => {
   const redirectToFinalWebsite = () => {
     window.location.href = "https://www.easelapps.ai/";
   };
+  const redirectToTechCrunch = () => {
+    window.location.href = "https://tcrn.ch/4d7ZF8i";
+  };
 
   return (
     <div className="w-full text-white">
@@ -54,13 +57,25 @@ const Canary = () => {
       </Section>
 
       <Section>
-        <div className="w-full text-center px-5 pb-10">
+        <div className="w-full text-center px-5">
           <FancyButton
             className="uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
             onClick={redirectToFinalWebsite}
           >
             PRODUCT WEBSITE
+          </FancyButton>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="w-full text-center px-5 pb-10">
+          <FancyButton
+            className="uppercase w-full md:w-3/5 mt-8 ojuju p-1 hover:text-white"
+            size="medium"
+            onClick={redirectToTechCrunch}
+          >
+            READ OUR WRITEUP IN TECH CRUNCH
           </FancyButton>
         </div>
       </Section>

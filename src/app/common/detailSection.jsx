@@ -40,7 +40,9 @@ const DetailSection = ({
               }}
             />
           </div>
-          {description && <h4 className="mt-3 md:font-thin">{description}</h4>}
+          {description && (
+            <h4 className="mt-3 text-subheading">{description}</h4>
+          )}
         </div>
       </div>
       {video && <video autoPlay muted loop src={video} />}

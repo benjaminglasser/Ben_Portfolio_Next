@@ -90,7 +90,7 @@ const Odyssey = () => {
         />
       </Section>
       <Section>
-        <h4 className="px-5 md:px-10 mt-16 md:font-thin">
+        <h4 className="px-5 md:px-10 mt-16 text-subheading">
           This involved careful shot composition, including a detailed day/night
           sequence, to capture the essence of the original film while showcasing
           the capabilities of our virtual production space. The process required
@@ -102,7 +102,7 @@ const Odyssey = () => {
         <VideoPlayerInternal video="/Media/Odyssey/Process_1.mp4" centered />
       </Section>
       <Section>
-        <h4 className="px-5 md:px-10 mt-16 md:font-thin">
+        <h4 className="px-5 md:px-10 mt-16 text-subheading">
           This tight turnaround necessitated quick adaptation and precise
           calibration to ensure that the digital environment seamlessly matched
           the physical set pieces. The goal was to create an experience that was

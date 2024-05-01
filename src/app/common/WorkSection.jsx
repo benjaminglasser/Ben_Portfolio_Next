@@ -89,8 +89,8 @@ const WorkSection = () => {
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
     },
     {
-      role: "Web Development, Designs, 3D Models",
-      time: "2022",
+      role: "Web Development, Designs, 3D Modeling, Performance Visuals",
+      time: "2021",
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for the Voyager record label",
@@ -131,7 +131,7 @@ const WorkSection = () => {
     },
     {
       role: "Designer / Engineer",
-      time: "Fall 2021",
+      time: "Fall 2020",
       title: "Reakt Light",
       description: "Customizable audio reactive lighting system",
       thumbnail: "/images/reakt/reaktHero3.gif",
@@ -164,7 +164,7 @@ const WorkSection = () => {
     // },
     {
       role: "Animator / Creative Director",
-      time: "2021",
+      time: "2019",
       title: "Meaningful Pursuits",
       description: "Album Visuals",
       thumbnail: "/images/meaningfulPursuits/Hero1.gif",

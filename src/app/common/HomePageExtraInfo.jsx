@@ -11,7 +11,7 @@ const HomePageExtraInfo = () => {
         </p>
         <div className="description absolute right-0 bottom-0">
           <p className="text-end text-white">born 1994</p>
-          <p className="text-end text-white">34°04'35.8"N 118°15'33.5"W</p>
+          <p className="text-end text-white">34°04'35"N 118°15'33"W</p>
           <p className="text-end text-white">
             experience designer at{" "}
             <span className="ojuju text-white hover:text-black">

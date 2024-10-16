@@ -34,7 +34,7 @@ const Canary = () => {
           title="Easel AI"
           description="Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage"
           extendedDescription="As Lead Product Designer, I spearheaded the design process, from conceptualization to the development of a cohesive design system, ensuring every interface is intuitive, brand-aligned, and fosters a creative social interaction. An AI-first social chat experience, Easel AI transforms how users connect and express themselves through photorealistic and creative avatars. Integrated seamlessly within iMessage, it invites users to create, remix, and share avatars in novel and imaginative ways."
-          time="2023 - Present"
+          time="2023 - 2024"
           role="Lead Product Designer"
           tools={[
             "Figma",

@@ -5,24 +5,6 @@ import WorkCard from "./WorkCard";
 const WorkSection = () => {
   const WORK_CONTENT = [
     {
-      role: "Lead Product Designer",
-      time: "2023 - Present",
-      title: "Easel AI",
-      description:
-        "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: "/Media/Easel/EaselThumb2.gif",
-      path: "work-detail/easel",
-      tools: [
-        "Figma",
-        "Stable Diffusion XL",
-        "After Effects",
-        "Unreal Engine",
-        "Premiere Pro",
-        "Design Thinking",
-        "User Studies",
-      ],
-    },
-    {
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",
@@ -45,6 +27,24 @@ const WorkSection = () => {
       thumbnail: "/Media/NRF/Clear_Canvas_Thumb.gif",
       path: "work-detail/nrf",
       tools: ["Blender"],
+    },
+    {
+      role: "Lead Product Designer",
+      time: "2023 - 2024",
+      title: "Easel AI",
+      description:
+        "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
+      thumbnail: "/Media/Easel/EaselThumb2.gif",
+      path: "work-detail/easel",
+      tools: [
+        "Figma",
+        "Stable Diffusion XL",
+        "After Effects",
+        "Unreal Engine",
+        "Premiere Pro",
+        "Design Thinking",
+        "User Studies",
+      ],
     },
     {
       role: "3D Graphics and Simulation",

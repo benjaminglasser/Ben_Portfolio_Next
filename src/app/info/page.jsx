@@ -53,7 +53,7 @@ const Info = () => {
           <h1 className="text-justify ojuju mb-10 bio">
             Exploring the unknown with curiosity and passion, I blend
             audio-visual storytelling with innovative design across 2D, 3D, and
-            mixed reality. Currently leading Product Design at
+            mixed reality. Currently working on some fun projects at
             {/* I am drawn to the reciprocity between seemingly
             disparate realms: nature and architecture, the analog and digital
             worlds, light and sound, and chaos and order. Ultimately, I seek to
@@ -62,8 +62,8 @@ const Info = () => {
               className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
               // size="large"
             >
-              <a href="https://www.easelapps.ai" target="_blank">
-                Easel AI
+              <a href="https://www.adobe.com/" target="_blank">
+                Adobe
               </a>
             </FancyButton>
           </h1>

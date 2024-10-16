@@ -85,7 +85,7 @@ const Info = () => {
           </Grid>
           <h4 className="mb-0 mt-16 font-normal">EDUCATION</h4>
           <p className="w-full md:w-1/2 text-justify">
-            MFA Media Design Practices, ArtCenter College of Design{" "}
+            MFA Candidate Media Design Practices, ArtCenter College of Design{" "}
           </p>
           <p className="w-full md:w-1/2 text-justify">
             BA Cognitive Science, University of Southern California

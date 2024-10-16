@@ -9,25 +9,6 @@ const WorkCard = dynamic(() => import("../common/WorkCard"), { ssr: false });
 const Work = () => {
   const WORK_CONTENT = [
     {
-      role: "Lead Product Designer",
-      time: "Spring 2023 - Summer 2024",
-      title: "Easel AI",
-      description:
-        "Express with Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: "/Media/Easel/EaselThumbPrimary.gif",
-      path: "https://www.easelapps.ai/",
-      externalLink: true,
-      tools: [
-        "Figma",
-        "Stable Diffusion XL",
-        "After Effects",
-        "Unreal Engine",
-        "Premiere Pro",
-        "Design Thinking",
-        "User Studies",
-      ],
-    },
-    {
       role: "XR Interaction",
       time: "Summer 2022 - Fall 2022",
       title: "BMW",
@@ -50,6 +31,25 @@ const Work = () => {
       thumbnail: "/Media/NRF/Clear_Canvas_Thumb.gif",
       path: "work-detail/nrf",
       tools: ["Blender"],
+    },
+    {
+      role: "Lead Product Designer",
+      time: "Spring 2023 - Summer 2024",
+      title: "Easel AI",
+      description:
+        "Express with Easel. An AI-powered personal avatar app directly in iMessage",
+      thumbnail: "/Media/Easel/EaselThumbPrimary.gif",
+      path: "https://www.easelapps.ai/",
+      externalLink: true,
+      tools: [
+        "Figma",
+        "Stable Diffusion XL",
+        "After Effects",
+        "Unreal Engine",
+        "Premiere Pro",
+        "Design Thinking",
+        "User Studies",
+      ],
     },
     {
       role: "3D Graphics and Simulation",

@@ -4,25 +4,37 @@
 // import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
 import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
-
-import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
+import React, { useState } from "react";
+import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 
 export default function Home() {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="relative">
+      
       {/* <div
         className="home-wrapper"
         style={{ height: "calc(100vh - 300px)" }}
       ></div> */}
       {/* <TickerCntr /> */}
+     
+      
       <HomePageExtraInfo />
-      <VideoPlayerInternal
-        className="h-[500px] md:h-[70vh]"
-        video="/Media/Home/water_main_hero_v3.mp4"
-      />
-      <h4 className="text-mute mt-8 md:mt-14">
-        <strong>SELECTED WORKS</strong>
-      </h4>
+      <VideoPlayerHome
+        // className="h-[500px] md:h-[70vh]"
+        video1="/Media/Home/water_v2_MAIN.mp4"
+        video2="/Media/Home/water_v2_WIREFRAME.mp4"
+        isHovered={isHovered} // Pass hover state as a prop
+        />
+      <h4
+  className={`mt-8 w-[220px] md:mt-14 ${
+    isHovered ? "text-pink" : "text-mute"
+  } transition-colors duration-300`}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+  <strong>SELECTED WORKS</strong>
+</h4>
       <div className="mt-4 md:mt-8">
         <WorkSection />
       </div>

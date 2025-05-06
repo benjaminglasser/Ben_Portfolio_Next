@@ -10,6 +10,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [maskSize, setMaskSize] = useState(0);
   const animationFrameRef = useRef(null);
+  const breatheAnimationRef = useRef(null);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -56,13 +57,40 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     };
   }, [mousePosition, isHovering]);
 
-  // Effect to handle mask size animation
+  // Effect to handle breathing animation
   useEffect(() => {
     if (!isHovering) {
       setMaskSize(0);
+      if (breatheAnimationRef.current) {
+        cancelAnimationFrame(breatheAnimationRef.current);
+      }
       return;
     }
-    setMaskSize(150); // Fixed size
+
+    let startTime = null;
+    const baseSize = 140;
+    const maxSize = 155;
+    const duration = 12000; // 6 seconds
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = (timestamp - startTime) % duration;
+      const phase = progress / duration;
+
+      // Use sine wave for smooth breathing
+      const size = baseSize + (maxSize - baseSize) * Math.sin(phase * Math.PI * 2);
+      setMaskSize(size);
+
+      breatheAnimationRef.current = requestAnimationFrame(animate);
+    };
+
+    breatheAnimationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (breatheAnimationRef.current) {
+        cancelAnimationFrame(breatheAnimationRef.current);
+      }
+    };
   }, [isHovering]);
 
   // Initialize videos
@@ -77,13 +105,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
 
   return (
     <div className={`${centered ? "flex justify-center items-center" : "block"}`}>
-      <style jsx>{`
-        @keyframes breathe {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
-      `}</style>
       <div
         ref={containerRef}
         className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh] relative
@@ -110,8 +131,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
             maskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
             WebkitMaskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
             transition: 'mask-image 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-mask-image 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-            animation: isHovering ? 'breathe 6s cubic-bezier(0.4, 0, 0.2, 1) infinite' : 'none',
-            transformOrigin: `${maskPosition.x}px ${maskPosition.y}px`,
           }}
           autoPlay
           loop

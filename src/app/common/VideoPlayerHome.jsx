@@ -11,6 +11,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const [maskSize, setMaskSize] = useState(0);
   const animationFrameRef = useRef(null);
   const breatheAnimationRef = useRef(null);
+  const entranceAnimationRef = useRef(null);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -28,6 +29,13 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
 
   const handleMouseLeave = () => {
     setIsHovering(false);
+    setMaskSize(0);
+    if (breatheAnimationRef.current) {
+      cancelAnimationFrame(breatheAnimationRef.current);
+    }
+    if (entranceAnimationRef.current) {
+      cancelAnimationFrame(entranceAnimationRef.current);
+    }
   };
 
   // Effect to handle mask position animation
@@ -57,20 +65,56 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     };
   }, [mousePosition, isHovering]);
 
-  // Effect to handle breathing animation
+  // Effect to handle entrance animation
   useEffect(() => {
-    if (!isHovering) {
-      setMaskSize(0);
-      if (breatheAnimationRef.current) {
-        cancelAnimationFrame(breatheAnimationRef.current);
-      }
-      return;
-    }
+    if (!isHovering) return;
 
+    const startTime = performance.now();
+    const duration = 800; // Slightly longer duration for bounce
+    const startSize = 80;
+    const endSize = 160;
+
+    const animateEntrance = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Spring-like bounce effect
+      const bounce = (t) => {
+        const c4 = (2 * Math.PI) / 3;
+        return t === 0
+          ? 0
+          : t === 1
+          ? 1
+          : Math.pow(2, -8 * t) * Math.sin((t * 4 - 0.75) * c4) + 1;
+      };
+      
+      const currentSize = startSize + (endSize - startSize) * bounce(progress);
+      
+      setMaskSize(currentSize);
+
+      if (progress < 1) {
+        entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
+      } else {
+        // Start breathing animation after entrance is complete
+        startBreathingAnimation();
+      }
+    };
+
+    entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
+
+    return () => {
+      if (entranceAnimationRef.current) {
+        cancelAnimationFrame(entranceAnimationRef.current);
+      }
+    };
+  }, [isHovering]);
+
+  // Function to start breathing animation
+  const startBreathingAnimation = () => {
     let startTime = null;
-    const baseSize = 140;
-    const maxSize = 155;
-    const duration = 12000; // 6 seconds
+    const baseSize = 160;
+    const maxSize = 167;
+    const duration = 8000; // 6 seconds
 
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
@@ -85,13 +129,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     };
 
     breatheAnimationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (breatheAnimationRef.current) {
-        cancelAnimationFrame(breatheAnimationRef.current);
-      }
-    };
-  }, [isHovering]);
+  };
 
   // Initialize videos
   useEffect(() => {

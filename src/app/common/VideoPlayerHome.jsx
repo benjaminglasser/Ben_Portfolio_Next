@@ -22,25 +22,12 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   };
 
   const handleMouseEnter = () => {
-    console.log('Mouse Enter - Setting isHovering to true');
     setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
-    console.log('Mouse Leave - Setting isHovering to false');
     setIsHovering(false);
   };
-
-  // Effect to handle mask size animation
-  useEffect(() => {
-    if (isHovering) {
-      console.log('Starting mask animation to 150px');
-      setMaskSize(150);
-    } else {
-      console.log('Resetting mask size to 0px');
-      setMaskSize(0);
-    }
-  }, [isHovering]);
 
   // Effect to handle mask position animation
   useEffect(() => {
@@ -56,6 +43,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
         x: prevPos.x + (mousePosition.x - prevPos.x) * 0.1,
         y: prevPos.y + (mousePosition.y - prevPos.y) * 0.1
       }));
+
       animationFrameRef.current = requestAnimationFrame(updateMaskPosition);
     };
 
@@ -67,6 +55,15 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
       }
     };
   }, [mousePosition, isHovering]);
+
+  // Effect to handle mask size animation
+  useEffect(() => {
+    if (!isHovering) {
+      setMaskSize(0);
+      return;
+    }
+    setMaskSize(150); // Fixed size
+  }, [isHovering]);
 
   // Initialize videos
   useEffect(() => {
@@ -132,11 +129,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         />
-
-        {/* Debug text */}
-        <div className="absolute top-4 left-4 z-50 text-white bg-black p-2 pointer-events-none">
-          {`Hover: ${isHovering ? 'Yes' : 'No'}, Size: ${maskSize}px`}
-        </div>
       </div>
     </div>
   );

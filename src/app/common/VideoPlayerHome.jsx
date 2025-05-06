@@ -1,22 +1,69 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
-const VideoPlayerHome = ({ video1, video2, className, centered, isHovered }) => {
+const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
+  const containerRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  // Initialize videos
+  useEffect(() => {
+    if (video1Ref.current && video2Ref.current) {
+      video1Ref.current.currentTime = 0;
+      video2Ref.current.currentTime = 0;
+      video1Ref.current.play().catch(console.error);
+      video2Ref.current.play().catch(console.error);
+    }
+  }, []);
 
   return (
     <div className={`${centered ? "flex justify-center items-center" : "block"}`}>
       <div
-        className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh]
+        ref={containerRef}
+        className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh] relative
                     ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}`}
       >
-        {/* Video 1 */}
+        {/* Video 2 (Wireframe) - Always visible underneath */}
+        <video
+          ref={video2Ref}
+          className="object-cover w-full h-[500px] md:h-[70vh] absolute"
+          autoPlay
+          loop
+          playsInline
+          muted
+        >
+          <source src={video2} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Video 1 (Main) - On top with mask */}
         <video
           ref={video1Ref}
-          className={`object-cover w-full h-[500px] md:h-[70vh] absolute transition-opacity duration-200 ${
-            isHovered ? "opacity-0" : "opacity-100"
-          }`}
+          className="object-cover w-full h-[500px] md:h-[70vh] absolute"
+          style={{
+            maskImage: isHovering ? `radial-gradient(circle 150px at ${mousePosition.x}px ${mousePosition.y}px, transparent 99%, black 100%)` : 'none',
+            WebkitMaskImage: isHovering ? `radial-gradient(circle 150pxat ${mousePosition.x}px ${mousePosition.y}px, transparent 99%, black 100%)` : 'none',
+          }}
           autoPlay
           loop
           playsInline
@@ -26,20 +73,13 @@ const VideoPlayerHome = ({ video1, video2, className, centered, isHovered }) => 
           Your browser does not support the video tag.
         </video>
 
-        {/* Video 2 */}
-        <video
-          ref={video2Ref}
-          className={`object-cover w-full h-[500px] md:h-[70vh] absolute transition-opacity duration-200 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
-          autoPlay
-          loop
-          playsInline
-          muted
-        >
-          <source src={video2} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Invisible overlay to capture mouse events */}
+        <div
+          className="absolute inset-0 z-30 cursor-pointer"
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
       </div>
     </div>
   );

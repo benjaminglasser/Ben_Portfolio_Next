@@ -145,11 +145,27 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           video1Ref.current.style.opacity = '0';
           video2Ref.current.style.opacity = '0';
 
-          // Load both videos
-          await Promise.all([
-            video1Ref.current.load(),
-            video2Ref.current.load()
-          ]);
+          // Preload both videos
+          video1Ref.current.preload = 'auto';
+          video2Ref.current.preload = 'auto';
+
+          // Create promises for both videos to be loaded
+          const video1LoadPromise = new Promise((resolve) => {
+            video1Ref.current.addEventListener('loadeddata', resolve, { once: true });
+            video1Ref.current.load();
+          });
+
+          const video2LoadPromise = new Promise((resolve) => {
+            video2Ref.current.addEventListener('loadeddata', resolve, { once: true });
+            video2Ref.current.load();
+          });
+
+          // Wait for both videos to be loaded
+          await Promise.all([video1LoadPromise, video2LoadPromise]);
+
+          // Ensure both videos are at the start
+          video1Ref.current.currentTime = 0;
+          video2Ref.current.currentTime = 0;
 
           // Start both videos simultaneously
           const playPromises = [
@@ -182,7 +198,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
                     ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}`}
       >
         {loading && (
-          <div className="absolute inset-0 flex justify-center items-center bg-black/50 z-20">
+          <div className="absolute inset-0 flex justify-center items-center z-20">
             <PuffLoader
               color="#ff477b"
               loading

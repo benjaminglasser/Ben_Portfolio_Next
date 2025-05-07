@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
+import { PuffLoader } from "react-spinners";
 
 const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const video1Ref = useRef(null);
@@ -9,6 +10,9 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const [maskPosition, setMaskPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [maskSize, setMaskSize] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
   const animationFrameRef = useRef(null);
   const breatheAnimationRef = useRef(null);
   const entranceAnimationRef = useRef(null);
@@ -49,8 +53,8 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
 
     const updateMaskPosition = () => {
       setMaskPosition(prevPos => ({
-        x: prevPos.x + (mousePosition.x - prevPos.x) * 0.1,
-        y: prevPos.y + (mousePosition.y - prevPos.y) * 0.1
+        x: prevPos.x + (mousePosition.x - prevPos.x) * 0.15,
+        y: prevPos.y + (mousePosition.y - prevPos.y) * 0.15
       }));
 
       animationFrameRef.current = requestAnimationFrame(updateMaskPosition);
@@ -70,22 +74,21 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     if (!isHovering) return;
 
     const startTime = performance.now();
-    const duration = 800; // Slightly longer duration for bounce
-    const startSize = 80;
-    const endSize = 160;
+    const duration = 1000;
+    const startSize = 100;
+    const endSize = 180;
 
     const animateEntrance = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // Spring-like bounce effect
       const bounce = (t) => {
         const c4 = (2 * Math.PI) / 3;
         return t === 0
           ? 0
           : t === 1
           ? 1
-          : Math.pow(2, -8 * t) * Math.sin((t * 4 - 0.75) * c4) + 1;
+          : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
       };
       
       const currentSize = startSize + (endSize - startSize) * bounce(progress);
@@ -95,7 +98,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
       if (progress < 1) {
         entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
       } else {
-        // Start breathing animation after entrance is complete
         startBreathingAnimation();
       }
     };
@@ -112,16 +114,15 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   // Function to start breathing animation
   const startBreathingAnimation = () => {
     let startTime = null;
-    const baseSize = 160;
-    const maxSize = 167;
-    const duration = 8000; // 6 seconds
+    const baseSize = 180;
+    const maxSize = 190;
+    const duration = 10000;
 
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = (timestamp - startTime) % duration;
       const phase = progress / duration;
 
-      // Use sine wave for smooth breathing
       const size = baseSize + (maxSize - baseSize) * Math.sin(phase * Math.PI * 2);
       setMaskSize(size);
 
@@ -131,13 +132,45 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     breatheAnimationRef.current = requestAnimationFrame(animate);
   };
 
-  // Initialize videos
+  // Initialize videos with synchronization
   useEffect(() => {
     if (video1Ref.current && video2Ref.current) {
-      video1Ref.current.currentTime = 0;
-      video2Ref.current.currentTime = 0;
-      video1Ref.current.play().catch(console.error);
-      video2Ref.current.play().catch(console.error);
+      const loadVideos = async () => {
+        try {
+          // Reset both videos to start
+          video1Ref.current.currentTime = 0;
+          video2Ref.current.currentTime = 0;
+
+          // Set both videos to be invisible initially
+          video1Ref.current.style.opacity = '0';
+          video2Ref.current.style.opacity = '0';
+
+          // Load both videos
+          await Promise.all([
+            video1Ref.current.load(),
+            video2Ref.current.load()
+          ]);
+
+          // Start both videos simultaneously
+          const playPromises = [
+            video1Ref.current.play(),
+            video2Ref.current.play()
+          ];
+
+          await Promise.all(playPromises);
+
+          // Once both videos are playing, fade them in
+          setLoading(false);
+          setTimeout(() => {
+            setFadeIn(true);
+          }, 100); // Small delay to ensure smooth transition
+        } catch (error) {
+          console.error('Error loading videos:', error);
+          setError(true);
+          setLoading(false);
+        }
+      };
+      loadVideos();
     }
   }, []);
 
@@ -148,36 +181,64 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
         className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh] relative
                     ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}`}
       >
-        {/* Video 2 (Wireframe) - Always visible underneath */}
-        <video
-          ref={video2Ref}
-          className="object-cover w-full h-[500px] md:h-[70vh] absolute"
-          autoPlay
-          loop
-          playsInline
-          muted
-        >
-          <source src={video2} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {loading && (
+          <div className="absolute inset-0 flex justify-center items-center bg-black/50 z-20">
+            <PuffLoader
+              color="#ff477b"
+              loading
+              size={100}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        )}
+        
+        {error ? (
+          <div className="w-full h-full flex justify-center items-center bg-gray-100">
+            <p className="text-gray-500">Failed to load video</p>
+          </div>
+        ) : (
+          <>
+            {/* Video 2 (Wireframe) - Always visible underneath */}
+            <video
+              ref={video2Ref}
+              className="object-cover w-full h-[500px] md:h-[70vh] absolute"
+              style={{
+                opacity: fadeIn ? 1 : 0,
+                transition: 'opacity 1s ease-in-out'
+              }}
+              autoPlay
+              loop
+              playsInline
+              muted
+              loading="lazy"
+            >
+              <source src={video2} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
-        {/* Video 1 (Main) - On top with mask */}
-        <video
-          ref={video1Ref}
-          className="object-cover w-full h-[500px] md:h-[70vh] absolute"
-          style={{
-            maskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
-            WebkitMaskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
-            transition: 'mask-image 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-mask-image 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-          }}
-          autoPlay
-          loop
-          playsInline
-          muted
-        >
-          <source src={video1} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+            {/* Video 1 (Main) - On top with mask */}
+            <video
+              ref={video1Ref}
+              className="object-cover w-full h-[500px] md:h-[70vh] absolute"
+              style={{
+                opacity: fadeIn ? 1 : 0,
+                transition: 'opacity 1s ease-in-out',
+                maskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
+                WebkitMaskImage: isHovering ? `radial-gradient(circle ${maskSize}px at ${maskPosition.x}px ${maskPosition.y}px, transparent 99%, black 100%)` : 'none',
+                transition: 'opacity 1s ease-in-out, mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1), -webkit-mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+              autoPlay
+              loop
+              playsInline
+              muted
+              loading="lazy"
+            >
+              <source src={video1} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </>
+        )}
 
         {/* Invisible overlay to capture mouse events */}
         <div

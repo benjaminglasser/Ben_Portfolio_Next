@@ -5,7 +5,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import Section from "../common/Section";
 import { FancyButton } from "../common/FancyButton";
 import { IMAGES } from "../../../public/images";
-import Image from "next/image";
+import ImageWithLoader from "../common/ImageWithLoader";
 import { useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -91,12 +91,13 @@ const Play = () => {
         {itemData.map((item, idx) => (
           <Section key={idx}>
             <ImageListItem>
-              <Image
+              <ImageWithLoader
                 className="w-full"
                 src={item}
-                loading="lazy"
+                alt="Play experiment"
                 width="100"
                 height="100"
+                unoptimized={typeof item === 'string' && item.includes('.gif')}
               />
             </ImageListItem>
           </Section>

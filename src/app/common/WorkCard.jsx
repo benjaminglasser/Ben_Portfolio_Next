@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithLoader from "./ImageWithLoader";
 import Link from "next/link";
 
 const WorkCard = ({
@@ -19,12 +19,13 @@ const WorkCard = ({
       target={externalLink ? "_blank" : "_self"}
     >
       <div className="hover:border-b-[0.2px] border-mute cursor-pointer pb-1 mb-10 w-full workcard">
-        <Image
+        <ImageWithLoader
           src={thumbnail}
           alt="stemport gif"
           width="100"
           height="100"
-          className="thumbnail "
+          className="thumbnail"
+          unoptimized={thumbnail.endsWith('.gif')}
         />
         <div className="flex justify-between text-[11px] text-black font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>

@@ -3,9 +3,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import VideoPlayerExternal from "./VideoPlayerExternal";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { PuffLoader } from "react-spinners";
 
 const FancyCarousel = ({ SOURCE }) => {
   const [showIndicators, setShowIndicators] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 768) {
@@ -18,6 +21,27 @@ const FancyCarousel = ({ SOURCE }) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (SOURCE && SOURCE.length > 0) {
+      setLoading(false);
+    }
+  }, [SOURCE]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[34rem] flex justify-center items-center">
+        <PuffLoader
+          color="#ff477b"
+          loading
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
+
   return (
     <Carousel
       showStatus={false}

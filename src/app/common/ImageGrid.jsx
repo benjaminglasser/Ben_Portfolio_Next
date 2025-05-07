@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithLoader from "./ImageWithLoader";
 
 function ImageGrid({ images }) {
   return (
@@ -9,15 +9,15 @@ function ImageGrid({ images }) {
             key={index}
             className="w-full flex flex-col justify-center items-start"
           >
-            <Image
+            <ImageWithLoader
               src={img.url}
               alt={img.caption}
-              width={img.width || 500} // Use image-specific width, defaulting to 500 if not provided
-              height={img.height || 300} // Use image-specific height, defaulting to 300 if not provided
-              layout="responsive"
-              objectFit="cover" // Adjust as needed
+              width={img.width || 500}
+              height={img.height || 300}
+              className="w-full h-auto"
+              unoptimized={img.url.endsWith('.gif')}
             />
-            <p className="text-center mt-2">{img.caption}</p>
+            {img.caption && <p className="text-center mt-2">{img.caption}</p>}
           </div>
         ))}
       </div>

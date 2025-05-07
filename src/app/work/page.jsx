@@ -3,8 +3,22 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import Section from "../common/Section";
 import { IMAGES } from "../../../public/images";
 import dynamic from "next/dynamic";
+import { PuffLoader } from "react-spinners";
 
-const WorkCard = dynamic(() => import("../common/WorkCard"), { ssr: false });
+const WorkCard = dynamic(() => import("../common/WorkCard"), { 
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] flex justify-center items-center">
+      <PuffLoader
+        color="#ff477b"
+        loading
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  )
+});
 
 const Work = () => {
   const WORK_CONTENT = [
@@ -56,7 +70,7 @@ const Work = () => {
       time: "Fall 2023",
       title: "Circa DeepScreen",
       description:
-        "Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa’s Curved Display",
+        "Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa's Curved Display",
       thumbnail: "/Media/DeepScreen/_WaterTest.gif",
       path: "work-detail/deepScreen",
       tools: ["Blender"],

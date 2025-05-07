@@ -6,6 +6,8 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
   const containerRef = useRef(null);
+  const syncCheckInterval = useRef(null);
+  const lastSyncTime = useRef(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [maskPosition, setMaskPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -132,6 +134,51 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     breatheAnimationRef.current = requestAnimationFrame(animate);
   };
 
+  // Function to check and maintain video synchronization
+  const checkVideoSync = () => {
+    if (!video1Ref.current || !video2Ref.current) return;
+
+    const video1 = video1Ref.current;
+    const video2 = video2Ref.current;
+
+    // If either video is paused, pause the other
+    if (video1.paused !== video2.paused) {
+      if (video1.paused) {
+        video2.pause();
+      } else {
+        video1.pause();
+      }
+      return;
+    }
+
+    // Check if videos are out of sync (more than 0.1 seconds difference)
+    const timeDiff = Math.abs(video1.currentTime - video2.currentTime);
+    if (timeDiff > 0.1) {
+      // If out of sync, sync to the video that's further ahead
+      const targetTime = Math.max(video1.currentTime, video2.currentTime);
+      video1.currentTime = targetTime;
+      video2.currentTime = targetTime;
+    }
+
+    // If either video has ended, restart both
+    if (video1.ended || video2.ended) {
+      video1.currentTime = 0;
+      video2.currentTime = 0;
+      video1.play();
+      video2.play();
+    }
+  };
+
+  // Function to handle video errors and attempt recovery
+  const handleVideoError = (videoRef, error) => {
+    console.error('Video error:', error);
+    if (videoRef.current) {
+      // Try to reload the video
+      videoRef.current.load();
+      videoRef.current.play().catch(console.error);
+    }
+  };
+
   // Initialize videos with synchronization
   useEffect(() => {
     if (video1Ref.current && video2Ref.current) {
@@ -148,6 +195,10 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           // Preload both videos
           video1Ref.current.preload = 'auto';
           video2Ref.current.preload = 'auto';
+
+          // Add error handlers
+          video1Ref.current.addEventListener('error', (e) => handleVideoError(video1Ref, e));
+          video2Ref.current.addEventListener('error', (e) => handleVideoError(video2Ref, e));
 
           // Create promises for both videos to be loaded
           const video1LoadPromise = new Promise((resolve) => {
@@ -175,11 +226,14 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
 
           await Promise.all(playPromises);
 
+          // Start periodic sync check
+          syncCheckInterval.current = setInterval(checkVideoSync, 100);
+
           // Once both videos are playing, fade them in
           setLoading(false);
           setTimeout(() => {
             setFadeIn(true);
-          }, 100); // Small delay to ensure smooth transition
+          }, 100);
         } catch (error) {
           console.error('Error loading videos:', error);
           setError(true);
@@ -188,6 +242,19 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
       };
       loadVideos();
     }
+
+    // Cleanup function
+    return () => {
+      if (syncCheckInterval.current) {
+        clearInterval(syncCheckInterval.current);
+      }
+      if (video1Ref.current) {
+        video1Ref.current.removeEventListener('error', handleVideoError);
+      }
+      if (video2Ref.current) {
+        video2Ref.current.removeEventListener('error', handleVideoError);
+      }
+    };
   }, []);
 
   return (

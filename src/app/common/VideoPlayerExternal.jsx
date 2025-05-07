@@ -6,9 +6,15 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const handleIframeLoad = () => {
     setLoading(false);
+  };
+
+  const handleIframeError = () => {
+    setLoading(false);
+    setError(true);
   };
 
   return (
@@ -35,22 +41,29 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
               />
             </div>
           )}
-          <iframe
-            style={{
-              transform: isInView ? "none" : "translateY(50px)",
-              opacity: isInView ? 1 : 0,
-              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-            }}
-            width="100%"
-            height="100%"
-            src={src}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-            onLoad={handleIframeLoad}
-          />
+          {error ? (
+            <div className="w-full h-full flex justify-center items-center bg-gray-100">
+              <p className="text-gray-500">Failed to load video</p>
+            </div>
+          ) : (
+            <iframe
+              style={{
+                transform: isInView ? "none" : "translateY(50px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+              }}
+              width="100%"
+              height="100%"
+              src={src}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              onLoad={handleIframeLoad}
+              onError={handleIframeError}
+            />
+          )}
         </div>
       </div>
     </div>

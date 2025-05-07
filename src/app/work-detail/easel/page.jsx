@@ -177,7 +177,7 @@ const Canary = () => {
         <div className="flex justify-center w-full px-5 md:px-10 mt-5">
           <Image
             src="/images/easel/LogoDesign.png"
-            alt="logo design"
+            alt="Easel AI logo design evolution and variations"
             width="1920"
             height="611"
           />
@@ -187,7 +187,7 @@ const Canary = () => {
         <div className="flex justify-center w-full px-5 md:px-10 mt-5">
           <Image
             src="/images/easel/ColorDesign.png"
-            alt="color design"
+            alt="Easel AI color palette and design system"
             width="1920"
             height="611"
           />
@@ -197,7 +197,7 @@ const Canary = () => {
         <div className="flex justify-center w-full px-5 md:px-10 mt-5">
           <Image
             src="/images/easel/fontDesign.png"
-            alt="font design"
+            alt="Easel AI typography and font design system"
             width="1920"
             height="891"
           />

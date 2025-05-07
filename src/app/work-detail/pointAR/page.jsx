@@ -69,13 +69,13 @@ const PointAR = () => {
       <div className="flex items-start justify-center">
         <Grid container className="w-4/5">
           <Grid item xs={4}>
-            <Image src={POINTAR.ERA} alt="era" className="w-full h-full" />
+            <Image src={POINTAR.ERA} alt="ERA interface showing the evolution of the app" className="w-full h-full" />
           </Grid>
           <Grid item xs={4}>
-            <Image src={POINTAR.START} alt="start" className="w-full h-full" />
+            <Image src={POINTAR.START} alt="Start screen of the PointAR app" className="w-full h-full" />
           </Grid>
           <Grid item xs={4}>
-            <Image src={POINTAR.NEXT} alt="next" className="w-full h-full" />
+            <Image src={POINTAR.NEXT} alt="Next steps interface of the PointAR app" className="w-full h-full" />
           </Grid>
         </Grid>
       </div>
@@ -93,7 +93,7 @@ const PointAR = () => {
               entering vast collections. Even when one goes on a guided tour,
               they are far from tailored to the individual's interests.
               Therefore, it was imperative that PointAR start with a survey to
-              understand the user’s specific desires and interests in order to
+              understand the user's specific desires and interests in order to
               be able to structure the most precisely tailored tour.
               <br />
               <br />
@@ -346,7 +346,7 @@ const PointAR = () => {
           To prototype this guidance experience, we used Unity to create the
           Particle System that guides the user around the museum. This system is
           based on a Bezier curve that dynamically adapts to a series of objects
-          that function as “magnets” that guide the particle system to distinct
+          that function as "magnets" that guide the particle system to distinct
           points in real time.
         </h2>
       </div>

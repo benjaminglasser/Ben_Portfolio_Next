@@ -11,11 +11,11 @@ function ImageGrid({ images }) {
           >
             <ImageWithLoader
               src={img.url}
-              alt={img.caption}
+              alt={img.caption || `Project image ${index + 1}`}
               width={img.width || 500}
               height={img.height || 300}
               className="w-full h-auto"
-              unoptimized={img.url.endsWith('.gif')}
+              unoptimized={typeof img.url === 'string' && img.url.endsWith('.gif')}
             />
             {img.caption && <p className="text-center mt-2">{img.caption}</p>}
           </div>

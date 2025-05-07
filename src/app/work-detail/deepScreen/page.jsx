@@ -5,7 +5,7 @@ import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
 // import { IMAGES } from "@/app/assets/images";
 import Section from "@/app/common/Section";
-import Image from "next/image";
+import ImageWithLoader from "@/app/common/ImageWithLoader";
 import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 import ImageGrid from "@/app/common/ImageGrid";
@@ -47,7 +47,7 @@ const Canary = () => {
       {/* <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" /> */}
       <ZigzagHeader
         title="Circa DeepScreen"
-        description="Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa’s Curved Display"
+        description="Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa's Curved Display"
         extendedDescription="We developed a cutting-edge advertising concept for Polestar, utilizing the Circa building's curved display in Downtown LA to showcase Standard Vision's DeepScreen technology. The design featured a 3D depth effect paired with interactive water simulations across three screens, creating an immersive triptych visual effect. Through creative iteration, a final concept emerged that married technology with design to captivate viewers and ultimately showcase new horizons in digital advertising."
         time="Fall 2023"
         role="3D Graphics and Simulation"
@@ -92,12 +92,12 @@ const Canary = () => {
         <div className="px-5 md:px-10 pb-20">
           <div className="bg-greyDark py-1">
             <ImageGrid images={images} />
-            <Image
+            <ImageWithLoader
               src="/Media/DeepScreen/Storyboard.png"
               alt="era"
               className="w-full h-full p-10"
-              width="3000"
-              height="1988"
+              width={3000}
+              height={1988}
             />
           </div>
         </div>

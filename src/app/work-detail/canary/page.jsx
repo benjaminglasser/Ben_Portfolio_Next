@@ -50,7 +50,7 @@ const Canary = () => {
       />
 
       <div className="flex justify-center w-full px-5 md:px-0 mt-5">
-        <Image src={IMAGES.UI_CONSIDERATION} alt="light mode" />
+        <Image src={IMAGES.UI_CONSIDERATION} alt="UI considerations showing gallery livestream integration" />
       </div>
 
       <DetailSection
@@ -66,7 +66,7 @@ const Canary = () => {
               className="w-4/5 md:w-3/5"
               src={image}
               key={idx}
-              alt="transparency images"
+              alt={`Transparency design example ${idx + 1}`}
             />
           </div>
         </Section>
@@ -92,7 +92,7 @@ const Canary = () => {
         // images={[IMAGES.MOBILE_VIEW]}
       />
       <div className="flex justify-center w-full px-5 mt-5">
-        <Image src={IMAGES.MOBILE_VIEW} alt="light mode" />
+        <Image src={IMAGES.MOBILE_VIEW} alt="Mobile responsive design view of the gallery website" />
       </div>
     </div>
   );

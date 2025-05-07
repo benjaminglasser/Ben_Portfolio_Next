@@ -21,11 +21,11 @@ const WorkCard = ({
       <div className="hover:border-b-[0.2px] border-mute cursor-pointer pb-1 mb-10 w-full workcard">
         <ImageWithLoader
           src={thumbnail}
-          alt="stemport gif"
+          alt={`${title} - ${description}`}
           width="100"
           height="100"
           className="thumbnail"
-          unoptimized={thumbnail.endsWith('.gif')}
+          unoptimized={typeof thumbnail === 'string' && thumbnail.endsWith('.gif')}
         />
         <div className="flex justify-between text-[11px] text-black font-light border-b-[0.4px] py-2">
           <div>Role: {role}</div>

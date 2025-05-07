@@ -113,7 +113,7 @@ const voyager = () => {
       <Section>
         <Image
           src={PLUR.PROCESS2}
-          alt="process2"
+          alt="Process visualization showing wireframe 3D space objects with HUD elements"
           className="w-full h-full px-5 mt-4 md:px-10"
         />
       </Section>
@@ -133,21 +133,21 @@ const voyager = () => {
       <Section>
         <Image
           src={PLUR.VINYL}
-          alt="vinyl"
+          alt="Voyager vinyl artwork design"
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>
       <Section>
         <Image
           src={PLUR.LABEL}
-          alt="vinyl"
+          alt="Voyager vinyl label design"
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>
       <Section>
         <Image
           src={PLUR.SHIRT}
-          alt="vinyl"
+          alt="Voyager merchandise t-shirt design"
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>
@@ -164,7 +164,7 @@ const voyager = () => {
       <Section>
         <Image
           src={PLUR.PROCESS}
-          alt="vinyl"
+          alt="Website design process showing tour announcement concepts"
           className="w-full h-full px-5 mt-2 md:px-10"
         />
       </Section>

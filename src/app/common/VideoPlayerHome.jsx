@@ -19,6 +19,9 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const breatheAnimationRef = useRef(null);
   const entranceAnimationRef = useRef(null);
   const loadingTimeoutRef = useRef(null);
+  const [isBouncing, setIsBouncing] = useState(false);
+  const bounceTimeoutRef = useRef(null);
+  const bounceStartTime = useRef(Date.now());
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -30,16 +33,114 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     setMousePosition({ x, y });
     // Update mask position immediately when mouse moves
     setMaskPosition({ x, y });
+
+    // Only apply proximity scaling if we're already hovering
+    if (isHovering) {
+      // Calculate distance from edges
+      const edgeThreshold = 100; // Distance from edge to start shrinking
+      const minSize = 16; // Minimum size at edge (matches GlobalCursor default size)
+      const maxSize = 180; // Maximum size in center
+      
+      // Calculate distances from each edge
+      const distanceFromLeft = x;
+      const distanceFromRight = rect.width - x;
+      const distanceFromTop = y;
+      const distanceFromBottom = rect.height - y;
+      
+      // Find the minimum distance to any edge
+      const minDistance = Math.min(
+        distanceFromLeft,
+        distanceFromRight,
+        distanceFromTop,
+        distanceFromBottom
+      );
+      
+      // Calculate size based on proximity to edges
+      let newSize;
+      if (minDistance < edgeThreshold) {
+        // Linear interpolation between maxSize and minSize
+        const scale = minDistance / edgeThreshold;
+        newSize = minSize + (maxSize - minSize) * scale;
+        setIsBouncing(false);
+      } else {
+        // If we just crossed the threshold, trigger bounce
+        if (!isBouncing) {
+          setIsBouncing(true);
+          // Clear any existing timeout
+          if (bounceTimeoutRef.current) {
+            clearTimeout(bounceTimeoutRef.current);
+          }
+          // Set a timeout to reset the bounce state
+          bounceTimeoutRef.current = setTimeout(() => {
+            setIsBouncing(false);
+          }, 1000); // Adjust this value to control bounce duration
+        }
+        
+        // Apply elastic bounce effect
+        if (isBouncing) {
+          const bounce = (t) => {
+            const c4 = (2 * Math.PI) / 3;
+            return t === 0
+              ? 0
+              : t === 1
+              ? 1
+              : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+          };
+          
+          // Calculate bounce progress
+          const bounceProgress = Math.min(1, (Date.now() - bounceStartTime.current) / 1000);
+          const bounceScale = bounce(bounceProgress);
+          
+          // Overshoot by 20% and then settle back to maxSize
+          newSize = maxSize + (maxSize * 0.2 * (1 - bounceScale));
+        } else {
+          newSize = maxSize;
+        }
+      }
+      
+      setMaskSize(newSize);
+    }
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
     setIsHovering(true);
+    bounceStartTime.current = Date.now();
     // Set initial mask position to current mouse position
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
-      const x = mousePosition.x - rect.left;
-      const y = mousePosition.y - rect.top;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
       setMaskPosition({ x, y });
+
+      // Calculate initial size based on position
+      const edgeThreshold = 100;
+      const minSize = 16; // Minimum size at edge (matches GlobalCursor default size)
+      const maxSize = 180;
+      
+      // Calculate distances from each edge
+      const distanceFromLeft = x;
+      const distanceFromRight = rect.width - x;
+      const distanceFromTop = y;
+      const distanceFromBottom = rect.height - y;
+      
+      // Find the minimum distance to any edge
+      const minDistance = Math.min(
+        distanceFromLeft,
+        distanceFromRight,
+        distanceFromTop,
+        distanceFromBottom
+      );
+      
+      // Calculate initial size based on proximity to edges
+      let initialSize;
+      if (minDistance < edgeThreshold) {
+        const scale = minDistance / edgeThreshold;
+        initialSize = minSize + (maxSize - minSize) * scale;
+      } else {
+        initialSize = maxSize;
+      }
+      
+      setMaskSize(initialSize);
     }
     // Dispatch custom event when hovering
     window.dispatchEvent(new CustomEvent('videoPlayerHover', { detail: true }));
@@ -47,79 +148,48 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
 
   const handleMouseLeave = () => {
     setIsHovering(false);
+    setIsBouncing(false);
     setMaskSize(0);
     // Dispatch custom event when leaving
     window.dispatchEvent(new CustomEvent('videoPlayerHover', { detail: false }));
-    if (breatheAnimationRef.current) {
-      cancelAnimationFrame(breatheAnimationRef.current);
-    }
-    if (entranceAnimationRef.current) {
-      cancelAnimationFrame(entranceAnimationRef.current);
+    if (bounceTimeoutRef.current) {
+      clearTimeout(bounceTimeoutRef.current);
     }
   };
 
-  // Effect to handle entrance animation
-  useEffect(() => {
-    if (!isHovering) return;
-
-    const startTime = performance.now();
-    const duration = 1000;
-    const startSize = 100;
-    const endSize = 180;
-
-    const animateEntrance = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      const bounce = (t) => {
-        const c4 = (2 * Math.PI) / 3;
-        return t === 0
-          ? 0
-          : t === 1
-          ? 1
-          : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-      };
-      
-      const currentSize = startSize + (endSize - startSize) * bounce(progress);
-      
-      setMaskSize(currentSize);
-
-      if (progress < 1) {
-        entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
-      } else {
-        startBreathingAnimation();
-      }
-    };
-
-    entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
-
-    return () => {
-      if (entranceAnimationRef.current) {
-        cancelAnimationFrame(entranceAnimationRef.current);
-      }
-    };
-  }, [isHovering]);
-
-  // Function to start breathing animation
-  const startBreathingAnimation = () => {
-    let startTime = null;
-    const baseSize = 180;
-    const maxSize = 190;
-    const duration = 10000;
-
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) % duration;
-      const phase = progress / duration;
-
-      const size = baseSize + (maxSize - baseSize) * Math.sin(phase * Math.PI * 2);
-      setMaskSize(size);
-
-      breatheAnimationRef.current = requestAnimationFrame(animate);
-    };
-
-    breatheAnimationRef.current = requestAnimationFrame(animate);
-  };
+  // Comment out entrance animation effect
+  // useEffect(() => {
+  //   if (!isHovering) return;
+  //   const startTime = performance.now();
+  //   const duration = 1000;
+  //   const startSize = 100;
+  //   const endSize = 180;
+  //   const animateEntrance = (currentTime) => {
+  //     const elapsed = currentTime - startTime;
+  //     const progress = Math.min(elapsed / duration, 1);
+  //     const bounce = (t) => {
+  //       const c4 = (2 * Math.PI) / 3;
+  //       return t === 0
+  //         ? 0
+  //         : t === 1
+  //         ? 1
+  //         : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+  //     };
+  //     const currentSize = startSize + (endSize - startSize) * bounce(progress);
+  //     setMaskSize(currentSize);
+  //     if (progress < 1) {
+  //       entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
+  //     } else {
+  //       startBreathingAnimation();
+  //     }
+  //   };
+  //   entranceAnimationRef.current = requestAnimationFrame(animateEntrance);
+  //   return () => {
+  //     if (entranceAnimationRef.current) {
+  //       cancelAnimationFrame(entranceAnimationRef.current);
+  //     }
+  //   };
+  // }, [isHovering]);
 
   // Function to check and maintain video synchronization
   const checkVideoSync = () => {

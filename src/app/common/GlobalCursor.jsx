@@ -42,12 +42,12 @@ const GlobalCursor = () => {
     const handleVideoPlayerHover = (e) => {
       const newVisibility = !e.detail;
       
-      // If we're transitioning from hidden to visible (leaving VideoPlayerHome)
-      if (!wasVisibleRef.current && newVisibility) {
-        setShouldBounce(true);
-        // Reset bounce state after animation
-        setTimeout(() => setShouldBounce(false), 500);
-      }
+      // Comment out bounce effect
+      // if (!wasVisibleRef.current && newVisibility) {
+      //   setShouldBounce(true);
+      //   // Reset bounce state after animation
+      //   setTimeout(() => setShouldBounce(false), 500);
+      // }
       
       wasVisibleRef.current = newVisibility;
       setIsVisible(newVisibility);

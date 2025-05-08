@@ -15,6 +15,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const [hasAnimated, setHasAnimated] = useState(false);
   const isPlayPage = pathname === "/play";
+  const isWorkDetailPage = pathname.startsWith("/work-detail");
+  const isDarkPage = isPlayPage || isWorkDetailPage;
 
   useEffect(() => {
     // Set hasAnimated to true after the initial animation
@@ -38,12 +40,12 @@ const Navbar = () => {
     >
       <motion.div
         animate={{
-          backgroundColor: isPlayPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
-          borderColor: isPlayPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
-          color: isPlayPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
+          backgroundColor: isDarkPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
+          borderColor: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
+          color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
         }}
         transition={{
-          duration: 0.5,
+          duration: isPlayPage ? 0.5 : 0, // Only animate for play page
           ease: "easeInOut",
         }}
       >
@@ -56,13 +58,13 @@ const Navbar = () => {
               <motion.h3 
                 className="cursor-pointer"
                 animate={{
-                  color: isPlayPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
+                  color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
                 }}
                 whileHover={{
                   color: "#A9232C", // Global cursor red color
                 }}
                 transition={{
-                  duration: 0.5,
+                  duration: isPlayPage ? 0.5 : 0, // Only animate for play page
                   ease: "easeInOut",
                 }}
               >
@@ -82,13 +84,13 @@ const Navbar = () => {
                 <motion.h3 
                   className="ml-4 md:ml-8"
                   animate={{
-                    color: isPlayPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
+                    color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
                   }}
                   whileHover={{
                     color: "#A9232C", // Global cursor red color
                   }}
                   transition={{
-                    duration: 0.5,
+                    duration: isPlayPage ? 0.5 : 0, // Only animate for play page
                     ease: "easeInOut",
                   }}
                 >

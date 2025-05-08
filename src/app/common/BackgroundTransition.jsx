@@ -5,16 +5,17 @@ import { usePathname } from "next/navigation";
 const BackgroundTransition = () => {
   const pathname = usePathname();
   const isPlayPage = pathname === "/play";
+  const isWorkDetailPage = pathname.startsWith("/work-detail");
 
   return (
     <motion.div
       className="fixed inset-0 -z-10"
       initial={false}
       animate={{
-        backgroundColor: isPlayPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
+        backgroundColor: isPlayPage || isWorkDetailPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
       }}
       transition={{
-        duration: 0.5,
+        duration: isPlayPage ? 0.5 : 0,
         ease: "easeInOut",
       }}
     />

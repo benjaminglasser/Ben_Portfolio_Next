@@ -27,15 +27,28 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     const y = e.clientY - rect.top;
     
     setMousePosition({ x, y });
+    // Update mask position immediately when mouse moves
+    setMaskPosition({ x, y });
   };
 
   const handleMouseEnter = () => {
     setIsHovering(true);
+    // Set initial mask position to current mouse position
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = mousePosition.x - rect.left;
+      const y = mousePosition.y - rect.top;
+      setMaskPosition({ x, y });
+    }
+    // Dispatch custom event when hovering
+    window.dispatchEvent(new CustomEvent('videoPlayerHover', { detail: true }));
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
     setMaskSize(0);
+    // Dispatch custom event when leaving
+    window.dispatchEvent(new CustomEvent('videoPlayerHover', { detail: false }));
     if (breatheAnimationRef.current) {
       cancelAnimationFrame(breatheAnimationRef.current);
     }
@@ -43,33 +56,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
       cancelAnimationFrame(entranceAnimationRef.current);
     }
   };
-
-  // Effect to handle mask position animation
-  useEffect(() => {
-    if (!isHovering) {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      return;
-    }
-
-    const updateMaskPosition = () => {
-      setMaskPosition(prevPos => ({
-        x: prevPos.x + (mousePosition.x - prevPos.x) * 0.15,
-        y: prevPos.y + (mousePosition.y - prevPos.y) * 0.15
-      }));
-
-      animationFrameRef.current = requestAnimationFrame(updateMaskPosition);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(updateMaskPosition);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [mousePosition, isHovering]);
 
   // Effect to handle entrance animation
   useEffect(() => {
@@ -196,63 +182,46 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           video1Ref.current.preload = 'auto';
           video2Ref.current.preload = 'auto';
 
-          // Add error handlers
-          video1Ref.current.addEventListener('error', (e) => handleVideoError(video1Ref, e));
-          video2Ref.current.addEventListener('error', (e) => handleVideoError(video2Ref, e));
-
-          // Create promises for both videos to be loaded
-          const video1LoadPromise = new Promise((resolve) => {
-            video1Ref.current.addEventListener('loadeddata', resolve, { once: true });
-            video1Ref.current.load();
-          });
-
-          const video2LoadPromise = new Promise((resolve) => {
-            video2Ref.current.addEventListener('loadeddata', resolve, { once: true });
-            video2Ref.current.load();
-          });
-
           // Wait for both videos to be loaded
-          await Promise.all([video1LoadPromise, video2LoadPromise]);
+          await Promise.all([
+            new Promise((resolve) => {
+              video1Ref.current.onloadeddata = resolve;
+            }),
+            new Promise((resolve) => {
+              video2Ref.current.onloadeddata = resolve;
+            })
+          ]);
 
-          // Ensure both videos are at the start
-          video1Ref.current.currentTime = 0;
-          video2Ref.current.currentTime = 0;
-
-          // Start both videos simultaneously
-          const playPromises = [
+          // Start playing both videos
+          await Promise.all([
             video1Ref.current.play(),
             video2Ref.current.play()
-          ];
+          ]);
 
-          await Promise.all(playPromises);
-
-          // Start periodic sync check
+          // Set up synchronization check interval
           syncCheckInterval.current = setInterval(checkVideoSync, 100);
 
-          // Once both videos are playing, fade them in
+          // Fade in videos
+          video1Ref.current.style.transition = 'opacity 1s ease-in-out';
+          video2Ref.current.style.transition = 'opacity 1s ease-in-out';
+          video1Ref.current.style.opacity = '1';
+          video2Ref.current.style.opacity = '1';
+
           setLoading(false);
-          setTimeout(() => {
-            setFadeIn(true);
-          }, 100);
+          setFadeIn(true);
         } catch (error) {
           console.error('Error loading videos:', error);
           setError(true);
           setLoading(false);
         }
       };
+
       loadVideos();
     }
 
-    // Cleanup function
     return () => {
       if (syncCheckInterval.current) {
         clearInterval(syncCheckInterval.current);
-      }
-      if (video1Ref.current) {
-        video1Ref.current.removeEventListener('error', handleVideoError);
-      }
-      if (video2Ref.current) {
-        video2Ref.current.removeEventListener('error', handleVideoError);
       }
     };
   }, []);

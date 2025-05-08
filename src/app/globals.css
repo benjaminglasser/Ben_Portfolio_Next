@@ -10,6 +10,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -340,4 +351,8 @@ li::marker {
   .MuiImageList-root {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }

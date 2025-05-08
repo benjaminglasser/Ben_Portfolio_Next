@@ -386,7 +386,7 @@ const PointAR = () => {
           <div className="w-full flex justify-center">
             <ul className="w-full md:w-2/3 lg:w-3/5 text-left list-disc">
               {bullets?.map((bullet, idx) => (
-                <li className="mb-2 leading-8 text-base">{bullet}</li>
+                <li key={idx} className="mb-2 leading-8 text-base">{bullet}</li>
               ))}
             </ul>
           </div>

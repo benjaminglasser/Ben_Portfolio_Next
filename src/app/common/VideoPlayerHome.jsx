@@ -1,8 +1,14 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { PuffLoader } from "react-spinners";
+import { usePathname } from "next/navigation";
 
 const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange }) => {
+  const pathname = usePathname();
+  const isBMWPage = pathname === "/work-detail/bmw";
+  const isPointARPage = pathname === "/work-detail/pointAR";
+  const shouldShowSpinner = !isBMWPage && !isPointARPage;
+
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
   const containerRef = useRef(null);
@@ -360,7 +366,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
         className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh] relative
                     ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}`}
       >
-        {loading && (
+        {loading && shouldShowSpinner && (
           <div className="absolute inset-0 flex justify-center items-center z-20">
             <PuffLoader
               color="#A9232C"

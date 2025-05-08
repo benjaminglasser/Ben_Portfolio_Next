@@ -5,12 +5,13 @@ import { usePathname } from "next/navigation";
 
 const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange }) => {
   const pathname = usePathname();
-  const isBMWPage = pathname === "/work-detail/bmw";
-  const isPointARPage = pathname === "/work-detail/pointAR";
+  const isBMWPage = pathname?.includes('/work-detail/bmw');
+  const isPointARPage = pathname?.includes('/work-detail/pointAR');
   const shouldShowSpinner = !isBMWPage && !isPointARPage;
 
   // Debug logs
   useEffect(() => {
+    console.log('VideoPlayerHome Debug:');
     console.log('Current pathname:', pathname);
     console.log('Is BMW page:', isBMWPage);
     console.log('Is PointAR page:', isPointARPage);

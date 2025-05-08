@@ -6,31 +6,74 @@ import WorkSection from "@/app/common/WorkSection";
 import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
 import React from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+        delayChildren: 0.4
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const fadeOnlyVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div className="relative">
-      
-      {/* <div
-        className="home-wrapper"
-        style={{ height: "calc(100vh - 300px)" }}
-      ></div> */}
-      {/* <TickerCntr /> */}
-     
-      
+    <motion.div 
+      className="relative"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <HomePageExtraInfo />
-      <VideoPlayerHome
-        // className="h-[500px] md:h-[70vh]"
-        video1="/Media/Home/water_v2_MAIN.mp4"
-        video2="/Media/Home/water_v2_WIREFRAME.mp4"
-      />
-      <h4 className="mt-8 w-[220px] md:mt-14 text-mute">
+      
+      <motion.div variants={fadeOnlyVariants}>
+        <VideoPlayerHome
+          // className="h-[500px] md:h-[70vh]"
+          video1="/Media/Home/water_v2_MAIN.mp4"
+          video2="/Media/Home/water_v2_WIREFRAME.mp4"
+        />
+      </motion.div>
+
+      <motion.h4 
+        className="mt-8 w-[220px] md:mt-14 text-mute"
+        variants={itemVariants}
+      >
         <strong>SELECTED WORKS</strong>
-      </h4>
-      <div className="mt-4 md:mt-8">
+      </motion.h4>
+
+      <motion.div 
+        className="mt-4 md:mt-8"
+        variants={itemVariants}
+      >
         <WorkSection />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

@@ -9,15 +9,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
   const isPointARPage = pathname?.includes('/work-detail/pointAR');
   const shouldShowSpinner = !isBMWPage && !isPointARPage;
 
-  // Debug logs
-  useEffect(() => {
-    console.log('VideoPlayerHome Debug:');
-    console.log('Current pathname:', pathname);
-    console.log('Is BMW page:', isBMWPage);
-    console.log('Is PointAR page:', isPointARPage);
-    console.log('Should show spinner:', shouldShowSpinner);
-  }, [pathname, isBMWPage, isPointARPage, shouldShowSpinner]);
-
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
   const containerRef = useRef(null);

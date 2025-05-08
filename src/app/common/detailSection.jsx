@@ -35,7 +35,7 @@ const DetailSection = ({
               animate={{ width: inView ? "100%" : "0%" }} // Animate to full width when in view
               transition={{ duration: 2, ease: "easeInOut" }} // Customize the animation duration and easing
               style={{
-                background: "#ff477b", // Line color
+                background: "#A9232C", // Line color
                 height: "1px", // Line thickness
               }}
             />

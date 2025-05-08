@@ -20,14 +20,14 @@ const ZigzagHeader = ({
           item
           xs={12}
           md={3}
-          className="border-t lg:border-t lg:border-r border-pink p-3"
+          className="border-t lg:border-t lg:border-r border-[#A9232C] p-3"
         >
           <h2 className="text-4xl mb-3">{title}</h2>
           <h4 className="ojuju font-light text-grey lg:text-2xl">
             {description}
           </h4>
         </Grid>
-        <Grid item xs={12} md={9} className="border-l border-b border-pink p-3">
+        <Grid item xs={12} md={9} className="border-l border-b border-[#A9232C] p-3">
           <p className="mb-6">{extendedDescription}</p>
           <div className="text-xxs mt-2 flex">
             <div className="text-grey mr-2">Time:</div> {time}

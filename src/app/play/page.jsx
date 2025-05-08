@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 
 const Play = () => {
   const itemData = [
-    // "/Media/Play/play18.gif",
     IMAGES.PLAY_18,
     IMAGES.PLAY_1,
     IMAGES.PLAY_2,

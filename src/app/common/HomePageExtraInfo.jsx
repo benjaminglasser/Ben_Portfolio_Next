@@ -1,15 +1,39 @@
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-const HomePageExtraInfo = () => {
+const HomePageExtraInfo = ({ isLoading }) => {
+  const pathname = usePathname();
+  const isPlayPage = pathname === "/play";
+  const isWorkDetailPage = pathname.startsWith("/work-detail");
+
   return (
     <div className="sm:col-span-3 absolute top-0 w-full p-5 text-greyDark h-[500px] md:h-[70vh] z-10">
       <div className="flex flex-col justify-between h-full relative">
-        <p className="tag">
+        <motion.p 
+          className="tag"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoading ? 0 : 1 }}
+          transition={{ 
+            duration: 0.5,
+            delay: 0.5,
+            ease: "easeInOut"
+          }}
+        >
           <i className="text-sm text-white">
             designer, media artist + musician
           </i>
-        </p>
-        <div className="description absolute right-0 bottom-0">
+        </motion.p>
+        <motion.div 
+          className="description absolute right-0 bottom-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoading ? 0 : 1 }}
+          transition={{ 
+            duration: 0.5,
+            delay: 0.5,
+            ease: "easeInOut"
+          }}
+        >
           <p className="text-end text-white">born 1994</p>
           <p className="text-end text-white">34°04'35"N 118°15'33"W</p>
           <p className="text-end text-white">
@@ -24,7 +48,7 @@ const HomePageExtraInfo = () => {
               </Link>
             </span>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

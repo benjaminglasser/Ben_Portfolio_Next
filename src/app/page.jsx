@@ -4,11 +4,13 @@
 // import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
 import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
-import React from "react";
+import React, { useState } from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -50,13 +52,14 @@ export default function Home() {
       animate="visible"
       variants={containerVariants}
     >
-      <HomePageExtraInfo />
+      <HomePageExtraInfo isLoading={isVideoLoading} />
       
       <motion.div variants={fadeOnlyVariants}>
         <VideoPlayerHome
           // className="h-[500px] md:h-[70vh]"
           video1="/Media/Home/water_v2_MAIN.mp4"
           video2="/Media/Home/water_v2_WIREFRAME.mp4"
+          onLoadingChange={setIsVideoLoading}
         />
       </motion.div>
 

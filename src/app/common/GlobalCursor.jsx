@@ -6,67 +6,90 @@ const GlobalCursor = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const [shouldBounce, setShouldBounce] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const wasVisibleRef = useRef(true);
 
   useEffect(() => {
-    // Hide default cursor
-    document.body.style.cursor = 'none';
-    
-    // Add global style to hide all cursor types
-    const style = document.createElement('style');
-    style.innerHTML = `
-      * {
-        cursor: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      // Get the element under the cursor
-      const element = document.elementFromPoint(e.clientX, e.clientY);
-      
-      // Check if the element is interactive
-      const isInteractive = element?.matches('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3') ||
-                           element?.closest('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3');
-      
-      // Additional check for navbar elements
-      const isNavbarElement = element?.closest('.navbar') && 
-                            (element?.matches('a, h3') || 
-                             element?.closest('a, h3'));
-      
-      setIsHovering(isInteractive || isNavbarElement);
+    // Check if device is mobile
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
     };
 
-    const handleVideoPlayerHover = (e) => {
-      const newVisibility = !e.detail;
-      
-      // Comment out bounce effect
-      // if (!wasVisibleRef.current && newVisibility) {
-      //   setShouldBounce(true);
-      //   // Reset bounce state after animation
-      //   setTimeout(() => setShouldBounce(false), 500);
-      // }
-      
-      wasVisibleRef.current = newVisibility;
-      setIsVisible(newVisibility);
-    };
+    // Initial check
+    checkMobile();
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("videoPlayerHover", handleVideoPlayerHover);
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+
+    // Only proceed with cursor setup if not mobile
+    if (!isMobile) {
+      // Hide default cursor
+      document.body.style.cursor = 'none';
+      
+      // Add global style to hide all cursor types
+      const style = document.createElement('style');
+      style.innerHTML = `
+        * {
+          cursor: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+
+      const handleMouseMove = (e) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        
+        // Get the element under the cursor
+        const element = document.elementFromPoint(e.clientX, e.clientY);
+        
+        // Check if the element is interactive
+        const isInteractive = element?.matches('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3') ||
+                             element?.closest('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3');
+        
+        // Additional check for navbar elements
+        const isNavbarElement = element?.closest('.navbar') && 
+                              (element?.matches('a, h3') || 
+                               element?.closest('a, h3'));
+        
+        setIsHovering(isInteractive || isNavbarElement);
+      };
+
+      const handleVideoPlayerHover = (e) => {
+        const newVisibility = !e.detail;
+        
+        // Comment out bounce effect
+        // if (!wasVisibleRef.current && newVisibility) {
+        //   setShouldBounce(true);
+        //   // Reset bounce state after animation
+        //   setTimeout(() => setShouldBounce(false), 500);
+        // }
+        
+        wasVisibleRef.current = newVisibility;
+        setIsVisible(newVisibility);
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("videoPlayerHover", handleVideoPlayerHover);
+
+      return () => {
+        // Restore default cursor on cleanup
+        document.body.style.cursor = 'auto';
+        // Remove the global style
+        style.remove();
+        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("videoPlayerHover", handleVideoPlayerHover);
+        window.removeEventListener('resize', checkMobile);
+      };
+    }
 
     return () => {
-      // Restore default cursor on cleanup
-      document.body.style.cursor = 'auto';
-      // Remove the global style
-      style.remove();
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("videoPlayerHover", handleVideoPlayerHover);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isMobile]);
 
-  if (!isVisible) return null;
+  // Don't render anything on mobile devices
+  if (isMobile || !isVisible) return null;
 
   return (
     <div

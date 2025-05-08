@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { PuffLoader } from "react-spinners";
 
-const VideoPlayerHome = ({ video1, video2, className, centered }) => {
+const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange }) => {
   const video1Ref = useRef(null);
   const video2Ref = useRef(null);
   const containerRef = useRef(null);
@@ -346,6 +346,12 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
       };
     }
   }, []);
+
+  useEffect(() => {
+    if (onLoadingChange) {
+      onLoadingChange(loading);
+    }
+  }, [loading, onLoadingChange]);
 
   return (
     <div className={`${centered ? "flex justify-center items-center" : "block"}`}>

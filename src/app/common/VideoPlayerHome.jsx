@@ -18,6 +18,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
   const animationFrameRef = useRef(null);
   const breatheAnimationRef = useRef(null);
   const entranceAnimationRef = useRef(null);
+  const loadingTimeoutRef = useRef(null);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -170,6 +171,15 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
     if (video1Ref.current && video2Ref.current) {
       const loadVideos = async () => {
         try {
+          // Set a longer timeout for loading (30 seconds)
+          loadingTimeoutRef.current = setTimeout(() => {
+            if (loading) {
+              console.warn('Video loading timed out');
+              setLoading(false);
+              setError(true);
+            }
+          }, 30000); // 30 second timeout
+
           // Reset both videos to start
           video1Ref.current.currentTime = 0;
           video2Ref.current.currentTime = 0;
@@ -182,21 +192,49 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           video1Ref.current.preload = 'auto';
           video2Ref.current.preload = 'auto';
 
+          // Add error handlers
+          const handleVideoError = (e) => {
+            console.error('Video error:', e);
+            setError(true);
+            setLoading(false);
+          };
+
+          video1Ref.current.addEventListener('error', handleVideoError);
+          video2Ref.current.addEventListener('error', handleVideoError);
+
           // Wait for both videos to be loaded
           await Promise.all([
-            new Promise((resolve) => {
-              video1Ref.current.onloadeddata = resolve;
+            new Promise((resolve, reject) => {
+              const onLoadedData = () => {
+                video1Ref.current.removeEventListener('loadeddata', onLoadedData);
+                resolve();
+              };
+              video1Ref.current.addEventListener('loadeddata', onLoadedData);
+              video1Ref.current.load();
             }),
-            new Promise((resolve) => {
-              video2Ref.current.onloadeddata = resolve;
+            new Promise((resolve, reject) => {
+              const onLoadedData = () => {
+                video2Ref.current.removeEventListener('loadeddata', onLoadedData);
+                resolve();
+              };
+              video2Ref.current.addEventListener('loadeddata', onLoadedData);
+              video2Ref.current.load();
             })
           ]);
 
           // Start playing both videos
-          await Promise.all([
-            video1Ref.current.play(),
-            video2Ref.current.play()
-          ]);
+          const playPromises = [
+            video1Ref.current.play().catch(error => {
+              console.error('Error playing video1:', error);
+              return Promise.reject(error);
+            }),
+            video2Ref.current.play().catch(error => {
+              console.error('Error playing video2:', error);
+              return Promise.reject(error);
+            })
+          ];
+
+          await Promise.all(playPromises);
 
           // Set up synchronization check interval
           syncCheckInterval.current = setInterval(checkVideoSync, 100);
@@ -213,17 +251,30 @@ const VideoPlayerHome = ({ video1, video2, className, centered }) => {
           console.error('Error loading videos:', error);
           setError(true);
           setLoading(false);
+        } finally {
+          if (loadingTimeoutRef.current) {
+            clearTimeout(loadingTimeoutRef.current);
+          }
         }
       };
 
       loadVideos();
-    }
 
-    return () => {
-      if (syncCheckInterval.current) {
-        clearInterval(syncCheckInterval.current);
-      }
-    };
+      return () => {
+        if (syncCheckInterval.current) {
+          clearInterval(syncCheckInterval.current);
+        }
+        if (loadingTimeoutRef.current) {
+          clearTimeout(loadingTimeoutRef.current);
+        }
+        if (video1Ref.current) {
+          video1Ref.current.removeEventListener('error', handleVideoError);
+        }
+        if (video2Ref.current) {
+          video2Ref.current.removeEventListener('error', handleVideoError);
+        }
+      };
+    }
   }, []);
 
   return (

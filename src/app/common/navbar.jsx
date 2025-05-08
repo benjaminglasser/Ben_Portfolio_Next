@@ -1,3 +1,5 @@
+'use client';
+
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

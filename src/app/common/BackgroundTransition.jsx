@@ -15,7 +15,7 @@ const BackgroundTransition = () => {
         backgroundColor: isPlayPage || isWorkDetailPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
       }}
       transition={{
-        duration: isPlayPage ? 0.5 : 0,
+        duration: isPlayPage || pathname === "/" || pathname === "/info" ? 0.5 : 0,
         ease: "easeInOut",
       }}
     />

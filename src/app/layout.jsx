@@ -25,11 +25,11 @@ export const metadata = {
   description: "Benjamin Glasser's Portfolio",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon2-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: 'favicon.ico', sizes: 'any' },
+      { url: 'favicon2-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: 'apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
 };

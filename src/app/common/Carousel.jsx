@@ -32,7 +32,7 @@ const FancyCarousel = ({ SOURCE }) => {
     return (
       <div className="w-full h-[34rem] flex justify-center items-center">
         <PuffLoader
-          color="#ff477b"
+          color="#A9232C"
           loading
           size={100}
           aria-label="Loading Spinner"
@@ -49,7 +49,7 @@ const FancyCarousel = ({ SOURCE }) => {
       renderArrowPrev={(onClickHandler, hasPrev) =>
         hasPrev && (
           <div
-            className="absolute  left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center  hover:text-pink cursor-pointer ml-10"
+            className="absolute left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#A9232C] cursor-pointer ml-10"
             onClick={onClickHandler}
           >
             <IoIosArrowBack size={30} />
@@ -59,7 +59,7 @@ const FancyCarousel = ({ SOURCE }) => {
       renderArrowNext={(onClickHandler, hasNext) =>
         hasNext && (
           <div
-            className="absolute  right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-pink cursor-pointer mr-10"
+            className="absolute right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#A9232C] cursor-pointer mr-10"
             onClick={onClickHandler}
           >
             <IoIosArrowForward size={30} />

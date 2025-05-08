@@ -43,7 +43,7 @@ const bmw = () => {
           </Section>
           <Section>
             <div className="flex justify-center">
-              <div className="w-full px-5 md:w-3/5 text-pink">
+              <div className="w-full px-5 md:w-3/5 text-[#A9232C]">
                 <h4 className="font-normal">UPDATE!</h4>
               </div>
             </div>

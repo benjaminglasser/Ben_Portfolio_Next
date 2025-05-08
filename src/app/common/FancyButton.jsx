@@ -4,13 +4,13 @@ import Button from "@mui/material/Button";
 
 export const FancyButton = styled(Button)(() => ({
   backgroundColor: "#000",
-  border: "1px solid #ff477b",
+  border: "1px solid #A9232C",
   borderRadius: 0,
-  color: "#ff477b",
+  color: "#A9232C",
   fontFamily: "'ojuju', sans-serif",
   fontWeight: "500",
   "&:hover": {
-    backgroundColor: "#ff477b",
+    backgroundColor: "#A9232C",
     color: "#000",
   },
 }));

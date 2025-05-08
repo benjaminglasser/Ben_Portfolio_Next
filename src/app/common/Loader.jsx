@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <PuffLoader
-        color="#ff477b"
+        color="#A9232C"
         loading
         size={100}
         aria-label="Loading Spinner"

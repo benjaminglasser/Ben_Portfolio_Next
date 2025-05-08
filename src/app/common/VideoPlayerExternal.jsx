@@ -33,7 +33,7 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
           {loading && (
             <div className="absolute inset-0 flex justify-center items-center bg-black/50 z-10">
               <PuffLoader
-                color="#ff477b"
+                color="#A9232C"
                 loading
                 size={100}
                 aria-label="Loading Spinner"

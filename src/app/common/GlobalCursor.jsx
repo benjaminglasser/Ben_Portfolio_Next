@@ -67,10 +67,20 @@ const GlobalCursor = () => {
       // Only trigger loading if the new URL is different from current pathname
       if (url !== pathname) {
         handleLinkClick();
+        // Force cursor to stay hidden during route change
+        document.body.style.cursor = 'none';
       }
     });
-    window.addEventListener('routeChangeComplete', handleRouteChangeComplete);
-    window.addEventListener('routeChangeError', handleRouteChangeComplete);
+    window.addEventListener('routeChangeComplete', (url) => {
+      handleRouteChangeComplete();
+      // Ensure cursor stays hidden after route change
+      document.body.style.cursor = 'none';
+    });
+    window.addEventListener('routeChangeError', (url) => {
+      handleRouteChangeComplete();
+      // Ensure cursor stays hidden even if route change fails
+      document.body.style.cursor = 'none';
+    });
 
     // Also listen for when the page is actually mounted
     const handlePageMount = () => {
@@ -81,6 +91,8 @@ const GlobalCursor = () => {
         clearTimeout(mountTimeoutRef.current);
       }
       setIsLoading(false);
+      // Ensure cursor stays hidden after page mount
+      document.body.style.cursor = 'none';
     };
 
     document.addEventListener('DOMContentLoaded', handlePageMount);
@@ -137,11 +149,63 @@ const GlobalCursor = () => {
       // Add global style to hide all cursor types
       const style = document.createElement('style');
       style.innerHTML = `
+        html, body {
+          cursor: none !important;
+        }
         * {
+          cursor: none !important;
+        }
+        *:active {
+          cursor: none !important;
+        }
+        *:focus {
+          cursor: none !important;
+          outline: none !important;
+        }
+        *:hover {
+          cursor: none !important;
+        }
+        *:focus-visible {
+          outline: none !important;
+        }
+        *:focus-within {
+          cursor: none !important;
+        }
+        *:active * {
+          cursor: none !important;
+        }
+        *:focus * {
+          cursor: none !important;
+        }
+        *:hover * {
+          cursor: none !important;
+        }
+        a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]) {
+          cursor: none !important;
+        }
+        a:active, button:active, [role="button"]:active, input:active, select:active, textarea:active, [tabindex]:not([tabindex="-1"]):active {
+          cursor: none !important;
+        }
+        a:focus, button:focus, [role="button"]:focus, input:focus, select:focus, textarea:focus, [tabindex]:not([tabindex="-1"]):focus {
+          cursor: none !important;
+        }
+        a:hover, button:hover, [role="button"]:hover, input:hover, select:hover, textarea:hover, [tabindex]:not([tabindex="-1"]):hover {
           cursor: none !important;
         }
       `;
       document.head.appendChild(style);
+
+      // Add a MutationObserver to ensure cursor stays hidden
+      const observer = new MutationObserver(() => {
+        document.body.style.cursor = 'none';
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style']
+      });
 
       const handleMouseMove = (e) => {
         setMousePosition({ x: e.clientX, y: e.clientY });
@@ -172,7 +236,10 @@ const GlobalCursor = () => {
       const handleVideoPlayerHover = (e) => {
         const newVisibility = !e.detail;
         wasVisibleRef.current = newVisibility;
-        setIsVisible(newVisibility);
+        // Only hide the cursor if we're not loading
+        if (!isLoading) {
+          setIsVisible(newVisibility);
+        }
       };
 
       window.addEventListener("mousemove", handleMouseMove);
@@ -185,6 +252,8 @@ const GlobalCursor = () => {
         document.body.style.cursor = 'auto';
         // Remove the global style
         style.remove();
+        // Disconnect the observer
+        observer.disconnect();
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
@@ -221,34 +290,34 @@ const GlobalCursor = () => {
           animation: isLoading ? 'spin 1s linear infinite' : shouldBounce ? 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
           borderStyle: isLoading ? 'solid' : 'solid',
           borderColor: isLoading ? '#A9232C #A9232C transparent #A9232C' : '#A9232C',
-          transform: `translate(-50%, -50%) scale(${isClicking ? 0.75 : 1})`,
+          transform: isClicking ? 'scale(0.75)' : 'scale(1)',
           opacity: isLoading ? 1 : 1,
         }}
       />
       <style jsx global>{`
         @keyframes bounceIn {
           0% {
-            transform: translate(-50%, -50%) scale(0.3);
+            transform: scale(0.3);
             opacity: 0;
           }
           50% {
-            transform: translate(-50%, -50%) scale(1.2);
+            transform: scale(1.2);
             opacity: 1;
           }
           70% {
-            transform: translate(-50%, -50%) scale(0.9);
+            transform: scale(0.9);
           }
           100% {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
           }
         }
 
         @keyframes spin {
           0% {
-            transform: translate(-50%, -50%) rotate(0deg);
+            transform: rotate(0deg);
           }
           100% {
-            transform: translate(-50%, -50%) rotate(360deg);
+            transform: rotate(360deg);
           }
         }
 

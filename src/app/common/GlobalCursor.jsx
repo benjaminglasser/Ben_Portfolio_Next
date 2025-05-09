@@ -55,14 +55,19 @@ const GlobalCursor = () => {
         // Get the href from the link
         const href = target.getAttribute('href');
         // Only trigger loading if the link points to a different page
-        if (href && href !== pathname) {
+        if (href && href !== pathname && !href.startsWith('#')) {
           handleLinkClick();
         }
       }
     });
 
     // Listen for Next.js route change events
-    window.addEventListener('routeChangeStart', handleLinkClick);
+    window.addEventListener('routeChangeStart', (url) => {
+      // Only trigger loading if the new URL is different from current pathname
+      if (url !== pathname) {
+        handleLinkClick();
+      }
+    });
     window.addEventListener('routeChangeComplete', handleRouteChangeComplete);
     window.addEventListener('routeChangeError', handleRouteChangeComplete);
 

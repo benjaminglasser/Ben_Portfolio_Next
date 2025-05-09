@@ -1,9 +1,17 @@
 "use client";
+import React from "react";
+import { PuffLoader } from "react-spinners";
 
 export default function Loading() {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#A9232C]"></div>
+      <PuffLoader
+        color="#A9232C"
+        loading
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 } 

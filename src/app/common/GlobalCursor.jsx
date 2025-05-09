@@ -9,6 +9,7 @@ const GlobalCursor = () => {
   const [shouldBounce, setShouldBounce] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
   const wasVisibleRef = useRef(true);
   const pathname = usePathname();
   const router = useRouter();
@@ -160,6 +161,14 @@ const GlobalCursor = () => {
         setIsHovering(isInteractive || isNavbarElement);
       };
 
+      const handleMouseDown = () => {
+        setIsClicking(true);
+      };
+
+      const handleMouseUp = () => {
+        setIsClicking(false);
+      };
+
       const handleVideoPlayerHover = (e) => {
         const newVisibility = !e.detail;
         wasVisibleRef.current = newVisibility;
@@ -167,6 +176,8 @@ const GlobalCursor = () => {
       };
 
       window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousedown", handleMouseDown);
+      window.addEventListener("mouseup", handleMouseUp);
       window.addEventListener("videoPlayerHover", handleVideoPlayerHover);
 
       return () => {
@@ -175,6 +186,8 @@ const GlobalCursor = () => {
         // Remove the global style
         style.remove();
         window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousedown", handleMouseDown);
+        window.removeEventListener("mouseup", handleMouseUp);
         window.removeEventListener("videoPlayerHover", handleVideoPlayerHover);
         window.removeEventListener('resize', checkMobile);
       };
@@ -204,11 +217,11 @@ const GlobalCursor = () => {
           width: isHovering ? '2rem' : '1rem',
           height: isHovering ? '2rem' : '1rem',
           borderWidth: '1.5px',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
           animation: isLoading ? 'spin 1s linear infinite' : shouldBounce ? 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
           borderStyle: isLoading ? 'solid' : 'solid',
           borderColor: isLoading ? '#A9232C #A9232C transparent #A9232C' : '#A9232C',
-          transform: 'translate(-50%, -50%)',
+          transform: `translate(-50%, -50%) scale(${isClicking ? 0.75 : 1})`,
           opacity: isLoading ? 1 : 1,
         }}
       />

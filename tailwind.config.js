@@ -12,6 +12,15 @@ module.exports = {
         subheading: "clamp(1rem, 2.5vw, 1.2rem)",
         xxs: "0.8rem",
       },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' }
+        }
+      },
+      animation: {
+        shimmer: 'shimmer 2s infinite ease-in-out'
+      }
     },
     fontFamily: {
       sprat: ["sprat", "sans-serif"],

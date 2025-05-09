@@ -55,12 +55,12 @@ export default function Home() {
       <HomePageExtraInfo isLoading={isVideoLoading} />
       
       <motion.div variants={fadeOnlyVariants}>
-        <VideoPlayerHome
-          // className="h-[500px] md:h-[70vh]"
-          video1="/Media/Home/water_v2_MAIN.mp4"
-          video2="/Media/Home/water_v2_WIREFRAME.mp4"
+      <VideoPlayerHome
+        // className="h-[500px] md:h-[70vh]"
+        video1="/Media/Home/water_v2_MAIN.mp4"
+        video2="/Media/Home/water_v2_WIREFRAME.mp4"
           onLoadingChange={setIsVideoLoading}
-        />
+      />
       </motion.div>
 
       <motion.h4 

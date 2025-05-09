@@ -84,22 +84,22 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
         
         // Apply elastic bounce effect
         if (isBouncing) {
-          const bounce = (t) => {
-            const c4 = (2 * Math.PI) / 3;
-            return t === 0
-              ? 0
-              : t === 1
-              ? 1
-              : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-          };
-          
+      const bounce = (t) => {
+        const c4 = (2 * Math.PI) / 3;
+        return t === 0
+          ? 0
+          : t === 1
+          ? 1
+          : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+      };
+      
           // Calculate bounce progress
           const bounceProgress = Math.min(1, (Date.now() - bounceStartTime.current) / 1000);
           const bounceScale = bounce(bounceProgress);
           
           // Overshoot by 20% and then settle back to maxSize
           newSize = maxSize + (maxSize * 0.2 * (1 - bounceScale));
-        } else {
+      } else {
           newSize = maxSize;
         }
       }
@@ -322,7 +322,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
           video2Ref.current.style.opacity = '1';
 
           setLoading(false);
-          setFadeIn(true);
+            setFadeIn(true);
         } catch (error) {
           console.error('Error loading videos:', error);
           setError(true);
@@ -336,20 +336,20 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
 
       loadVideos();
 
-      return () => {
-        if (syncCheckInterval.current) {
-          clearInterval(syncCheckInterval.current);
-        }
+    return () => {
+      if (syncCheckInterval.current) {
+        clearInterval(syncCheckInterval.current);
+      }
         if (loadingTimeoutRef.current) {
           clearTimeout(loadingTimeoutRef.current);
         }
-        if (video1Ref.current) {
-          video1Ref.current.removeEventListener('error', handleVideoError);
-        }
-        if (video2Ref.current) {
-          video2Ref.current.removeEventListener('error', handleVideoError);
-        }
-      };
+      if (video1Ref.current) {
+        video1Ref.current.removeEventListener('error', handleVideoError);
+      }
+      if (video2Ref.current) {
+        video2Ref.current.removeEventListener('error', handleVideoError);
+      }
+    };
     }
   }, []);
 

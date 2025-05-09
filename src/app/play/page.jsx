@@ -96,7 +96,7 @@ const Play = () => {
                 alt="Play experiment"
                 width="100"
                 height="100"
-                unoptimized={typeof item === 'string' && item.includes('.gif')}
+                unoptimized={true}
               />
             </ImageListItem>
           </Section>

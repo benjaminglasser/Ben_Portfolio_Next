@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const GlobalCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -7,7 +8,106 @@ const GlobalCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [shouldBounce, setShouldBounce] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const wasVisibleRef = useRef(true);
+  const pathname = usePathname();
+  const router = useRouter();
+  const mountTimeoutRef = useRef(null);
+  const loadingTimeoutRef = useRef(null);
+
+  // Debug flag - set to true to force loading state
+  const DEBUG_FORCE_LOADING = false;
+
+  useEffect(() => {
+    // Handle click events on links
+    const handleLinkClick = () => {
+      // Clear any existing loading timeout
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+      
+      // Add a small delay before showing the loading state
+      loadingTimeoutRef.current = setTimeout(() => {
+        setIsLoading(true);
+      }, 100);
+    };
+
+    // Handle page transition completion
+    const handleRouteChangeComplete = () => {
+      // Clear any existing timeouts
+      if (mountTimeoutRef.current) {
+        clearTimeout(mountTimeoutRef.current);
+      }
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+
+      // Set a small timeout to ensure the page has mounted
+      mountTimeoutRef.current = setTimeout(() => {
+        setIsLoading(false);
+      }, 50);
+    };
+
+    // Add click listeners to all links
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('a');
+      if (target) {
+        // Get the href from the link
+        const href = target.getAttribute('href');
+        // Only trigger loading if the link points to a different page
+        if (href && href !== pathname) {
+          handleLinkClick();
+        }
+      }
+    });
+
+    // Listen for Next.js route change events
+    window.addEventListener('routeChangeStart', handleLinkClick);
+    window.addEventListener('routeChangeComplete', handleRouteChangeComplete);
+    window.addEventListener('routeChangeError', handleRouteChangeComplete);
+
+    // Also listen for when the page is actually mounted
+    const handlePageMount = () => {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+      if (mountTimeoutRef.current) {
+        clearTimeout(mountTimeoutRef.current);
+      }
+      setIsLoading(false);
+    };
+
+    document.addEventListener('DOMContentLoaded', handlePageMount);
+    window.addEventListener('load', handlePageMount);
+
+    return () => {
+      document.removeEventListener('click', handleLinkClick);
+      window.removeEventListener('routeChangeStart', handleLinkClick);
+      window.removeEventListener('routeChangeComplete', handleRouteChangeComplete);
+      window.removeEventListener('routeChangeError', handleRouteChangeComplete);
+      document.removeEventListener('DOMContentLoaded', handlePageMount);
+      window.removeEventListener('load', handlePageMount);
+      
+      // Clear any pending timeouts on cleanup
+      if (mountTimeoutRef.current) {
+        clearTimeout(mountTimeoutRef.current);
+      }
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Force reset loading state when pathname changes
+  useEffect(() => {
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current);
+    }
+    if (mountTimeoutRef.current) {
+      clearTimeout(mountTimeoutRef.current);
+    }
+    setIsLoading(false);
+  }, [pathname]);
 
   useEffect(() => {
     // Check if device is mobile
@@ -57,14 +157,6 @@ const GlobalCursor = () => {
 
       const handleVideoPlayerHover = (e) => {
         const newVisibility = !e.detail;
-        
-        // Comment out bounce effect
-        // if (!wasVisibleRef.current && newVisibility) {
-        //   setShouldBounce(true);
-        //   // Reset bounce state after animation
-        //   setTimeout(() => setShouldBounce(false), 500);
-        // }
-        
         wasVisibleRef.current = newVisibility;
         setIsVisible(newVisibility);
       };
@@ -107,25 +199,47 @@ const GlobalCursor = () => {
           width: isHovering ? '2rem' : '1rem',
           height: isHovering ? '2rem' : '1rem',
           borderWidth: '1.5px',
-          transition: 'width 0.3s ease-out, height 0.3s ease-out',
-          animation: shouldBounce ? 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          animation: isLoading ? 'spin 1s linear infinite' : shouldBounce ? 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
+          borderStyle: isLoading ? 'solid' : 'solid',
+          borderColor: isLoading ? '#A9232C #A9232C transparent #A9232C' : '#A9232C',
+          transform: 'translate(-50%, -50%)',
+          opacity: isLoading ? 1 : 1,
         }}
       />
       <style jsx global>{`
         @keyframes bounceIn {
           0% {
-            transform: scale(0.3);
+            transform: translate(-50%, -50%) scale(0.3);
             opacity: 0;
           }
           50% {
-            transform: scale(1.2);
+            transform: translate(-50%, -50%) scale(1.2);
             opacity: 1;
           }
           70% {
-            transform: scale(0.9);
+            transform: translate(-50%, -50%) scale(0.9);
           }
           100% {
-            transform: scale(1);
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+
+        @keyframes spin {
+          0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
           }
         }
       `}</style>

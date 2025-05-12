@@ -55,7 +55,7 @@ const GlobalCursor = () => {
       if (target) {
         // Get the href from the link
         const href = target.getAttribute('href');
-        // Only trigger loading if the link points to a different page
+        // Only trigger loading if the link points to a different page and is not a hash link
         if (href && href !== pathname && !href.startsWith('#')) {
           handleLinkClick();
         }

@@ -15,9 +15,15 @@ const GlobalCursor = () => {
   const router = useRouter();
   const mountTimeoutRef = useRef(null);
   const loadingTimeoutRef = useRef(null);
+  const currentPathRef = useRef(pathname);
 
   // Debug flag - set to true to force loading state
   const DEBUG_FORCE_LOADING = false;
+
+  // Update currentPathRef when pathname changes
+  useEffect(() => {
+    currentPathRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     // Handle click events on links
@@ -55,8 +61,8 @@ const GlobalCursor = () => {
       if (target) {
         // Get the href from the link
         const href = target.getAttribute('href');
-        // Only trigger loading if the link points to a different page and is not a hash link
-        if (href && href !== pathname && !href.startsWith('#')) {
+        // Only trigger loading if the link points to a different page
+        if (href && href !== currentPathRef.current && !href.startsWith('#')) {
           handleLinkClick();
         }
       }
@@ -65,7 +71,7 @@ const GlobalCursor = () => {
     // Listen for Next.js route change events
     window.addEventListener('routeChangeStart', (url) => {
       // Only trigger loading if the new URL is different from current pathname
-      if (url !== pathname) {
+      if (url !== currentPathRef.current) {
         handleLinkClick();
         // Force cursor to stay hidden during route change
         document.body.style.cursor = 'none';

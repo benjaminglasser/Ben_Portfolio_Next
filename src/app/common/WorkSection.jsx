@@ -5,6 +5,15 @@ import WorkCard from "./WorkCard";
 const WorkSection = () => {
   const WORK_CONTENT = [
     {
+      role: "3D Artist",
+      time: "Fall 2025",
+      title: "DTLA Marriott Artist Spotlight",
+      description: "Public art animation on large scale display in Downtown LA",
+      thumbnail: "/images/dtlaMarriott/MarriotThumb.gif",
+      path: "work-detail/dtlaMarriott",
+      tools: ["Blender"],
+    },
+    {
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",

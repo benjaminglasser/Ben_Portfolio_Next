@@ -35,7 +35,7 @@ const GlobalCursor = () => {
       
       // Add a small delay before showing the loading state
       loadingTimeoutRef.current = setTimeout(() => {
-        setIsLoading(true);
+      setIsLoading(true);
       }, 100);
     };
 
@@ -63,7 +63,7 @@ const GlobalCursor = () => {
         const href = target.getAttribute('href');
         // Only trigger loading if the link points to a different page
         if (href && href !== currentPathRef.current && !href.startsWith('#')) {
-          handleLinkClick();
+        handleLinkClick();
         }
       }
     });
@@ -244,7 +244,7 @@ const GlobalCursor = () => {
         wasVisibleRef.current = newVisibility;
         // Only hide the cursor if we're not loading
         if (!isLoading) {
-          setIsVisible(newVisibility);
+        setIsVisible(newVisibility);
         }
       };
 

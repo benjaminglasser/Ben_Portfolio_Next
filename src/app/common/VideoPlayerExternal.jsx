@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useInView } from "framer-motion";
 import { PuffLoader } from "react-spinners";
 
 const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
   const ref = useRef(null);
+  const iframeRef = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -16,6 +17,18 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
     setLoading(false);
     setError(true);
   };
+
+  // Stop video when component unmounts
+  useEffect(() => {
+    return () => {
+      if (iframeRef.current) {
+        const iframe = iframeRef.current;
+        // Add a random parameter to force the iframe to reload and stop the video
+        const currentSrc = iframe.src;
+        iframe.src = currentSrc + '&t=' + Math.random();
+      }
+    };
+  }, []);
 
   return (
     <div className="flex justify-center items-center">
@@ -47,6 +60,7 @@ const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
             </div>
           ) : (
             <iframe
+              ref={iframeRef}
               style={{
                 transform: isInView ? "none" : "translateY(50px)",
                 opacity: isInView ? 1 : 0,

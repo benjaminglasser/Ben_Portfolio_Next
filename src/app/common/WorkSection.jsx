@@ -5,6 +5,7 @@ import WorkCard from "./WorkCard";
 const WorkSection = () => {
   const WORK_CONTENT = [
     {
+      id: 1,
       role: "3D Artist",
       time: "Fall 2025",
       title: "DTLA Marriott Artist Spotlight",
@@ -14,6 +15,7 @@ const WorkSection = () => {
       tools: ["Blender"],
     },
     {
+      id: 2,
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",
@@ -28,6 +30,7 @@ const WorkSection = () => {
       },
     },
     {
+      id: 3,
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
@@ -38,6 +41,21 @@ const WorkSection = () => {
       tools: ["Blender"],
     },
     {
+      id: 4,
+      role: "Designer / Engineer",
+      time: "2020 - 2026",
+      title: "Reakt Light",
+      description: "Customizable audio reactive lighting system",
+      thumbnail: "/images/reakt/reaktHero3.gif",
+      path: "work-detail/reaktLights",
+      tools: [
+        "TouchDesigner",
+        "Chauvet DMX Dimmer/Switch Pack",
+        "DMXKing eDMX1 PRO Ethernet DMX Controller",
+      ],
+    },
+    {
+      id: 5,
       role: "Lead Product Designer",
       time: "2023 - 2024",
       title: "Easel AI",
@@ -56,6 +74,7 @@ const WorkSection = () => {
       ],
     },
     {
+      id: 6,
       role: "3D Graphics and Simulation",
       time: "Fall 2023",
       title: "Circa DeepScreen",
@@ -66,6 +85,7 @@ const WorkSection = () => {
       tools: ["Blender"],
     },
     {
+      id: 7,
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",
@@ -75,6 +95,7 @@ const WorkSection = () => {
       tools: ["Unreal Engine"],
     },
     {
+      id: 8,
       role: "AR UX / UI Design",
       time: "Fall 2022",
       title: "PointAR",
@@ -87,6 +108,7 @@ const WorkSection = () => {
       //   },
     },
     {
+      id: 9,
       role: "Spatial Design Research and Speculation",
       time: "October 2022",
       title: "The Spatial Page",
@@ -98,6 +120,7 @@ const WorkSection = () => {
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
     },
     {
+      id: 10,
       role: "Web Development, Designs, 3D Modeling, Performance Visuals",
       time: "2021",
       title: "Voyager",
@@ -119,16 +142,18 @@ const WorkSection = () => {
         "Illustrator",
       ],
     },
+    // {
+    //   id: 11,
+    //   role: "UX/UI Designer",
+    //   time: "Spring 2023",
+    //   title: "Stemport",
+    //   description: "Analyze - Organize - Import",
+    //   thumbnail: "/images/stemport/stemportHeroThumb.gif",
+    //   path: "work-detail/stemport",
+    //   tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
+    // },
     {
-      role: "UX/UI Designer",
-      time: "Spring 2023",
-      title: "Stemport",
-      description: "Analyze - Organize - Import",
-      thumbnail: "/images/stemport/stemportHeroThumb.gif",
-      path: "work-detail/stemport",
-      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-    },
-    {
+      id: 12,
       role: "UI / Web Development",
       time: "Spring 2022",
       title: "The Canary Test",
@@ -137,19 +162,6 @@ const WorkSection = () => {
       thumbnail: "/images/canary/canaryHero4.gif",
       path: "work-detail/canary",
       tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-    },
-    {
-      role: "Designer / Engineer",
-      time: "Fall 2020",
-      title: "Reakt Light",
-      description: "Customizable audio reactive lighting system",
-      thumbnail: "/images/reakt/reaktHero3.gif",
-      path: "work-detail/reaktLights",
-      tools: [
-        "TouchDesigner",
-        "Chauvet DMX Dimmer/Switch Pack",
-        "DMXKing eDMX1 PRO Ethernet DMX Controller",
-      ],
     },
     // {
     //   role: "Engineer, Creative Coder",
@@ -172,6 +184,7 @@ const WorkSection = () => {
     //   },
     // },
     {
+      id: 13,
       role: "Animator / Creative Director",
       time: "2019",
       title: "Meaningful Pursuits",
@@ -180,7 +193,7 @@ const WorkSection = () => {
       path: "work-detail/meaningfulPursuits",
       tools: ["TouchDesigner", "Premiere Pro"],
     },
-  ];
+  ].sort((a, b) => a.id - b.id);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

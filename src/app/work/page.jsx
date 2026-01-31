@@ -23,6 +23,7 @@ const WorkCard = dynamic(() => import("../common/WorkCard"), {
 const Work = () => {
   const WORK_CONTENT = [
     {
+      id: 1,
       role: "XR Interaction",
       time: "Summer 2022 - Fall 2022",
       title: "BMW",
@@ -37,6 +38,7 @@ const Work = () => {
       },
     },
     {
+      id: 2,
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
@@ -47,6 +49,21 @@ const Work = () => {
       tools: ["Blender"],
     },
     {
+      id: 3,
+      role: "Designer / Engineer",
+      time: "2020 - 2026",
+      title: "Reakt Light",
+      description: "Customizable audio reactive lighting system",
+      thumbnail: IMAGES?.REAKT,
+      path: "work-detail/reaktLights",
+      tools: [
+        "TouchDesigner",
+        "Chauvet DMX Dimmer/Switch Pack",
+        "DMXKing eDMX1 PRO Ethernet DMX Controller",
+      ],
+    },
+    {
+      id: 4,
       role: "Lead Product Designer",
       time: "Spring 2023 - Summer 2024",
       title: "Easel AI",
@@ -66,6 +83,7 @@ const Work = () => {
       ],
     },
     {
+      id: 5,
       role: "3D Graphics and Simulation",
       time: "Fall 2023",
       title: "Circa DeepScreen",
@@ -76,6 +94,7 @@ const Work = () => {
       tools: ["Blender"],
     },
     {
+      id: 6,
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",
@@ -85,6 +104,7 @@ const Work = () => {
       tools: ["Unreal Engine"],
     },
     {
+      id: 7,
       role: "Spatial Design Research ans Speculation",
       time: "October 2022 - April 2023",
       title: "The Spatial Page",
@@ -96,6 +116,7 @@ const Work = () => {
       tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
     },
     {
+      id: 8,
       role: "Web Development, Designs, 3D Models",
       time: "2022",
       title: "Voyager",
@@ -117,16 +138,18 @@ const Work = () => {
         "Illustrator",
       ],
     },
+    // {
+    //   id: 9,
+    //   role: "UX/UI Designer",
+    //   time: "Spring 2023",
+    //   title: "Stemport",
+    //   description: "Analyze - Organize - Import",
+    //   thumbnail: IMAGES?.STEMPORT_THUMB,
+    //   path: "work-detail/stemport",
+    //   tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
+    // },
     {
-      role: "UX/UI Designer",
-      time: "Spring 2023",
-      title: "Stemport",
-      description: "Analyze - Organize - Import",
-      thumbnail: IMAGES?.STEMPORT_THUMB,
-      path: "work-detail/stemport",
-      tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
-    },
-    {
+      id: 10,
       role: "UI / Web Development",
       time: "Spring 2023",
       title: "The Canary Test",
@@ -137,6 +160,7 @@ const Work = () => {
       tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
     },
     {
+      id: 11,
       role: "AR UX / UI Design",
       time: "FALL 2022",
       title: "PointAR",
@@ -147,19 +171,6 @@ const Work = () => {
       workDetail: {
         video: IMAGES.POINTAR_HERO,
       },
-    },
-    {
-      role: "Designer / Engineer",
-      time: "Fall 2021",
-      title: "Reakt Light",
-      description: "Customizable audio reactive lighting system",
-      thumbnail: IMAGES?.REAKT,
-      path: "work-detail/reaktLights",
-      tools: [
-        "TouchDesigner",
-        "Chauvet DMX Dimmer/Switch Pack",
-        "DMXKing eDMX1 PRO Ethernet DMX Controller",
-      ],
     },
     // {
     //   role: "Engineer, Creative Coder",
@@ -182,6 +193,7 @@ const Work = () => {
     //   },
     // },
     {
+      id: 12,
       role: "Animator / Creative Director",
       time: "2021",
       title: "Meaningful Pursuits",
@@ -190,7 +202,7 @@ const Work = () => {
       path: "work-detail/meaningfulPursuits",
       tools: ["TouchDesigner", "Premiere Pro"],
     },
-  ];
+  ].sort((a, b) => a.id - b.id);
 
   return (
     <Grid container spacing={5} className="mt-5">

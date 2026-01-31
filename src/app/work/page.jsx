@@ -107,7 +107,7 @@ const Work = () => {
       id: 7,
       role: "Spatial Design Research ans Speculation",
       time: "October 2022 - April 2023",
-      title: "The Spatial Page",
+      title: "The Spatial Age",
       description:
         "How spatialization is redefining our reality, memory, and experience",
       thumbnail: IMAGES?.SPATIAL_TUNMB,

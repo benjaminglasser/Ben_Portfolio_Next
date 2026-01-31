@@ -111,7 +111,7 @@ const WorkSection = () => {
       id: 9,
       role: "Spatial Design Research and Speculation",
       time: "October 2022",
-      title: "The Spatial Page",
+      title: "The Spatial Age",
       description:
         "How spatialization is redefining our reality, memory, and experience",
       thumbnail: "/images/SpatialAge/spatialAge.gif",

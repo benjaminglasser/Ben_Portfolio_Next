@@ -41,8 +41,9 @@ const reaktLights = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
-        className="md:h-[600px]"
+        className="md:h-[600px] lg:h-[700px] xl:h-auto"
         video="/Media/Reakt/reaktHero.mp4"
+        scaleOnLargeScreens={true}
       />
 
       <ZigzagHeader

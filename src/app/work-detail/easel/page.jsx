@@ -19,12 +19,13 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
       <Section>
-        <div>
+        <div className="w-full">
           <Image
             src="/images/easel/banner.png"
-            alt="font design"
+            alt="Easel AI banner"
             width="1920"
             height="891"
+            className="w-full h-auto"
           />
         </div>
       </Section>

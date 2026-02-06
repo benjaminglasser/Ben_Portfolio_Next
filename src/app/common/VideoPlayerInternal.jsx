@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { PuffLoader } from "react-spinners";
 
-const VideoPlayerInternal = ({ video, className, centered }) => {
+const VideoPlayerInternal = ({ video, className, centered, scaleOnLargeScreens }) => {
   // State to manage if the video is loading
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -35,8 +35,9 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
 
       {/* Video container */}
       <div
-        className={`${className} w-full overflow-hidden flex justify-center 
-                    ${centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"}
+        className={`${className} w-full flex justify-center 
+                    ${centered ? "mt-10 w-full px-5 md:w-3/5 overflow-hidden" : "md:w-full"}
+                    ${scaleOnLargeScreens ? "overflow-hidden xl:overflow-visible" : "overflow-hidden"}
                   `}
       >
         {error ? (
@@ -45,7 +46,7 @@ const VideoPlayerInternal = ({ video, className, centered }) => {
           </div>
         ) : (
           <video
-            className="object-cover w-full h-auto"
+            className={`w-full ${scaleOnLargeScreens ? "object-cover xl:object-contain" : "object-cover"} h-auto`}
             autoPlay
             loop
             playsInline

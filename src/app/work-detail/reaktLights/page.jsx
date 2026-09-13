@@ -309,6 +309,28 @@ const reaktLights = () => {
           </figcaption>
         </figure>
       </div>
+
+      <DetailSection
+        className="px-5 md:px-10 "
+        title="PRODUCT INSTALLED"
+        widthFull
+        left
+      />
+
+      <div className="px-5 md:px-10 mt-8 mb-24">
+        <div className="max-w-[1400px] mx-auto">
+          <video
+            className="w-full rounded-lg bg-black"
+            controls
+            playsInline
+            preload="metadata"
+            poster="/Media/Reakt/reaktInstalled_poster.jpg"
+          >
+            <source src="/Media/Reakt/reaktInstalled.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </div>
   );
 };

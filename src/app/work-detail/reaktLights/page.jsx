@@ -64,7 +64,7 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="BACKEND + INTERFACE BUILD"
         description={`Input audio signals are fed to TouchDesigner where set frequencies can be isolated, normalized then convert DMX. The signal is then converted and fed into a Chauvet DMX Dimmer/Switch Pack that can break out up to 4 channels.`}
         widthFull
@@ -88,7 +88,7 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="EARLY TESTS"
         widthFull
         left
@@ -110,14 +110,14 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="VERSION 2"
         description={`Next up was to get rid of the computer and put the code onto a raspberry pi. Then wire it up to a basic prototype for controls. "Make it exist first, then make it pretty"`}
         widthFull
         left
       />
 
-      <div className="px-5 md:px-10 mt-8 mb-24">
+      <div className="px-10 md:px-20 mt-8 mb-24">
         <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 aspect-[1/2] md:aspect-[2/1] gap-3 max-w-[1400px] mx-auto">
           <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden bg-gray-800">
             <Image
@@ -172,14 +172,14 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="VERSION 3"
         description={`Now to make it pretty. To reduce cost and make it manufacturable and reproducible, I printed my own custom PCB, removed expensive interfaces and 3D printed a case to house everything.`}
         widthFull
         left
       />
 
-      <div className="px-5 md:px-10 mt-8 mb-24">
+      <div className="px-10 md:px-20 mt-8 mb-24">
         <div className="max-w-[1400px] mx-auto">
           <video
             className="w-full rounded-lg bg-black"
@@ -243,14 +243,14 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="VERSION 4"
         description={`We wanted to increase screen size, update the UI, implement a higher quality audio interface, panel mount the components on an updated pcb, print a new case with the controls at an angle for ease of use and create better cable management which got us to our current design.`}
         widthFull
         left
       />
 
-      <div className="px-5 md:px-10 mt-8 mb-24">
+      <div className="px-10 md:px-20 mt-8 mb-24">
         <div className="grid grid-cols-2 grid-rows-2 md:grid-cols-4 aspect-[1/1] md:aspect-[2/1] gap-3 max-w-[1400px] mx-auto">
           <div className="col-span-2 md:row-span-2 relative rounded-lg overflow-hidden bg-gray-800">
             <Image
@@ -311,13 +311,13 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="PRODUCT INSTALLED"
         widthFull
         left
       />
 
-      <div className="px-5 md:px-10 mt-8">
+      <div className="px-10 md:px-20 mt-8">
         <div className="max-w-[1400px] mx-auto">
           <video
             className="w-full rounded-lg bg-black"
@@ -333,13 +333,13 @@ const reaktLights = () => {
       </div>
 
       <DetailSection
-        className="px-5 md:px-10"
+        className="px-10 md:px-20"
         title="NEXT STEPS"
         widthFull
         left
       />
 
-      <div className="px-5 md:px-10 mt-2 mb-24">
+      <div className="px-10 md:px-20 mt-2 mb-24">
         <ul className="list-disc pl-5 space-y-3 text-subheading max-w-[1400px]">
           <li>
             Continue minimizing component cost by integrating a full all-in-one PCB with an onboard CPU and audio interface to get off the Raspberry Pi completely.

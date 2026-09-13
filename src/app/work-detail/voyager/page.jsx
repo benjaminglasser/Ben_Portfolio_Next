@@ -50,7 +50,7 @@ const voyager = () => {
       />
 
       <Section>
-        <div className="w-full text-center px-5">
+        <div className="w-full text-center px-10">
           <FancyButton
             className=" uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
@@ -61,7 +61,7 @@ const voyager = () => {
         </div>
       </Section>
 
-      {/* <DetailSection className="px-5 md:px-10" title="PROCESS" widthFull left /> */}
+      {/* <DetailSection className="px-10 md:px-20" title="PROCESS" widthFull left /> */}
 
       <Context
         title="CONTEXT"
@@ -87,7 +87,7 @@ const voyager = () => {
       </Section> */}
 
       <DetailSection
-        className="px-5 md:px-10"
+        className="px-10 md:px-20"
         title="TOUR VISUALS PACKAGE"
         description={`First, I created a mood board with various sources of inspiration.
           This included radar, weather graphics, 80s video games, futurism,
@@ -99,11 +99,11 @@ const voyager = () => {
         <Image
           src={PLUR.INSPO}
           alt="inspo"
-          className="w-full h-full px-5 mt-4 md:px-10"
+          className="w-full h-full px-10 mt-4 md:px-20"
         />
       </Section>
       <Section>
-        <p className="px-5 md:px-10 mt-5">
+        <p className="px-10 md:px-20 mt-5">
           The team setteld on the idea of using wireframes of 3D space objects
           as a place to start. I created some concepts in Blender and overlayed
           some heads up display elements. I created a feedback texture in
@@ -114,7 +114,7 @@ const voyager = () => {
         <Image
           src={PLUR.PROCESS2}
           alt="Process visualization showing wireframe 3D space objects with HUD elements"
-          className="w-full h-full px-5 mt-4 md:px-10"
+          className="w-full h-full px-10 mt-4 md:px-20"
         />
       </Section>
 
@@ -124,7 +124,7 @@ const voyager = () => {
       />
 
       <DetailSection
-        className="px-5 md:px-10"
+        className="px-10 md:px-20"
         title="Vinyl + Merch"
         description={`Using the design language that we settled on, vinyl artwork and shirts were created for the first release`}
         left
@@ -134,26 +134,26 @@ const voyager = () => {
         <Image
           src={PLUR.VINYL}
           alt="Voyager vinyl artwork design"
-          className="w-full h-full px-5 mt-2 md:px-10"
+          className="w-full h-full px-10 mt-2 md:px-20"
         />
       </Section>
       <Section>
         <Image
           src={PLUR.LABEL}
           alt="Voyager vinyl label design"
-          className="w-full h-full px-5 mt-2 md:px-10"
+          className="w-full h-full px-10 mt-2 md:px-20"
         />
       </Section>
       <Section>
         <Image
           src={PLUR.SHIRT}
           alt="Voyager merchandise t-shirt design"
-          className="w-full h-full px-5 mt-2 md:px-10"
+          className="w-full h-full px-10 mt-2 md:px-20"
         />
       </Section>
 
       <DetailSection
-        className="px-5 md:px-10"
+        className="px-10 md:px-20"
         title="Web Design"
         description={`After this was finalized, I took the concepts into Figma to create
           various ideas for the first version of the website which would be
@@ -165,23 +165,23 @@ const voyager = () => {
         <Image
           src={PLUR.PROCESS}
           alt="Website design process showing tour announcement concepts"
-          className="w-full h-full px-5 mt-2 md:px-10"
+          className="w-full h-full px-10 mt-2 md:px-20"
         />
       </Section>
       {/* <Section>
-        <p className="px-5 md:px-10 mt-5">
+        <p className="px-10 md:px-20 mt-5">
           I worked on a team with one other to help turn around a finished
           product in time for the deadline. The HUD elements were created using
           p5.js, the 3D objects were integrated using three.js and we used an
           API from bandsintown to pull tour date information.
         </p>
-        <p className="px-5 md:px-10 mt-5">
+        <p className="px-10 md:px-20 mt-5">
           We will continue to integrate more 3D objects to build out the website
           as more music releases come out.
         </p>
       </Section> */}
       <DetailSection
-        className="px-5 md:px-10"
+        className="px-10 md:px-20"
         title="TOUR VISUALS PACKAGE"
         description={`Lastly, for the lead artist on the label (Justin Jay), I created a cohesive visual package that combined Voyager aesthetics with thematic elements from his most recent album. The 3D objects were created in Blender and animated/iterated upon in TouchDesigner. In the future, we have plans to implement live video manipulation to compliment his musical performance.`}
         widthFull

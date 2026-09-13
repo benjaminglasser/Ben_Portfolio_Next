@@ -46,7 +46,7 @@ const Odyssey = () => {
 
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Background"
           description='The project leveraged the cutting-edge technology soundstages equipped with large-scale LED screens, to create immersive virtual backgrounds using game engines like Unreal Engine. This innovative approach, popularized by its use in the TV series "The Mandalorian," offers numerous advantages for film production.'
           center
@@ -61,7 +61,7 @@ const Odyssey = () => {
         />
       </Section>
       <Section>
-        <h4 className="px-5 md:px-10 mt-16 md:font-thin">
+        <h4 className="px-10 md:px-20 mt-16 md:font-thin">
           ICVFX enables realistic bounce lighting, parallax effects through the
           synchronization of virtual and physical cameras, and the affordance of
           controlled environments that also allow for real-time changes in
@@ -75,7 +75,7 @@ const Odyssey = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Process"
           description='For this project, the challenge was to compose a desert scene reminiscent of the iconic intro scene from "2001: A Space Odyssey."'
           widthFull
@@ -84,13 +84,13 @@ const Odyssey = () => {
       </Section>
       <Section>
         <VideoPlayerInternal
-          className="mt-10 w-full px-5 md:px-10 md:w-3/5"
+          className="mt-10 w-full px-10 md:px-20 md:w-3/5"
           video="/Media/Odyssey/Process.mp4"
           centered
         />
       </Section>
       <Section>
-        <h4 className="px-5 md:px-10 mt-16 text-subheading">
+        <h4 className="px-10 md:px-20 mt-16 text-subheading">
           This involved careful shot composition, including a detailed day/night
           sequence, to capture the essence of the original film while showcasing
           the capabilities of our virtual production space. The process required
@@ -102,7 +102,7 @@ const Odyssey = () => {
         <VideoPlayerInternal video="/Media/Odyssey/Process_1.mp4" centered />
       </Section>
       <Section>
-        <h4 className="px-5 md:px-10 mt-16 text-subheading">
+        <h4 className="px-10 md:px-20 mt-16 text-subheading">
           This tight turnaround necessitated quick adaptation and precise
           calibration to ensure that the digital environment seamlessly matched
           the physical set pieces. The goal was to create an experience that was
@@ -114,7 +114,7 @@ const Odyssey = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-5 md:px-10 mb-20"
+          className="px-10 md:px-20 mb-20"
           title="Project Outcomes"
           description="The project was a resounding success, achieving its aim of demonstrating the potential of in-house virtual production technologies and attracting interest from industry professionals. It highlighted the benefits of using LED volumes for enhanced realism and storytelling, sparking interest in the future of virtual production. The positive reception affirmed the industry's readiness for innovative filmmaking technologies."
           center

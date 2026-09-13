@@ -57,7 +57,7 @@ const DTLAMarriott = () => {
       </Section>
       {videos.length > 0 && (
         <Section>
-          <div className="px-5 md:px-10">
+          <div className="px-10 md:px-20">
             <div className="bg-greyDark pb-10">
               <div>
                 <VideoGrid videos={videos} />
@@ -68,7 +68,7 @@ const DTLAMarriott = () => {
       )}
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Process"
           widthFull
         />
@@ -84,7 +84,7 @@ const DTLAMarriott = () => {
       <br />
       {images.length > 0 && (
         <Section>
-          <div className="px-5 md:px-10 pb-20">
+          <div className="px-10 md:px-20 pb-20">
             <div className="bg-greyDark py-1">
               <ImageGrid images={images} />
             </div>

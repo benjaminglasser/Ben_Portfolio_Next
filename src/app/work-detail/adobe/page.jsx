@@ -25,13 +25,25 @@ const Adobe = () => {
       </Section>
 
       <DetailSection
+        className="px-10 md:px-20"
         widthFull
         title="Adobe Substance 3D Reviewer"
         description="Reviewer is a collaborative design tool that enables teams to review and provide feedback on 3D product models at an early stage in development. Accessible on both web and VR, it brings together stakeholders to streamline decision-making and enhance product quality."
-        video="/Media/Reviewer/reviewerTrailer.mp4"
       />
       <Section>
-        <div className="w-full text-center px-5">
+        <div className="flex justify-center w-full mt-5 px-10 md:px-20">
+          <video
+            className="w-full h-auto rounded-lg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            src="/Media/Reviewer/reviewerTrailer.mp4"
+          />
+        </div>
+      </Section>
+      <Section>
+        <div className="w-full text-center px-10">
           <FancyButton
             className="uppercase w-full md:w-3/5 mt-8 ojuju p-1 hover:text-white"
             size="medium"
@@ -43,17 +55,34 @@ const Adobe = () => {
       </Section>
 
       <Section>
-        <div className="flex justify-center w-full mt-14">
-          <VideoPlayerClickable src="/Media/Reviewer/reviewerDemo.mp4" />
+        <div className="w-full mt-14">
+          <h3 className="ojuju text-center mb-4">Product Demo</h3>
+          <div className="flex justify-center w-full">
+            <div className="w-full md:w-3/5">
+              <VideoPlayerClickable src="/Media/Reviewer/reviewerDemo.mp4" />
+            </div>
+          </div>
         </div>
       </Section>
 
       <DetailSection
+        className="px-10 md:px-20"
         widthFull
         title="3D Integration in Frame.io"
         description="The Frame.io 3D integration has launched and the early results have been strong. As of late May, roughly 440 accounts are actively using 3D features in Frame, and monthly 3D asset creation has grown from single digits a year ago to 13,582 assets in the most recent month, a clear sign that the workflows are landing with partners. We also saw over 3,900 3D assets downloaded from Frame in May alone, which points to real usage inside partner pipelines rather than one off testing."
-        video="/Media/Frame/3DinFrame.mp4"
       />
+      <Section>
+        <div className="flex justify-center w-full mt-5 px-10 md:px-20">
+          <video
+            className="w-full h-auto rounded-lg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            src="/Media/Frame/3DinFrame.mp4"
+          />
+        </div>
+      </Section>
     </div>
   );
 };

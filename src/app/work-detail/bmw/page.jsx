@@ -43,7 +43,7 @@ const bmw = () => {
           </Section>
           <Section>
             <div className="flex justify-center">
-              <div className="w-full px-5 md:w-3/5 text-[#A9232C]">
+              <div className="w-full px-10 md:w-3/5 text-[#A9232C]">
                 <h4 className="font-normal">UPDATE!</h4>
               </div>
             </div>
@@ -56,7 +56,7 @@ const bmw = () => {
             />
           </Section>
           <Section>
-            <div className=" px-5 md:px-10 mt-12 flex justify-center">
+            <div className=" px-10 md:px-20 mt-12 flex justify-center">
               <p>
                 During CES 2024, the BMW team presented work that I contributed
                 to during my time.
@@ -65,7 +65,7 @@ const bmw = () => {
           </Section>
 
           <Section>
-            <div className="text-center px-5 md:px-10 mt-16 mb-72 ">
+            <div className="text-center px-10 md:px-20 mt-16 mb-72 ">
               <DetailSection className=" mb-3 " title="EXPERIENCE" center />
               <div className="w-full flex flex-col items-center justify-center">
                 <h6 className="mb-3 font-normal">DETAILS LIMITED BY NDA</h6>

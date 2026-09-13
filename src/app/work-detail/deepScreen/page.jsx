@@ -82,14 +82,14 @@ const Canary = () => {
       </Section>
 
       <DetailSection
-        className="px-5 md:px-10 "
+        className="px-10 md:px-20 "
         title="Process"
         description="Beginning with Polestar as our inspiration, we merged their branding with a narrative-enhancing 3D deep field effect and water simulations, moving beyond mere visual appeal to storytelling. Iterative refinements aimed to boost engagement and leverage the displays' interactivity, deepening audience connection through enriched storytelling."
         left
       />
 
       <Section>
-        <div className="px-5 md:px-10 pb-20">
+        <div className="px-10 md:px-20 pb-20">
           <div className="bg-greyDark py-1">
             <ImageGrid images={images} />
             <ImageWithLoader
@@ -105,7 +105,7 @@ const Canary = () => {
 
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Results"
           description="The final concept is a visually striking advertisement that showcases Standard Vision's ability to craft immersive and technologically sophisticated marketing solutions, perfectly aligning with brand and advertising objectives. It underscores the Circa display's capacity to foster innovative advertising experiences, thereby establishing a new standard in digital outdoor advertising."
           center

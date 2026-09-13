@@ -102,19 +102,19 @@ const NRF = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Results"
           description="Each graphic we developed serves to highlight a distinct affordance of the transparent screen technology:"
           left
         />
       </Section>
       <Section>
-        <div className="px-5 md:px-10">
+        <div className="px-10 md:px-20">
           <div className="bg-greyDark pb-10">
             <div>
               <VideoGrid videos={videos} />
             </div>
-            <h2 className="px-5 md:px-10 md:font-thin">
+            <h2 className="px-10 md:px-20 md:font-thin">
               Each of these graphics not only underscores the innovative
               features of Clear Canvas's transparent screen technology but also
               showcases our ability to blend creativity with technology to push
@@ -125,18 +125,18 @@ const NRF = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-5 md:px-10 "
+          className="px-10 md:px-20 "
           title="Process"
           description="Collaboration was key in our journey to innovation. Working closely with the Clear Canvas team, we brainstormed ideas, developed concepts, and iterated designs. Our focus remained on creating high-quality assets that adhere to specific specifications, ensuring each graphic not only looked stunning but also served its purpose effectively."
           widthFull
         />
       </Section>
       <Section>
-        <div className="px-5 md:px-10 pb-20">
+        <div className="px-10 md:px-20 pb-20">
           <div className="bg-greyDark py-1">
             <ImageGrid images={images} />
             <VideoPlayerInternal
-              className="px-5 md:px-10"
+              className="px-10 md:px-20"
               video="/Media/NRF/TestNRF.mp4"
             />
             <div>

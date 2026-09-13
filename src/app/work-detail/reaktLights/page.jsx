@@ -49,7 +49,7 @@ const reaktLights = () => {
       <ZigzagHeader
         title="REAKT LIGHTS"
         description="Customizable audio reactive lighting system"
-        extendedDescription="Reakt Lights is an audio-reactive lighting system that was commissioned for The Canary Test gallery in Los Angeles, CA. Part of the project was also to build an easy-to-use interface for the gallery to use for future sound pieces."
+        extendedDescription="Reakt Lights is an audio-reactive lighting system originally commissioned for The Canary Test gallery in Los Angeles, CA, along with an easy-to-use interface for the gallery to program future sound pieces. It has since grown into a broader effort: building an affordable, plug-and-play lighting system for venues that want responsive, professional-feeling lighting without the cost of professional gear."
         time="2021 // Canary Gallery"
         role="Designer / Engineer"
         tools={[
@@ -317,7 +317,7 @@ const reaktLights = () => {
         left
       />
 
-      <div className="px-5 md:px-10 mt-8 mb-24">
+      <div className="px-5 md:px-10 mt-8">
         <div className="max-w-[1400px] mx-auto">
           <video
             className="w-full rounded-lg bg-black"
@@ -330,6 +330,27 @@ const reaktLights = () => {
             Your browser does not support the video tag.
           </video>
         </div>
+      </div>
+
+      <DetailSection
+        className="px-5 md:px-10"
+        title="NEXT STEPS"
+        widthFull
+        left
+      />
+
+      <div className="px-5 md:px-10 mt-2 mb-24">
+        <ul className="list-disc pl-5 space-y-3 text-subheading max-w-[1400px]">
+          <li>
+            Continue minimizing component cost by integrating a full all-in-one PCB with an onboard CPU and audio interface to get off the Raspberry Pi completely.
+          </li>
+          <li>
+            Partner with manufacturers to produce components at scale so the product can be distributed to other DIY venues that want to install their own audio-reactive lighting systems at a fraction of the cost.
+          </li>
+          <li>
+            Continue to refine the product to balance quality and cost.
+          </li>
+        </ul>
       </div>
     </div>
   );

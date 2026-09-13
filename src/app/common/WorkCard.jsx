@@ -26,7 +26,7 @@ const WorkCard = ({
           width="100"
           height="100"
           className="thumbnail"
-          wrapperClassName={thumbnailBorder ? "ring-1 ring-inset ring-[#A9232C]" : ""}
+          borderOverlayClassName={thumbnailBorder ? "border border-[#FA0F00]" : ""}
           unoptimized={typeof thumbnail === 'string' && (thumbnail.endsWith('.gif') || thumbnail.endsWith('.webp'))}
         />
         <div className="flex justify-between text-[11px] text-black font-light border-b-[0.4px] py-2">

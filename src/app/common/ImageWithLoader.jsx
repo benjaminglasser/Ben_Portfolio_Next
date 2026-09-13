@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
-const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName, unoptimized }) => {
+const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName, borderOverlayClassName, unoptimized }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const imgRef = useRef(null);
@@ -68,6 +68,11 @@ const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName,
             onError={handleError}
           />
         </div>
+      )}
+      {borderOverlayClassName && (
+        <div
+          className={`absolute inset-0 z-20 rounded-lg pointer-events-none ${borderOverlayClassName}`}
+        />
       )}
     </div>
   );

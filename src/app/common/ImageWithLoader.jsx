@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
-const ImageWithLoader = ({ src, alt, width, height, className, unoptimized }) => {
+const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName, unoptimized }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const imgRef = useRef(null);
@@ -33,7 +33,7 @@ const ImageWithLoader = ({ src, alt, width, height, className, unoptimized }) =>
 
   return (
     <div
-      className="relative w-full rounded-lg overflow-hidden"
+      className={`relative w-full rounded-lg overflow-hidden ${wrapperClassName || ""}`}
       style={{
         backgroundColor: '#1f2937'
       }}

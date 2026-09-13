@@ -40,7 +40,7 @@ const WorkSection = () => {
       ],
     },
     {
-      id: 2,
+      id: 3.5,
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",
@@ -193,7 +193,7 @@ const WorkSection = () => {
       thumbnail: "/images/adobe/adobeThumb.webp",
       path: "work-detail/adobe",
       tools: ["Figma", "Prototyping", "Blender", "Unity"],
-      invertThumbnail: true,
+      thumbnailBorder: true,
     },
     {
       id: 13,
@@ -223,7 +223,7 @@ const WorkSection = () => {
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
               externalLink={content?.externalLink}
-              invertThumbnail={content?.invertThumbnail}
+              thumbnailBorder={content?.thumbnailBorder}
             />
           </Section>
         </div>

@@ -37,7 +37,7 @@ const HomePageExtraInfo = ({ isLoading }) => {
           <p className="text-end text-white">born 1994</p>
           <p className="text-end text-white">34°04'35"N 118°15'33"W</p>
           <p className="text-end text-white">
-            experience designer at{" "}
+            designer at{" "}
             <span className="ojuju text-white hover:text-black">
               <Link
                 href="https://cdn.sanity.io/images/bl383u0v/production/b8bf3938336ab457e1045e90fe737ce0c59f1cde-1500x1000.jpg?rect=0,106,1500,788&w=1200&h=630&q=70&fit=crop&auto=format"

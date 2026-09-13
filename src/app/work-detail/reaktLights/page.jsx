@@ -108,6 +108,55 @@ const reaktLights = () => {
       <div className="my-20">
         <FancyCarousel SOURCE={source3} />
       </div>
+
+      <DetailSection
+        className="px-5 md:px-10 "
+        title="VERSION 2"
+        description={`Next up was to get rid of the computer and put the code onto a raspberry pi. Then wire it up to a basic prototype for controls. "Make it exist first, then make it pretty"`}
+        widthFull
+        left
+      />
+
+      <div className="px-5 md:px-10 mt-8 mb-24">
+        <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 aspect-[1/2] md:aspect-[2/1] gap-3 max-w-[1400px] mx-auto">
+          <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden bg-gray-800">
+            <Image
+              src="/images/reakt/v2_1.jpg"
+              alt="Raspberry Pi HAT wired to potentiometers"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="col-span-2 relative rounded-lg overflow-hidden bg-gray-800">
+            <Image
+              src="/images/reakt/v2_2.jpg"
+              alt="Prototype control layout with labeled knobs"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="relative rounded-lg overflow-hidden bg-gray-800">
+            <Image
+              src="/images/reakt/v2_3.jpg"
+              alt="Cardboard prototype enclosure, front"
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="relative rounded-lg overflow-hidden bg-gray-800">
+            <Image
+              src="/images/reakt/v2_4.jpg"
+              alt="Cardboard prototype enclosure, inside"
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

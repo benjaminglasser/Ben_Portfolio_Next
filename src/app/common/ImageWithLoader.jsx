@@ -32,9 +32,9 @@ const ImageWithLoader = ({ src, alt, width, height, className, unoptimized }) =>
   };
 
   return (
-    <div 
+    <div
       className="relative w-full rounded-lg overflow-hidden"
-      style={{ 
+      style={{
         backgroundColor: '#1f2937'
       }}
     >

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // Delay before the scroll hint appears once the user goes idle in the hero.
-const IDLE_MS = 8000;
+const IDLE_MS = 4000;
 
 /**
  * Subtle "scroll" affordance for work-detail hero sections.

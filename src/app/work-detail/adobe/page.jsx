@@ -16,7 +16,7 @@ const Adobe = () => {
       <Section>
         <ZigzagHeader
           title="Adobe"
-          description="Projects I've worked on as a Staff Experience Designer at adobe"
+          description="Projects I've worked on as a Staff Experience Designer at Adobe"
           extendedDescription="Staff Experience Designer on Adobe's 3D and Immersive team, designing and prototyping next-generation tools for 3D creation and collaboration across web, desktop, and immersive platforms."
           time="2024 - Present"
           role="Staff Experience Designer"

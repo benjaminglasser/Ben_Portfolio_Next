@@ -15,21 +15,6 @@ const WorkSection = () => {
       tools: ["Blender"],
     },
     {
-      id: 2,
-      role: "XR Interaction",
-      time: "April 2022 - February 2023",
-      title: "BMW",
-      description: "Developing next-generation XR products and systems",
-      extendedDescription:
-        "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
-      thumbnail: "/images/bmw/dancingCar.gif",
-      path: "work-detail/bmw",
-      tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
-      workDetail: {
-        innerBox: true,
-      },
-    },
-    {
       id: 4,
       role: "3D Graphic Design",
       time: "Fall 2023",
@@ -55,24 +40,39 @@ const WorkSection = () => {
       ],
     },
     {
-      id: 5,
-      role: "Lead Product Designer",
-      time: "2023 - 2024",
-      title: "Easel AI",
-      description:
-        "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
-      thumbnail: "/Media/Easel/EaselThumb2.gif",
-      path: "work-detail/easel",
-      tools: [
-        "Figma",
-        "Stable Diffusion XL",
-        "After Effects",
-        "Unreal Engine",
-        "Premiere Pro",
-        "Design Thinking",
-        "User Studies",
-      ],
+      id: 2,
+      role: "XR Interaction",
+      time: "April 2022 - February 2023",
+      title: "BMW",
+      description: "Developing next-generation XR products and systems",
+      extendedDescription:
+        "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
+      thumbnail: "/images/bmw/dancingCar.gif",
+      path: "work-detail/bmw",
+      tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
+      workDetail: {
+        innerBox: true,
+      },
     },
+    // {
+    //   id: 5,
+    //   role: "Lead Product Designer",
+    //   time: "2023 - 2024",
+    //   title: "Easel AI",
+    //   description:
+    //     "Lead Product Designer at Easel. An AI-powered personal avatar app directly in iMessage",
+    //   thumbnail: "/Media/Easel/EaselThumb2.gif",
+    //   path: "work-detail/easel",
+    //   tools: [
+    //     "Figma",
+    //     "Stable Diffusion XL",
+    //     "After Effects",
+    //     "Unreal Engine",
+    //     "Premiere Pro",
+    //     "Design Thinking",
+    //     "User Studies",
+    //   ],
+    // },
     {
       id: 6,
       role: "3D Graphics and Simulation",
@@ -189,10 +189,11 @@ const WorkSection = () => {
       time: "2024 - Present",
       title: "Adobe",
       description:
-        "Projects I've worked on as a Staff Experience Designer at adobe",
+        "Projects I've worked on as a Staff Experience Designer at Adobe",
       thumbnail: "/images/adobe/adobeThumb.webp",
       path: "work-detail/adobe",
       tools: ["Figma", "Prototyping", "Blender", "Unity"],
+      invertThumbnail: true,
     },
     {
       id: 13,
@@ -222,6 +223,7 @@ const WorkSection = () => {
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
               externalLink={content?.externalLink}
+              invertThumbnail={content?.invertThumbnail}
             />
           </Section>
         </div>

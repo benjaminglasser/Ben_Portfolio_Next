@@ -45,7 +45,18 @@ const DetailSection = ({
           )}
         </div>
       </div>
-      {video && <video autoPlay muted loop src={video} />}
+      {video && (
+        <div className="flex justify-center w-full mt-5">
+          <video
+            className="w-full h-auto rounded-lg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            src={video}
+          />
+        </div>
+      )}
       {images?.length > 0 &&
         images?.map((image, index) => (
           <div key={index} className="flex justify-center w-full mt-5">

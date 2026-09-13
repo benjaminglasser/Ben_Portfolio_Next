@@ -19,10 +19,15 @@ module.exports = {
         shimmer: {
           '0%': { backgroundPosition: '200% 0' },
           '100%': { backgroundPosition: '-200% 0' }
+        },
+        scrollNudge: {
+          '0%, 100%': { transform: 'translateY(0)', opacity: '0.6' },
+          '50%': { transform: 'translateY(6px)', opacity: '1' }
         }
       },
       animation: {
-        shimmer: 'shimmer 2s infinite ease-in-out'
+        shimmer: 'shimmer 2s infinite ease-in-out',
+        scrollNudge: 'scrollNudge 1.8s infinite ease-in-out'
       }
     },
     fontFamily: {

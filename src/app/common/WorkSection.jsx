@@ -30,7 +30,7 @@ const WorkSection = () => {
       },
     },
     {
-      id: 3,
+      id: 4,
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
@@ -41,7 +41,7 @@ const WorkSection = () => {
       tools: ["Blender"],
     },
     {
-      id: 4,
+      id: 3,
       role: "Designer / Engineer",
       time: "2020 - 2026",
       title: "Reakt Light",
@@ -183,6 +183,17 @@ const WorkSection = () => {
     //     externalVideo: "https://youtu.be/QPqFVQ77BWg",
     //   },
     // },
+    {
+      id: 0,
+      role: "Staff Experience Designer",
+      time: "2024 - Present",
+      title: "Adobe",
+      description:
+        "Projects I've worked on as a Staff Experience Designer at adobe",
+      thumbnail: "/images/adobe/adobeThumb.webp",
+      path: "work-detail/adobe",
+      tools: ["Figma", "Prototyping", "Blender", "Unity"],
+    },
     {
       id: 13,
       role: "Animator / Creative Director",

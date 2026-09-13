@@ -1,11 +1,22 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const ImageWithLoader = ({ src, alt, width, height, className, unoptimized }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  
+  const imgRef = useRef(null);
+
+  // A cached image can finish loading before React attaches its onLoad
+  // handler, so the event never fires and the shimmer stays up. Check the
+  // underlying img's complete flag on mount as a fallback.
+  useEffect(() => {
+    const imgEl = imgRef.current;
+    if (imgEl && imgEl.complete && imgEl.naturalWidth > 0) {
+      setLoading(false);
+    }
+  }, [src]);
+
   // Check if the src is a GIF by looking at the src string or the default property
   const isGif = typeof src === 'string' 
     ? src.includes('.gif')
@@ -46,6 +57,7 @@ const ImageWithLoader = ({ src, alt, width, height, className, unoptimized }) =>
       ) : (
         <div style={{ opacity: loading ? 0 : 1 }} className="w-full h-full">
           <Image
+            ref={imgRef}
             src={src}
             alt={alt}
             width={width}

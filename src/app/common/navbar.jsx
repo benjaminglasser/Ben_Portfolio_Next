@@ -1,6 +1,5 @@
-'use client';
+"use client";
 
-import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -13,66 +12,70 @@ const Navbar = () => {
   ];
 
   const pathname = usePathname();
-  const [hasAnimated, setHasAnimated] = useState(false);
   const isPlayPage = pathname === "/play";
   const isWorkDetailPage = pathname.startsWith("/work-detail");
   const isDarkPage = isPlayPage || isWorkDetailPage;
+  const isHome = pathname === "/";
 
+  // The header is fixed and transparent at the top of the page, then fades
+  // in a legible background once you scroll.
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    // Set hasAnimated to true after the initial animation
-    const timer = setTimeout(() => {
-      setHasAnimated(true);
-    }, 1000); // Match this with the animation duration
-
-    return () => clearTimeout(timer);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const textColor = scrolled
+    ? isDarkPage
+      ? "rgb(255, 255, 255)"
+      : "#b45314"
+    : isHome || isDarkPage
+    ? "rgb(255, 255, 255)"
+    : "#b45314";
+
+  const bgColor = scrolled
+    ? isDarkPage
+      ? "rgb(0, 0, 0)"
+      : "rgb(255, 255, 255)"
+    : "rgba(0, 0, 0, 0)";
+
+  const linkColor = { color: textColor };
 
   return (
     <motion.div
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        duration: 0.8
-      }}
+      transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.8 }}
+      className="fixed top-0 left-0 right-0 z-50"
     >
-      <motion.div
-        animate={{
-          backgroundColor: isDarkPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
-          borderColor: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
-          color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
-        }}
-        transition={{
-          duration: isPlayPage || pathname === "/" || pathname === "/info" ? 0.5 : 0,
-          ease: "easeInOut",
-        }}
+      {isWorkDetailPage && (
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-28 z-0 bg-gradient-to-b from-black/70 to-transparent transition-opacity duration-300"
+          style={{ opacity: scrolled ? 0 : 1 }}
+        />
+      )}
+      <div
+        className={`relative z-10 transition-colors duration-300 ${
+          scrolled ? "backdrop-blur-md" : ""
+        }`}
+        style={{ backgroundColor: bgColor }}
       >
-        <Grid
-          container
-          className="navbar sticky top-0 pt-2 z-50 flex justify-between items-center border-b"
-        >
-          <Grid item xs={6} className="flex items-center ">
+        <div className="navbar flex justify-between items-center py-3">
+          <div className="flex items-center">
             <Link href="/">
-              <motion.h3 
-                className="cursor-pointer"
-                animate={{
-                  color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
-                }}
-                whileHover={{
-                  color: "#A9232C", // Global cursor red color
-                }}
-                transition={{
-                  duration: isPlayPage ? 0.5 : 0, // Only animate for play page
-                  ease: "easeInOut",
-                }}
+              <motion.h3
+                className="cursor-pointer display-title pl-5 md:pl-10"
+                animate={linkColor}
+                whileHover={{ color: "#b45314" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 BENJAMIN GLASSER
               </motion.h3>
             </Link>
-          </Grid>
-          <Grid item xs={6} className="flex justify-end items-center ">
+          </div>
+          <div className="flex justify-end items-center pr-5 md:pr-10">
             {ROUTES.map((item, idx) => (
               <Link
                 href={item.route}
@@ -80,27 +83,21 @@ const Navbar = () => {
                 className={`border-r border-t px-2.5 py-0.5 ${
                   idx < ROUTES.length - 1 ? "mr-2" : ""
                 }`}
+                style={{ borderColor: textColor }}
               >
-                <motion.h3 
-                  className="ml-4 md:ml-8"
-                  animate={{
-                    color: isDarkPage ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)",
-                  }}
-                  whileHover={{
-                    color: "#A9232C", // Global cursor red color
-                  }}
-                  transition={{
-                    duration: isPlayPage ? 0.5 : 0, // Only animate for play page
-                    ease: "easeInOut",
-                  }}
+                <motion.h3
+                  className="ml-4 md:ml-8 display-title"
+                  animate={linkColor}
+                  whileHover={{ color: "#b45314" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   {item.label}
                 </motion.h3>
               </Link>
             ))}
-          </Grid>
-        </Grid>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };

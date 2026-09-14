@@ -6,77 +6,26 @@ import WorkSection from "@/app/common/WorkSection";
 import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
 import React, { useState } from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
-import { motion } from "framer-motion";
 
 export default function Home() {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.5,
-        delayChildren: 0.4
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const fadeOnlyVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <motion.div 
-      className="relative"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      <HomePageExtraInfo isLoading={isVideoLoading} />
-      
-      <motion.div variants={fadeOnlyVariants}>
-      <VideoPlayerHome
-        // className="h-[500px] md:h-[70vh]"
-        video1="/Media/Home/water_v2_MAIN.mp4"
-        video2="/Media/Home/water_v2_WIREFRAME.mp4"
+    <div className="relative">
+      <div className="full-bleed relative">
+        <VideoPlayerHome
+          video1="/Media/Home/water_v2_MAIN.mp4"
+          video2="/Media/Home/water_v2_WIREFRAME.mp4"
           onLoadingChange={setIsVideoLoading}
-      />
-      </motion.div>
+        />
+        {/* Tagline, bottom-right of the hero */}
+        <HomePageExtraInfo isLoading={isVideoLoading} />
+      </div>
 
-      <motion.h4 
-        className="mt-8 w-[220px] md:mt-14 text-mute"
-        variants={itemVariants}
-      >
-        <strong>SELECTED WORKS</strong>
-      </motion.h4>
-
-      <motion.div 
-        className="mt-4 md:mt-8"
-        variants={itemVariants}
-      >
+      <div className="mt-16 md:mt-24">
         <WorkSection />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 

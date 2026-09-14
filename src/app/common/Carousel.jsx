@@ -39,7 +39,7 @@ const FancyCarousel = ({ SOURCE }) => {
     return (
       <div className="w-full h-[34rem] flex justify-center items-center">
         <PuffLoader
-          color="#A9232C"
+          color="#b45314"
           loading
           size={100}
           aria-label="Loading Spinner"
@@ -60,7 +60,7 @@ const FancyCarousel = ({ SOURCE }) => {
           renderArrowPrev={(onClickHandler, hasPrev) =>
             hasPrev && (
               <div
-                className="absolute left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#A9232C] cursor-pointer ml-10"
+                className="absolute left-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#b45314] cursor-pointer ml-10"
                 onClick={onClickHandler}
               >
                 <IoIosArrowBack size={30} />
@@ -70,7 +70,7 @@ const FancyCarousel = ({ SOURCE }) => {
           renderArrowNext={(onClickHandler, hasNext) =>
             hasNext && (
               <div
-                className="absolute right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#A9232C] cursor-pointer mr-10"
+                className="absolute right-0 bottom-0 w-1/6 h-full sm:h-[34rem] md:h-[38rem] lg:h-[42rem] z-10 flex justify-center items-center hover:text-[#b45314] cursor-pointer mr-10"
                 onClick={onClickHandler}
               >
                 <IoIosArrowForward size={30} />
@@ -97,7 +97,7 @@ const FancyCarousel = ({ SOURCE }) => {
         {SOURCE?.map((_, idx) => (
           <button
             key={idx}
-            className={`mx-2 w-3 h-3 rounded-full ${idx === selectedIndex ? 'bg-[#A9232C]' : 'bg-white/50'} hover:bg-[#A9232C] transition-colors`}
+            className={`mx-2 w-3 h-3 rounded-full ${idx === selectedIndex ? 'bg-[#b45314]' : 'bg-white/50'} hover:bg-[#b45314] transition-colors`}
             onClick={() => handleSlideChange(idx)}
             aria-label={`Go to slide ${idx + 1}`}
           />

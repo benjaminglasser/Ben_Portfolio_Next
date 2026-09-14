@@ -25,6 +25,143 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  /* Studio-Sam-Klemick-inspired palette.
+     Hierarchy comes from color, not size:
+     --rust      = primary (top-level titles / h1)
+     --rust-mute = subordinate text, same size but less saturated */
+  --rust: #b45314;
+  --rust-mute: #a67253;
+
+  /* Muted white for subordinate text on dark work-detail pages,
+     mirroring --rust-mute on the light pages. */
+  --white-mute: rgba(255, 255, 255, 0.6);
+
+  /* Single flat type size for the whole site: titles, headers, labels
+     and descriptions all share this. Hierarchy is expressed via color. */
+  --text-base: 0.85rem;
+
+  /* ---- Editorial grid system ----
+     One 12-column grid used on every page so content aligns to the
+     same rails. Page inset comes from the body padding (20/40px). */
+  --gutter: 16px;
+}
+
+/* 12-column editorial grid. Children place themselves with Tailwind
+   col-span-* utilities (e.g. col-span-12 lg:col-span-6). */
+.grid-ed {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+/* ---- Editorial type scale ----
+   Three deliberate steps. Base carries most of the app (labels, buttons,
+   descriptions, nav, card titles). Lead opens a page. Display is a rare,
+   full-drama moment. Headers = Fraunces + saturated rust; descriptions =
+   mono + desaturated. Hierarchy = size + color together. */
+.lead {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.display-hero {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 8vw, 7rem);
+  line-height: 0.96;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Small edge label, sits in the margin like a magazine caption. */
+.edge-label {
+  font-family: var(--font-courier), "Courier New", monospace;
+  font-size: var(--text-base);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Break an element out of the padded body to the viewport edges. */
+.full-bleed {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+@media (min-width: 768px) {
+  .full-bleed {
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+}
+
+/* Cropped hero: constrains the media height so the masthead peeks beneath. */
+.hero-crop {
+  height: clamp(315px, calc(55vh + 15px), 775px);
+  overflow: hidden;
+}
+.hero-crop > div,
+.hero-crop > div > div {
+  height: 100%;
+}
+.hero-crop video {
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover !important;
+}
+
+/* Shorter cropped full-width media band. Height overridable via --band-h. */
+.band-crop {
+  height: var(--band-h, clamp(220px, 42vh, 560px));
+  overflow: hidden;
+}
+.band-crop > div,
+.band-crop > div > div {
+  height: 100%;
+}
+.band-crop video {
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover !important;
+}
+
+/* Full-viewport-height hero (used where the masthead overlays the hero). */
+.hero-full {
+  height: 100svh;
+  overflow: hidden;
+}
+.hero-full > div,
+.hero-full > div > div {
+  height: 100%;
+}
+.hero-full video {
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover !important;
+}
+
+/* Shared size for the page header, section labels, project titles and
+   work-detail headers — same size as body/descriptions. */
+.display-title {
+  font-size: var(--text-base);
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* One shared size for descriptions and all subordinate labels
+   (roles, dates, tools, hero overlay). */
+.subtext {
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+/* Classic monospaced descriptions. */
+.desc-mono {
+  font-family: var(--font-courier), "Courier New", Courier, monospace;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,7 +175,7 @@
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font-family: "Lato", sans-serif;
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -51,13 +188,52 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  font-family: "Lato", san-serif;
-  font-weight: 300;
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: 0;
   cursor: crosshair;
 }
 
+/* ---- Theme text colors, keyed to page background ----
+   Light (white-bg) pages: rust text.
+   Dark (black-bg) pages: white text.
+   These override the explicit Tailwind text-black / text-mute utilities
+   used across the work cards and headings. */
+html.theme-light body {
+  color: var(--rust);
+}
+html.theme-light .text-black {
+  color: var(--rust);
+}
+html.theme-light .text-mute {
+  color: var(--rust-mute);
+}
+
+html.theme-dark body {
+  color: #fff;
+}
+
+/* Work-detail pages: soften the whole content hierarchy to a muted
+   white (subheaders, descriptions, metadata), keeping only the
+   top-level project title crisp white. */
+html.route-work-detail body,
+html.route-work-detail .text-white {
+  color: var(--white-mute);
+}
+html.route-work-detail .display-title,
+html.route-work-detail .lead {
+  color: #fff;
+}
+
+/* Growing rust hairline used under section labels / masthead. */
+.rule-line {
+  height: 1px;
+  background: #b45314;
+}
+
 .ojuju {
-  font-family: "Ojuju", san-serif;
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-weight: 400;
 }
 
 h1 {
@@ -230,7 +406,7 @@ h1 {
 }
 
 .detail-section h3 {
-  font-size: clamp(2rem, 2vw, 4rem);
+  font-size: var(--text-base);
 }
 
 p {
@@ -238,11 +414,11 @@ p {
 }
 
 .zigzag-header p {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: var(--text-base);
 }
 
 .description > p {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .one {
@@ -272,61 +448,31 @@ p {
 section {
   box-sizing: border-box;
   width: 100%;
-  /* height: 101vh; */
-  /* display: flex; */
-  /* justify-content: flex-start; */
-  overflow: hidden;
-}
-
-section span {
-  display: block;
-  transform: translateX(-50px);
-  opacity: 0;
+  /* overflow:hidden removed so sticky section labels can pin while scrolling */
 }
 
 .thumbnail {
   width: 100%;
-  height: 25vw;
+  height: 100%;
   object-fit: cover;
-  transition: height 0.3s ease; /* Smooth transition */
-}
-
-.thumbnail:hover {
-  height: 26vw;
+  display: block;
 }
 
 li::marker {
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .MuiButtonBase-root.MuiButton-sizeMedium {
-    font-size: 0.8rem !important;
-  }
-
-  .MuiButtonBase-root.MuiButton-sizeLarge {
-    font-size: 1rem !important;
-  }
-}
-.MuiButtonBase-root.MuiButton-sizeMedium {
-  font-size: 1.1rem;
-}
-
+/* Buttons share the base type size, like descriptions and small headers. */
+.MuiButtonBase-root.MuiButton-sizeMedium,
 .MuiButtonBase-root.MuiButton-sizeLarge {
-  font-size: 1.25rem;
-}
-@media (max-width: 900px) {
-  .thumbnail {
-    height: 100%; /* Set height to 200px on smaller screens */
-  }
-
-  .thumbnail:hover {
-    height: 100%;
-  }
+  font-size: var(--text-base);
+  letter-spacing: 0.04em;
 }
 
 .bio {
-  font-size: min(4vw, 30px) !important;
+  font-size: var(--text-base) !important;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 @media screen and (max-width: 900px) {

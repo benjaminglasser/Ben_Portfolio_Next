@@ -1,38 +1,30 @@
 "use client";
 import React from "react";
-import Context from "../../common/context";
-import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
-// import { IMAGES } from "@/app/assets/images";
-import Section from "@/app/common/Section";
+import Contained from "@/app/common/Contained";
 import ImageWithLoader from "@/app/common/ImageWithLoader";
-import ZigzagHeader from "../../common/zigzagHeader";
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
-import ImageGrid from "@/app/common/ImageGrid";
+import ZigzagHeader from "../../common/zigzagHeader";
 
-const Canary = () => {
-  const images = [
+const DeepScreen = () => {
+  const conceptBoards = [
     {
       url: "/Media/DeepScreen/DeepScreen Concept Board_Page_2.png",
-      // caption: "Image 1 Caption",
       width: 4000,
       height: 2280,
     },
     {
       url: "/Media/DeepScreen/DeepScreen Concept Board_Page_3.png",
-      // caption: "Image 2 Caption",
       width: 4000,
       height: 2280,
     },
     {
       url: "/Media/DeepScreen/DeepScreen Concept Board_Page_5.png",
-      // caption: "Image 2 Caption",
       width: 4000,
       height: 2280,
     },
     {
       url: "/Media/DeepScreen/DeepScreen Concept Board_Page_6.png",
-      // caption: "Image 2 Caption",
       width: 4000,
       height: 2280,
     },
@@ -40,11 +32,12 @@ const Canary = () => {
 
   return (
     <div className="w-full text-white">
-      <VideoPlayerInternal
-        className="h-[600px]"
-        video="/Media/DeepScreen/WaterTest.mp4"
-      />
-      {/* <div className="bg-gradient-to-b from-black to-transparentw-full h-8 md:h-24" /> */}
+      {/* Full-bleed cropped hero */}
+      <div className="full-bleed hero-crop">
+        <VideoPlayerInternal video="/Media/DeepScreen/WaterTest.mp4" />
+      </div>
+
+      {/* Masthead */}
       <ZigzagHeader
         title="Circa DeepScreen"
         description="Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa's Curved Display"
@@ -52,75 +45,81 @@ const Canary = () => {
         time="Fall 2023"
         role="3D Graphics and Simulation"
         tools={["Blender"]}
-        collaborator={"Sunny Chen"}
-        collaboratorLink={"https://sunny.design/"}
+        collaborator="Sunny Chen"
+        collaboratorLink="https://sunny.design/"
       />
 
-      <Section>
-        <VideoPlayerInternal centered video="/Media/DeepScreen/FINAL_1.mp4" />
-      </Section>
+      {/* Final render (contained) */}
+      <Contained
+        className="mt-16 md:mt-24"
+        spanClass="md:col-start-3 md:col-span-8"
+      >
+        <VideoPlayerInternal video="/Media/DeepScreen/FINAL_1.mp4" />
+      </Contained>
 
-      <Section>
-        <Context
-          title="CONTEXT"
-          className="mt-24"
-          context="Set against the backdrop of the Circa building's striking curved display in Downtown Los Angeles, this project sought to leverage the unique architectural canvas to introduce an innovative advertising medium that blends art with technology."
-        />
-      </Section>
-      <Section>
-        <AIM
-          className="mt-16"
-          aim="The aim was to demonstrate Standard Vision's in-house graphics capabilities and the novel opportunities provided by their large scale curved displays, enticing other companies to engage our services for high-impact advertising projects."
-        />
-      </Section>
+      {/* Context + Aim as two side-by-side columns */}
+      <div className="grid-ed gap-y-10 mt-16 md:mt-24">
+        <div className="col-span-12 md:col-start-3 md:col-span-4">
+          <h3 className="edge-label text-[#b45314] mb-3">Context</h3>
+          <p className="subtext desc-mono">
+            Set against the backdrop of the Circa building&apos;s striking curved
+            display in Downtown Los Angeles, this project sought to leverage the
+            unique architectural canvas to introduce an innovative advertising
+            medium that blends art with technology.
+          </p>
+        </div>
+        <div className="col-span-12 md:col-span-3 md:col-start-8">
+          <h3 className="edge-label text-[#b45314] mb-3">Aim</h3>
+          <p className="subtext desc-mono">
+            The aim was to demonstrate Standard Vision&apos;s in-house graphics
+            capabilities and the novel opportunities provided by their large
+            scale curved displays, enticing other companies to engage our
+            services for high-impact advertising projects.
+          </p>
+        </div>
+      </div>
 
-      <Section>
-        <VideoPlayerInternal
-          className="mt-24"
-          video="/Media/DeepScreen/Waterfall.mp4"
-        />
-      </Section>
+      <div className="full-bleed mt-16 md:mt-24">
+        <VideoPlayerInternal video="/Media/DeepScreen/Waterfall.mp4" />
+      </div>
 
       <DetailSection
-        className="px-5 md:px-20 "
         title="Process"
         description="Beginning with Polestar as our inspiration, we merged their branding with a narrative-enhancing 3D deep field effect and water simulations, moving beyond mere visual appeal to storytelling. Iterative refinements aimed to boost engagement and leverage the displays' interactivity, deepening audience connection through enriched storytelling."
-        left
-      />
-
-      <Section>
-        <div className="px-5 md:px-20 pb-20">
-          <div className="bg-greyDark py-1">
-            <ImageGrid images={images} />
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
+          {conceptBoards.map((img) => (
             <ImageWithLoader
-              src="/Media/DeepScreen/Storyboard.png"
-              alt="era"
-              className="w-full h-full p-10"
-              width={3000}
-              height={1988}
+              key={img.url}
+              src={img.url}
+              alt="DeepScreen concept board"
+              width={img.width}
+              height={img.height}
+              wrapperClassName="!rounded-none"
             />
-          </div>
+          ))}
         </div>
-      </Section>
+        <ImageWithLoader
+          src="/Media/DeepScreen/Storyboard.png"
+          alt="DeepScreen storyboard"
+          width={3000}
+          height={1988}
+          wrapperClassName="!rounded-none mt-3"
+        />
+      </DetailSection>
 
-      <Section>
-        <DetailSection
-          className="px-5 md:px-20 "
-          title="Results"
-          description="The final concept is a visually striking advertisement that showcases Standard Vision's ability to craft immersive and technologically sophisticated marketing solutions, perfectly aligning with brand and advertising objectives. It underscores the Circa display's capacity to foster innovative advertising experiences, thereby establishing a new standard in digital outdoor advertising."
-          center
-          widthFull
-        />
-      </Section>
-      <Section>
-        <VideoPlayerInternal
-          className="mb-24"
-          centered
-          video="/Media/DeepScreen/ScreenCapOfProject2_1.mp4"
-        />
-      </Section>
+      <DetailSection
+        title="Results"
+        description="The final concept is a visually striking advertisement that showcases Standard Vision's ability to craft immersive and technologically sophisticated marketing solutions, perfectly aligning with brand and advertising objectives. It underscores the Circa display's capacity to foster innovative advertising experiences, thereby establishing a new standard in digital outdoor advertising."
+      >
+        <div className="mt-8">
+          <VideoPlayerInternal video="/Media/DeepScreen/ScreenCapOfProject2_1.mp4" />
+        </div>
+      </DetailSection>
+
+      <div className="h-16 md:h-24" />
     </div>
   );
 };
 
-export default Canary;
+export default DeepScreen;

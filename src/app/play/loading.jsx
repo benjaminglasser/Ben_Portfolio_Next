@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <div className="flex justify-center items-center h-screen">
       <PuffLoader
-        color="#A9232C"
+        color="#b45314"
         loading
         size={100}
         aria-label="Loading Spinner"

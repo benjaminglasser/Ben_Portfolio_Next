@@ -1,74 +1,85 @@
 import Section from "@/app/common/Section";
 import ImageWithLoader from "./ImageWithLoader";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 const DetailSection = ({
   title,
-  widthFull,
   description,
   images,
-  left,
-  center,
   video,
-  className,
+  children,
+  spanClass = "md:col-span-10",
+  descWide = false,
 }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger animation only once
-    threshold: 0.5, // Trigger when 50% of the element is in view
+    triggerOnce: true,
+    threshold: 0.4,
   });
+
   return (
     <Section>
-      <div
-        className={`w-full flex ${className} mt-14 ${
-          left ? "justify-start" : center ? "justify-center" : "justify-end"
-        } detail-section`}
-      >
-        <div
-          className={`${widthFull ? "w-full" : "w-full md:w-3/5 lg:3/6"} my-6`}
-        >
-          {title && <h3 className="ojuju">{title}</h3>}
-          <div ref={ref}>
-            <motion.div
-              initial={{ width: 0 }} // Start with a width of 0
-              animate={{ width: inView ? "100%" : "0%" }} // Animate to full width when in view
-              transition={{ duration: 2, ease: "easeInOut" }} // Customize the animation duration and easing
-              style={{
-                background: "#A9232C", // Line color
-                height: "1px", // Line thickness
-              }}
-            />
-          </div>
-          {description && (
-            <h4 className="mt-3 text-subheading">{description}</h4>
+      <div className="grid-ed gap-y-4 mt-16 md:mt-24 detail-section">
+        {/* Rail label */}
+        <div className="col-span-12 md:col-span-2">
+          {title && (
+            <h3 className="edge-label text-[#b45314] md:sticky md:top-24">
+              {title}
+            </h3>
           )}
         </div>
-      </div>
-      {video && (
-        <div className="flex justify-center w-full mt-5">
-          <video
-            className="w-full h-auto rounded-lg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            src={video}
-          />
-        </div>
-      )}
-      {images?.length > 0 &&
-        images?.map((image, index) => (
-          <div key={index} className="flex justify-center w-full mt-5">
-            <ImageWithLoader 
-              src={image} 
-              alt="userflow" 
-              width={1920}
-              height={1080}
-              unoptimized={typeof image === 'string' && image.includes('.gif')}
+
+        {/* Content */}
+        <div className={`col-span-12 ${spanClass}`}>
+          {/* Growing rust hairline */}
+          <div ref={ref}>
+            <motion.div
+              className="rule-line"
+              initial={{ width: 0 }}
+              animate={{ width: inView ? "100%" : "0%" }}
+              transition={{ duration: 1.6, ease: "easeInOut" }}
             />
           </div>
-        ))}
+
+          {description && (
+            <p
+              className={`subtext desc-mono mt-5 ${
+                descWide ? "" : "max-w-3xl"
+              }`}
+            >
+              {description}
+            </p>
+          )}
+
+          {video && (
+            <video
+              className="w-full h-auto mt-8"
+              autoPlay
+              muted
+              loop
+              playsInline
+              src={video}
+            />
+          )}
+
+          {images?.length > 0 &&
+            images.map((image, index) => (
+              <div key={index} className="w-full mt-8">
+                <ImageWithLoader
+                  src={image}
+                  alt="detail"
+                  width={1920}
+                  height={1080}
+                  unoptimized={
+                    typeof image === "string" && image.includes(".gif")
+                  }
+                />
+              </div>
+            ))}
+
+          {children}
+        </div>
+      </div>
     </Section>
   );
 };

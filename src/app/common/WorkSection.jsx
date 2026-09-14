@@ -195,39 +195,56 @@ const WorkSection = () => {
       tools: ["Figma", "Prototyping", "Blender", "Unity"],
       thumbnailBorder: true,
     },
-    {
-      id: 13,
-      role: "Animator / Creative Director",
-      time: "2019",
-      title: "Meaningful Pursuits",
-      description: "Album Visuals",
-      thumbnail: "/images/meaningfulPursuits/Hero1.gif",
-      path: "work-detail/meaningfulPursuits",
-      tools: ["TouchDesigner", "Premiere Pro"],
-    },
+    // Hidden from the work list (page still exists at /work-detail/meaningfulPursuits)
+    // {
+    //   id: 13,
+    //   role: "Animator / Creative Director",
+    //   time: "2019",
+    //   title: "Meaningful Pursuits",
+    //   description: "Album Visuals",
+    //   thumbnail: "/images/meaningfulPursuits/Hero1.gif",
+    //   path: "work-detail/meaningfulPursuits",
+    //   tools: ["TouchDesigner", "Premiere Pro"],
+    // },
   ].sort((a, b) => a.id - b.id);
 
+  // Uniform 2-up grid, held in a narrower column with generous side
+  // padding so the images read smaller and several are visible at a glance.
+  const items = WORK_CONTENT.map((content, idx) => ({
+    ...content,
+    number: String(idx + 1).padStart(2, "0"),
+  }));
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {WORK_CONTENT?.map((content, idx) => (
-        <div key={idx} className="col-span-1">
-          <Section>
-            <WorkCard
-              role={content?.role}
-              path={content?.path}
-              time={content?.time}
-              title={content?.title}
-              description={content?.description}
-              tools={content?.tools}
-              thumbnail={content?.thumbnail}
-              extendedDescription={content?.extendedDescription}
-              workDetail={content?.workDetail}
-              externalLink={content?.externalLink}
-              thumbnailBorder={content?.thumbnailBorder}
-            />
-          </Section>
+    <div className="grid-ed">
+      {/* Left rail: section label pinned in its own column, magazine-style. */}
+      <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
+        <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+          Selected Works
+        </h4>
+      </div>
+
+      {/* Works column: uniform 3-up grid. */}
+      <div className="col-span-12 md:col-span-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
+          {items.map((item) => (
+            <Section key={item.number}>
+              <WorkCard
+                number={item.number}
+                role={item.role}
+                path={item.path}
+                time={item.time}
+                title={item.title}
+                description={item.description}
+                thumbnail={item.thumbnail}
+                externalLink={item.externalLink}
+                thumbnailBorder={item.thumbnailBorder}
+                aspectClass="aspect-[3/2]"
+              />
+            </Section>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

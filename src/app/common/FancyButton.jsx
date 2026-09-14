@@ -3,14 +3,22 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 export const FancyButton = styled(Button)(() => ({
-  backgroundColor: "#000",
-  border: "1px solid #A9232C",
+  backgroundColor: "transparent",
+  border: "1px solid #b45314",
   borderRadius: 0,
-  color: "#A9232C",
-  fontFamily: "'ojuju', sans-serif",
-  fontWeight: "500",
+  color: "#b45314",
+  fontFamily: "var(--font-courier), 'Courier New', monospace",
+  fontWeight: "400",
+  textTransform: "uppercase",
+  letterSpacing: "0.08em",
+  lineHeight: 1,
+  paddingTop: "0.55em",
+  paddingBottom: "0.45em",
+  boxShadow: "none",
+  transition: "background-color 0.2s ease, color 0.2s ease",
   "&:hover": {
-    backgroundColor: "#A9232C",
-    color: "#000",
+    backgroundColor: "#b45314",
+    color: "#fff",
+    boxShadow: "none",
   },
 }));

@@ -7,7 +7,9 @@ function VideoGrid({ videos }) {
         {videos.map((video, index) => (
           <div key={index} className="w-full h-auto mt-12">
             <VideoPlayerInternal video={video.url} />
-            <h3 className="ojuju mt-2">{video.caption}</h3>
+            {video.caption && (
+              <p className="subtext desc-mono text-mute mt-3">{video.caption}</p>
+            )}
           </div>
         ))}
       </div>

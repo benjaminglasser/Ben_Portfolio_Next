@@ -1,13 +1,8 @@
 "use client";
-import Box from "@mui/material/Box";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
 import Section from "../common/Section";
 import { FancyButton } from "../common/FancyButton";
 import { IMAGES } from "../../../public/images";
 import ImageWithLoader from "../common/ImageWithLoader";
-import { useMediaQuery } from "@mui/material";
-import { useEffect, useState } from "react";
 
 const Play = () => {
   const itemData = [
@@ -46,63 +41,84 @@ const Play = () => {
     IMAGES.PLAY_31,
   ];
 
-  const [cols, setCols] = useState(4);
+  // Magazine mosaic: every image stays square, but each band uses a
+  // different column count so the scale shifts row to row (big squares,
+  // then tighter grids of small squares) while every row stays aligned.
+  const bands = [
+    "grid-cols-2 md:grid-cols-4", // large squares
+    "grid-cols-3 md:grid-cols-6", // small squares
+    "grid-cols-3 md:grid-cols-5", // medium
+    "grid-cols-3 md:grid-cols-6", // small squares
+  ];
+  const bandCount = [4, 6, 5, 6];
 
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth >= 900) {
-        setCols(4);
-      } else if (window.innerWidth >= 600) {
-        setCols(3);
-      } else if (window.innerWidth >= 400) {
-        setCols(2);
-      } else {
-        setCols(1);
-      }
-    }
+  const rows = [];
+  let i = 0;
+  let b = 0;
+  while (i < itemData.length) {
+    const n = bandCount[b % bandCount.length];
+    rows.push({ cls: bands[b % bands.length], slice: itemData.slice(i, i + n) });
+    i += n;
+    b += 1;
+  }
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const count = String(itemData.length).padStart(2, "0");
 
   return (
-    <Box className="mt-5">
-      <Section>
-        <h1 className="text-white text-justify ojuju mb-10 bio">
-          I play in the various sandboxes of Blender, Unity, Unreal Engine,
-          Processing, TouchDesigner, as well as other creative spaces in pursuit
-          of stumbling upon pleasing surprises.
-        </h1>
-      </Section>
-      <Section>
-        <div className="w-full text-center pb-10">
-          <FancyButton>
+    <div className="mt-16 md:mt-24">
+      {/* Intro: label rail + statement */}
+      <div className="grid-ed md:items-start">
+        <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
+          <h4 className="edge-label text-mute whitespace-nowrap">Play</h4>
+        </div>
+        <div className="col-span-12 md:col-span-5">
+          <h1 className="text-white desc-mono bio">
+            I play in the various sandboxes of Blender, Unity, Unreal Engine,
+            Processing, TouchDesigner, as well as other creative spaces in
+            pursuit of stumbling upon pleasing surprises. Lately I've been
+            gravitating toward more physical forms of making too: 3D printing,
+            woodworking, metal work, and physical electronics.
+          </h1>
+        </div>
+      </div>
+
+      <div className="grid-ed mt-8">
+        <div className="col-span-12 md:col-start-3 md:col-span-5">
+          <FancyButton fullWidth>
             <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
               More expiriments can be found HERE
             </a>
           </FancyButton>
         </div>
-      </Section>
+      </div>
 
-      <ImageList variant="masonry" cols={cols} gap={24}>
-        {itemData.map((item, idx) => (
-          <Section key={idx}>
-            <ImageListItem>
-              <ImageWithLoader
-                className="w-full"
-                src={item}
-                alt="Play experiment"
-                width="100"
-                height="100"
-                unoptimized={true}
-              />
-            </ImageListItem>
-          </Section>
-        ))}
-      </ImageList>
-    </Box>
+      {/* Gallery: label rail + square mosaic */}
+      <div className="grid-ed mt-20 md:mt-28">
+        <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Experiments ({count})
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-10">
+          {rows.map((row, idx) => (
+            <div key={idx} className={`grid ${row.cls} gap-4 mb-4`}>
+              {row.slice.map((item, j) => (
+                <ImageWithLoader
+                  key={j}
+                  className="w-full"
+                  wrapperClassName="aspect-square !rounded-none"
+                  src={item}
+                  alt="Play experiment"
+                  width="100"
+                  height="100"
+                  unoptimized={true}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

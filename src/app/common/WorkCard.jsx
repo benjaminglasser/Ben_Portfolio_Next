@@ -7,10 +7,11 @@ const WorkCard = ({
   time,
   title,
   description,
-  tools,
   thumbnail,
   externalLink,
   thumbnailBorder,
+  number,
+  aspectClass = "aspect-[3/2]",
 }) => {
   return (
     <Link
@@ -19,25 +20,28 @@ const WorkCard = ({
       }}
       target={externalLink ? "_blank" : "_self"}
     >
-      <div className="hover:border-b-[0.2px] border-mute cursor-pointer pb-1 mb-10 w-full workcard">
+      <div className="group cursor-pointer w-full workcard">
         <ImageWithLoader
           src={thumbnail}
           alt={`${title} - ${description}`}
           width="100"
           height="100"
           className="thumbnail"
-          borderOverlayClassName={thumbnailBorder ? "border border-[#FA0F00]" : ""}
+          wrapperClassName={`!rounded-none ${aspectClass}`}
+          borderOverlayClassName={thumbnailBorder ? "border border-[#b45314] !rounded-none" : ""}
           unoptimized={typeof thumbnail === 'string' && (thumbnail.endsWith('.gif') || thumbnail.endsWith('.webp'))}
         />
-        <div className="flex justify-between text-[11px] text-black font-light border-b-[0.4px] py-2">
-          <div>Role: {role}</div>
-          <div>{time}</div>
+        <div className="flex gap-6 pt-3">
+          <div className="desc-mono subtext text-black shrink-0">{number}</div>
+          <div className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out">
+            <div className="text-black display-title font-normal">{title}</div>
+            <h4 className="pt-1 text-mute subtext desc-mono">{description}</h4>
+            <div className="flex justify-between gap-4 desc-mono uppercase tracking-wide text-[#a67253] mt-4 text-[0.68rem] leading-relaxed">
+              <div>Role: {role}</div>
+              <div className="shrink-0">{time}</div>
+            </div>
+          </div>
         </div>
-        <div className="pt-2 text-black leading-12 text-[2.25em] font-light">
-          {title}
-        </div>
-        <h4 className="ojuju pb-0 md:pb-4 text-mute">{description}</h4>
-        <p className="text-[11px] text-mute">Tools: {tools?.join(", ")}</p>
       </div>
     </Link>
   );

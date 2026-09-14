@@ -1,5 +1,4 @@
 "use client";
-import { Grid } from "@mui/material";
 import { FancyButton } from "../common/FancyButton";
 import Section from "../common/Section";
 import { Suspense } from "react";
@@ -24,6 +23,8 @@ const Info = () => {
     "InDesign",
     "Ableton",
     "Pencils + Paper",
+    "3D printing",
+    "Wood",
   ];
 
   const platforms = [
@@ -47,96 +48,123 @@ const Info = () => {
   const ThreeComponent = dynamic(() => import("./three"), { ssr: false });
 
   return (
-    <Grid container className="mt-1 px-0  md:mt-6" spacing={4}>
-      <Grid item md={8}>
-        <Section>
-          <h1 className="text-justify ojuju mb-10 bio">
-            Exploring the unknown with curiosity and passion, I blend
-            audio-visual storytelling with innovative design across 2D, 3D, and
-            mixed reality. Currently working on some fun projects at
-            {/* I am drawn to the reciprocity between seemingly
-            disparate realms: nature and architecture, the analog and digital
-            worlds, light and sound, and chaos and order. Ultimately, I seek to
-            uncover the humanity nestled within their convergences.  */}
-            <FancyButton
-              className="normal-case ml-2 text-md p-0 px-2 hover:text-white"
-              // size="large"
-            >
-              <a href="https://www.adobe.com/" target="_blank">
-                Adobe
-              </a>
-            </FancyButton>
-          </h1>
-          <h4 className="mb-2 mt-16 font-normal ">A FEW TOOLS I USE:</h4>
-          <Grid container>
-            {tools?.map((item, idx) => (
-              <Grid item className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
-                <p>{item}</p>
-              </Grid>
-            ))}
-          </Grid>
-          <h4 className="mb-2 mt-16 font-normal">10010110101 WITH:</h4>
-          <Grid container>
-            {platforms?.map((item, idx) => (
-              <Grid item className="pb-1" xs={6} sm={4} md={3} lg={2} key={idx}>
-                <p>{item}</p>
-              </Grid>
-            ))}
-          </Grid>
-          <h4 className="mb-0 mt-16 font-normal">EDUCATION</h4>
-          <p className="w-full md:w-1/2 text-justify">
-            MFA Candidate Media Design Practices, ArtCenter College of Design{" "}
-          </p>
-          <p className="w-full md:w-1/2 text-justify">
-            BA Cognitive Science, University of Southern California
-          </p>
-          <p className="w-full md:w-1/2 text-justify">
-            General Assembly Web Development Immersive
-          </p>
-        </Section>
-      </Grid>
-      <Grid item md={4}>
-        <Section>
-          <div className="h-[500px]">
-            <Suspense fallback={<Loader />}>
-              <ThreeComponent className="h-2px" />
-            </Suspense>
-          </div>
+    <div className="mt-16 md:mt-24">
+      {/* Intro: Info rail + statement + portrait */}
+      <div className="grid-ed gap-y-8">
+        <div className="col-span-12 md:col-span-2">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Info
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-6">
+          <Section>
+            <h1 className="desc-mono bio">
+              Exploring the unknown with curiosity and passion, I blend
+              audio-visual storytelling with innovative design across 2D, 3D,
+              and mixed reality. Currently working on some fun projects at Adobe.
+            </h1>
+          </Section>
+        </div>
+        <div className="col-span-12 md:col-span-4">
+          <Section>
+            <div className="h-[380px] md:h-[440px]">
+              <Suspense fallback={<Loader />}>
+                <ThreeComponent className="h-2px" />
+              </Suspense>
+            </div>
+          </Section>
+        </div>
+      </div>
 
-          <div className="links mx-0">
-            <h4 className="mb-2 font-normal">LINKS</h4>
-            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a href="/pdf/Benjamin_Glasser_Resume.pdf" target="_blank">
-                RESUME
-              </a>
-            </FancyButton>
-            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a href="https://github.com/benjaminglasser" target="_blank">
-                GITHUB
-              </a>
-            </FancyButton>
-            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
-                INSTAGRAM
-              </a>
-            </FancyButton>
-            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a href="mailto:glasserben@gmail.com" target="_blank">
-                CONTACT
-              </a>
-            </FancyButton>
-            <FancyButton className="p-0 ml-0 px-2 mr-2 mb-2 hover:text-white">
-              <a
-                href="https://open.spotify.com/artist/4lP1lKWYqNLYWYtnuTh8OF?si=Z19kgdcvRzyKWn0C8BK3cQ"
-                target="_blank"
-              >
-                Music
-              </a>
-            </FancyButton>
+      {/* Tools */}
+      <div className="grid-ed mt-20 md:mt-28">
+        <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Tools
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
+            {tools?.map((item, idx) => (
+              <p className="subtext desc-mono text-mute" key={idx}>
+                {item}
+              </p>
+            ))}
           </div>
-        </Section>
-      </Grid>
-    </Grid>
+        </div>
+      </div>
+
+      {/* Languages */}
+      <div className="grid-ed mt-16 md:mt-20">
+        <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Code
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
+            {platforms?.map((item, idx) => (
+              <p className="subtext desc-mono text-mute" key={idx}>
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Education */}
+      <div className="grid-ed mt-16 md:mt-20">
+        <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Education
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-10 subtext desc-mono text-mute space-y-1">
+          <p>MFA Candidate Media Design Practices, ArtCenter College of Design</p>
+          <p>BA Cognitive Science, University of Southern California</p>
+          <p>General Assembly Web Development Immersive</p>
+        </div>
+      </div>
+
+      {/* Links */}
+      <div className="grid-ed mt-16 md:mt-20 mb-8">
+        <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
+            Links
+          </h4>
+        </div>
+        <div className="col-span-12 md:col-span-10 flex flex-wrap gap-2">
+          <FancyButton className="px-3">
+            <a href="/pdf/Benjamin_Glasser_Resume.pdf" target="_blank">
+              RESUME
+            </a>
+          </FancyButton>
+          <FancyButton className="px-3">
+            <a href="https://github.com/benjaminglasser" target="_blank">
+              GITHUB
+            </a>
+          </FancyButton>
+          <FancyButton className="px-3">
+            <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
+              INSTAGRAM
+            </a>
+          </FancyButton>
+          <FancyButton className="px-3">
+            <a href="mailto:glasserben@gmail.com" target="_blank">
+              CONTACT
+            </a>
+          </FancyButton>
+          <FancyButton className="px-3">
+            <a
+              href="https://open.spotify.com/artist/4lP1lKWYqNLYWYtnuTh8OF?si=Z19kgdcvRzyKWn0C8BK3cQ"
+              target="_blank"
+            >
+              Music
+            </a>
+          </FancyButton>
+        </div>
+      </div>
+    </div>
   );
 };
 

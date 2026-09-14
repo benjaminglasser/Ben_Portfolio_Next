@@ -1,43 +1,29 @@
 import Section from "@/app/common/Section";
 import React from "react";
 
-const Context = ({
-  title,
-  context,
-  titleBorder,
-  bullets,
-  className,
-  titleLeft,
-}) => {
+const Context = ({ title, context, bullets }) => {
   return (
     <Section>
-      <div
-        className={`${titleLeft ? "text-left" : "text-center"}  ${className}`}
-      >
-        {title && (
-          <h1
-            className={`ojuju text-grey mb-3 ${
-              titleBorder
-                ? "underline underline-offset-8 decoration-2 decoration-pink"
-                : ""
-            }`}
-          >
-            {title}
-          </h1>
-        )}
-        {context && (
-          <h2 className="flex text-left justify-center w-full">
-            <div className="w-full text-grey px-5 md:w-3/5 text-left text-subheading">
-              {context}
-            </div>
-          </h2>
-        )}
-        <div className="w-full flex justify-center">
-          <ul className="w-full md:w-3/4 lg:w-1/3 text-left list-disc">
-            {bullets?.map((bullet, idx) => (
-              <li className="mb-2 leading-8 text-base">{bullet}</li>
-            ))}
-          </ul>
+      <div className="grid-ed mt-16 md:mt-24">
+        {/* Rail label */}
+        <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
+          <h3 className="edge-label text-[#b45314] md:sticky md:top-24">
+            {title || "Context"}
+          </h3>
+        </div>
+
+        {/* Content */}
+        <div className="col-span-12 md:col-span-10">
+          {context && (
+            <p className="subtext desc-mono max-w-3xl">{context}</p>
+          )}
+          {bullets?.length > 0 && (
+            <ul className="mt-4 list-disc pl-5 subtext desc-mono max-w-3xl space-y-2">
+              {bullets.map((bullet, idx) => (
+                <li key={idx}>{bullet}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </Section>

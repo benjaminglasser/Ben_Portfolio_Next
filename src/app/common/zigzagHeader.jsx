@@ -1,7 +1,15 @@
 import Section from "@/app/common/Section";
-import { Grid } from "@mui/material";
 import React from "react";
 import Link from "next/link";
+
+const MetaRow = ({ label, children }) => (
+  <div className="flex gap-3">
+    <div className="text-[#b45314] uppercase tracking-wide shrink-0 w-24">
+      {label}
+    </div>
+    <div>{children}</div>
+  </div>
+);
 
 const ZigzagHeader = ({
   title,
@@ -15,46 +23,49 @@ const ZigzagHeader = ({
 }) => {
   return (
     <Section>
-      <Grid container className="mt-10 zigzag-header">
-        <Grid
-          item
-          xs={12}
-          md={3}
-          className="border-t lg:border-t lg:border-r border-[#A9232C] p-3"
-        >
-          <h2 className="text-4xl mb-3">{title}</h2>
-          <h4 className="ojuju font-light text-grey lg:text-2xl">
-            {description}
-          </h4>
-        </Grid>
-        <Grid item xs={12} md={9} className="border-l border-b border-[#A9232C] p-3">
-          <p className="mb-6">{extendedDescription}</p>
-          <div className="text-xxs mt-2 flex">
-            <div className="text-grey mr-2">Time:</div> {time}
-          </div>
-          <div className="text-xxs mt-2 flex">
-            <div className="text-grey mr-2">Role: </div>
-            {role}
-          </div>
-          <div className="text-xxs mt-2 flex">
-            <div className="text-grey mr-2">Tools:</div> {tools?.join(", ")}
-          </div>
-          {collaborator ? (
-            <div className="text-xxs mt-2 flex">
-              <div className="text-grey mr-2">Collaborator:</div>
-              <Link
-                href={collaboratorLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {collaborator}
-              </Link>
-            </div>
-          ) : (
-            <></>
+      <div className="grid-ed gap-y-8 mt-12 md:mt-20 zigzag-header">
+        {/* Title + description */}
+        <div className="col-span-12 md:col-span-8">
+          <div className="rule-line w-full mb-4" />
+          <h1 className="lead">{title}</h1>
+          {description && (
+            <p className="subtext desc-mono mt-4 max-w-2xl">{description}</p>
           )}
-        </Grid>
-      </Grid>
+          {extendedDescription && (
+            <p className="subtext desc-mono mt-4 max-w-2xl">
+              {extendedDescription}
+            </p>
+          )}
+        </div>
+
+        {/* Spec block */}
+        <div className="col-span-12 md:col-span-4 md:pl-8">
+          <div className="rule-line w-full mb-4" />
+          <dl className="subtext desc-mono space-y-3">
+            {role && <MetaRow label="Role">{role}</MetaRow>}
+            {time && <MetaRow label="Time">{time}</MetaRow>}
+            {tools?.length > 0 && (
+              <MetaRow label="Tools">{tools.join(", ")}</MetaRow>
+            )}
+            {collaborator && (
+              <MetaRow label="With">
+                {collaboratorLink ? (
+                  <Link
+                    href={collaboratorLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4"
+                  >
+                    {collaborator}
+                  </Link>
+                ) : (
+                  collaborator
+                )}
+              </MetaRow>
+            )}
+          </dl>
+        </div>
+      </div>
     </Section>
   );
 };

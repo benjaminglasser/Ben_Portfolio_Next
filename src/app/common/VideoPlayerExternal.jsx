@@ -1,84 +1,70 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useInView } from "framer-motion";
-import { PuffLoader } from "react-spinners";
+"use client";
+import React, { useState } from "react";
 
-const VideoPlayerExternal = ({ src, widthFull, className, caption }) => {
-  const ref = useRef(null);
-  const iframeRef = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+/**
+ * Clean facade for external (YouTube / Vimeo) videos: shows a poster with
+ * the site's rust play badge and only loads the embed on click, so the
+ * YouTube/Vimeo chrome never clutters the page. Matches VideoPlayerClickable.
+ */
+const VideoPlayerExternal = ({ src, className = "", caption, poster }) => {
+  const [played, setPlayed] = useState(false);
+  const [thumbErrored, setThumbErrored] = useState(false);
 
-  const handleIframeLoad = () => {
-    setLoading(false);
-  };
+  const yt = src?.match(/youtube\.com\/embed\/([^?&/]+)/);
+  const vimeo = src?.match(/player\.vimeo\.com\/video\/([^?&/]+)/);
 
-  const handleIframeError = () => {
-    setLoading(false);
-    setError(true);
-  };
+  let thumb = poster;
+  if (!thumb && yt) {
+    thumb = thumbErrored
+      ? `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`
+      : `https://i.ytimg.com/vi/${yt[1]}/maxresdefault.jpg`;
+  }
+  if (!thumb && vimeo) thumb = `https://vumbnail.com/${vimeo[1]}.jpg`;
 
-  // Stop video when component unmounts
-  useEffect(() => {
-    return () => {
-      if (iframeRef.current) {
-        const iframe = iframeRef.current;
-        // Add a random parameter to force the iframe to reload and stop the video
-        const currentSrc = iframe.src;
-        iframe.src = currentSrc + '&t=' + Math.random();
-      }
-    };
-  }, []);
+  const playSrc = `${src}${src?.includes("?") ? "&" : "?"}autoplay=1&rel=0`;
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="mt-10 w-full px-5 md:w-3/5 ">
-        <div>{caption && <p className="mb-5 md:font-thin">{caption}</p>}</div>
-        <div
-          ref={ref}
-          className={`${
-            className ||
-            `${
-              !widthFull && "md:w-1/2 lg:w-1/3  md:h-[32rem] lg:h-[38rem]"
-            } w-full h-full`
-          } relative`}
-        >
-          {loading && (
-            <div className="absolute inset-0 flex justify-center items-center bg-black/50 z-10">
-              <PuffLoader
-                color="#A9232C"
-                loading
-                size={100}
-                aria-label="Loading Spinner"
-                data-testid="loader"
+    <div className={className}>
+      {caption && <p className="subtext desc-mono text-mute mb-3">{caption}</p>}
+      <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
+        {played ? (
+          <iframe
+            className="absolute inset-0 w-full h-full"
+            src={playSrc}
+            title="Video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlayed(true)}
+            className="group absolute inset-0 w-full h-full"
+            aria-label="Play video"
+          >
+            {thumb && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={thumb}
+                alt={caption || "Video thumbnail"}
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={() => setThumbErrored(true)}
               />
-            </div>
-          )}
-          {error ? (
-            <div className="w-full h-full flex justify-center items-center bg-gray-100">
-              <p className="text-gray-500">Failed to load video</p>
-            </div>
-          ) : (
-            <iframe
-              ref={iframeRef}
-              style={{
-                transform: isInView ? "none" : "translateY(50px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-              }}
-              width="100%"
-              height="100%"
-              src={src}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              onLoad={handleIframeLoad}
-              onError={handleIframeError}
-            />
-          )}
-        </div>
+            )}
+            <span className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+              <span className="flex items-center justify-center w-20 h-20 rounded-full border-2 border-[#b45314] bg-black/60 group-hover:bg-[#b45314] transition-colors">
+                <svg width="24" height="28" viewBox="0 0 28 32" aria-hidden="true">
+                  <path
+                    d="M2 2L26 16L2 30V2Z"
+                    fill="#b45314"
+                    className="group-hover:fill-black"
+                  />
+                </svg>
+              </span>
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

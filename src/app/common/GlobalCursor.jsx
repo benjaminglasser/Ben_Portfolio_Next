@@ -287,7 +287,7 @@ const GlobalCursor = () => {
       }}
     >
       <div
-        className="rounded-full border-[#A9232C]"
+        className="rounded-full border-[#b45314]"
         style={{
           width: isHovering ? '2rem' : '1rem',
           height: isHovering ? '2rem' : '1rem',
@@ -295,7 +295,7 @@ const GlobalCursor = () => {
           transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
           animation: isLoading ? 'spin 1s linear infinite' : shouldBounce ? 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none',
           borderStyle: isLoading ? 'solid' : 'solid',
-          borderColor: isLoading ? '#A9232C #A9232C transparent #A9232C' : '#A9232C',
+          borderColor: isLoading ? '#b45314 #b45314 transparent #b45314' : '#b45314',
           transform: isClicking ? 'scale(0.75)' : 'scale(1)',
           opacity: isLoading ? 1 : 1,
         }}

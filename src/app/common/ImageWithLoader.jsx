@@ -33,7 +33,7 @@ const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName,
 
   return (
     <div
-      className={`relative w-full rounded-lg overflow-hidden ${wrapperClassName || ""}`}
+      className={`relative w-full overflow-hidden ${wrapperClassName || ""}`}
       style={{
         backgroundColor: '#1f2937'
       }}
@@ -71,7 +71,7 @@ const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName,
       )}
       {borderOverlayClassName && (
         <div
-          className={`absolute inset-0 z-20 rounded-lg pointer-events-none ${borderOverlayClassName}`}
+          className={`absolute inset-0 z-20 pointer-events-none ${borderOverlayClassName}`}
         />
       )}
     </div>

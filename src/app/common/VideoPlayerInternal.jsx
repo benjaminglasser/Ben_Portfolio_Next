@@ -60,7 +60,7 @@ const VideoPlayerInternal = ({ video, className, centered, scaleOnLargeScreens, 
       {loading && !hideLoader && (
         <div className="absolute inset-0 flex justify-center items-center bg-black/50 z-10">
           <PuffLoader
-            color="#A9232C"
+            color="#b45314"
             loading
             size={100}
             aria-label="Loading Spinner"

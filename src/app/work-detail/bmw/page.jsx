@@ -1,13 +1,21 @@
 "use client";
 import React from "react";
+import ZigzagHeader from "../../common/zigzagHeader";
 import Context from "../../common/context";
-import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
-import Section from "@/app/common/Section";
 import DetailSection from "../../common/detailSection";
-import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
+import VideoPlayerResponsiveBG from "../../common/VideoPlayerResponsiveBG";
 import { FancyButton } from "@/app/common/FancyButton";
 
 const bmw = () => {
+  // Media sits in a narrower column with an empty column to the right.
+  const Media = ({ children, className = "" }) => (
+    <div className="grid-ed">
+      <div className={`col-span-12 md:col-start-3 md:col-span-8 ${className}`}>
+        {children}
+      </div>
+    </div>
+  );
+
   const bullets = [
     "Led the end-to-end development of a real-time, interactive Mixed Reality (MR) product utilizing Unreal Engine and state-of-the-art headsets under fast paced, tight corporate deadline.",
     "Designed various AR applications to express ideas and present to my team for weekly reviews. Packaged and handed off approved assets to the engineering team for integration.",
@@ -19,101 +27,62 @@ const bmw = () => {
 
   return (
     <div className="w-full text-white">
-      <div className="relative">
-        <VideoPlayerResponsiveBG
-          vidDesktop="/Media/BMW/car-sim.mp4"
-          vidMobile="/Media/BMW/carSimPhone.mp4"
-        />
+      {/* Car simulator as a fixed background (no hero block) */}
+      <VideoPlayerResponsiveBG
+        vidDesktop="/Media/BMW/car-sim.mp4"
+        vidMobile="/Media/BMW/carSimPhone.mp4"
+      />
 
-        <div className="">
-          <Section>
-            <div className="mt-20 w-full text-center flex justify-center">
-              <h1 className="w-full md:w-2/3 px-6">
-                Developing next-generation XR products and systems at{" "}
-                <strong className="text-7xl">BMW</strong>
-              </h1>
-            </div>
-          </Section>
-          <Section>
-            <Context
-              title="CONTEXT"
-              className="mt-24 md:mt-24 mb-24"
-              context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
-            />
-          </Section>
-          <Section>
-            <div className="flex justify-center">
-              <div className="w-full px-5 md:px-10 md:w-3/5 text-[#A9232C]">
-                <h4 className="font-normal">UPDATE!</h4>
-              </div>
-            </div>
-          </Section>
-          <Section>
-            <VideoPlayerExternal
-              widthFull
-              className="aspect-w-16 aspect-h-9"
-              src="https://www.youtube.com/embed/zwOfrRDtd9E?si=rBPDZ6Qhx4Q0dW2L"
-            />
-          </Section>
-          <Section>
-            <div className=" px-5 md:px-20 mt-12 flex justify-center">
-              <p>
-                During CES 2024, the BMW team presented work that I contributed
-                to during my time.
-              </p>
-            </div>
-          </Section>
+      {/* Masthead at the top */}
+      <ZigzagHeader
+        title="BMW"
+        description="Developing next-generation XR products and systems"
+        extendedDescription="Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich."
+        time="April 2022 - February 2023"
+        role="XR Interaction"
+        tools={["Unreal Engine", "Unity", "Blender", "Adobe Suite", "Figma"]}
+      />
 
-          <Section>
-            <div className="text-center px-5 md:px-20 mt-16 mb-72 ">
-              <DetailSection className=" mb-3 " title="EXPERIENCE" center />
-              <div className="w-full flex flex-col items-center justify-center">
-                <h6 className="mb-3 font-normal">DETAILS LIMITED BY NDA</h6>
-                <ul className="w-full px-4 md:w-1/2 text-left list-disc">
-                  {bullets?.map((bullet, idx) => (
-                    // Adjust "mb-4" for more space between bullets and "leading-snug" for tighter line spacing within a bullet
-                    <li key={idx} className="mb-4 leading-snug text-base">{bullet}</li>
-                  ))}
-                </ul>
-                <FancyButton className="p-0 ml-0 px-2 mr-2 mt-8 mb-2 hover:text-white">
-                  <a href="mailto:glasserben@gmail.com" target="_blank">
-                    CONTACT FOR MORE INFO
-                  </a>
-                </FancyButton>
-              </div>
-            </div>
-          </Section>
+      <Context
+        title="Context"
+        context="Contracted as a Mixed Reality Interaction Designer at the headquarters in Munich, Germany. My team was focused on researching and developing HMI (Human Machine Interactions) products to ultimately be released within the next 5-7 years."
+      />
+
+      <DetailSection spanClass="md:col-span-8" title="Update">
+        <div className="relative w-full aspect-[16/9] mt-8">
+          <iframe
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/zwOfrRDtd9E"
+            title="BMW at CES 2024"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
-      </div>
+        <p className="subtext desc-mono max-w-3xl mt-6">
+          During CES 2024, the BMW team presented work that I contributed to
+          during my time.
+        </p>
+      </DetailSection>
+
+      <DetailSection
+        spanClass="md:col-span-8"
+        title="Experience"
+        description="Details limited by NDA."
+      >
+        <ul className="list-disc pl-5 space-y-2 subtext desc-mono mt-8">
+          {bullets.map((bullet, idx) => (
+            <li key={idx}>{bullet}</li>
+          ))}
+        </ul>
+        <FancyButton fullWidth size="medium" className="mt-20">
+          <a href="mailto:glasserben@gmail.com">Contact For More Info</a>
+        </FancyButton>
+      </DetailSection>
+
+      <div className="h-16 md:h-24" />
     </div>
   );
 };
 
 export default bmw;
-
-{
-  /* </div> */
-}
-{
-  /* <ZigzagHeader
-          title="BMW"
-          description="Developing next-generation XR products and systems"
-          extendedDescription="Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich."
-          time="Summer 2022 - Fall 2022"
-          role="XR Interaction"
-          tools={["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"]}
-        /> */
-}
-{
-  /* <Context
-          title="Experience"
-          className="pt-16 my-16"
-          titleBorder
-          bullets={[
-            "Developed a real time interactive XR experience using Unreal Engine on a fast paced, corporate deadline.",
-            "Designed various AR applications to express ideas and present to my team for weekly reviews. Packaged and handed off approved assets to the engineering team for integration.",
-            "Created 3D renderings in Blender, Unity, and Unreal Engine to be displayed on various displays. Tasks included virtual cinematics, materials and texturing using PBR based workflows, Unity scripting and UE blueprints, special effects, character rigging and animation, and workflows between various software.",
-            "Worked extensively with VFX graph (Unity), Niagara (Unreal Engine), and Particle Systems (Blender) as well as built custom shaders to prototype novel effects that translate across multiple platforms.",
-          ]}
-        /> */
-}

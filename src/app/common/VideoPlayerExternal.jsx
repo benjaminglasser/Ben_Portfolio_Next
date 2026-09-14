@@ -53,11 +53,11 @@ const VideoPlayerExternal = ({ src, className = "", caption, poster }) => {
               />
             )}
             <span className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-              <span className="flex items-center justify-center w-20 h-20 rounded-full border-2 border-[#b45314] bg-black/60 group-hover:bg-[#b45314] transition-colors">
+              <span className="flex items-center justify-center w-20 h-20 rounded-full border-2 border-[var(--rust)] bg-black/60 group-hover:bg-[var(--rust)] transition-colors">
                 <svg width="24" height="28" viewBox="0 0 28 32" aria-hidden="true">
                   <path
                     d="M2 2L26 16L2 30V2Z"
-                    fill="#b45314"
+                    fill="var(--rust)"
                     className="group-hover:fill-black"
                   />
                 </svg>

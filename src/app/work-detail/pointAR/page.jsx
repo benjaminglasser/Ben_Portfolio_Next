@@ -47,7 +47,7 @@ const PointAR = () => {
       {/* Context + Aim as two side-by-side columns */}
       <div className="grid-ed gap-y-10 mt-16 md:mt-24">
         <div className="col-span-12 md:col-start-3 md:col-span-4">
-          <h3 className="edge-label text-[#b45314] mb-3">Context</h3>
+          <h3 className="edge-label text-[var(--rust)] mb-3">Context</h3>
           <p className="subtext desc-mono">
             Museums with huge collections are bound to their geographical
             location, as well as their building size. Their curatorial layouts
@@ -60,7 +60,7 @@ const PointAR = () => {
           </p>
         </div>
         <div className="col-span-12 md:col-start-8 md:col-span-3">
-          <h3 className="edge-label text-[#b45314] mb-3">Aim</h3>
+          <h3 className="edge-label text-[var(--rust)] mb-3">Aim</h3>
           <p className="subtext desc-mono">
             How might we leverage the power of Augmented Reality to enhance the
             way visitors experience a museum visually and tactilely?

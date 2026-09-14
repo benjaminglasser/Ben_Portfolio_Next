@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const MetaRow = ({ label, children }) => (
   <div className="flex gap-3">
-    <div className="text-[#b45314] uppercase tracking-wide shrink-0 w-24">
+    <div className="text-[var(--rust)] uppercase tracking-wide shrink-0 w-24">
       {label}
     </div>
     <div>{children}</div>

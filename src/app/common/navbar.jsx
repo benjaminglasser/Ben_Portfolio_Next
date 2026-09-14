@@ -30,10 +30,10 @@ const Navbar = () => {
   const textColor = scrolled
     ? isDarkPage
       ? "rgb(255, 255, 255)"
-      : "#b45314"
+      : "#b02b1a"
     : isHome || isDarkPage
     ? "rgb(255, 255, 255)"
-    : "#b45314";
+    : "#b02b1a";
 
   const bgColor = scrolled
     ? isDarkPage
@@ -68,7 +68,7 @@ const Navbar = () => {
               <motion.h3
                 className="cursor-pointer display-title pl-5 md:pl-10"
                 animate={linkColor}
-                whileHover={{ color: "#b45314" }}
+                whileHover={{ color: "#b02b1a" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 BENJAMIN GLASSER
@@ -88,7 +88,7 @@ const Navbar = () => {
                 <motion.h3
                   className="ml-4 md:ml-8 display-title"
                   animate={linkColor}
-                  whileHover={{ color: "#b45314" }}
+                  whileHover={{ color: "#b02b1a" }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   {item.label}

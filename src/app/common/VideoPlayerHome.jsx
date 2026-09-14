@@ -369,7 +369,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
         {loading && shouldShowSpinner && (
           <div className="absolute inset-0 flex justify-center items-center z-20">
             <PuffLoader
-              color="#b45314"
+              color="#b02b1a"
               loading
               size={100}
               aria-label="Loading Spinner"

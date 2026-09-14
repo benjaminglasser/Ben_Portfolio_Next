@@ -7,7 +7,7 @@ const AIM = ({ aim }) => {
       <div className="grid-ed mt-16 md:mt-24">
         {/* Rail label */}
         <div className="col-span-12 md:col-span-2 mb-4 md:mb-0">
-          <h3 className="edge-label text-[#b45314] md:sticky md:top-24">Aim</h3>
+          <h3 className="edge-label text-[var(--rust)] md:sticky md:top-24">Aim</h3>
         </div>
 
         {/* Statement */}

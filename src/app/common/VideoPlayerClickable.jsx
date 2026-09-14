@@ -52,7 +52,7 @@ const VideoPlayerClickable = ({ src, poster, className }) => {
           aria-label="Play video"
           className="absolute inset-0 z-10 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40 cursor-pointer"
         >
-          <span className="flex items-center justify-center w-20 h-20 rounded-full border-2 border-[#b45314] bg-black/60 transition-colors hover:bg-[#b45314] group">
+          <span className="flex items-center justify-center w-20 h-20 rounded-full border-2 border-[var(--rust)] bg-black/60 transition-colors hover:bg-[var(--rust)] group">
             <svg
               width="28"
               height="32"
@@ -61,7 +61,7 @@ const VideoPlayerClickable = ({ src, poster, className }) => {
               xmlns="http://www.w3.org/2000/svg"
               className="ml-1"
             >
-              <path d="M2 2L26 16L2 30V2Z" fill="#b45314" className="group-hover:fill-black" />
+              <path d="M2 2L26 16L2 30V2Z" fill="var(--rust)" className="group-hover:fill-black" />
             </svg>
           </span>
         </button>

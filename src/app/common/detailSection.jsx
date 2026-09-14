@@ -23,7 +23,7 @@ const DetailSection = ({
         {/* Rail label */}
         <div className="col-span-12 md:col-span-2">
           {title && (
-            <h3 className="edge-label text-[#b45314] md:sticky md:top-24">
+            <h3 className="edge-label text-[var(--rust)] md:sticky md:top-24">
               {title}
             </h3>
           )}

@@ -30,8 +30,8 @@
      Hierarchy comes from color, not size:
      --rust      = primary (top-level titles / h1)
      --rust-mute = subordinate text, same size but less saturated */
-  --rust: #b45314;
-  --rust-mute: #a67253;
+  --rust: #b02b1a;
+  --rust-mute: #a6564a;
 
   /* Muted white for subordinate text on dark work-detail pages,
      mirroring --rust-mute on the light pages. */
@@ -219,6 +219,19 @@ html.theme-dark body {
   color: #fff;
 }
 
+/* On dark backgrounds the rust is lifted to a lighter tint of the same
+   red-leaning hue so it reads against black (WCAG AA, ~5.7:1). Light pages
+   (home, info) keep the deeper base --rust defined on :root. */
+html.theme-dark {
+  --rust: #dc6048;
+}
+
+/* Lift the muted grey labels/captions on dark pages for a comfortable
+   contrast margin (~7:1). On light pages .text-mute stays rust-mute. */
+html.theme-dark .text-mute {
+  color: #959595;
+}
+
 /* Work-detail pages: soften the whole content hierarchy to a muted
    white (subheaders, descriptions, metadata), keeping only the
    top-level project title crisp white. */
@@ -234,7 +247,7 @@ html.route-work-detail .lead {
 /* Growing rust hairline used under section labels / masthead. */
 .rule-line {
   height: 1px;
-  background: #b45314;
+  background: var(--rust);
 }
 
 .ojuju {

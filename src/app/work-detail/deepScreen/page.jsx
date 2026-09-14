@@ -60,7 +60,7 @@ const DeepScreen = () => {
       {/* Context + Aim as two side-by-side columns */}
       <div className="grid-ed gap-y-10 mt-16 md:mt-24">
         <div className="col-span-12 md:col-start-3 md:col-span-4">
-          <h3 className="edge-label text-[#b45314] mb-3">Context</h3>
+          <h3 className="edge-label text-[var(--rust)] mb-3">Context</h3>
           <p className="subtext desc-mono">
             Set against the backdrop of the Circa building&apos;s striking curved
             display in Downtown Los Angeles, this project sought to leverage the
@@ -69,7 +69,7 @@ const DeepScreen = () => {
           </p>
         </div>
         <div className="col-span-12 md:col-span-3 md:col-start-8">
-          <h3 className="edge-label text-[#b45314] mb-3">Aim</h3>
+          <h3 className="edge-label text-[var(--rust)] mb-3">Aim</h3>
           <p className="subtext desc-mono">
             The aim was to demonstrate Standard Vision&apos;s in-house graphics
             capabilities and the novel opportunities provided by their large

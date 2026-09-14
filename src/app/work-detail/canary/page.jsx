@@ -52,7 +52,7 @@ const Canary = () => {
         </div>
       </div>
 
-      <Contained className="mt-8">
+      <Contained className="mt-8" spanClass="md:col-start-3 md:col-span-8">
         <FancyButton fullWidth size="medium" onClick={redirectToFinalWebsite}>
           Final Website
         </FancyButton>

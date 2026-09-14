@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="relative">
-      <div className="full-bleed relative">
+      <div className="full-bleed relative -mt-3 md:mt-0">
         <VideoPlayerHome
           video1="/Media/Home/water_v2_MAIN.mp4"
           video2="/Media/Home/water_v2_WIREFRAME.mp4"

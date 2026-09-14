@@ -71,7 +71,7 @@ const Play = () => {
         <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
           <h4 className="edge-label text-mute whitespace-nowrap">Play</h4>
         </div>
-        <div className="col-span-12 md:col-span-5">
+        <div className="col-span-12 md:col-span-10">
           <h1 className="text-white desc-mono bio">
             I play in the various sandboxes of Blender, Unity, Unreal Engine,
             Processing, TouchDesigner, as well as other creative spaces in
@@ -83,7 +83,7 @@ const Play = () => {
       </div>
 
       <div className="grid-ed mt-8">
-        <div className="col-span-12 md:col-start-3 md:col-span-5">
+        <div className="col-span-12 md:col-start-3 md:col-span-10">
           <FancyButton fullWidth>
             <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
               More expiriments can be found HERE

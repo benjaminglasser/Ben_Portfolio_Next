@@ -226,7 +226,7 @@ const WorkSection = () => {
 
       {/* Works column: uniform 3-up grid. */}
       <div className="col-span-12 md:col-span-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
           {items.map((item) => (
             <Section key={item.number}>
               <WorkCard

@@ -33,7 +33,7 @@ const WorkCard = ({
         />
         <div className="flex gap-6 pt-3">
           <div className="desc-mono subtext text-black shrink-0">{number}</div>
-          <div className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out">
+          <div className="w-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 ease-out">
             <div className="text-black display-title font-normal">{title}</div>
             <h4 className="pt-1 text-mute subtext desc-mono">{description}</h4>
             <div className="flex justify-between gap-4 desc-mono uppercase tracking-wide text-[#a67253] mt-4 text-[0.68rem] leading-relaxed">

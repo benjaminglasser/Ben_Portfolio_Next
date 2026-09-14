@@ -79,7 +79,10 @@ const DeepScreen = () => {
         </div>
       </div>
 
-      <div className="full-bleed mt-16 md:mt-24">
+      <div
+        className="full-bleed band-crop crop-bottom mt-16 md:mt-24"
+        style={{ "--band-h": "clamp(320px, 62vh, 780px)" }}
+      >
         <VideoPlayerInternal video="/Media/DeepScreen/Waterfall.mp4" />
       </div>
 

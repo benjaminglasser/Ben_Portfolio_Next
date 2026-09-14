@@ -125,6 +125,12 @@
   object-fit: cover !important;
 }
 
+/* Anchor cropped media to the top so the bottom is what gets cut off. */
+.crop-bottom video,
+.crop-bottom img {
+  object-position: top !important;
+}
+
 /* Full-viewport-height hero (used where the masthead overlays the hero). */
 .hero-full {
   height: 100svh;

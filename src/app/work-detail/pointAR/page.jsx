@@ -49,7 +49,7 @@ const PointAR = () => {
       <Grid container className="flex justify-between">
         <Grid item md={6}>
           <DetailSection
-            className="px-10 md:px-20 "
+            className="px-5 md:px-20 "
             title="TEAM"
             description={`This project is a joint effort between Benjamin Glasser and Mario Santanilla. While we both were R&D XR Design interns at BMW in Munich, Germany, we spent much of our time in museums of all sorts.`}
             widthFull
@@ -58,7 +58,7 @@ const PointAR = () => {
         </Grid>
         <Grid item md={6}>
           <DetailSection
-            className="px-10 md:px-20 "
+            className="px-5 md:px-20 "
             title="APPROACH"
             description="A key feature of this build involved including a 24hr livestream of the gallery at all times to be displayed soley on the landing page. It was important to create a design language that wouldn't overshadow this focal point."
             widthFull
@@ -82,12 +82,12 @@ const PointAR = () => {
 
       <Image src={POINTAR.DIVIDER} className="w-full my-10" />
       {/* Feature 1 */}
-      <div className="px-10 md:px-20 mt-5 md:mt-10">
+      <div className="px-5 md:px-20 mt-5 md:mt-10">
         <h5>Feature #1</h5>
         <h1>Survey</h1>
         <Grid container className="w-full">
           <Grid item xs={12} md={8}>
-            <p className="px-10 md:px-20">
+            <p className="px-5 md:px-20">
               In our research, one of the key factors that led to museum
               disappointment was a sense of confusion and overwhelm felt when
               entering vast collections. Even when one goes on a guided tour,
@@ -117,7 +117,7 @@ const PointAR = () => {
 
       {/* Feature 2 */}
 
-      <div className="px-10 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
+      <div className="px-5 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
         <div className="w-full text-left">
           <h5>Feature #2</h5>
           <h1>Tour</h1>
@@ -161,8 +161,8 @@ const PointAR = () => {
       </div>
 
       {/* Feature 3 */}
-      <div className="px-10 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
-        <Grid container className="w-full px-10 md:px-20" spacing={3}>
+      <div className="px-5 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
+        <Grid container className="w-full px-5 md:px-20" spacing={3}>
           <Grid item xs={12} md={6}>
             <Image src={POINTAR.HAND} alt="hand" className="w-full" />
           </Grid>
@@ -210,7 +210,7 @@ const PointAR = () => {
       </div>
 
       {/* Feature 4 */}
-      <div className="px-10 md:px-20 mt-5 md:mt-10">
+      <div className="px-5 md:px-20 mt-5 md:mt-10">
         <h5>Feature #4</h5>
         <h1>Mixed Reality</h1>
         <Grid container className="w-full" spacing={3}>
@@ -308,8 +308,8 @@ const PointAR = () => {
         </Section>
       </div>
 
-      <div className="px-10 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
-        <Grid container className="w-full px-10 md:px-20" spacing={3}>
+      <div className="px-5 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
+        <Grid container className="w-full px-5 md:px-20" spacing={3}>
           <Grid item xs={12} md={6}>
             <p>
               Using particle systems, PointAR can successfully and dynamically
@@ -354,8 +354,8 @@ const PointAR = () => {
       <br />
       <br />
 
-      <div className="px-10 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
-        <Grid container className="w-full px-10 md:px-20" spacing={3}>
+      <div className="px-5 md:px-20 mt-5 md:mt-10 flex flex-col items-center">
+        <Grid container className="w-full px-5 md:px-20" spacing={3}>
           <Grid item xs={12} md={6}>
             <p>
               For the prototype we created a UI system that would allow us to

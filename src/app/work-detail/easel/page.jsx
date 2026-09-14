@@ -58,7 +58,7 @@ const Canary = () => {
       </Section>
 
       <Section>
-        <div className="w-full text-center px-10">
+        <div className="w-full text-center px-5 md:px-10">
           <FancyButton
             className="uppercase w-full md:w-3/5 mt-28 ojuju p-1 hover:text-white"
             size="medium"
@@ -70,7 +70,7 @@ const Canary = () => {
       </Section>
 
       <Section>
-        <div className="w-full text-center px-10 pb-10">
+        <div className="w-full text-center px-5 md:px-10 pb-10">
           <FancyButton
             className="uppercase w-full md:w-3/5 mt-8 ojuju p-1 hover:text-white"
             size="medium"
@@ -90,7 +90,7 @@ const Canary = () => {
 
       <Section>
         <DetailSection
-          className="px-10 md:px-20"
+          className="px-5 md:px-20"
           title="User Interface Design"
           description="Crafted user-centric interfaces for Easel AI's app, emphasizing simplicity and intuitiveness while remaining true to our brand guidelines. My role extended to designing a low-friction onboarding process for avatar training and implementing a system for gathering and acting on user feedback for continual updates."
           center
@@ -98,7 +98,7 @@ const Canary = () => {
         />
       </Section>
       <Section>
-        <div className="flex justify-center w-full px-10 md:px-20 mt-5">
+        <div className="flex justify-center w-full px-5 md:px-20 mt-5">
           <Image
             src="/images/easel/Flow.png"
             alt="font design"
@@ -109,7 +109,7 @@ const Canary = () => {
       </Section>
 
       <Section>
-        <h4 className="mt-8 md:font-thin px-10 md:px-20">
+        <h4 className="mt-8 md:font-thin px-5 md:px-20">
           Collaborating with a skilled engineering team, we crafted a backend
           system that abstracts intricate prompt engineering, accepting simple
           user inputs. This method demystifies AI for users, encouraging
@@ -118,7 +118,7 @@ const Canary = () => {
         </h4>
 
         <Section>
-          <div className="flex justify-center w-full px-10 md:px-20 mt-5">
+          <div className="flex justify-center w-full px-5 md:px-20 mt-5">
             <Image
               src="/images/easel/EaselScreens.png"
               alt="font design"
@@ -136,7 +136,7 @@ const Canary = () => {
       /> */}
       <Section>
         <DetailSection
-          className="px-10 md:px-20"
+          className="px-5 md:px-20"
           title="Feature Development"
           description="Developed a comprehensive design system that scales, fostering the integration of key features such as diverse avatar styles, text overlays, and an explore feed, thereby enriching user interaction. Simultaneously, I led a synergistic effort among product, engineering, and AI teams to ensure seamless workflows, facilitating the successful realization of these product features."
           center
@@ -152,7 +152,7 @@ const Canary = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-10 md:px-20"
+          className="px-5 md:px-20"
           title="Multiplayer"
           description="Oversaw the design, implementation, and launch of our most recent major feature: multiplayer capabilities, a complex project that emphasized ethical consent and real-time user interaction. This role involved navigating the challenges of integrating seamless, consent-based multiplayer experiences, culminating in the development of compelling launch assets to ensure user engagement and understanding"
           center
@@ -168,14 +168,14 @@ const Canary = () => {
       </Section>
       <Section>
         <DetailSection
-          className="px-10 md:px-20 "
+          className="px-5 md:px-20 "
           title="Brand Identity and Design System Development"
           description="Defined and evolved the Easel AI brand, establishing a visual language through logos, typefaces, and color schemes that resonate with our diverse user base."
           left
         />
       </Section>
       <Section>
-        <div className="flex justify-center w-full px-10 md:px-20 mt-5">
+        <div className="flex justify-center w-full px-5 md:px-20 mt-5">
           <Image
             src="/images/easel/LogoDesign.png"
             alt="Easel AI logo design evolution and variations"
@@ -185,7 +185,7 @@ const Canary = () => {
         </div>
       </Section>
       <Section>
-        <div className="flex justify-center w-full px-10 md:px-20 mt-5">
+        <div className="flex justify-center w-full px-5 md:px-20 mt-5">
           <Image
             src="/images/easel/ColorDesign.png"
             alt="Easel AI color palette and design system"
@@ -195,7 +195,7 @@ const Canary = () => {
         </div>
       </Section>
       <Section>
-        <div className="flex justify-center w-full px-10 md:px-20 mt-5">
+        <div className="flex justify-center w-full px-5 md:px-20 mt-5">
           <Image
             src="/images/easel/fontDesign.png"
             alt="Easel AI typography and font design system"

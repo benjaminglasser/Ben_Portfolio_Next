@@ -47,7 +47,7 @@ const plantasia = () => {
 
       {/* </div> */}
       {/* <DetailSection
-        className="px-10 md:px-20 "
+        className="px-5 md:px-20 "
         title="BRIEF"
         description={`Create a system that allows you to play music (and possibly video) from your computer using a physical custom interface of your own design and creation. Will you make it for your own personal use or more general, usable by a larger group of people? Is it mean for solo preformance or multiple people? Will it be specific to a genre of music? How do you select the parameters that you can manipulate.`}
         widthFull
@@ -61,7 +61,7 @@ const plantasia = () => {
       />
 
       <DetailSection
-        className="px-10 md:px-20 "
+        className="px-5 md:px-20 "
         title="VERSION 1"
         description="My initial idea was to use piezo touch sensors as a way to drive the
             sound. My first test was to simply get the piezo working and hooked
@@ -95,7 +95,7 @@ const plantasia = () => {
       />
 
       <DetailSection
-        className="px-10 md:px-20 "
+        className="px-5 md:px-20 "
         title="VERSION 2"
         description="While researching this project, I stumbled across a capacitive touch breakout board built for arduino that seemed like it may be a more reliable alternative and, if it worked correctly, would include the plant into the system more directly rather than being more of an illusion gimmick."
         left
@@ -162,7 +162,7 @@ const plantasia = () => {
       />
 
       <DetailSection
-        className="px-10 md:px-20 mt-5"
+        className="px-5 md:px-20 mt-5"
         title="FINAL PERFORMANCE"
         widthFull
         left
@@ -175,7 +175,7 @@ const plantasia = () => {
       />
 
       {/* <DetailSection
-        className="px-10 md:px-20 "
+        className="px-5 md:px-20 "
         title="REFLECTIONS"
         description="This was a very exciting and useful project for myself. Getting to bring my background in music into this instrument was a very fun and rewarding way to apply some basic yet important hardware principles all together in one unified project. I would like to expand on the idea by adding more notes to make up a full 12 note scale, restricting to specific keys, and synthesizing a more unique sound rather than a simple sine wave (Which I will admit does work well with the plant theme as is). I look forward to utilizing these tools in future projects!."
         widthFull

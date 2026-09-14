@@ -25,13 +25,13 @@ const Adobe = () => {
       </Section>
 
       <DetailSection
-        className="px-10 md:px-20"
+        className="px-5 md:px-20"
         widthFull
         title="Adobe Substance 3D Reviewer"
         description="Reviewer is a collaborative design tool that enables teams to review and provide feedback on 3D product models at an early stage in development. Accessible on both web and VR, it brings together stakeholders to streamline decision-making and enhance product quality."
       />
       <Section>
-        <div className="flex justify-center w-full mt-5 px-10 md:px-20">
+        <div className="flex justify-center w-full mt-5 px-5 md:px-20">
           <video
             className="w-full h-auto rounded-lg"
             autoPlay
@@ -43,7 +43,7 @@ const Adobe = () => {
         </div>
       </Section>
       <Section>
-        <div className="w-full text-center px-10">
+        <div className="w-full text-center px-5 md:px-10">
           <FancyButton
             className="uppercase w-full md:w-3/5 mt-8 ojuju p-1 hover:text-white"
             size="medium"
@@ -66,13 +66,13 @@ const Adobe = () => {
       </Section>
 
       <DetailSection
-        className="px-10 md:px-20"
+        className="px-5 md:px-20"
         widthFull
         title="3D Integration in Frame.io"
         description="The Frame.io 3D integration has launched and the early results have been strong. As of late May, roughly 440 accounts are actively using 3D features in Frame, and monthly 3D asset creation has grown from single digits a year ago to 13,582 assets in the most recent month, a clear sign that the workflows are landing with partners. We also saw over 3,900 3D assets downloaded from Frame in May alone, which points to real usage inside partner pipelines rather than one off testing."
       />
       <Section>
-        <div className="flex justify-center w-full mt-5 px-10 md:px-20">
+        <div className="flex justify-center w-full mt-5 px-5 md:px-20">
           <video
             className="w-full h-auto rounded-lg"
             autoPlay

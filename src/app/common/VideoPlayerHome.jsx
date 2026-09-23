@@ -131,16 +131,15 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
       followerVideo.play().catch(() => {});
     };
 
-    // If either video stalls (e.g. re-buffering), pause both so they don't
-    // silently drift apart while one keeps advancing.
-    const handleWaiting = () => {
-      masterVideo.pause();
-      followerVideo.pause();
-    };
-    const handleResume = () => {
-      if (!cancelled && fadeInRef.current) {
-        masterVideo.play().catch(() => {});
-        followerVideo.play().catch(() => {});
+    // On a slower connection a video can briefly stall to buffer. Rather
+    // than pausing both (which can permanently freeze them if the browser
+    // never fires a "resume" event on its own), just make sure playback
+    // resumes for whichever video the browser paused once it's ready again.
+    // The per-frame sync loop above keeps the follower locked to the
+    // master's timeline regardless, so a brief stall never causes drift.
+    const handleCanPlayThrough = (e) => {
+      if (!cancelled && fadeInRef.current && e.target.paused) {
+        e.target.play().catch(() => {});
       }
     };
 
@@ -166,9 +165,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
           setLoading(false);
           masterVideo.addEventListener("ended", handleMasterEnded);
           videos.forEach((video) => {
-            video.addEventListener("waiting", handleWaiting);
-            video.addEventListener("stalled", handleWaiting);
-            video.addEventListener("playing", handleResume);
+            video.addEventListener("canplaythrough", handleCanPlayThrough);
           });
           syncFrameRef.current = requestAnimationFrame(runSyncLoop);
         }
@@ -196,9 +193,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
       }
       masterVideo.removeEventListener("ended", handleMasterEnded);
       videos.forEach((video) => {
-        video.removeEventListener("waiting", handleWaiting);
-        video.removeEventListener("stalled", handleWaiting);
-        video.removeEventListener("playing", handleResume);
+        video.removeEventListener("canplaythrough", handleCanPlayThrough);
       });
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);

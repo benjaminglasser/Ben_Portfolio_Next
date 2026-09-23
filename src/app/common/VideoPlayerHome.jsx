@@ -14,6 +14,8 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
   const video2Ref = useRef(null);
   const containerRef = useRef(null);
   const loadingTimeoutRef = useRef(null);
+  const syncFrameRef = useRef(null);
+  const fadeInRef = useRef(false);
   const [isHovering, setIsHovering] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -72,6 +74,7 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
     if (videos.length !== 2) return undefined;
 
     let cancelled = false;
+    const [masterVideo, followerVideo] = videos;
 
     const waitUntilPlayable = (video) => {
       if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
@@ -100,6 +103,47 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
       });
     };
 
+    // Keep the follower locked to the master's timeline every frame so the
+    // x-ray reveal always shows the same moment in both videos. Native
+    // `loop` on each element would let them restart at slightly different
+    // times and drift apart, so looping is handled manually below instead.
+    const DRIFT_TOLERANCE = 0.05;
+    const runSyncLoop = () => {
+      if (cancelled) return;
+
+      if (!masterVideo.paused && !masterVideo.seeking) {
+        const drift = Math.abs(followerVideo.currentTime - masterVideo.currentTime);
+        if (drift > DRIFT_TOLERANCE) {
+          followerVideo.currentTime = masterVideo.currentTime;
+        }
+        if (followerVideo.paused) {
+          followerVideo.play().catch(() => {});
+        }
+      }
+
+      syncFrameRef.current = requestAnimationFrame(runSyncLoop);
+    };
+
+    const handleMasterEnded = () => {
+      masterVideo.currentTime = 0;
+      followerVideo.currentTime = 0;
+      masterVideo.play().catch(() => {});
+      followerVideo.play().catch(() => {});
+    };
+
+    // If either video stalls (e.g. re-buffering), pause both so they don't
+    // silently drift apart while one keeps advancing.
+    const handleWaiting = () => {
+      masterVideo.pause();
+      followerVideo.pause();
+    };
+    const handleResume = () => {
+      if (!cancelled && fadeInRef.current) {
+        masterVideo.play().catch(() => {});
+        followerVideo.play().catch(() => {});
+      }
+    };
+
     const startVideos = async () => {
       try {
         loadingTimeoutRef.current = setTimeout(() => {
@@ -120,6 +164,13 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
         if (!cancelled) {
           setFadeIn(true);
           setLoading(false);
+          masterVideo.addEventListener("ended", handleMasterEnded);
+          videos.forEach((video) => {
+            video.addEventListener("waiting", handleWaiting);
+            video.addEventListener("stalled", handleWaiting);
+            video.addEventListener("playing", handleResume);
+          });
+          syncFrameRef.current = requestAnimationFrame(runSyncLoop);
         }
       } catch (loadError) {
         console.error("Error loading home videos:", loadError);
@@ -140,11 +191,24 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
     return () => {
       cancelled = true;
 
+      if (syncFrameRef.current) {
+        cancelAnimationFrame(syncFrameRef.current);
+      }
+      masterVideo.removeEventListener("ended", handleMasterEnded);
+      videos.forEach((video) => {
+        video.removeEventListener("waiting", handleWaiting);
+        video.removeEventListener("stalled", handleWaiting);
+        video.removeEventListener("playing", handleResume);
+      });
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);
       }
     };
   }, []);
+
+  useEffect(() => {
+    fadeInRef.current = fadeIn;
+  }, [fadeIn]);
 
   useEffect(() => {
     if (onLoadingChange) {
@@ -189,7 +253,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
               className={videoClassName}
               style={fadeStyle}
               autoPlay
-              loop
               playsInline
               muted
               preload="auto"
@@ -213,7 +276,6 @@ const VideoPlayerHome = ({ video1, video2, className, centered, onLoadingChange 
                   "opacity 1s ease-in-out, mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1), -webkit-mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
               autoPlay
-              loop
               playsInline
               muted
               preload="auto"

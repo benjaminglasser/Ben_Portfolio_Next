@@ -14,8 +14,8 @@ export default function Home() {
     <div className="relative">
       <div className="full-bleed relative -mt-3 md:mt-0">
         <VideoPlayerHome
-          video1="/Media/Home/water_v2_MAIN.mp4"
-          video2="/Media/Home/water_v2_WIREFRAME.mp4"
+          video1="/Media/Home/optimized/water_main_optimized.mp4"
+          video2="/Media/Home/optimized/water_wireframe_optimized.mp4"
           onLoadingChange={setIsVideoLoading}
         />
         {/* Tagline, bottom-right of the hero */}

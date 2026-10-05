@@ -26,7 +26,7 @@ const bmw = () => {
   ];
 
   return (
-    <div className="w-full text-white">
+    <div className="relative isolate w-full text-white">
       {/* Car simulator as a fixed background (no hero block) */}
       <VideoPlayerResponsiveBG
         vidDesktop="/Media/BMW/car-sim.mp4"

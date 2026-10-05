@@ -32,6 +32,8 @@ During the thumbnail reveal, the transition dots shrink and fade as dark-red cir
 
 BMW thumbnails add local contrast and retain more highlight detail in the halftone so the car's parts read more clearly. This adjustment does not affect the full-color animation or other thumbnails.
 
+The BMW detail page uses its floating-car video as a fixed, full-screen background behind the content, not a hero section. Only the matching mobile or desktop video is loaded.
+
 Local video players reserve a 16:9 loading area until the video's dimensions are known. The loader fills that area until the first frame is ready. Click-to-play videos can show a loaded poster instead, with the play control still available.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.

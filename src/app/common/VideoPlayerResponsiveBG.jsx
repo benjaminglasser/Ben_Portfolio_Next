@@ -1,21 +1,31 @@
-import { IMAGES } from "../../../public/images";
-import React from "react";
-import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
+"use client";
+
+import { useEffect, useState } from "react";
+import LazyVideo from "./LazyVideo";
 
 function VideoPlayerResponsiveBG({ vidDesktop, vidMobile }) {
+  const [mobile, setMobile] = useState(null);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   return (
-    <>
-      <VideoPlayerInternal
-        className="-z-10 fixed hidden md:block"
-        video={vidDesktop}
-        hideLoader
-      />
-      <VideoPlayerInternal
-        className="-z-10 fixed block md:hidden"
-        video={vidMobile}
-        hideLoader
-      />
-    </>
+    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden bg-black" aria-hidden="true">
+      {mobile !== null && (
+        <LazyVideo
+          key={mobile ? vidMobile : vidDesktop}
+          src={mobile ? vidMobile : vidDesktop}
+          eager
+          className="absolute inset-0 w-full h-full object-cover"
+          tabIndex={-1}
+        />
+      )}
+    </div>
   );
 }
 

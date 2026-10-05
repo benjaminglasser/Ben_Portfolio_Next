@@ -227,7 +227,7 @@ html.route-home .text-black {
 .home-selected-works,
 html:has(.home-sequence) .site-navbar {
   opacity: 1;
-  transition: opacity 800ms ease;
+  transition: none;
 }
 
 .page-transition {
@@ -280,12 +280,12 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
 .home-hero-copy[aria-hidden="true"] {
   opacity: 0;
 }
-.home-sequence[data-home-returning="true"][data-home-wave="ready"] .home-selected-works,
-.home-sequence[data-home-returning="true"][data-home-wave="ready"] .home-hero-copy {
+.home-sequence[data-home-wave="ready"] .home-selected-works,
+.home-sequence[data-home-wave="ready"] .home-hero-copy {
   transition: opacity 500ms ease;
 }
-.home-sequence[data-home-returning="true"][data-home-wave="resolving"] .home-selected-works,
-.home-sequence[data-home-returning="true"][data-home-wave="resolving"] .home-hero-copy {
+.home-sequence[data-home-wave="resolving"] .home-selected-works,
+.home-sequence[data-home-wave="resolving"] .home-hero-copy {
   opacity: 0;
   transition: none;
   pointer-events: none;
@@ -298,8 +298,8 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
   html:has(.home-sequence) .site-navbar {
     transition: none;
   }
-  .home-sequence[data-home-returning="true"]:not([data-home-wave="bypass"]) .home-selected-works,
-  .home-sequence[data-home-returning="true"]:not([data-home-wave="bypass"]) .home-hero-copy {
+  .home-sequence .home-selected-works,
+  .home-sequence .home-hero-copy {
     transition: none;
   }
 }

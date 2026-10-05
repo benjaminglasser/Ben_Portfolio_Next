@@ -100,8 +100,7 @@ export default function Home() {
   }, [returningHome]);
 
   const pageReady = returningHome || timedOut || (assetsReady && !isVideoLoading);
-  const returnEntrance = returningHome && routeTransition.navigating;
-  const selectedWorksReady = revealStarted && (!returnEntrance || heroResolved);
+  const selectedWorksReady = revealStarted && heroResolved;
 
   useEffect(() => {
     readyRef.current = pageReady;
@@ -118,19 +117,15 @@ export default function Home() {
 
   useEffect(() => {
     if (returningHome || !pageReady || progress !== 100) return;
-    const timer = setTimeout(() => setRevealStarted(true), 280);
+    const timer = setTimeout(() => {
+      setRevealStarted(true);
+      setFadeComplete(true);
+    }, 280);
     return () => clearTimeout(timer);
   }, [returningHome, pageReady, progress]);
 
-  useEffect(() => {
-    if (returningHome || !revealStarted) return;
-    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800;
-    const timer = setTimeout(() => setFadeComplete(true), duration);
-    return () => clearTimeout(timer);
-  }, [returningHome, revealStarted]);
-
   return (
-    <div ref={pageRef} className="relative home-sequence" data-home-stage={revealStarted ? "ready" : "loading"} data-home-returning={returningHome} data-home-wave={returnEntrance ? heroResolved ? "ready" : "resolving" : "bypass"} aria-busy={!revealStarted}>
+    <div ref={pageRef} className="relative home-sequence" data-home-stage={revealStarted ? "ready" : "loading"} data-home-returning={returningHome} data-home-wave={heroResolved ? "ready" : "resolving"} aria-busy={!revealStarted}>
       {!fadeComplete && (
         <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center text-white desc-mono home-loading-screen" aria-hidden={revealStarted}>
           <div className="flex flex-col items-center gap-4" role="progressbar" aria-label="Loading home page" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
@@ -146,9 +141,9 @@ export default function Home() {
           pageReady={revealStarted}
           loadingExpired={timedOut}
           showLoader={false}
-          pixelEntrance={returnEntrance}
+          pixelEntrance
           entranceReady={routeTransition.ready}
-          onEntranceComplete={returnEntrance ? () => setHeroResolved(true) : undefined}
+          onEntranceComplete={() => setHeroResolved(true)}
         />
         {/* Tagline, bottom-right of the hero */}
         <HomePageExtraInfo isLoading={!selectedWorksReady} unifiedEntrance />

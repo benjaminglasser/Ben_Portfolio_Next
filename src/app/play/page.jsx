@@ -109,7 +109,8 @@ const Play = () => {
                   alt="Play experiment"
                   width="100"
                   height="100"
-                  unoptimized={true}
+                  sizes={`(max-width: 768px) ${row.slice.length === 4 ? "50vw" : "33vw"}, ${Math.ceil(83 / row.slice.length)}vw`}
+                  quality={100}
                 />
               ))}
             </div>

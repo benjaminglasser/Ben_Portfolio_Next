@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
-const HomePageExtraInfo = ({ isLoading, pixelEntrance = false }) => {
-  if (pixelEntrance) {
+const HomePageExtraInfo = ({ isLoading, unifiedEntrance = false }) => {
+  if (unifiedEntrance) {
     return (
       <p className="absolute bottom-5 md:bottom-8 right-5 md:right-10 z-10 edge-label text-white/70 text-right home-hero-copy" aria-hidden={isLoading}>
         designer, media artist + musician

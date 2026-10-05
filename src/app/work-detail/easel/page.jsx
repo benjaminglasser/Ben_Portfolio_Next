@@ -4,7 +4,7 @@ import Context from "../../common/context";
 import ZigzagHeader from "../../common/zigzagHeader";
 import DetailSection from "../../common/detailSection";
 import Section from "@/app/common/Section";
-import Image from "next/image";
+import Image from "@/app/common/MediaImage";
 import { FancyButton } from "@/app/common/FancyButton";
 import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
 
@@ -22,6 +22,8 @@ const Canary = () => {
         <div className="w-full">
           <Image
             src="/images/easel/banner.png"
+            sizes="100vw"
+            priority
             alt="Easel AI banner"
             width="1920"
             height="891"

@@ -93,7 +93,7 @@ export const PLAY_FEATURES = [
   {
     id: "posters",
     compact: true,
-    title: "Poster design and animation",
+    title: "Poster animation",
     kind: "Posters",
     category: "digital",
     rows: [

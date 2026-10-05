@@ -223,7 +223,7 @@ html.route-home .text-black {
   color: #fff;
 }
 
-.home-hero-copy,
+.home-hero-content,
 .home-selected-works,
 html:has(.home-sequence) .site-navbar {
   opacity: 1;
@@ -231,9 +231,9 @@ html:has(.home-sequence) .site-navbar {
 }
 
 .home-loading-screen {
-  color: #b02b1a;
+  color: var(--rust);
   opacity: 1;
-  transition: opacity 350ms ease;
+  transition: opacity 800ms ease;
 }
 
 .home-loading-screen .edge-label {
@@ -244,7 +244,7 @@ html:has(.home-sequence) .site-navbar {
   content: none;
 }
 
-.home-sequence[data-home-stage="loading"] .home-hero-copy,
+.home-sequence[data-home-stage="loading"] .home-hero-content,
 .home-sequence:not([data-home-stage="ready"]) .home-selected-works,
 html:has(.home-sequence[data-home-stage="loading"]) .site-navbar {
   opacity: 0 !important;
@@ -259,31 +259,21 @@ html:has(.home-sequence[data-home-stage="loading"]) .site-navbar {
 
 html:has(.home-sequence) .site-navbar {
   transform: none !important;
-  transition-delay: 150ms;
 }
 
-.home-selected-works {
-  transition-delay: 350ms;
-}
-
-.home-hero-copy {
-  transition-delay: 200ms;
+.home-sequence[data-home-returning="true"] .home-hero-content,
+.home-sequence[data-home-returning="true"] .home-selected-works,
+html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .home-loading-screen,
-  .home-hero-copy,
+  .home-hero-content,
   .home-selected-works,
   html:has(.home-sequence) .site-navbar {
     transition: none;
   }
-}
-
-/* On dark backgrounds the rust is lifted to a lighter tint of the same
-   red-leaning hue so it reads against black (WCAG AA, ~5.7:1). Light pages
-   (home, info) keep the deeper base --rust defined on :root. */
-html.theme-dark {
-  --rust: #dc6048;
 }
 
 /* Lift the muted grey labels/captions on dark pages for a comfortable
@@ -1036,10 +1026,12 @@ html.ds-b.theme-light body::before {
   opacity: 1;
   transform: none;
 }
-.lab-tile img {
+.lab-tile img,
+.lab-tile video[data-animated-image] {
   transition: transform 400ms var(--ease-snap);
 }
-.lab-tile:hover img {
+.lab-tile:hover img,
+.lab-tile:hover video[data-animated-image] {
   transform: scale(1.03);
 }
 .bench-cover {
@@ -1086,6 +1078,7 @@ html.ds-b.theme-light body::before {
   .ds-b .workcard .spec-line,
   .lab-key,
   .lab-tile img,
+  .lab-tile video[data-animated-image],
   .lab-tile__meta,
   .type-key {
     transition: none !important;
@@ -1100,7 +1093,7 @@ html.ds-b.theme-light body::before {
   outline: none;
 }
 .hero-ripple-surface:focus-visible {
-  box-shadow: inset 0 0 0 2px #dc6048;
+  box-shadow: inset 0 0 0 2px var(--rust);
 }
 .xray-reticle {
   position: absolute;
@@ -1126,7 +1119,7 @@ html.ds-b.theme-light body::before {
   border: 1px dashed rgba(255, 255, 255, 0.85);
 }
 .xray-reticle.is-scanning .xray-reticle__ring {
-  border: 1px solid #dc6048;
+  border: 1px solid var(--rust);
 }
 .xray-reticle__label {
   position: absolute;
@@ -1169,7 +1162,7 @@ html.ds-b.theme-light body::before {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #dc6048;
+  background: var(--rust);
   animation: xray-blink 1.2s steps(2, jump-none) infinite;
 }
 @keyframes xray-blink {
@@ -1221,40 +1214,38 @@ html.ds-b.theme-light body::before {
   }
 }
 
-/* Image loading: dot grid with a stepped rust scan */
+/* Media loading: a stepped rust scan over a faint dot matrix. */
 .img-loader {
-  background-color: #0d0d0d;
+  background-color: #000;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.14) 1px, transparent 1.5px);
   background-size: 8px 8px;
   background-position: 4px 4px;
+  overflow: hidden;
 }
-.img-loader::after {
-  content: "";
+.img-loader-scan {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, #dc6048 1px, transparent 1.5px);
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--rust) 1px, transparent 1.5px);
   background-size: 8px 8px;
   background-position: 4px 4px;
   clip-path: inset(0 100% 0 0);
   animation: img-scan 1.6s steps(16, end) infinite;
+  animation-play-state: inherit;
 }
 @keyframes img-scan {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  50% {
-    clip-path: inset(0 0 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 100%);
-  }
+  0% { clip-path: inset(0 100% 0 0); }
+  50% { clip-path: inset(0 0 0 0); }
+  100% { clip-path: inset(0 0 0 100%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .img-loader::after {
+  .img-loader-scan {
     animation: none;
     clip-path: none;
     opacity: 0.35;
   }
+}
+@media (prefers-reduced-motion: reduce) {
   .ds-b .workcard .spec-line,
   .build-card .spec-line {
     transition: none;
@@ -1277,7 +1268,8 @@ html.ds-b.theme-light body::before {
   min-height: 0;
   overflow: hidden;
 }
-.feature-bento img {
+.feature-bento img,
+.feature-bento video[data-animated-image] {
   display: block;
   height: 100%;
 }

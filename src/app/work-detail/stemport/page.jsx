@@ -6,7 +6,7 @@ import AIM from "../../common/aim";
 import DetailSection from "../../common/detailSection";
 import { IMAGES } from "../../../../public/images";
 import Section from "@/app/common/Section";
-import Image from "next/image";
+import Image from "@/app/common/MediaImage";
 // import VideoPlayer from '@/app/common/VideoPlayerInternal.jsx'
 import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 
@@ -66,6 +66,7 @@ const stemport = () => {
           <div className="w-full flex justify-center mt-16">
             <Image
               className="w-4/5 md:w-3/5"
+              sizes="(max-width: 768px) 80vw, 60vw"
               src={image}
               key={idx}
               alt="boards"

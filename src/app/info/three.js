@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -73,6 +73,7 @@ const halftoneShader = {
     tScene: { value: null },
     uResolution: { value: new THREE.Vector2(1, 1) },
     uCell: { value: 6 },
+    uReveal: { value: 0 },
     uInk: { value: new THREE.Vector3(176 / 255, 43 / 255, 26 / 255) },
   },
   vertexShader: `
@@ -86,11 +87,14 @@ const halftoneShader = {
     uniform sampler2D tScene;
     uniform vec2 uResolution;
     uniform float uCell;
+    uniform float uReveal;
     uniform vec3 uInk;
     varying vec2 vUv;
     void main() {
       vec2 px = vUv * uResolution;
       vec2 cell = floor(px / uCell);
+      float seed = fract(sin(dot(cell, vec2(127.1, 311.7))) * 43758.5453);
+      float appearance = smoothstep(seed * 0.8, seed * 0.8 + 0.2, uReveal);
       vec2 center = (cell + 0.5) * uCell;
       vec4 src = texture2D(tScene, center / uResolution);
       float luma = dot(pow(src.rgb, vec3(1.0 / 2.2)), vec3(0.299, 0.587, 0.114));
@@ -98,14 +102,17 @@ const halftoneShader = {
       float mask = step(0.5, src.a);
       float radius = mix(0.1, 0.55, shade) * uCell;
       float d = length(px - center);
-      float ink = (1.0 - smoothstep(radius - 0.75, radius + 0.75, d)) * mask;
+      float ink = (1.0 - smoothstep(radius - 0.75, radius + 0.75, d)) * mask * appearance;
       gl_FragColor = vec4(uInk * ink, ink);
     }
   `,
 };
 
 function Halftone() {
+  useGLTF("/3D/ben.glb");
   const { gl, scene, camera, size, viewport } = useThree();
+  const reveal = useRef(0);
+  const reducedMotion = useRef(false);
   const dpr = viewport.dpr;
   const target = useFBO(size.width * dpr, size.height * dpr);
 
@@ -123,7 +130,20 @@ function Halftone() {
     return [s, new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), mat];
   }, []);
 
-  useFrame(() => {
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => {
+      reducedMotion.current = motion.matches;
+      if (motion.matches) reveal.current = 1;
+    };
+    updateMotion();
+    motion.addEventListener("change", updateMotion);
+    return () => motion.removeEventListener("change", updateMotion);
+  }, []);
+
+  useFrame((state, delta) => {
+    reveal.current = reducedMotion.current ? 1 : Math.min(1, reveal.current + Math.min(delta, 0.05) / 0.9);
+    material.uniforms.uReveal.value = reveal.current;
     material.uniforms.tScene.value = target.texture;
     material.uniforms.uResolution.value.set(size.width * dpr, size.height * dpr);
     material.uniforms.uCell.value = 4.5 * dpr;

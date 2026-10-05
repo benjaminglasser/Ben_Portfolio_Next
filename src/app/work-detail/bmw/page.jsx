@@ -75,9 +75,11 @@ const bmw = () => {
             <li key={idx}>{bullet}</li>
           ))}
         </ul>
-        <FancyButton fullWidth size="medium" className="mt-20">
-          <a href="mailto:glasserben@gmail.com">Contact For More Info</a>
-        </FancyButton>
+        <div className="pt-12 md:pt-16">
+          <FancyButton fullWidth size="medium">
+            <a href="mailto:glasserben@gmail.com">Contact For More Info</a>
+          </FancyButton>
+        </div>
       </DetailSection>
 
       <div className="h-16 md:h-24" />

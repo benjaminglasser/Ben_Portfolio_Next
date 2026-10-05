@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import Image from "@/app/common/MediaImage";
 import ZigzagHeader from "../../common/zigzagHeader";
 import { PLUR } from "../../../../public/images/PLUR";
 import DetailSection from "../../common/detailSection";

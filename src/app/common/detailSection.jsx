@@ -1,5 +1,6 @@
 import Section from "@/app/common/Section";
 import ImageWithLoader from "./ImageWithLoader";
+import VideoPlayerInternal from "./VideoPlayerInternal";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -52,13 +53,9 @@ const DetailSection = ({
           )}
 
           {video && (
-            <video
+            <VideoPlayerInternal
               className="w-full h-auto mt-8"
-              autoPlay
-              muted
-              loop
-              playsInline
-              src={video}
+              video={video}
             />
           )}
 
@@ -70,6 +67,7 @@ const DetailSection = ({
                   alt="detail"
                   width={1920}
                   height={1080}
+                  sizes="(max-width: 768px) 100vw, 83vw"
                   unoptimized={
                     typeof image === "string" && image.includes(".gif")
                   }

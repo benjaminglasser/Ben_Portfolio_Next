@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import Image from "@/app/common/MediaImage";
 import { POINTAR } from "../../../../public/images/PointAR";
 import ZigzagHeader from "../../common/zigzagHeader";
 import DetailSection from "../../common/detailSection";
@@ -80,15 +80,15 @@ const PointAR = () => {
         description="Through field research, we broke the museum experience down into a clear visual language, then explored how that language could carry from a phone survey into a fully augmented tour."
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
-          <Image src={POINTAR.ERA} alt="Evolution of the app" className="w-full h-auto" />
-          <Image src={POINTAR.START} alt="Start screen" className="w-full h-auto" />
-          <Image src={POINTAR.NEXT} alt="Next steps interface" className="w-full h-auto" />
+          <Image src={POINTAR.ERA} alt="Evolution of the app" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 22vw" />
+          <Image src={POINTAR.START} alt="Start screen" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 22vw" />
+          <Image src={POINTAR.NEXT} alt="Next steps interface" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 22vw" />
         </div>
       </DetailSection>
 
       {/* App mockup — full-bleed */}
       <div className="full-bleed mt-8">
-        <Image src={POINTAR.DIVIDER} alt="PointAR app mockup" className="w-full h-auto" />
+        <Image src={POINTAR.DIVIDER} alt="PointAR app mockup" className="w-full h-auto" sizes="100vw" />
       </div>
 
       <DetailSection
@@ -109,6 +109,7 @@ const PointAR = () => {
             src={POINTAR.ERA_GIF}
             alt="Survey interface in the PointAR app"
             className="w-full max-w-[240px] h-auto"
+            sizes="240px"
           />
         </div>
       </DetailSection>
@@ -129,10 +130,10 @@ const PointAR = () => {
           journey from piece to piece.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
-          <Image src={POINTAR.TOUR3} alt="Tour interface" className="w-full h-auto" />
-          <Image src={POINTAR.TOUR6} alt="Tour interface" className="w-full h-auto" />
-          <Image src={POINTAR.TOUR5} alt="Tour interface" className="w-full h-auto" />
-          <Image src={POINTAR.TOUR4} alt="Tour interface" className="w-full h-auto" />
+          <Image src={POINTAR.TOUR3} alt="Tour interface" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
+          <Image src={POINTAR.TOUR6} alt="Tour interface" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
+          <Image src={POINTAR.TOUR5} alt="Tour interface" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
+          <Image src={POINTAR.TOUR4} alt="Tour interface" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
         </div>
       </DetailSection>
 
@@ -159,11 +160,11 @@ const PointAR = () => {
               explore, feel, and study.
             </p>
           </div>
-          <Image src={POINTAR.HAND} alt="Haptic ring interaction" className="w-full h-auto" />
+          <Image src={POINTAR.HAND} alt="Haptic ring interaction" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
-          <Image src={POINTAR.TOUR1} alt="Haptic experience" className="w-full h-auto" />
-          <Image src={POINTAR.TOUR2} alt="Haptic experience" className="w-full h-auto" />
+          <Image src={POINTAR.TOUR1} alt="Haptic experience" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
+          <Image src={POINTAR.TOUR2} alt="Haptic experience" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 33vw" />
         </div>
       </DetailSection>
 
@@ -199,7 +200,7 @@ const PointAR = () => {
           physical restrictions of the traditional frame imposed by standard
           screen hardware with fixed resolutions.
         </p>
-        <Image src={POINTAR.POINTAR_FLOW} alt="PointAR system flow diagram" className="w-full h-auto mt-8" />
+        <Image src={POINTAR.POINTAR_FLOW} alt="PointAR system flow diagram" className="w-full h-auto mt-8" sizes="(max-width: 768px) 100vw, 67vw" />
         <p className="subtext desc-mono mt-8">
           Our three part system consists of the survey, the tour and the haptic
           experience. The survey is the initial encounter the visitor has, when a
@@ -210,7 +211,7 @@ const PointAR = () => {
           activated when the user reaches a specific art piece that they want to
           explore further so that they can feel and interact with the piece.
         </p>
-        <Image src={POINTAR.POINTAR_UI} alt="PointAR UI system" className="w-full h-auto mt-8" />
+        <Image src={POINTAR.POINTAR_UI} alt="PointAR UI system" className="w-full h-auto mt-8" sizes="(max-width: 768px) 100vw, 67vw" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mt-8 items-start">
           <p className="subtext desc-mono">
             Using particle systems, PointAR can successfully and dynamically
@@ -222,8 +223,8 @@ const PointAR = () => {
             consistency of our visual system.
           </p>
           <div className="grid grid-cols-2 gap-3">
-            <Image src={POINTAR.MOBILE_VIEW_INTRO} alt="Mobile view intro transition" className="w-full h-auto" />
-            <Image src={POINTAR.WAVE} alt="Particle wave transition" className="w-full h-auto" />
+            <Image src={POINTAR.MOBILE_VIEW_INTRO} alt="Mobile view intro transition" className="w-full h-auto" sizes="(max-width: 768px) 50vw, 17vw" />
+            <Image src={POINTAR.WAVE} alt="Particle wave transition" className="w-full h-auto" sizes="(max-width: 768px) 50vw, 17vw" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mt-8 items-start">
@@ -238,6 +239,7 @@ const PointAR = () => {
           </p>
           <Image
             src={POINTAR.PARTICLE_UI}
+            sizes="(max-width: 768px) 100vw, 33vw"
             alt="Particle system prototyping UI"
             className="w-full h-auto"
           />

@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image from "../common/MediaImage";
+import LazyVideo from "../common/LazyVideo";
 import ImageWithLoader from "../common/ImageWithLoader";
 import DotDigits from "../common/design/DotDigits";
 import {
@@ -61,7 +62,8 @@ const BuildCard = ({ build, index }) => {
             width="100"
             height="100"
             wrapperClassName="!rounded-none aspect-[4/3]"
-            unoptimized
+            sizes="(max-width: 768px) 100vw, 28vw"
+            quality={100}
           />
         ) : (
           <div className="bench-cover absolute inset-0 flex items-center justify-center text-white/70">
@@ -150,15 +152,10 @@ const FeatureSection = ({ feature, labelNo }) => {
                   style={{ flexGrow: img.ratio, aspectRatio: img.ratio }}
                 >
                   {img.video ? (
-                    <video
+                    <LazyVideo
                       src={img.video}
                       aria-label={img.alt}
                       className="block w-full h-full object-cover bg-[#0d0d0d]"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
                     />
                   ) : (
                   <ImageWithLoader
@@ -167,7 +164,8 @@ const FeatureSection = ({ feature, labelNo }) => {
                     width="100"
                     height="100"
                     wrapperClassName="!rounded-none h-full"
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 58vw"
+                    quality={100}
                   />
                   )}
                 </div>
@@ -243,7 +241,9 @@ const Viewer = ({ items, index, onClose, onStep }) => {
           src={item.src}
           alt={`Play experiment ${index + 1}`}
           className="max-h-full w-auto h-auto max-w-full object-contain"
-          unoptimized
+          sizes="100vw"
+          quality={100}
+          loading="eager"
         />
       </div>
       <div className="flex items-center justify-center gap-2 py-4">
@@ -345,7 +345,8 @@ const PlayLab = () => {
                           alt=""
                           width="100"
                           height="100"
-                          unoptimized={true}
+                          sizes={`(max-width: 768px) ${row.slice.length === 4 ? "50vw" : "33vw"}, ${Math.ceil(83 / row.slice.length)}vw`}
+                          quality={100}
                         />
                       </button>
                     );

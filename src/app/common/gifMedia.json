@@ -1,0 +1,498 @@
+{
+  "/images/adobe/adobeThumb.webp": {
+    "video": "/images/adobe/adobeThumb.webp.pingpong.mp4",
+    "poster": "/images/adobe/adobeThumb.webp.poster.jpg",
+    "width": 596,
+    "height": 334,
+    "sourceWidth": 596,
+    "sourceHeight": 334
+  },
+  "/Media/BMW/dancingCarBlack.gif": {
+    "video": "/Media/BMW/dancingCarBlack.gif.hq.mp4",
+    "poster": "/Media/BMW/dancingCarBlack.gif.poster.jpg",
+    "width": 960,
+    "height": 540,
+    "sourceWidth": 960,
+    "sourceHeight": 540
+  },
+  "/Media/DeepScreen/_WaterTest.gif": {
+    "video": "/Media/DeepScreen/_WaterTest.gif.hq.mp4",
+    "poster": "/Media/DeepScreen/_WaterTest.gif.poster.jpg",
+    "width": 634,
+    "height": 356,
+    "sourceWidth": 634,
+    "sourceHeight": 356
+  },
+  "/Media/Easel/EaselThumbPrimary.gif": {
+    "video": "/Media/Easel/EaselThumbPrimary.gif.hq.mp4",
+    "poster": "/Media/Easel/EaselThumbPrimary.gif.poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
+  },
+  "/Media/NRF/Clear_Canvas_Thumb.gif": {
+    "video": "/Media/NRF/Clear_Canvas_Thumb.gif.hq.mp4",
+    "poster": "/Media/NRF/Clear_Canvas_Thumb.gif.poster.jpg",
+    "width": 1206,
+    "height": 678,
+    "sourceWidth": 1206,
+    "sourceHeight": 678
+  },
+  "/Media/Odyssey/odysseyThumb.gif": {
+    "video": "/Media/Odyssey/odysseyThumb.gif.hq.mp4",
+    "poster": "/Media/Odyssey/odysseyThumb.gif.poster.jpg",
+    "width": 738,
+    "height": 416,
+    "sourceWidth": 738,
+    "sourceHeight": 416
+  },
+  "/Media/Voyager/VoyagerThumb.gif": {
+    "video": "/Media/Voyager/VoyagerThumb.gif.hq.mp4",
+    "poster": "/Media/Voyager/VoyagerThumb.gif.poster.jpg",
+    "width": 1280,
+    "height": 720,
+    "sourceWidth": 1280,
+    "sourceHeight": 720
+  },
+  "/images/PLUR/Hero.gif": {
+    "video": "/images/PLUR/Hero.gif.hq.mp4",
+    "poster": "/images/PLUR/Hero.gif.poster.jpg",
+    "width": 800,
+    "height": 450,
+    "sourceWidth": 800,
+    "sourceHeight": 450
+  },
+  "/images/PointAR/Figma2_02_AdobeExpress_kwpccg.gif": {
+    "video": "/images/PointAR/Figma2_02_AdobeExpress_kwpccg.gif.hq.mp4",
+    "poster": "/images/PointAR/Figma2_02_AdobeExpress_kwpccg.gif.poster.jpg",
+    "width": 234,
+    "height": 508,
+    "sourceWidth": 234,
+    "sourceHeight": 508
+  },
+  "/images/PointAR/PointAR_Hero_AdobeExpress_AdobeExpress_wegd2s.gif": {
+    "video": "/images/PointAR/PointAR_Hero_AdobeExpress_AdobeExpress_wegd2s.gif.hq.mp4",
+    "poster": "/images/PointAR/PointAR_Hero_AdobeExpress_AdobeExpress_wegd2s.gif.poster.jpg",
+    "width": 778,
+    "height": 438,
+    "sourceWidth": 777,
+    "sourceHeight": 437
+  },
+  "/images/PointAR/hand.gif": {
+    "video": "/images/PointAR/hand.gif.hq.mp4",
+    "poster": "/images/PointAR/hand.gif.poster.jpg",
+    "width": 480,
+    "height": 480,
+    "sourceWidth": 480,
+    "sourceHeight": 480
+  },
+  "/images/PointAR/mobileView.gif": {
+    "video": "/images/PointAR/mobileView.gif.hq.mp4",
+    "poster": "/images/PointAR/mobileView.gif.poster.jpg",
+    "width": 312,
+    "height": 678,
+    "sourceWidth": 312,
+    "sourceHeight": 677
+  },
+  "/images/PointAR/pointAR_Home.gif": {
+    "video": "/images/PointAR/pointAR_Home.gif.hq.mp4",
+    "poster": "/images/PointAR/pointAR_Home.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/start.gif": {
+    "video": "/images/PointAR/start.gif.hq.mp4",
+    "poster": "/images/PointAR/start.gif.poster.jpg",
+    "width": 286,
+    "height": 592,
+    "sourceWidth": 285,
+    "sourceHeight": 591
+  },
+  "/images/PointAR/tour1.gif": {
+    "video": "/images/PointAR/tour1.gif.hq.mp4",
+    "poster": "/images/PointAR/tour1.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/tour2.gif": {
+    "video": "/images/PointAR/tour2.gif.hq.mp4",
+    "poster": "/images/PointAR/tour2.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/tour3.gif": {
+    "video": "/images/PointAR/tour3.gif.hq.mp4",
+    "poster": "/images/PointAR/tour3.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/tour4.gif": {
+    "video": "/images/PointAR/tour4.gif.hq.mp4",
+    "poster": "/images/PointAR/tour4.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/tour5.gif": {
+    "video": "/images/PointAR/tour5.gif.hq.mp4",
+    "poster": "/images/PointAR/tour5.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/tour6.gif": {
+    "video": "/images/PointAR/tour6.gif.hq.mp4",
+    "poster": "/images/PointAR/tour6.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/PointAR/wave.gif": {
+    "video": "/images/PointAR/wave.gif.hq.mp4",
+    "poster": "/images/PointAR/wave.gif.poster.jpg",
+    "width": 268,
+    "height": 580,
+    "sourceWidth": 268,
+    "sourceHeight": 580
+  },
+  "/images/SpatialAge/spatialAge.gif": {
+    "video": "/images/SpatialAge/spatialAge.gif.hq.mp4",
+    "poster": "/images/SpatialAge/spatialAge.gif.poster.jpg",
+    "width": 640,
+    "height": 360,
+    "sourceWidth": 640,
+    "sourceHeight": 360
+  },
+  "/images/bmw/dancingCar.gif": {
+    "video": "/images/bmw/dancingCar.gif.hq.mp4",
+    "poster": "/images/bmw/dancingCar.gif.poster.jpg",
+    "width": 892,
+    "height": 502,
+    "sourceWidth": 892,
+    "sourceHeight": 502
+  },
+  "/images/canary/canaryHero4.gif": {
+    "video": "/images/canary/canaryHero4.gif.hq.mp4",
+    "poster": "/images/canary/canaryHero4.gif.poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
+  },
+  "/images/dtlaMarriott/MarriotThumb.gif": {
+    "video": "/images/dtlaMarriott/MarriotThumb.gif.hq.mp4",
+    "poster": "/images/dtlaMarriott/MarriotThumb.gif.poster.jpg",
+    "width": 1900,
+    "height": 1280,
+    "sourceWidth": 1900,
+    "sourceHeight": 1280
+  },
+  "/images/easel/EaselHero.gif": {
+    "video": "/images/easel/EaselHero.gif.hq.mp4",
+    "poster": "/images/easel/EaselHero.gif.poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
+  },
+  "/images/home/sky.gif": {
+    "video": "/images/home/sky.gif.hq.mp4",
+    "poster": "/images/home/sky.gif.poster.jpg",
+    "width": 600,
+    "height": 278,
+    "sourceWidth": 600,
+    "sourceHeight": 278
+  },
+  "/images/meaningfulPursuits/Hero1.gif": {
+    "video": "/images/meaningfulPursuits/Hero1.gif.hq.mp4",
+    "poster": "/images/meaningfulPursuits/Hero1.gif.poster.jpg",
+    "width": 600,
+    "height": 338,
+    "sourceWidth": 600,
+    "sourceHeight": 338
+  },
+  "/images/plantasia/plantHero3.gif": {
+    "video": "/images/plantasia/plantHero3.gif.hq.mp4",
+    "poster": "/images/plantasia/plantHero3.gif.poster.jpg",
+    "width": 480,
+    "height": 270,
+    "sourceWidth": 480,
+    "sourceHeight": 270
+  },
+  "/images/play/play1.gif": {
+    "video": "/images/play/play1.gif.hq.mp4",
+    "poster": "/images/play/play1.gif.poster.jpg",
+    "width": 480,
+    "height": 480,
+    "sourceWidth": 480,
+    "sourceHeight": 480
+  },
+  "/images/play/play10.gif": {
+    "video": "/images/play/play10.gif.hq.mp4",
+    "poster": "/images/play/play10.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/play/play11.gif": {
+    "video": "/images/play/play11.gif.hq.mp4",
+    "poster": "/images/play/play11.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/play/play12.gif": {
+    "video": "/images/play/play12.gif.hq.mp4",
+    "poster": "/images/play/play12.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/play/play13.gif": {
+    "video": "/images/play/play13.gif.hq.mp4",
+    "poster": "/images/play/play13.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/play/play14.gif": {
+    "video": "/images/play/play14.gif.hq.mp4",
+    "poster": "/images/play/play14.gif.poster.jpg",
+    "width": 536,
+    "height": 536,
+    "sourceWidth": 536,
+    "sourceHeight": 536
+  },
+  "/images/play/play15.gif": {
+    "video": "/images/play/play15.gif.hq.mp4",
+    "poster": "/images/play/play15.gif.poster.jpg",
+    "width": 400,
+    "height": 400,
+    "sourceWidth": 400,
+    "sourceHeight": 400
+  },
+  "/images/play/play16.gif": {
+    "video": "/images/play/play16.gif.hq.mp4",
+    "poster": "/images/play/play16.gif.poster.jpg",
+    "width": 292,
+    "height": 292,
+    "sourceWidth": 291,
+    "sourceHeight": 291
+  },
+  "/images/play/play17.gif": {
+    "video": "/images/play/play17.gif.hq.mp4",
+    "poster": "/images/play/play17.gif.poster.jpg",
+    "width": 274,
+    "height": 274,
+    "sourceWidth": 274,
+    "sourceHeight": 274
+  },
+  "/images/play/play18.gif": {
+    "video": "/images/play/play18.gif.hq.mp4",
+    "poster": "/images/play/play18.gif.poster.jpg",
+    "width": 360,
+    "height": 360,
+    "sourceWidth": 360,
+    "sourceHeight": 360
+  },
+  "/images/play/play19.gif": {
+    "video": "/images/play/play19.gif.hq.mp4",
+    "poster": "/images/play/play19.gif.poster.jpg",
+    "width": 480,
+    "height": 480,
+    "sourceWidth": 480,
+    "sourceHeight": 480
+  },
+  "/images/play/play2.gif": {
+    "video": "/images/play/play2.gif.hq.mp4",
+    "poster": "/images/play/play2.gif.poster.jpg",
+    "width": 332,
+    "height": 332,
+    "sourceWidth": 331,
+    "sourceHeight": 331
+  },
+  "/images/play/play20.gif": {
+    "video": "/images/play/play20.gif.hq.mp4",
+    "poster": "/images/play/play20.gif.poster.jpg",
+    "width": 270,
+    "height": 270,
+    "sourceWidth": 270,
+    "sourceHeight": 270
+  },
+  "/images/play/play21.gif": {
+    "video": "/images/play/play21.gif.hq.mp4",
+    "poster": "/images/play/play21.gif.poster.jpg",
+    "width": 270,
+    "height": 270,
+    "sourceWidth": 270,
+    "sourceHeight": 270
+  },
+  "/images/play/play22.gif": {
+    "video": "/images/play/play22.gif.hq.mp4",
+    "poster": "/images/play/play22.gif.poster.jpg",
+    "width": 500,
+    "height": 500,
+    "sourceWidth": 500,
+    "sourceHeight": 500
+  },
+  "/images/play/play23.gif": {
+    "video": "/images/play/play23.gif.hq.mp4",
+    "poster": "/images/play/play23.gif.poster.jpg",
+    "width": 300,
+    "height": 200,
+    "sourceWidth": 300,
+    "sourceHeight": 200
+  },
+  "/images/play/play24.gif": {
+    "video": "/images/play/play24.gif.hq.mp4",
+    "poster": "/images/play/play24.gif.poster.jpg",
+    "width": 464,
+    "height": 262,
+    "sourceWidth": 463,
+    "sourceHeight": 261
+  },
+  "/images/play/play25.gif": {
+    "video": "/images/play/play25.gif.hq.mp4",
+    "poster": "/images/play/play25.gif.poster.jpg",
+    "width": 1080,
+    "height": 1080,
+    "sourceWidth": 1080,
+    "sourceHeight": 1080
+  },
+  "/images/play/play26.gif": {
+    "video": "/images/play/play26.gif.hq.mp4",
+    "poster": "/images/play/play26.gif.poster.jpg",
+    "width": 600,
+    "height": 600,
+    "sourceWidth": 599,
+    "sourceHeight": 599
+  },
+  "/images/play/play27.gif": {
+    "video": "/images/play/play27.gif.hq.mp4",
+    "poster": "/images/play/play27.gif.poster.jpg",
+    "width": 380,
+    "height": 380,
+    "sourceWidth": 380,
+    "sourceHeight": 380
+  },
+  "/images/play/play28.gif": {
+    "video": "/images/play/play28.gif.hq.mp4",
+    "poster": "/images/play/play28.gif.poster.jpg",
+    "width": 416,
+    "height": 416,
+    "sourceWidth": 415,
+    "sourceHeight": 415
+  },
+  "/images/play/play29.gif": {
+    "video": "/images/play/play29.gif.hq.mp4",
+    "poster": "/images/play/play29.gif.poster.jpg",
+    "width": 380,
+    "height": 380,
+    "sourceWidth": 380,
+    "sourceHeight": 380
+  },
+  "/images/play/play3.gif": {
+    "video": "/images/play/play3.gif.hq.mp4",
+    "poster": "/images/play/play3.gif.poster.jpg",
+    "width": 400,
+    "height": 400,
+    "sourceWidth": 400,
+    "sourceHeight": 400
+  },
+  "/images/play/play30.gif": {
+    "video": "/images/play/play30.gif.hq.mp4",
+    "poster": "/images/play/play30.gif.poster.jpg",
+    "width": 332,
+    "height": 414,
+    "sourceWidth": 331,
+    "sourceHeight": 414
+  },
+  "/images/play/play31.gif": {
+    "video": "/images/play/play31.gif.hq.mp4",
+    "poster": "/images/play/play31.gif.poster.jpg",
+    "width": 1280,
+    "height": 720,
+    "sourceWidth": 1280,
+    "sourceHeight": 720
+  },
+  "/images/play/play4.gif": {
+    "video": "/images/play/play4.gif.hq.mp4",
+    "poster": "/images/play/play4.gif.poster.jpg",
+    "width": 270,
+    "height": 270,
+    "sourceWidth": 270,
+    "sourceHeight": 270
+  },
+  "/images/play/play5.gif": {
+    "video": "/images/play/play5.gif.hq.mp4",
+    "poster": "/images/play/play5.gif.poster.jpg",
+    "width": 216,
+    "height": 216,
+    "sourceWidth": 216,
+    "sourceHeight": 216
+  },
+  "/images/play/play6.gif": {
+    "video": "/images/play/play6.gif.hq.mp4",
+    "poster": "/images/play/play6.gif.poster.jpg",
+    "width": 498,
+    "height": 282,
+    "sourceWidth": 498,
+    "sourceHeight": 281
+  },
+  "/images/play/play7.gif": {
+    "video": "/images/play/play7.gif.hq.mp4",
+    "poster": "/images/play/play7.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/play/play9.gif": {
+    "video": "/images/play/play9.gif.hq.mp4",
+    "poster": "/images/play/play9.gif.poster.jpg",
+    "width": 366,
+    "height": 364,
+    "sourceWidth": 365,
+    "sourceHeight": 364
+  },
+  "/images/reakt/reaktHero3.gif": {
+    "video": "/images/reakt/reaktHero3.gif.hq.mp4",
+    "poster": "/images/reakt/reaktHero3.gif.poster.jpg",
+    "width": 960,
+    "height": 540,
+    "sourceWidth": 960,
+    "sourceHeight": 540
+  },
+  "/images/reakt/reaktSystems_1.gif": {
+    "video": "/images/reakt/reaktSystems_1.gif.hq.mp4",
+    "poster": "/images/reakt/reaktSystems_1.gif.poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
+  },
+  "/images/stemport/stemportHeroThumb.gif": {
+    "video": "/images/stemport/stemportHeroThumb.gif.hq.mp4",
+    "poster": "/images/stemport/stemportHeroThumb.gif.poster.jpg",
+    "width": 948,
+    "height": 534,
+    "sourceWidth": 948,
+    "sourceHeight": 533
+  }
+}

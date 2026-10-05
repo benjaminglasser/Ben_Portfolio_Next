@@ -5,9 +5,9 @@ import { useEffect, useRef } from "react";
 const CELL = 4.5;
 const DURATION = 650;
 const INK = "#000000";
-const EFFECT_INK = "#b02b1a";
+const EFFECT_INK = "#8e2115";
 
-const HalftoneCover = ({ image, revealed, origin, animated = false, animationSource, preload = false }) => {
+const HalftoneCover = ({ image, revealed, origin, animated = false, animationSource, preload = false, detailEnhancement = 0 }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
@@ -20,7 +20,8 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const video = videoRef.current;
+    const video = image.tagName === "VIDEO" ? image : videoRef.current;
+    const sharedVideo = video === image;
     const context = canvas.getContext("2d");
     const sample = document.createElement("canvas");
     const sampleContext = sample.getContext("2d", { willReadFrequently: true });
@@ -57,7 +58,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     const updateLive = (now) => {
       liveFrame = 0;
       if (!animated || !visible || failed || progress === 1) {
-        video?.pause();
+        if (!sharedVideo) video?.pause();
         return;
       }
       if (now - lastSample >= 32) {
@@ -91,15 +92,14 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
         if (progress >= threshold) {
           context.clearRect(cell.x, cell.y, CELL, CELL);
         } else if (threshold - progress < 0.16) {
+          const remaining = (threshold - progress) / 0.16;
+          const fade = remaining * remaining * (3 - 2 * remaining);
+          context.clearRect(cell.x, cell.y, CELL, CELL);
           context.save();
-          context.beginPath();
-          context.rect(cell.x, cell.y, CELL, CELL);
-          context.clip();
-          context.fillStyle = "#ffffff";
-          context.fillRect(cell.x, cell.y, CELL, CELL);
           context.fillStyle = EFFECT_INK;
+          context.globalAlpha = fade;
           context.beginPath();
-          context.arc(cell.x + CELL / 2, cell.y + CELL / 2, cell.radius, 0, Math.PI * 2);
+          context.arc(cell.x + CELL / 2, cell.y + CELL / 2, Math.min(cell.radius, CELL / 2) * fade, 0, Math.PI * 2);
           context.fill();
           context.restore();
         }
@@ -113,7 +113,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
         progress = target;
         draw();
         startLive();
-        if (progress === 1) video?.pause();
+        if (progress === 1 && !sharedVideo) video?.pause();
         return;
       }
       if (!ready || progress === target) {
@@ -137,7 +137,9 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
 
     const prepare = (live = false) => {
       const rect = canvas.getBoundingClientRect();
-      if (!rect.width || !rect.height || !image.naturalWidth) return;
+      const imageWidth = image.naturalWidth || image.videoWidth;
+      const imageHeight = image.naturalHeight || image.videoHeight;
+      if (!rect.width || !rect.height || !imageWidth || !imageHeight) return;
       const dpr = window.devicePixelRatio || 1;
       const resized = width !== rect.width || height !== rect.height || pixelRatio !== dpr;
       if (ready && !resized && !live) return;
@@ -159,10 +161,10 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       sampleContext.clearRect(0, 0, cols, rows);
 
       // Sample the same centered object-cover crop as the image underneath.
-      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+      const scale = Math.max(width / imageWidth, height / imageHeight);
       const source = video?.readyState >= 2 ? video : image;
-      const sourceWidth = source === image ? image.naturalWidth : video.videoWidth;
-      const sourceHeight = source === image ? image.naturalHeight : video.videoHeight;
+      const sourceWidth = source === image ? imageWidth : video.videoWidth;
+      const sourceHeight = source === image ? imageHeight : video.videoHeight;
       const sourceScale = source === image ? scale : Math.max(width / sourceWidth, height / sourceHeight);
       const cropWidth = width / sourceScale;
       const cropHeight = height / sourceScale;
@@ -191,6 +193,10 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       }
 
       cells = [];
+      const luminance = (col, row) => {
+        const offset = (Math.max(0, Math.min(rows - 1, row)) * cols + Math.max(0, Math.min(cols - 1, col))) * 4;
+        return (pixels[offset] * 0.299 + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114) / 255;
+      };
       paperContext.fillStyle = "#ffffff";
       paperContext.fillRect(0, 0, width, height);
       paperContext.fillStyle = INK;
@@ -199,13 +205,17 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
           const index = row * cols + col;
           const offset = index * 4;
           const alpha = pixels[offset + 3] / 255;
-          const luma = (
-            pixels[offset] * 0.299 +
-            pixels[offset + 1] * 0.587 +
-            pixels[offset + 2] * 0.114
-          ) / 255;
+          let luma = luminance(col, row);
+          if (detailEnhancement > 0) {
+            const surrounding = (
+              luminance(col - 2, row) + luminance(col + 2, row) +
+              luminance(col, row - 2) + luminance(col, row + 2)
+            ) / 4;
+            luma = Math.max(0, Math.min(1, luma + (luma - surrounding) * detailEnhancement));
+          }
           const darkness = (1 - luma) * alpha;
-          const shade = Math.max(0, Math.min(1, (darkness - 0.15) / 0.8));
+          const highlightCutoff = detailEnhancement > 0 ? 0.05 : 0.15;
+          const shade = Math.max(0, Math.min(1, (darkness - highlightCutoff) / (0.95 - highlightCutoff)));
           const radius = (0.1 + 0.45 * shade * shade * (3 - 2 * shade)) * CELL;
           const x = col * CELL;
           const y = row * CELL;
@@ -235,7 +245,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       visible = entry.isIntersecting;
       if (visible) startLive();
       else {
-        video?.pause();
+        if (!sharedVideo) video?.pause();
         cancelAnimationFrame(liveFrame);
         liveFrame = 0;
       }
@@ -245,7 +255,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     motion.addEventListener("change", animate);
     const handleVideoError = () => {
       failed = true;
-      video?.pause();
+      if (!sharedVideo) video?.pause();
       console.warn("Animated thumbnail source could not load:", animationSource);
     };
     video?.addEventListener("error", handleVideoError);
@@ -253,7 +263,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     return () => {
       cancelAnimationFrame(frame);
       cancelAnimationFrame(liveFrame);
-      video?.pause();
+      if (!sharedVideo) video?.pause();
       video?.removeEventListener("error", handleVideoError);
       observer.disconnect();
       visibility.disconnect();
@@ -261,7 +271,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       motion.removeEventListener("change", animate);
       controlsRef.current = null;
     };
-  }, [image, animated, animationSource]);
+  }, [image, animated, animationSource, detailEnhancement]);
 
   return (
     <>

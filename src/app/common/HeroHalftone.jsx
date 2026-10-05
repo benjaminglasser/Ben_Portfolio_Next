@@ -217,14 +217,11 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
     const enter = () => {
       if (entranceStarted) return;
       entranceStarted = true;
+      entrance = 1;
       canvas.style.backgroundColor = "transparent";
-      if (motion.matches) {
-        entrance = 1;
-        canvas.style.backgroundColor = "transparent";
-        canvas.dataset.entrance = "complete";
-        finishEntrance();
-        clear();
-      } else schedule();
+      canvas.dataset.entrance = "complete";
+      finishEntrance();
+      clear();
     };
     controlsRef.current = { enter };
     if (loadedRef.current) enter();

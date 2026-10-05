@@ -47,6 +47,7 @@ const VideoPlayerExternal = ({ src, className = "", caption, poster }) => {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={thumb}
+                loading="lazy"
                 alt={caption || "Video thumbnail"}
                 className="absolute inset-0 w-full h-full object-cover"
                 onError={() => setThumbErrored(true)}

@@ -4,23 +4,51 @@
 // import Grid from "@mui/system/Unstable_Grid/Grid";
 import WorkSection from "@/app/common/WorkSection";
 import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 import DotDigits from "@/app/common/design/DotDigits";
+
+let homeLoadedOnce = false;
 
 export default function Home() {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [assetsReady, setAssetsReady] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
-  const [heroComplete, setHeroComplete] = useState(false);
+  const [fadeComplete, setFadeComplete] = useState(false);
   const [progress, setProgress] = useState(0);
   const [revealStarted, setRevealStarted] = useState(false);
-  const finishHero = useCallback(() => setHeroComplete(true), []);
+  const [returningHome, setReturningHome] = useState(false);
   const pageRef = useRef(null);
   const readyRef = useRef(false);
   const progressTargetRef = useRef(0);
 
+  useLayoutEffect(() => {
+    let loaded = homeLoadedOnce;
+    try {
+      loaded = loaded || sessionStorage.getItem("homeLoadedOnce") === "true";
+    } catch (error) {
+      console.warn("Home visit could not be restored from browser storage.", error);
+    }
+    if (!loaded) return;
+    setReturningHome(true);
+    setProgress(100);
+    setRevealStarted(true);
+    setFadeComplete(true);
+    homeLoadedOnce = true;
+  }, []);
+
   useEffect(() => {
+    if (!fadeComplete || returningHome) return;
+    homeLoadedOnce = true;
+    try {
+      sessionStorage.setItem("homeLoadedOnce", "true");
+    } catch (error) {
+      console.warn("Home visit could not be saved to browser storage.", error);
+    }
+  }, [fadeComplete, returningHome]);
+
+  useEffect(() => {
+    if (returningHome) return;
     let cancelled = false;
     let fontsReady = false;
     document.fonts.ready.then(() => { fontsReady = true; });
@@ -28,22 +56,23 @@ export default function Home() {
       if (cancelled) return;
       const cards = [...pageRef.current.querySelectorAll(".card-frame")];
       const ready = cards.length > 0 && cards.every((card) => {
-        const image = card.querySelector("img");
+        const image = card.querySelector("img:not([aria-hidden])");
         const cover = card.querySelector("canvas");
         const animation = card.querySelector("video");
-        return image?.complete && image.naturalWidth > 0 &&
+        const imageReady = image ? image.complete && image.naturalWidth > 0 : animation?.readyState >= 2;
+        return imageReady &&
           cover?.dataset.ready === "true" &&
-          (!animation || animation.readyState >= 2);
+          (!animation || animation.readyState >= 2 && (!animation.dataset.animatedImage || animation.dataset.posterReady === "true"));
       });
       const hero = pageRef.current.querySelector("video");
       let total = 2;
       let complete = Number(fontsReady) + Number(hero?.readyState >= 2 && !hero.paused);
       cards.forEach((card) => {
-        const image = card.querySelector("img");
+        const image = card.querySelector("img:not([aria-hidden])");
         const cover = card.querySelector("canvas");
         const animation = card.querySelector("video");
         total += animation ? 3 : 2;
-        complete += Number(image?.complete && image.naturalWidth > 0) +
+        complete += Number(image ? image.complete && image.naturalWidth > 0 : animation?.readyState >= 2) +
           Number(cover?.dataset.ready === "true") +
           (animation ? Number(animation.readyState >= 2) : 0);
       });
@@ -65,9 +94,9 @@ export default function Home() {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [returningHome]);
 
-  const pageReady = timedOut || (assetsReady && !isVideoLoading);
+  const pageReady = returningHome || timedOut || (assetsReady && !isVideoLoading);
 
   useEffect(() => {
     readyRef.current = pageReady;
@@ -75,27 +104,29 @@ export default function Home() {
   }, [pageReady]);
 
   useEffect(() => {
+    if (returningHome) return;
     const timer = setInterval(() => {
       setProgress((value) => Math.min(progressTargetRef.current, value + Math.max(1, Math.ceil((progressTargetRef.current - value) / 4))));
     }, 60);
     return () => clearInterval(timer);
-  }, []);
+  }, [returningHome]);
 
   useEffect(() => {
-    if (!pageReady || progress !== 100) return;
+    if (returningHome || !pageReady || progress !== 100) return;
     const timer = setTimeout(() => setRevealStarted(true), 280);
     return () => clearTimeout(timer);
-  }, [pageReady, progress]);
+  }, [returningHome, pageReady, progress]);
 
   useEffect(() => {
-    if (!revealStarted) return;
-    const fallback = setTimeout(finishHero, 1600);
-    return () => clearTimeout(fallback);
-  }, [revealStarted, finishHero]);
+    if (returningHome || !revealStarted) return;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800;
+    const timer = setTimeout(() => setFadeComplete(true), duration);
+    return () => clearTimeout(timer);
+  }, [returningHome, revealStarted]);
 
   return (
-    <div ref={pageRef} className="relative home-sequence" data-home-stage={!revealStarted ? "loading" : heroComplete ? "ready" : "hero"} aria-busy={!heroComplete}>
-      {!heroComplete && (
+    <div ref={pageRef} className="relative home-sequence" data-home-stage={revealStarted ? "ready" : "loading"} data-home-returning={returningHome} aria-busy={!revealStarted}>
+      {!fadeComplete && (
         <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center text-white desc-mono home-loading-screen" aria-hidden={revealStarted}>
           <div className="flex flex-col items-center gap-4" role="progressbar" aria-label="Loading home page" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
             <DotDigits value={String(progress).padStart(3, "0")} pitch={5} label={`Loading ${progress} percent`} />
@@ -103,20 +134,19 @@ export default function Home() {
           </div>
         </div>
       )}
-      <div className="full-bleed relative -mt-3 md:mt-0">
+      <div className="full-bleed relative -mt-3 md:mt-0 home-hero-content" aria-hidden={!revealStarted} inert={!revealStarted ? "" : undefined}>
         <VideoPlayerHome
           video1="/Media/Home/optimized/water_wireframe_optimized.mp4"
           onLoadingChange={setIsVideoLoading}
           pageReady={revealStarted}
           loadingExpired={timedOut}
           showLoader={false}
-          onEntranceComplete={finishHero}
         />
         {/* Tagline, bottom-right of the hero */}
-        <HomePageExtraInfo isLoading={!revealStarted} pixelEntrance />
+        <HomePageExtraInfo isLoading={!revealStarted} unifiedEntrance />
       </div>
 
-      <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!heroComplete} inert={!heroComplete ? "" : undefined}>
+      <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!revealStarted} inert={!revealStarted ? "" : undefined}>
         <WorkSection preloadThumbnails />
       </div>
     </div>

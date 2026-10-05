@@ -95,6 +95,7 @@ const WorkSection = ({ preloadThumbnails = false }) => {
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
       thumbnail: "/images/bmw/dancingCar.gif",
+      halftoneDetail: 0.75,
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
@@ -267,6 +268,7 @@ const WorkSection = ({ preloadThumbnails = false }) => {
                 title={item.title}
                 description={item.description}
                 thumbnail={item.thumbnail}
+                halftoneDetail={item.halftoneDetail}
                 preload={preloadThumbnails}
                 animationSource={item.thumbnail.endsWith(".gif") ? `${item.thumbnail}.halftone.mp4` : undefined}
                 externalLink={item.externalLink}

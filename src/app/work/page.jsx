@@ -31,6 +31,7 @@ const Work = () => {
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
       thumbnail: "/Media/BMW/dancingCarBlack.gif",
+      halftoneDetail: 0.75,
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
@@ -194,6 +195,7 @@ const Work = () => {
               description={content?.description}
               tools={content?.tools}
               thumbnail={content?.thumbnail}
+              halftoneDetail={content?.halftoneDetail}
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
               externalLink={content?.externalLink}

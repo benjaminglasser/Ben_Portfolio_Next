@@ -16,6 +16,24 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Media performance
+
+Verified GIF conversions are listed in `src/app/common/gifMedia.json`. The original GIFs remain available as fallbacks. Converted animations keep their original resolution and frame timing, with a full-size poster for loading.
+
+The same manifest includes a forward-and-backward loop of Adobe's animated WebP so its halftone thumbnail also animates before hover. The original WebP remains the fallback.
+
+Shared media components load videos within 200 pixels of the viewport and pause playback offscreen. Home thumbnails preload for the first-page loader; the home wave remains eager. Public images and media use a one-day browser cache with background revalidation.
+
+Images and local videos use a faint dot grid over a fully black background while loading. Red dots fill the grid from left to right, then clear in the same direction. Animation pauses offscreen and in hidden tabs; visitors who prefer reduced motion see a still grid.
+
+Rust accents use the home loading screen's red, `#b02b1a`, on both light and dark pages, including the media scan. The Selected works halftone hover transition uses a darker red, `#8e2115`.
+
+During the thumbnail reveal, the transition dots shrink and fade as dark-red circles directly over the color image, without white cell backgrounds. The resting black-and-white halftone remains unchanged.
+
+BMW thumbnails add local contrast and retain more highlight detail in the halftone so the car's parts read more clearly. This adjustment does not affect the full-color animation or other thumbnails.
+
+Local video players reserve a 16:9 loading area until the video's dimensions are known. The loader fills that area until the first frame is ready. Click-to-play videos can show a loaded poster instead, with the play control still available.
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.

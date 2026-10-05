@@ -15,6 +15,7 @@ const WorkCard = ({
   description,
   thumbnail,
   animationSource,
+  halftoneDetail = 0,
   preload = false,
   externalLink,
   number,
@@ -85,6 +86,7 @@ const WorkCard = ({
             alt={`${title} - ${description}`}
             width="100"
             height="100"
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="thumbnail"
             wrapperClassName={`!rounded-none ${aspectClass}`}
             unoptimized={typeof thumbnail === 'string' && (thumbnail.endsWith('.gif') || thumbnail.endsWith('.webp'))}
@@ -93,10 +95,11 @@ const WorkCard = ({
           >
             {loadedImage?.source === thumbnail && (
               <HalftoneCover
+                detailEnhancement={halftoneDetail}
                 image={loadedImage.element}
-                animationSource={animationSource}
+                animationSource={loadedImage.element.tagName === "VIDEO" ? undefined : animationSource}
                 preload={preload}
-                animated={/\.gif(?:$|[?#])/i.test(
+                animated={loadedImage.element.tagName === "VIDEO" || /\.gif(?:$|[?#])/i.test(
                   typeof thumbnail === "string" ? thumbnail : thumbnail?.src || thumbnail?.default || ""
                 )}
                 revealed={hovered || focused || touchVisible}

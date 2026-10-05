@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import Image from "@/app/common/MediaImage";
 import ZigzagHeader from "../../common/zigzagHeader";
 import { REAKT } from "../../../../public/images/reakt";
 import DetailSection from "../../common/detailSection";
@@ -50,7 +50,7 @@ const reaktLights = () => {
         description="Input audio signals are fed to TouchDesigner where set frequencies can be isolated, normalized then convert DMX. The signal is then converted and fed into a Chauvet DMX Dimmer/Switch Pack that can break out up to 4 channels."
       >
         <div className="mt-8">
-          <Image src={REAKT.system} alt="Reakt system diagram" className="w-full h-auto" />
+          <Image src={REAKT.system} alt="Reakt system diagram" className="w-full h-auto" sizes="(max-width: 768px) 100vw, 67vw" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-16 md:mt-24">
           <VideoPlayerClickable src="/Media/Reakt/reaktTest1.mp4" />

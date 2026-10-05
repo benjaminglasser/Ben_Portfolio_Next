@@ -14,6 +14,7 @@ function ImageGrid({ images }) {
               alt={img.caption || `Project image ${index + 1}`}
               width={img.width || 500}
               height={img.height || 300}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto"
               unoptimized={typeof img.url === 'string' && img.url.endsWith('.gif')}
             />

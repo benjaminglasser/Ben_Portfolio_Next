@@ -120,8 +120,8 @@ const WorkCard = ({
             )}
           </ImageWithLoader>}
         </div>
-        <div className="flex gap-6 pt-3">
-          <div className="desc-mono subtext text-black shrink-0">
+        <div className="card-caption flex gap-6 pt-3">
+          <div className="card-index desc-mono subtext text-black shrink-0">
             {level >= 2 ? (
               <span className="flex items-center gap-2 pt-[3px]">
                 <DotDigits value={number} pitch={2.4} />

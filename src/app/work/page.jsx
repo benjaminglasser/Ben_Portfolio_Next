@@ -27,11 +27,13 @@ const Work = () => {
       role: "XR Interaction",
       time: "Summer 2022 - Fall 2022",
       title: "BMW",
+      tone: "keep",
+      levels: { black: 0.025, white: 0.92, steepness: 1.4 },
       description: "Developing next-generation XR products and systems",
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
       thumbnail: "/Media/BMW/dancingCarBlack.gif",
-      halftoneDetail: 0.75,
+      halftoneDetail: 0.6,
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
@@ -43,6 +45,8 @@ const Work = () => {
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
+      tone: "keep",
+      levels: { black: 0, white: 0.45, steepness: 1 },
       description:
         "Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage",
       thumbnail: "/Media/NRF/Clear_Canvas_Thumb.gif",
@@ -111,7 +115,9 @@ const Work = () => {
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for voyager record label",
-      thumbnail: "/Media/Voyager/VoyagerThumb.gif",
+      thumbnail: "/Media/Voyager/satelliteGlitch.gif",
+      tone: "keep",
+      levels: { black: 0.08, white: 0.8, steepness: 1.4 },
       path: "work-detail/voyager",
       tools: [
         "HTML",
@@ -196,6 +202,8 @@ const Work = () => {
               tools={content?.tools}
               thumbnail={content?.thumbnail}
               halftoneDetail={content?.halftoneDetail}
+              tone={content?.tone}
+              levels={content?.levels}
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
               externalLink={content?.externalLink}

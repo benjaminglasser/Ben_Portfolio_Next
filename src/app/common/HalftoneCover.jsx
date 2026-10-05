@@ -2,16 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
-const CELL = 4.5;
+const CELL = 5;
 const DURATION = 650;
-const INK = "#000000";
+const INK = "#e8e8e8";
 const EFFECT_INK = "#8e2115";
 
-const HalftoneCover = ({ image, revealed, origin, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
+const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
   const progressRef = useRef(0);
+  const toneRef = useRef(null);
+  const levelsRef = useRef(null);
+  const blackOverride = levels?.black;
+  const whiteOverride = levels?.white;
+  const steepness = levels?.steepness ?? 1.4;
   const targetRef = useRef({ revealed, origin });
   const liveEnabledRef = useRef(liveEnabled);
   const prepareEnabledRef = useRef(prepareEnabled);
@@ -50,6 +55,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     let frame = 0;
     let progress = progressRef.current;
     let cells = [];
+    let remainingByCell;
     let width = 0;
     let height = 0;
     let pixelRatio = 0;
@@ -90,9 +96,9 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     };
 
     const draw = () => {
-      context.clearRect(0, 0, width, height);
+      context.clearRect(0, 0, canvas.width / pixelRatio, canvas.height / pixelRatio);
       if (!ready || progress === 1) return;
-      context.drawImage(paper, 0, 0, width, height);
+      context.drawImage(paper, 0, 0, canvas.width / pixelRatio, canvas.height / pixelRatio);
       if (progress === 0) return;
       const { x, y } = targetRef.current.origin;
       const ox = x * width;
@@ -101,24 +107,44 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
         Math.max(ox, width - ox),
         Math.max(oy, height - oy)
       );
-      for (const cell of cells) {
-        const distance = Math.hypot(cell.x + CELL / 2 - ox, cell.y + CELL / 2 - oy);
-        const threshold = 0.78 * Math.min(1, distance / farthest) + 0.22 * cell.seed;
-        if (progress >= threshold) {
-          context.clearRect(cell.x, cell.y, CELL, CELL);
-        } else if (threshold - progress < 0.16) {
-          const remaining = (threshold - progress) / 0.16;
-          const fade = remaining * remaining * (3 - 2 * remaining);
-          context.clearRect(cell.x, cell.y, CELL, CELL);
-          context.save();
-          context.fillStyle = EFFECT_INK;
-          context.globalAlpha = fade;
-          context.beginPath();
-          context.arc(cell.x + CELL / 2, cell.y + CELL / 2, Math.min(cell.radius, CELL / 2) * fade, 0, Math.PI * 2);
-          context.fill();
-          context.restore();
-        }
+      const band = CELL * 3;
+      const radius = progress * (farthest + band * 2) - band;
+      if (radius <= 0) return;
+      context.save();
+      context.globalCompositeOperation = "destination-out";
+      context.beginPath();
+      const core = Math.max(0, radius - band - CELL * 2.5 - CELL);
+      if (core > 0) {
+        context.moveTo(ox + core, oy);
+        context.arc(ox, oy, core, 0, Math.PI * 2);
       }
+      for (let index = 0; index < cells.length; index++) {
+        const cell = cells[index];
+        const distance = Math.hypot(cell.x + CELL / 2 - ox, cell.y + CELL / 2 - oy);
+        const noisyDistance = distance + (cell.seed - 0.5) * CELL * 5;
+        const remaining = Math.max(0, Math.min(1, (noisyDistance - radius + band) / band));
+        remainingByCell[index] = remaining;
+        if (distance + CELL < core || remaining === 1) continue;
+        const fade = remaining * remaining * (3 - 2 * remaining);
+        const opening = CELL / Math.SQRT2 * (1 - fade);
+        const cx = cell.x + CELL / 2;
+        const cy = cell.y + CELL / 2;
+        context.moveTo(cx + opening, cy);
+        context.arc(cx, cy, opening, 0, Math.PI * 2);
+      }
+      context.fill();
+      context.restore();
+      context.fillStyle = EFFECT_INK;
+      for (let index = 0; index < cells.length; index++) {
+        const cell = cells[index];
+        const remaining = remainingByCell[index];
+        if (remaining === 0 || remaining === 1) continue;
+        context.globalAlpha = 0.95 * Math.sin(remaining * Math.PI);
+        context.beginPath();
+        context.arc(cell.x + CELL / 2, cell.y + CELL / 2, Math.max(cell.radius, CELL * 0.35) * remaining, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.globalAlpha = 1;
     };
 
     const animate = () => {
@@ -173,6 +199,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       if (resized) {
         sample.width = cols;
         sample.height = rows;
+        remainingByCell = new Float32Array(cols * rows);
       }
       sampleContext.clearRect(0, 0, cols, rows);
 
@@ -213,11 +240,66 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
         const offset = (Math.max(0, Math.min(rows - 1, row)) * cols + Math.max(0, Math.min(cols - 1, col))) * 4;
         return (pixels[offset] * 0.299 + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114) / 255;
       };
-      paperContext.fillStyle = "#ffffff";
-      paperContext.fillRect(0, 0, width, height);
+      if (!toneRef.current || toneRef.current.requested !== tone) {
+        let brightness = 0;
+        let weight = 0;
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            const alpha = pixels[(row * cols + col) * 4 + 3] / 255;
+            brightness += luminance(col, row) * alpha;
+            weight += alpha;
+          }
+        }
+        const average = weight ? brightness / weight : 0;
+        toneRef.current = {
+          requested: tone,
+          mode: tone === "auto" ? average > 0.55 ? "swap" : "keep" : tone,
+          average,
+        };
+        levelsRef.current = null;
+      }
+      if (!levelsRef.current) {
+        const histogram = new Float64Array(256);
+        let weight = 0;
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            const alpha = pixels[(row * cols + col) * 4 + 3] / 255;
+            const luma = luminance(col, row);
+            const brightness = toneRef.current.mode === "swap" ? 1 - luma : luma;
+            histogram[Math.round(brightness * 255)] += alpha;
+            weight += alpha;
+          }
+        }
+        const percentile = (fraction) => {
+          let cumulative = 0;
+          for (let bin = 0; bin < histogram.length; bin++) {
+            cumulative += histogram[bin];
+            if (cumulative >= weight * fraction) return bin / 255;
+          }
+          return 1;
+        };
+        // Keep a broad tonal range so surface shading survives background suppression.
+        const black = Math.min(0.4, percentile(0.2));
+        levelsRef.current = { black, white: Math.max(black + 0.45, percentile(0.97)) };
+      }
+      const validOverride = blackOverride === undefined && whiteOverride === undefined ||
+        Number.isFinite(blackOverride) && Number.isFinite(whiteOverride) &&
+        blackOverride >= 0 && whiteOverride <= 1 && whiteOverride > blackOverride;
+      const validSteepness = Number.isFinite(steepness) && steepness >= 1 && steepness <= 12;
+      if ((!validOverride || !validSteepness) && !live) {
+        console.warn("Invalid thumbnail levels; using automatic levels and the default contrast curve.", levels);
+      }
+      const black = validOverride ? blackOverride ?? levelsRef.current.black : levelsRef.current.black;
+      const white = validOverride ? whiteOverride ?? levelsRef.current.white : levelsRef.current.white;
+      const curve = validSteepness ? steepness : 1.4;
+      canvas.dataset.tone = toneRef.current.mode;
+      canvas.dataset.brightness = toneRef.current.average.toFixed(3);
+      canvas.dataset.blackPoint = black.toFixed(3);
+      canvas.dataset.whitePoint = white.toFixed(3);
+      paperContext.fillStyle = "#000000";
+      paperContext.fillRect(0, 0, paper.width / dpr, paper.height / dpr);
       paperContext.fillStyle = INK;
-      paperContext.beginPath();
-      const clippedDots = [];
+      const opacityGroups = Array.from({ length: 17 }, () => []);
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const index = row * cols + col;
@@ -231,32 +313,29 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
             ) / 4;
             luma = Math.max(0, Math.min(1, luma + (luma - surrounding) * detailEnhancement));
           }
-          const darkness = (1 - luma) * alpha;
-          const highlightCutoff = detailEnhancement > 0 ? 0.05 : 0.15;
-          const shade = Math.max(0, Math.min(1, (darkness - highlightCutoff) / (0.95 - highlightCutoff)));
-          const radius = (0.1 + 0.45 * shade * shade * (3 - 2 * shade)) * CELL;
+          const brightness = (toneRef.current.mode === "swap" ? 1 - luma : luma) * alpha;
+          const normalized = Math.max(0, Math.min(1, (brightness - black) / (white - black)));
+          const light = normalized ** curve;
+          const dark = (1 - normalized) ** curve;
+          const shade = light / (light + dark);
+          const radius = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
           const x = col * CELL;
           const y = row * CELL;
           const noise = Math.sin(col * 127.1 + row * 311.7) * 43758.5453;
           cells.push({ x, y, radius, seed: noise - Math.floor(noise) });
-          if (radius > CELL / 2) clippedDots.push({ x, y, radius });
-          else {
-            paperContext.moveTo(x + CELL / 2 + radius, y + CELL / 2);
-            paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
-          }
+          opacityGroups[Math.round(Math.min(1, shade / 0.18) * 16)].push({ x, y, radius });
         }
       }
-      paperContext.fill();
-      for (const { x, y, radius } of clippedDots) {
-        paperContext.save();
+      opacityGroups.forEach((dots, index) => {
+        paperContext.globalAlpha = 0.12 + 0.88 * index / 16;
         paperContext.beginPath();
-        paperContext.rect(x, y, CELL, CELL);
-        paperContext.clip();
-        paperContext.beginPath();
-        paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
+        for (const { x, y, radius } of dots) {
+          paperContext.moveTo(x + CELL / 2 + radius, y + CELL / 2);
+          paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
+        }
         paperContext.fill();
-        paperContext.restore();
-      }
+      });
+      paperContext.globalAlpha = 1;
       ready = true;
       canvas.dataset.ready = "true";
       if (live) draw();
@@ -298,7 +377,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       motion.removeEventListener("change", animate);
       controlsRef.current = null;
     };
-  }, [image, animated, animationSource, detailEnhancement]);
+  }, [image, animated, animationSource, detailEnhancement, tone, blackOverride, whiteOverride, steepness]);
 
   return (
     <>

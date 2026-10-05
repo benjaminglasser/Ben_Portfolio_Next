@@ -9,6 +9,7 @@ import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 import DotDigits from "@/app/common/design/DotDigits";
 import { usePageTransition } from "@/app/common/PageTransition";
 import useMobileThumbnails from "@/app/common/useMobileThumbnails";
+import PixelEntrance from "@/app/common/PixelEntrance";
 
 let homeLoadedOnce = false;
 
@@ -152,11 +153,13 @@ export default function Home() {
       </div>
 
       <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!selectedWorksReady} inert={!selectedWorksReady ? "" : undefined}>
+        <PixelEntrance active={selectedWorksReady} duration={2200}>
         <WorkSection
           preloadThumbnails={!returningHome}
           animateThumbnails={selectedWorksReady}
           prepareThumbnails={!returningHome || selectedWorksReady}
         />
+        </PixelEntrance>
       </div>
     </div>
   );

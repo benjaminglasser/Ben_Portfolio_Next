@@ -1,4 +1,12 @@
 {
+  "/Media/Voyager/satelliteGlitch.gif": {
+    "video": "/Media/Voyager/satelliteGlitch.gif.hq.mp4",
+    "poster": "/Media/Voyager/satelliteGlitch.gif.poster.jpg",
+    "width": 720,
+    "height": 720,
+    "sourceWidth": 480,
+    "sourceHeight": 480
+  },
   "/images/adobe/adobeThumb.webp": {
     "video": "/images/adobe/adobeThumb.webp.pingpong.mp4",
     "poster": "/images/adobe/adobeThumb.webp.poster.jpg",

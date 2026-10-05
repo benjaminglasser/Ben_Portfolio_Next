@@ -258,7 +258,7 @@ const Viewer = ({ items, index, onClose, onStep }) => {
   );
 };
 
-const PlayLab = () => {
+const PlayLab = ({ beforePosters }) => {
   const [viewing, setViewing] = useState(null);
 
   const features = PLAY_FEATURES;
@@ -359,7 +359,10 @@ const PlayLab = () => {
       </div>
 
       {features.map((f, i) => (
+        <div key={f.id} className="contents">
+        {f.id === "posters" && beforePosters}
         <FeatureSection key={f.id} feature={f} labelNo={pad((SHOW_BENCH ? 4 : 3) + i)} />
+        </div>
       ))}
 
       {viewing !== null && (

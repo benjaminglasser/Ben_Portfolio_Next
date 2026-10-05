@@ -282,7 +282,7 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
 }
 .home-sequence[data-home-wave="ready"] .home-selected-works,
 .home-sequence[data-home-wave="ready"] .home-hero-copy {
-  transition: opacity 500ms ease;
+  transition: none;
 }
 .home-sequence[data-home-wave="resolving"] .home-selected-works,
 .home-sequence[data-home-wave="resolving"] .home-hero-copy {

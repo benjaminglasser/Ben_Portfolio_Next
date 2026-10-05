@@ -2,22 +2,9 @@
 import React from "react";
 import ZigzagHeader from "../../common/zigzagHeader";
 import Contained from "@/app/common/Contained";
-import VideoPlayerExternal from "@/app/common/VideoPlayerExternal";
+import MeaningfulPursuitsVideos from "@/app/common/MeaningfulPursuitsVideos";
 
 const MeaningfulPursuits = () => {
-  const videos = [
-    "https://www.youtube.com/embed/hK23aSLVaAk",
-    "https://www.youtube.com/embed/8Csz61fViZA",
-    "https://www.youtube.com/embed/VghFPjuuXhQ",
-    "https://www.youtube.com/embed/6ScrKPMQPcw",
-    "https://www.youtube.com/embed/HsI6URf6grg",
-    "https://www.youtube.com/embed/CV9ECfroSgU",
-    "https://www.youtube.com/embed/SxJNx4Ymk4M",
-    "https://www.youtube.com/embed/kpQODCM1WYU",
-    "https://www.youtube.com/embed/Uy7GpsWTLS0",
-    "https://www.youtube.com/embed/5Oe320cKOl8",
-    "https://www.youtube.com/embed/89wx2XuiLt0",
-  ];
 
   return (
     <div className="w-full text-white">
@@ -32,11 +19,7 @@ const MeaningfulPursuits = () => {
       />
 
       <Contained className="mt-16 md:mt-24">
-        <div className="flex flex-col gap-8">
-          {videos.map((src) => (
-            <VideoPlayerExternal key={src} src={src} />
-          ))}
-        </div>
+        <MeaningfulPursuitsVideos />
       </Contained>
 
       <div className="h-16 md:h-24" />

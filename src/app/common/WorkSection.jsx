@@ -50,11 +50,13 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
   const gridRef = useRef(null);
   const WORK_CONTENT = [
     {
-      id: 1,
+      id: 3.5,
       type: "motion",
       role: "3D Artist",
       time: "Fall 2025",
       title: "DTLA Marriott Artist Spotlight",
+      tone: "keep",
+      levels: { black: 0.08, white: 0.9, steepness: 1 },
       description: "Public art animation on large scale display in Downtown LA",
       thumbnail: "/images/dtlaMarriott/MarriotThumb.gif",
       path: "work-detail/dtlaMarriott",
@@ -66,6 +68,8 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
+      tone: "keep",
+      levels: { black: 0, white: 0.45, steepness: 1 },
       description:
         "Reimagining Retail: Elegantly showcasing the affordances of a novel form of digital signage",
       thumbnail: "/Media/NRF/Clear_Canvas_Thumb.gif",
@@ -88,16 +92,18 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       ],
     },
     {
-      id: 3.5,
+      id: 1,
       type: "spatial",
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",
+      tone: "keep",
+      levels: { black: 0.025, white: 0.92, steepness: 1.4 },
       description: "Developing next-generation XR products and systems",
       extendedDescription:
         "Designed and implemented XR prototypes for the future interaction between human and vehicle as part of the BMW design and research team in Munich.",
-      thumbnail: "/images/bmw/dancingCar.gif",
-      halftoneDetail: 0.75,
+      thumbnail: "/Media/BMW/dancingCarBlack.gif",
+      halftoneDetail: 0.6,
       path: "work-detail/bmw",
       tools: ["Unreal Engine", "Unity", "Blender", "Abode Suite", "Figma"],
       workDetail: {
@@ -168,7 +174,9 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for the Voyager record label",
-      thumbnail: "/Media/Voyager/VoyagerThumb.gif",
+      thumbnail: "/Media/Voyager/satelliteGlitch.gif",
+      tone: "keep",
+      levels: { black: 0.08, white: 0.8, steepness: 1.4 },
       path: "work-detail/voyager",
       tools: [
         "HTML",
@@ -271,6 +279,8 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
                 description={item.description}
                 thumbnail={item.thumbnail}
                 halftoneDetail={item.halftoneDetail}
+                tone={item.tone}
+                levels={item.levels}
                 preload={mobile === false && preloadThumbnails}
                 animateThumbnail={animateThumbnails}
                 prepareThumbnail={prepareThumbnails}

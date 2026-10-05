@@ -4,6 +4,7 @@ import Navbar from "./common/navbar";
 import { Suspense } from "react";
 import Loader from "./common/Loader";
 import GlobalCursor from "./common/GlobalCursor";
+import GlobalClickRipple from "./common/GlobalClickRipple";
 import ClientLayout from "./ClientLayout";
 import BackgroundTransition from "./common/BackgroundTransition";
 import PageTransition from "./common/PageTransition";
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
         <ClientLayout>
           <BackgroundTransition />
           <GlobalCursor />
+          <GlobalClickRipple />
           <Suspense fallback={<Loader />}>
             <Navbar />
             <PageTransition>{children}</PageTransition>

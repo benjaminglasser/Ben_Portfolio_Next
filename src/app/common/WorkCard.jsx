@@ -17,6 +17,8 @@ const WorkCard = ({
   thumbnail,
   animationSource,
   halftoneDetail = 0,
+  tone = "auto",
+  levels,
   animateThumbnail = true,
   prepareThumbnail = true,
   preload = false,
@@ -100,6 +102,9 @@ const WorkCard = ({
           >
             {loadedImage?.source === thumbnail && (
               <HalftoneCover
+                key={typeof thumbnail === "string" ? thumbnail : thumbnail?.src}
+                tone={tone}
+                levels={levels}
                 liveEnabled={animateThumbnail}
                 prepareEnabled={prepareThumbnail}
                 detailEnhancement={halftoneDetail}

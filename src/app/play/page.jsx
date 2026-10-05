@@ -1,9 +1,9 @@
 "use client";
-import Section from "../common/Section";
 import { IMAGES } from "../../../public/images";
 import ImageWithLoader from "../common/ImageWithLoader";
 import { useDesignVersion } from "../common/design/DesignVersion";
 import PlayLab from "./PlayLab";
+import MeaningfulPursuitsVideos from "../common/MeaningfulPursuitsVideos";
 
 const Play = () => {
   const { level } = useDesignVersion();
@@ -66,6 +66,33 @@ const Play = () => {
 
   const count = String(itemData.length).padStart(2, "0");
 
+  const meaningfulPursuits = (
+    <section className="grid-ed mt-20 md:mt-28" aria-labelledby="meaningful-pursuits-title">
+      <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
+        <div className="md:sticky md:top-24">
+          <h2 className="edge-label text-mute">Album visuals</h2>
+          <h3 id="meaningful-pursuits-title" className="desc-mono subtext text-white font-normal mt-3">
+            Meaningful Pursuits
+          </h3>
+        </div>
+      </div>
+      <div className="col-span-12 md:col-span-10">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-6 mb-6">
+          <p className="md:col-span-6 subtext desc-mono text-white/80">
+            A series of live video vignettes commissioned for Danny Goliger&rsquo;s
+            album, Meaningful Pursuits, and projected behind his live performance.
+          </p>
+          <div className="md:col-span-4 desc-mono uppercase tracking-wide text-[0.68rem] text-mute md:text-right leading-relaxed">
+            <div>2021</div>
+            <div>Animator and creative director</div>
+            <div>TouchDesigner, Premiere Pro</div>
+          </div>
+        </div>
+        <MeaningfulPursuitsVideos carousel />
+      </div>
+    </section>
+  );
+
   return (
     <div className="mt-16 md:mt-24">
       {/* Intro: label rail + statement */}
@@ -87,7 +114,7 @@ const Play = () => {
         </div>
       </div>
 
-      {level >= 2 && <PlayLab />}
+      {level >= 2 && <PlayLab beforePosters={meaningfulPursuits} />}
 
       {/* Gallery: label rail + square mosaic */}
       {level < 2 && (
@@ -118,6 +145,7 @@ const Play = () => {
         </div>
       </div>
       )}
+      {level < 2 && meaningfulPursuits}
     </div>
   );
 };

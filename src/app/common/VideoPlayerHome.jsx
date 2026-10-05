@@ -14,7 +14,6 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
   const shouldShowSpinner = !isBMWPage && !isPointARPage;
 
   const video1Ref = useRef(null);
-  const containerRef = useRef(null);
   const loadingTimeoutRef = useRef(null);
   const fadeInRef = useRef(false);
   const rippleRef = useRef(null);
@@ -26,22 +25,6 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
   const showBoot = level >= 3;
   const pageLoading = !pageReady || (loading && !loadingExpired);
   const showVideo = fadeIn && pageReady;
-
-  const dispersePixels = (e) => {
-    if (pageLoading || error || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
-    rippleRef.current?.send(e.detail === 0 ? { x: 0.5, y: 0.5 } : {
-        x: Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width)),
-        y: Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height)),
-    });
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key !== " " && e.key !== "Enter") return;
-    e.preventDefault();
-    if (!e.repeat && !pageLoading && !error) rippleRef.current?.send({ x: 0.5, y: 0.5 });
-  };
 
   useEffect(() => {
     const videos = [video1Ref.current].filter(Boolean);
@@ -175,7 +158,6 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
   return (
     <div className={`${centered ? "flex justify-center items-center" : "block"}`}>
       <div
-        ref={containerRef}
         className={`${className} w-full overflow-hidden flex justify-center h-[500px] md:h-[70vh] relative ${
           centered ? "mt-10 w-full px-5 md:w-3/5" : "md:w-full"
         }`}
@@ -239,18 +221,6 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
           </>
         )}
 
-        {!error && (
-        <div
-          className="absolute inset-0 z-30 hero-ripple-surface"
-          role="button"
-          tabIndex={0}
-          aria-label="Disperse pixels through the video"
-          aria-disabled={pageLoading}
-          data-cursor="plain"
-          onClick={dispersePixels}
-          onKeyDown={handleKeyDown}
-        />
-        )}
       </div>
     </div>
   );

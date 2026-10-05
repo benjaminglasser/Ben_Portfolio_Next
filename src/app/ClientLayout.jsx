@@ -2,12 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { DesignVersionProvider } from "./common/design/DesignVersion";
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
     if (
+      pathname === "/" ||
       pathname === "/work" ||
       pathname === "/play" ||
       pathname?.includes("work-detail")
@@ -21,13 +23,18 @@ export default function ClientLayout({ children }) {
     // black-background pages get white text, everything else gets rust.
     const root = document?.documentElement;
     const isDarkBg =
-      pathname === "/play" || pathname?.startsWith("/work-detail");
+      pathname === "/" || pathname === "/play" || pathname?.startsWith("/work-detail");
     if (root) {
       root.classList.toggle("theme-dark", isDarkBg);
       root.classList.toggle("theme-light", !isDarkBg);
       root.classList.toggle("route-work-detail", !!pathname?.includes("work-detail"));
+      root.classList.toggle("route-home", pathname === "/");
     }
   }, [pathname]);
 
-  return children;
+  return (
+    <DesignVersionProvider>
+      {children}
+    </DesignVersionProvider>
+  );
 } 

@@ -104,18 +104,6 @@ const Work = () => {
       tools: ["Unreal Engine"],
     },
     {
-      id: 7,
-      role: "Spatial Design Research ans Speculation",
-      time: "October 2022 - April 2023",
-      title: "The Spatial Age",
-      description:
-        "How spatialization is redefining our reality, memory, and experience",
-      thumbnail: IMAGES?.SPATIAL_TUNMB,
-      path: "https://radiancefields.com/unlocking-the-spatial-age-how-nerf-technology-is-redefining-our-reality-memory-and-experience/",
-      externalLink: true,
-      tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
-    },
-    {
       id: 8,
       role: "Web Development, Designs, 3D Models",
       time: "2022",
@@ -148,17 +136,6 @@ const Work = () => {
     //   path: "work-detail/stemport",
     //   tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     // },
-    {
-      id: 10,
-      role: "UI / Web Development",
-      time: "Spring 2023",
-      title: "The Canary Test",
-      description:
-        "Web Design and Development for Los Angeles based art gallery",
-      thumbnail: IMAGES?.CANARY_THUMB,
-      path: "work-detail/canary",
-      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-    },
     {
       id: 11,
       role: "AR UX / UI Design",

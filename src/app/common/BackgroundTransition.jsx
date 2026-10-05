@@ -12,7 +12,7 @@ const BackgroundTransition = () => {
       className="fixed inset-0 -z-10"
       initial={false}
       animate={{
-        backgroundColor: isPlayPage || isWorkDetailPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
+        backgroundColor: pathname === "/" || isPlayPage || isWorkDetailPage ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)",
       }}
       transition={{
         duration: isPlayPage || pathname === "/" || pathname === "/info" ? 0.5 : 0,

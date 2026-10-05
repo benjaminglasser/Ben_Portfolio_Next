@@ -1,11 +1,55 @@
+"use client";
+
 // import Grid from "@mui/system/Unstable_Grid/Grid";
+import { useEffect, useRef, useState } from "react";
 import Section from "./Section";
 import WorkCard from "./WorkCard";
+import { useDesignVersion } from "./design/DesignVersion";
+import DotDigits from "./design/DotDigits";
 
-const WorkSection = () => {
+// Fixed "03 / 11" readout showing which project is in view (version C).
+const ProjectCounter = ({ gridRef, total }) => {
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll("[data-card-index]"));
+    const visible = new Map();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const idx = Number(e.target.dataset.cardIndex);
+          if (e.isIntersecting) visible.set(idx, e.intersectionRatio);
+          else visible.delete(idx);
+        });
+        setCurrent(visible.size ? Math.min(...visible.keys()) + 1 : 0);
+      },
+      { rootMargin: "-35% 0px -35% 0px" }
+    );
+    cards.forEach((c) => io.observe(c));
+    return () => io.disconnect();
+  }, [gridRef]);
+
+  const pad = (n) => String(n).padStart(2, "0");
+  return (
+    <div
+      className="project-counter hidden md:flex"
+      style={{ opacity: current ? 1 : 0 }}
+      aria-hidden="true"
+    >
+      <span>Project</span>
+      <DotDigits value={`${pad(current || 1)}/${pad(total)}`} pitch={2.4} />
+    </div>
+  );
+};
+
+const WorkSection = ({ preloadThumbnails = false }) => {
+  const { level } = useDesignVersion();
+  const gridRef = useRef(null);
   const WORK_CONTENT = [
     {
       id: 1,
+      type: "motion",
       role: "3D Artist",
       time: "Fall 2025",
       title: "DTLA Marriott Artist Spotlight",
@@ -16,6 +60,7 @@ const WorkSection = () => {
     },
     {
       id: 4,
+      type: "motion",
       role: "3D Graphic Design",
       time: "Fall 2023",
       title: "Clear Canvas",
@@ -27,6 +72,7 @@ const WorkSection = () => {
     },
     {
       id: 3,
+      type: "physical",
       role: "Designer / Engineer",
       time: "2020 - 2026",
       title: "Reakt Light",
@@ -41,6 +87,7 @@ const WorkSection = () => {
     },
     {
       id: 3.5,
+      type: "spatial",
       role: "XR Interaction",
       time: "April 2022 - February 2023",
       title: "BMW",
@@ -75,6 +122,7 @@ const WorkSection = () => {
     // },
     {
       id: 6,
+      type: "motion",
       role: "3D Graphics and Simulation",
       time: "Fall 2023",
       title: "Circa DeepScreen",
@@ -86,6 +134,7 @@ const WorkSection = () => {
     },
     {
       id: 7,
+      type: "motion",
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",
@@ -96,6 +145,7 @@ const WorkSection = () => {
     },
     {
       id: 8,
+      type: "spatial",
       role: "AR UX / UI Design",
       time: "Fall 2022",
       title: "PointAR",
@@ -108,19 +158,8 @@ const WorkSection = () => {
       //   },
     },
     {
-      id: 9,
-      role: "Spatial Design Research and Speculation",
-      time: "October 2022",
-      title: "The Spatial Age",
-      description:
-        "How spatialization is redefining our reality, memory, and experience",
-      thumbnail: "/images/SpatialAge/spatialAge.gif",
-      path: "https://radiancefields.com/unlocking-the-spatial-age-how-nerf-technology-is-redefining-our-reality-memory-and-experience/",
-      externalLink: true,
-      tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
-    },
-    {
       id: 10,
+      type: "web",
       role: "Web Development, Designs, 3D Modeling, Performance Visuals",
       time: "2021",
       title: "Voyager",
@@ -152,17 +191,6 @@ const WorkSection = () => {
     //   path: "work-detail/stemport",
     //   tools: ["Unity", "Blender", "Unreal Engine", "Instant-ngp"],
     // },
-    {
-      id: 12,
-      role: "UI / Web Development",
-      time: "Spring 2022",
-      title: "The Canary Test",
-      description:
-        "Web Design and Development for Los Angeles based art gallery",
-      thumbnail: "/images/canary/canaryHero4.gif",
-      path: "work-detail/canary",
-      tools: ["Figma", "NextJS", "Framer Motion", "Contentful"],
-    },
     // {
     //   role: "Engineer, Creative Coder",
     //   time: "FALL 2021 // Creative Technology",
@@ -185,6 +213,7 @@ const WorkSection = () => {
     // },
     {
       id: 0,
+      type: "web",
       role: "Staff Experience Designer",
       time: "2024 - Present",
       title: "Adobe",
@@ -220,15 +249,16 @@ const WorkSection = () => {
       {/* Left rail: section label pinned in its own column, magazine-style. */}
       <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
         <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
-          Selected Works
+          <span className="label-index">01</span>Selected Works
         </h4>
       </div>
 
       {/* Works column: uniform 3-up grid. */}
       <div className="col-span-12 md:col-span-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
-          {items.map((item) => (
-            <Section key={item.number}>
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
+          {items.map((item, idx) => (
+            <div key={item.number} data-card-index={idx}>
+            <Section>
               <WorkCard
                 number={item.number}
                 role={item.role}
@@ -237,11 +267,13 @@ const WorkSection = () => {
                 title={item.title}
                 description={item.description}
                 thumbnail={item.thumbnail}
+                preload={preloadThumbnails}
+                animationSource={item.thumbnail.endsWith(".gif") ? `${item.thumbnail}.halftone.mp4` : undefined}
                 externalLink={item.externalLink}
-                thumbnailBorder={item.thumbnailBorder}
                 aspectClass="aspect-[3/2]"
               />
             </Section>
+            </div>
           ))}
         </div>
       </div>

@@ -1,10 +1,12 @@
 "use client";
 import Section from "../common/Section";
-import { FancyButton } from "../common/FancyButton";
 import { IMAGES } from "../../../public/images";
 import ImageWithLoader from "../common/ImageWithLoader";
+import { useDesignVersion } from "../common/design/DesignVersion";
+import PlayLab from "./PlayLab";
 
 const Play = () => {
+  const { level } = useDesignVersion();
   const itemData = [
     IMAGES.PLAY_18,
     IMAGES.PLAY_1,
@@ -69,30 +71,26 @@ const Play = () => {
       {/* Intro: label rail + statement */}
       <div className="grid-ed md:items-start">
         <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
-          <h4 className="edge-label text-mute whitespace-nowrap">Play</h4>
+          <h4 className="edge-label text-mute whitespace-nowrap">
+            <span className="label-index">01</span>Play
+          </h4>
         </div>
         <div className="col-span-12 md:col-span-10">
           <h1 className="text-white desc-mono bio">
-            I play in the various sandboxes of Blender, Unity, Unreal Engine,
-            Processing, TouchDesigner, as well as other creative spaces in
-            pursuit of stumbling upon pleasing surprises. Lately I've been
-            gravitating toward more physical forms of making too: 3D printing,
-            woodworking, metal work, and physical electronics.
+            Making is best when it&rsquo;s a form of play. Any excuse to build a
+            project from the ground up teaches me something new. I find myself
+            moving between digital and physical work, and every form of making
+            ends up informing the others. Lately, I&rsquo;ve been especially
+            drawn to working with my hands through 3D printing, woodworking,
+            metalwork, electronics, and whatever else I can get into.
           </h1>
         </div>
       </div>
 
-      <div className="grid-ed mt-8">
-        <div className="col-span-12 md:col-start-3 md:col-span-10">
-          <FancyButton fullWidth>
-            <a href="https://www.instagram.com/bbbbb.stuff/" target="_blank">
-              More expiriments can be found HERE
-            </a>
-          </FancyButton>
-        </div>
-      </div>
+      {level >= 2 && <PlayLab />}
 
       {/* Gallery: label rail + square mosaic */}
+      {level < 2 && (
       <div className="grid-ed mt-20 md:mt-28">
         <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
           <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
@@ -118,6 +116,7 @@ const Play = () => {
           ))}
         </div>
       </div>
+      )}
     </div>
   );
 };

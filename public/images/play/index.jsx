@@ -32,6 +32,8 @@ import play32 from "./play32.png";
 import play33 from "./play33.png";
 import play34 from "./play34.png";
 import play35 from "./play35.png";
+import play36 from "./play36.jpg";
+import play37 from "./play37.jpg";
 
 export const PLAY = {
   PLAY1: play1,
@@ -68,4 +70,6 @@ export const PLAY = {
   PLAY33: play33,
   PLAY34: play34,
   PLAY35: play35,
+  PLAY36: play36,
+  PLAY37: play37,
 };

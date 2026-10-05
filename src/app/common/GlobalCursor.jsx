@@ -10,6 +10,7 @@ const GlobalCursor = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isInviting, setIsInviting] = useState(false);
   const wasVisibleRef = useRef(true);
   const pathname = usePathname();
   const router = useRouter();
@@ -228,7 +229,10 @@ const GlobalCursor = () => {
                               (element?.matches('a, h3') || 
                                element?.closest('a, h3'));
         
-        setIsHovering(isInteractive || isNavbarElement);
+        const isPlain = element?.closest('[data-cursor="plain"]');
+        setIsInviting(!!element?.closest('[data-cursor-invite]'));
+
+        setIsHovering(!isPlain && (isInteractive || isNavbarElement));
       };
 
       const handleMouseDown = () => {
@@ -300,6 +304,12 @@ const GlobalCursor = () => {
           opacity: isLoading ? 1 : 1,
         }}
       />
+      {isInviting && !isLoading && !isClicking && (
+        <div className="cursor-invite" aria-hidden="true">
+          <span />
+          <span />
+        </div>
+      )}
       <style jsx global>{`
         @keyframes bounceIn {
           0% {

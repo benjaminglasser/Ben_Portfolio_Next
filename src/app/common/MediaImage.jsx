@@ -123,7 +123,7 @@ const MediaImage = ({ sizes = "(max-width: 768px) 100vw, 83vw", managedLoader = 
     }} />;
   if (!showLoader) return content;
   return (
-    <div className={`relative ${props.fill ? "absolute inset-0" : props.className || "w-full"}`} style={props.style}>
+    <div className={props.fill ? "absolute inset-0" : `relative ${props.className || "w-full"}`} style={props.style}>
       {content}
       {loadedSource !== props.src && <MediaLoader className="absolute inset-0 z-10 pointer-events-none" />}
     </div>

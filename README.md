@@ -22,7 +22,7 @@ Verified GIF conversions are listed in `src/app/common/gifMedia.json`. The origi
 
 The same manifest includes a forward-and-backward loop of Adobe's animated WebP so its halftone thumbnail also animates before hover. The original WebP remains the fallback.
 
-Shared media components load videos within 200 pixels of the viewport and pause playback offscreen. Home thumbnails preload for the first-page loader, while return visits use lazy loading; the home wave remains eager. Public images and media use a one-day browser cache with background revalidation.
+Shared media components load videos within 200 pixels of the viewport and pause playback offscreen. Desktop Home thumbnails preload for the first-page loader, while return visits use lazy loading; the home wave remains eager. On screens narrower than 768 pixels, work cards load only near the viewport and show a screen-sized still preview with halftone while their animation loads. The mobile Home loader waits for the wave and fonts, not offscreen thumbnails. Desktop cards and full-quality work-detail media stay unchanged. Public images and media use a one-day browser cache with background revalidation.
 
 Images and local videos use a faint dot grid over a fully black background while loading. Red dots fill the grid from left to right, then clear in the same direction. Animation pauses offscreen and in hidden tabs; visitors who prefer reduced motion see a still grid.
 

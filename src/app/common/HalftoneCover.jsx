@@ -11,6 +11,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
+  const progressRef = useRef(0);
   const targetRef = useRef({ revealed, origin });
   const liveEnabledRef = useRef(liveEnabled);
   const prepareEnabledRef = useRef(prepareEnabled);
@@ -47,7 +48,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
-    let progress = 0;
+    let progress = progressRef.current;
     let cells = [];
     let width = 0;
     let height = 0;
@@ -286,6 +287,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     video?.addEventListener("error", handleVideoError);
     prepare();
     return () => {
+      progressRef.current = progress;
       cancelAnimationFrame(frame);
       cancelAnimationFrame(liveFrame);
       if (!sharedVideo) video?.pause();

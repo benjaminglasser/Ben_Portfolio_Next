@@ -6,6 +6,7 @@ import { useDesignVersion } from "./design/DesignVersion";
 import DotDigits from "./design/DotDigits";
 import { useCallback, useEffect, useRef, useState } from "react";
 import HalftoneCover from "./HalftoneCover";
+import useMobileThumbnails from "./useMobileThumbnails";
 
 const WorkCard = ({
   path,
@@ -24,6 +25,7 @@ const WorkCard = ({
   aspectClass = "aspect-[3/2]",
 }) => {
   const { level } = useDesignVersion();
+  const mobile = useMobileThumbnails();
   const frameRef = useRef(null);
   const [loadedImage, setLoadedImage] = useState(null);
   const [hovered, setHovered] = useState(false);
@@ -83,7 +85,7 @@ const WorkCard = ({
             <span />
             <span />
           </div>
-          <ImageWithLoader
+          {mobile !== null && <ImageWithLoader
             src={thumbnail}
             alt={`${title} - ${description}`}
             width="100"
@@ -93,7 +95,8 @@ const WorkCard = ({
             wrapperClassName={`!rounded-none ${aspectClass}`}
             unoptimized={typeof thumbnail === 'string' && (thumbnail.endsWith('.gif') || thumbnail.endsWith('.webp'))}
             onImageReady={handleImageReady}
-            loading={preload ? "eager" : undefined}
+            loading={!mobile && preload ? "eager" : undefined}
+            posterFirst={mobile === true}
           >
             {loadedImage?.source === thumbnail && (
               <HalftoneCover
@@ -101,16 +104,16 @@ const WorkCard = ({
                 prepareEnabled={prepareThumbnail}
                 detailEnhancement={halftoneDetail}
                 image={loadedImage.element}
-                animationSource={loadedImage.element.tagName === "VIDEO" ? undefined : animationSource}
-                preload={preload}
-                animated={loadedImage.element.tagName === "VIDEO" || /\.gif(?:$|[?#])/i.test(
+                animationSource={mobile ? undefined : loadedImage.element.tagName === "VIDEO" ? undefined : animationSource}
+                preload={!mobile && preload}
+                animated={loadedImage.element.tagName === "VIDEO" || !mobile && /\.gif(?:$|[?#])/i.test(
                   typeof thumbnail === "string" ? thumbnail : thumbnail?.src || thumbnail?.default || ""
                 )}
                 revealed={hovered || focused || touchVisible}
                 origin={origin}
               />
             )}
-          </ImageWithLoader>
+          </ImageWithLoader>}
         </div>
         <div className="flex gap-6 pt-3">
           <div className="desc-mono subtext text-black shrink-0">

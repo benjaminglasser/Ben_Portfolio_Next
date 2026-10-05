@@ -22,15 +22,23 @@ export const getGifMedia = (src) => {
   return byName.get(clean.split("/").pop().replace(/\.[a-f0-9]+\.gif$/i, ".gif")) || null;
 };
 
-const AnimatedImage = ({ media, src, alt, className, style, width, height, fill, loading, onLoad, onError }) => {
+const AnimatedImage = ({ media, src, alt, className, style, width, height, fill, loading, onLoad, onError, posterFirst, sizes }) => {
   const [fallback, setFallback] = useState(false);
   const [active, setActive] = useState(loading === "eager");
   const [posterReady, setPosterReady] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef(null);
   const posterRef = useRef(null);
+  const onLoadRef = useRef(onLoad);
+  onLoadRef.current = onLoad;
   useEffect(() => {
-    if (active && posterRef.current?.complete && posterRef.current.naturalWidth > 0) setPosterReady(true);
-  }, [active]);
+    if (active && posterRef.current?.complete && posterRef.current.naturalWidth > 0) {
+      setPosterReady(true);
+      if (posterFirst && !videoRef.current) {
+        onLoadRef.current?.({ currentTarget: posterRef.current });
+      }
+    }
+  }, [active, posterFirst]);
   if (fallback) {
     return <Image src={src} alt={alt} className={className} style={style} width={width} height={height} fill={fill} unoptimized onLoad={onLoad} onError={onError} />;
   }
@@ -38,7 +46,7 @@ const AnimatedImage = ({ media, src, alt, className, style, width, height, fill,
     <>
     <LazyVideo
       src={media.video}
-      poster={media.poster}
+      poster={posterFirst ? undefined : media.poster}
       eager={loading === "eager"}
       aria-label={alt || undefined}
       aria-hidden={alt === "" ? true : undefined}
@@ -51,11 +59,31 @@ const AnimatedImage = ({ media, src, alt, className, style, width, height, fill,
       onActivate={() => setActive(true)}
       onLoadedData={(event) => {
         videoRef.current = event.currentTarget;
+        setVideoReady(true);
         onLoad?.(event);
       }}
       onError={() => setFallback(true)}
     />
-    {active && (
+    {active && posterFirst && !videoReady && (
+      <Image
+        ref={posterRef}
+        data-thumbnail-poster="true"
+        src={media.poster}
+        alt={alt}
+        width={media.width}
+        height={media.height}
+        sizes={sizes}
+        loading="eager"
+        className={className}
+        style={{ ...style, position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        onLoad={(event) => {
+          setPosterReady(true);
+          if (!videoRef.current) onLoad?.(event);
+        }}
+        onError={() => console.warn("Animation poster could not load.", media.poster)}
+      />
+    )}
+    {active && !posterFirst && (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         ref={posterRef}
@@ -74,7 +102,7 @@ const AnimatedImage = ({ media, src, alt, className, style, width, height, fill,
   );
 };
 
-const MediaImage = ({ sizes = "(max-width: 768px) 100vw, 83vw", managedLoader = false, ...props }) => {
+const MediaImage = ({ sizes = "(max-width: 768px) 100vw, 83vw", managedLoader = false, posterFirst = false, ...props }) => {
   const pathname = usePathname();
   const [loadedSource, setLoadedSource] = useState(null);
   const media = getGifMedia(props.src);
@@ -87,7 +115,7 @@ const MediaImage = ({ sizes = "(max-width: 768px) 100vw, 83vw", managedLoader = 
     ? { ...props, className: "block w-full h-auto", style: undefined }
     : props;
   const content = media
-    ? <AnimatedImage key={media.video} media={media} {...contentProps} onLoad={handleLoad} />
+    ? <AnimatedImage key={media.video} media={media} {...contentProps} sizes={sizes} posterFirst={posterFirst} onLoad={handleLoad} />
     : <Image sizes={sizes} {...contentProps} onLoad={handleLoad} onError={(event) => {
       console.warn("Image could not load.", props.src);
       setLoadedSource(props.src);

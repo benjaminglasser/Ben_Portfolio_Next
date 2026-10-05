@@ -6,6 +6,7 @@ import Section from "./Section";
 import WorkCard from "./WorkCard";
 import { useDesignVersion } from "./design/DesignVersion";
 import DotDigits from "./design/DotDigits";
+import useMobileThumbnails from "./useMobileThumbnails";
 
 // Fixed "03 / 11" readout showing which project is in view (version C).
 const ProjectCounter = ({ gridRef, total }) => {
@@ -44,6 +45,7 @@ const ProjectCounter = ({ gridRef, total }) => {
 };
 
 const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prepareThumbnails = true }) => {
+  const mobile = useMobileThumbnails();
   const { level } = useDesignVersion();
   const gridRef = useRef(null);
   const WORK_CONTENT = [
@@ -269,7 +271,7 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
                 description={item.description}
                 thumbnail={item.thumbnail}
                 halftoneDetail={item.halftoneDetail}
-                preload={preloadThumbnails}
+                preload={mobile === false && preloadThumbnails}
                 animateThumbnail={animateThumbnails}
                 prepareThumbnail={prepareThumbnails}
                 animationSource={item.thumbnail.endsWith(".gif") ? `${item.thumbnail}.halftone.mp4` : undefined}

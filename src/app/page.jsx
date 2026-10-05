@@ -8,11 +8,13 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 import DotDigits from "@/app/common/design/DotDigits";
 import { usePageTransition } from "@/app/common/PageTransition";
+import useMobileThumbnails from "@/app/common/useMobileThumbnails";
 
 let homeLoadedOnce = false;
 
 export default function Home() {
   const routeTransition = usePageTransition();
+  const mobileThumbnails = useMobileThumbnails();
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [assetsReady, setAssetsReady] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
@@ -51,7 +53,7 @@ export default function Home() {
   }, [fadeComplete, returningHome]);
 
   useEffect(() => {
-    if (returningHome) return;
+    if (returningHome || mobileThumbnails === null) return;
     let cancelled = false;
     let fontsReady = false;
     document.fonts.ready.then(() => { fontsReady = true; });
@@ -70,7 +72,7 @@ export default function Home() {
       const hero = pageRef.current.querySelector("video");
       let total = 2;
       let complete = Number(fontsReady) + Number(hero?.readyState >= 2 && !hero.paused);
-      cards.forEach((card) => {
+      (mobileThumbnails ? [] : cards).forEach((card) => {
         const image = card.querySelector("img:not([aria-hidden])");
         const cover = card.querySelector("canvas");
         const animation = card.querySelector("video");
@@ -80,7 +82,7 @@ export default function Home() {
           (animation ? Number(animation.readyState >= 2) : 0);
       });
       progressTargetRef.current = Math.max(progressTargetRef.current, Math.min(99, Math.floor(complete / total * 100)));
-      if (fontsReady && ready) {
+      if (fontsReady && (mobileThumbnails || ready)) {
         setAssetsReady(true);
         clearInterval(interval);
       }
@@ -97,7 +99,7 @@ export default function Home() {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, [returningHome]);
+  }, [returningHome, mobileThumbnails]);
 
   const pageReady = returningHome || timedOut || (assetsReady && !isVideoLoading);
   const selectedWorksReady = revealStarted && heroResolved;

@@ -3,7 +3,7 @@ import MediaImage from "./MediaImage";
 import MediaLoader from "./MediaLoader";
 import { useState, useRef, useEffect } from "react";
 
-const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName, borderOverlayClassName, unoptimized, onImageReady, children, sizes, quality, loading: imageLoading }) => {
+const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName, borderOverlayClassName, unoptimized, onImageReady, children, sizes, quality, loading: imageLoading, posterFirst = false }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const wrapperRef = useRef(null);
@@ -12,14 +12,16 @@ const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName,
   // handler, so the event never fires and the shimmer stays up. Check the
   // underlying img's complete flag on mount as a fallback.
   useEffect(() => {
-    const imgEl = wrapperRef.current?.querySelector("img, video");
+    const imgEl = posterFirst
+      ? wrapperRef.current?.querySelector("img[data-thumbnail-poster], video")
+      : wrapperRef.current?.querySelector("img, video");
     setError(false);
     setLoading(true);
     if (imgEl && (imgEl.naturalWidth > 0 && imgEl.complete || imgEl.readyState >= 2)) {
       setLoading(false);
       onImageReady?.(imgEl);
     }
-  }, [src, onImageReady]);
+  }, [src, onImageReady, posterFirst]);
 
   // Check if the src is a GIF by looking at the src string or the default property
   const isGif = typeof src === 'string' 
@@ -55,6 +57,7 @@ const ImageWithLoader = ({ src, alt, width, height, className, wrapperClassName,
         <div style={{ opacity: loading ? 0 : 1 }} className="w-full h-full">
           <MediaImage
             managedLoader
+            posterFirst={posterFirst}
             src={src}
             alt={alt}
             width={width}

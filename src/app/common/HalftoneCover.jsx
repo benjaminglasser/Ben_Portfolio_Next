@@ -7,11 +7,23 @@ const DURATION = 650;
 const INK = "#000000";
 const EFFECT_INK = "#8e2115";
 
-const HalftoneCover = ({ image, revealed, origin, animated = false, animationSource, preload = false, detailEnhancement = 0 }) => {
+const HalftoneCover = ({ image, revealed, origin, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
   const targetRef = useRef({ revealed, origin });
+  const liveEnabledRef = useRef(liveEnabled);
+  const prepareEnabledRef = useRef(prepareEnabled);
+
+  useEffect(() => {
+    prepareEnabledRef.current = prepareEnabled;
+    if (prepareEnabled) controlsRef.current?.prepare();
+  }, [prepareEnabled]);
+
+  useEffect(() => {
+    liveEnabledRef.current = liveEnabled;
+    controlsRef.current?.animate();
+  }, [liveEnabled]);
 
   useEffect(() => {
     targetRef.current = { revealed, origin };
@@ -45,6 +57,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     let visible = false;
     let liveFrame = 0;
     let lastSample = 0;
+    let lastVideoTime = -1;
     let playPending = false;
     const playVideo = () => {
       if (!video || !video.paused || playPending || failed) return;
@@ -57,18 +70,19 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
 
     const updateLive = (now) => {
       liveFrame = 0;
-      if (!animated || !visible || failed || progress === 1) {
+      if (!animated || !liveEnabledRef.current || !visible || failed || progress === 1) {
         if (!sharedVideo) video?.pause();
         return;
       }
-      if (now - lastSample >= 32) {
+      if (now - lastSample >= 32 && (!video || video.currentTime !== lastVideoTime)) {
         prepare(true);
         lastSample = now;
+        lastVideoTime = video?.currentTime ?? -1;
       }
       if (!failed) liveFrame = requestAnimationFrame(updateLive);
     };
     const startLive = () => {
-      if (animated && visible && !failed && progress < 1 && !liveFrame) {
+      if (animated && liveEnabledRef.current && visible && !failed && progress < 1 && !liveFrame) {
         playVideo();
         liveFrame = requestAnimationFrame(updateLive);
       }
@@ -136,6 +150,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
     };
 
     const prepare = (live = false) => {
+      if (!prepareEnabledRef.current) return;
       const rect = canvas.getBoundingClientRect();
       const imageWidth = image.naturalWidth || image.videoWidth;
       const imageHeight = image.naturalHeight || image.videoHeight;
@@ -200,6 +215,8 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       paperContext.fillStyle = "#ffffff";
       paperContext.fillRect(0, 0, width, height);
       paperContext.fillStyle = INK;
+      paperContext.beginPath();
+      const clippedDots = [];
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const index = row * cols + col;
@@ -221,15 +238,23 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
           const y = row * CELL;
           const noise = Math.sin(col * 127.1 + row * 311.7) * 43758.5453;
           cells.push({ x, y, radius, seed: noise - Math.floor(noise) });
-          paperContext.save();
-          paperContext.beginPath();
-          paperContext.rect(x, y, CELL, CELL);
-          paperContext.clip();
-          paperContext.beginPath();
-          paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
-          paperContext.fill();
-          paperContext.restore();
+          if (radius > CELL / 2) clippedDots.push({ x, y, radius });
+          else {
+            paperContext.moveTo(x + CELL / 2 + radius, y + CELL / 2);
+            paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
+          }
         }
+      }
+      paperContext.fill();
+      for (const { x, y, radius } of clippedDots) {
+        paperContext.save();
+        paperContext.beginPath();
+        paperContext.rect(x, y, CELL, CELL);
+        paperContext.clip();
+        paperContext.beginPath();
+        paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
+        paperContext.fill();
+        paperContext.restore();
       }
       ready = true;
       canvas.dataset.ready = "true";
@@ -237,7 +262,7 @@ const HalftoneCover = ({ image, revealed, origin, animated = false, animationSou
       else animate();
     };
 
-    controlsRef.current = { animate };
+    controlsRef.current = { animate, prepare };
     const resize = () => prepare();
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);

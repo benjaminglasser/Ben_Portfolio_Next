@@ -18,8 +18,24 @@ const FRAGMENT = `
   uniform float uEntrance;
   uniform vec4 uRipples[4];
 
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+
+  float noise(vec2 p) {
+    vec2 cell = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(cell), hash(cell + vec2(1.0, 0.0)), f.x),
+               mix(hash(cell + vec2(0.0, 1.0)), hash(cell + vec2(1.0)), f.x), f.y);
+  }
+
   void main() {
     if (uEntrance < 1.0) {
+      if (uEntrance <= 0.0) {
+        gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+        return;
+      }
       float pitch = uCell;
       vec2 block = floor(gl_FragCoord.xy / pitch);
       vec2 middle = (block + 0.5) * pitch;
@@ -27,12 +43,18 @@ const FRAGMENT = `
       vec2 crop = uResolution / (uVideoSize * scale);
       vec2 uv = (middle / uResolution - 0.5) * crop + 0.5;
       float luma = dot(texture2D(uVideo, uv).rgb, vec3(0.299, 0.587, 0.114));
-      float radius = (0.1 + 0.45 * smoothstep(0.15, 0.95, luma)) * pitch;
-      float dotMask = 1.0 - smoothstep(radius - 0.75, radius + 0.75, distance(gl_FragCoord.xy, middle));
       float seed = fract(sin(dot(block, vec2(127.1, 311.7))) * 43758.5453);
-      float reveal = smoothstep(0.0, 1.0, uEntrance);
-      if (seed < reveal) discard;
-      gl_FragColor = vec4(vec3(luma * dotMask), 1.0);
+      float topToBottom = clamp(1.0 - middle.y / uResolution.y, 0.0, 1.0);
+      float threshold = 0.86 * topToBottom + 0.02 * noise(block / 80.0) + 0.12 * seed;
+      if (uEntrance < threshold * 0.92) {
+        gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+        return;
+      }
+      float localProgress = clamp((uEntrance - threshold * 0.92) / 0.08, 0.0, 1.0);
+      if (localProgress >= 1.0) discard;
+      float radius = (0.1 + 0.45 * smoothstep(0.15, 0.95, luma)) * pitch * (1.0 - localProgress);
+      float dotMask = 1.0 - smoothstep(radius - 0.75, radius + 0.75, distance(gl_FragCoord.xy, middle));
+      gl_FragColor = vec4(vec3(luma), dotMask * (1.0 - localProgress));
       return;
     }
     vec2 cell = floor(gl_FragCoord.xy / uCell);
@@ -155,6 +177,21 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
     let entrance = 0;
     let entranceStarted = false;
     let completed = false;
+    let width = 1;
+    let height = 1;
+    let dpr = 1;
+    let lastVideoTime = -1;
+    const values = new Float32Array(16);
+    const resize = new ResizeObserver(([entry]) => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(1, Math.round(entry.contentRect.width * dpr));
+      height = Math.max(1, Math.round(entry.contentRect.height * dpr));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+    });
+    resize.observe(canvas);
     const finishEntrance = () => {
       if (completed) return;
       completed = true;
@@ -167,7 +204,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
       if (!visible || failed) return;
       const delta = lastTime === null ? 0 : now - lastTime;
       lastTime = now;
-      if (entranceStarted) entrance = Math.min(1, entrance + delta / 1000);
+      if (entranceStarted) entrance = Math.min(1, entrance + delta / 1600);
       ripples.forEach((ripple) => { ripple.age += delta; });
       ripples = ripples.filter((ripple) => ripple.age < ripple.duration);
       if (!ripples.length && entrance === 1) {
@@ -179,17 +216,12 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
         return;
       }
       if (video.readyState >= 2 && video.videoWidth && video.videoHeight) {
-        const rect = canvas.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const width = Math.max(1, Math.round(rect.width * dpr));
-        const height = Math.max(1, Math.round(rect.height * dpr));
-        if (canvas.width !== width || canvas.height !== height) {
-          canvas.width = width;
-          canvas.height = height;
-        }
         gl.viewport(0, 0, width, height);
         try {
-          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, video);
+          if (video.currentTime !== lastVideoTime) {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+            lastVideoTime = video.currentTime;
+          }
         } catch (error) {
           failed = true;
           clear();
@@ -204,7 +236,6 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
         gl.uniform1f(uniforms.uEntrance, entrance);
         canvas.dataset.entrance = entrance < 1 ? "resolving" : "complete";
         if (entrance === 1) finishEntrance();
-        const values = new Float32Array(16);
         for (let i = 0; i < 4; i++) {
           const ripple = ripples[i];
           values.set(ripple
@@ -214,6 +245,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
         gl.uniform4fv(uniforms["uRipples[0]"], values);
         clear();
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        canvas.style.backgroundColor = "transparent";
       }
       frame = requestAnimationFrame(draw);
     };
@@ -228,8 +260,9 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
       entranceStarted = true;
       if (pixelEntranceRef.current && !motion.matches && (!visibilityKnown || visible)) {
         entrance = 0;
-        canvas.style.backgroundColor = "transparent";
+        canvas.style.backgroundColor = "#000000";
         canvas.dataset.entrance = "resolving";
+        lastTime = performance.now();
         schedule();
         return;
       }
@@ -295,6 +328,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      resize.disconnect();
       motion.removeEventListener("change", motionChange);
       canvas.removeEventListener("webglcontextlost", contextLost);
       gl.deleteTexture(texture);

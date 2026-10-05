@@ -150,7 +150,11 @@ export default function Home() {
       </div>
 
       <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!selectedWorksReady} inert={!selectedWorksReady ? "" : undefined}>
-        <WorkSection preloadThumbnails />
+        <WorkSection
+          preloadThumbnails={!returningHome}
+          animateThumbnails={selectedWorksReady}
+          prepareThumbnails={!returningHome || selectedWorksReady}
+        />
       </div>
     </div>
   );

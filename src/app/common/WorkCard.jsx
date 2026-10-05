@@ -16,6 +16,8 @@ const WorkCard = ({
   thumbnail,
   animationSource,
   halftoneDetail = 0,
+  animateThumbnail = true,
+  prepareThumbnail = true,
   preload = false,
   externalLink,
   number,
@@ -95,6 +97,8 @@ const WorkCard = ({
           >
             {loadedImage?.source === thumbnail && (
               <HalftoneCover
+                liveEnabled={animateThumbnail}
+                prepareEnabled={prepareThumbnail}
                 detailEnhancement={halftoneDetail}
                 image={loadedImage.element}
                 animationSource={loadedImage.element.tagName === "VIDEO" ? undefined : animationSource}

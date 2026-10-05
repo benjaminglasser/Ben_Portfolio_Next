@@ -43,7 +43,7 @@ const ProjectCounter = ({ gridRef, total }) => {
   );
 };
 
-const WorkSection = ({ preloadThumbnails = false }) => {
+const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prepareThumbnails = true }) => {
   const { level } = useDesignVersion();
   const gridRef = useRef(null);
   const WORK_CONTENT = [
@@ -270,6 +270,8 @@ const WorkSection = ({ preloadThumbnails = false }) => {
                 thumbnail={item.thumbnail}
                 halftoneDetail={item.halftoneDetail}
                 preload={preloadThumbnails}
+                animateThumbnail={animateThumbnails}
+                prepareThumbnail={prepareThumbnails}
                 animationSource={item.thumbnail.endsWith(".gif") ? `${item.thumbnail}.halftone.mp4` : undefined}
                 externalLink={item.externalLink}
                 aspectClass="aspect-[3/2]"

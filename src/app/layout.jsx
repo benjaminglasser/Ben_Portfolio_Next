@@ -8,7 +8,7 @@ import GlobalClickRipple from "./common/GlobalClickRipple";
 import ClientLayout from "./ClientLayout";
 import BackgroundTransition from "./common/BackgroundTransition";
 import PageTransition from "./common/PageTransition";
-import { Inter, Lato, Fraunces, Courier_Prime } from "next/font/google";
+import { Inter, Lato, Barlow_Condensed, Courier_Prime } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,11 +22,10 @@ const lato = Lato({
   variable: '--font-lato'
 });
 
-const fraunces = Fraunces({
+const display = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-fraunces',
+  weight: ['100', '400'],
+  variable: '--font-display',
 });
 
 const courierPrime = Courier_Prime({
@@ -62,7 +61,7 @@ export default function RootLayout({ children }) {
           {/* <link rel="stylesheet" href="styles.css" /> */}
           <link rel="icon" type="image/png" href="/favicon2-32x32.png" />
         </head>
-      <body className={`${inter.variable} ${lato.variable} ${fraunces.variable} ${courierPrime.variable} px-5 pt-3 pb-36 md:px-10 md:pt-0 md:pb-10 relative`}>
+      <body className={`${inter.variable} ${lato.variable} ${display.variable} ${courierPrime.variable} px-5 pt-3 pb-36 md:px-10 md:pb-10 relative`}>
         <ClientLayout>
           <BackgroundTransition />
           <GlobalCursor />

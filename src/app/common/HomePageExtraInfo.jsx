@@ -13,6 +13,7 @@ const HomePageExtraInfo = ({ isLoading, unifiedEntrance = false }) => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [changePhase, setChangePhase] = useState("hold");
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [entranceComplete, setEntranceComplete] = useState(false);
 
   useEffect(() => {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -23,7 +24,7 @@ const HomePageExtraInfo = ({ isLoading, unifiedEntrance = false }) => {
   }, []);
 
   useEffect(() => {
-    if (isLoading || reducedMotion) {
+    if (isLoading || reducedMotion || (unifiedEntrance && !entranceComplete)) {
       setChangePhase("hold");
       return undefined;
     }
@@ -41,16 +42,14 @@ const HomePageExtraInfo = ({ isLoading, unifiedEntrance = false }) => {
     }, phaseDuration);
 
     return () => window.clearTimeout(timeout);
-  }, [changePhase, isLoading, reducedMotion]);
+  }, [changePhase, entranceComplete, isLoading, reducedMotion, unifiedEntrance]);
 
   const tagline = (
     <>
       <span className="sr-only">{ROLES[roleIndex]} designer</span>
       <span className="home-tagline-visual" aria-hidden="true">
         <span className={`home-tagline-role home-tagline-dots is-${changePhase}`}>
-          <span className="home-tagline-glyph">
-            <DotDigits value={ROLES[roleIndex]} pitch={1.6} ghost={false} />
-          </span>
+          <DotDigits value={ROLES[roleIndex]} pitch={1.6} ghost={false} />
         </span>
         <span className="home-tagline-fixed home-tagline-dots">
           <DotDigits value="designer" pitch={1.6} ghost={false} />
@@ -62,7 +61,11 @@ const HomePageExtraInfo = ({ isLoading, unifiedEntrance = false }) => {
   if (unifiedEntrance) {
     return (
       <div className="absolute bottom-5 md:bottom-8 right-5 md:right-10 z-10 home-hero-copy" aria-hidden={isLoading}>
-        <PixelEntrance active={!isLoading} sharedSpeed>
+        <PixelEntrance
+          active={!isLoading}
+          sharedSpeed
+          onComplete={() => setEntranceComplete(true)}
+        >
           <p className="edge-label text-white/70 text-right home-tagline">{tagline}</p>
         </PixelEntrance>
       </div>

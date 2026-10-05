@@ -3,10 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { getHomeRevealSpeed } from "./homeRevealTiming";
 
-export default function PixelEntrance({ active, delay = 0, duration = 1800, sharedSpeed = false, children, className = "" }) {
+export default function PixelEntrance({ active, delay = 0, duration = 1800, sharedSpeed = false, children, className = "", onComplete }) {
   const canvasRef = useRef(null);
   const wrapperRef = useRef(null);
+  const onCompleteRef = useRef(onComplete);
+  const completionNotifiedRef = useRef(false);
   const [complete, setComplete] = useState(false);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,14 +17,25 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, shar
     if (!context) {
       console.warn("Page pixel entrance skipped: canvas rendering is unavailable.");
       setComplete(true);
+      if (active && !completionNotifiedRef.current) {
+        completionNotifiedRef.current = true;
+        onCompleteRef.current?.();
+      }
       return;
     }
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let started = false;
+    let finished = false;
     const finish = () => {
+      if (finished) return;
+      finished = true;
       cancelAnimationFrame(frame);
       setComplete(true);
+      if (active && !completionNotifiedRef.current) {
+        completionNotifiedRef.current = true;
+        onCompleteRef.current?.();
+      }
     };
     const paint = () => {
       const { width, height } = wrapperRef.current.getBoundingClientRect();

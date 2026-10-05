@@ -58,21 +58,25 @@
 /* ---- Editorial type scale ----
    Three deliberate steps. Base carries most of the app (labels, buttons,
    descriptions, nav, card titles). Lead opens a page. Display is a rare,
-   full-drama moment. Headers = Fraunces + saturated rust; descriptions =
+   full-drama moment. Headers = condensed display + saturated rust; descriptions =
    mono + desaturated. Hierarchy = size + color together. */
 .lead {
-  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  font-size: clamp(1.4rem, 2.6vw, 2.5rem);
-  line-height: 1.15;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.05;
+  font-weight: 100;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 .display-hero {
-  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  font-size: clamp(2.75rem, 8vw, 7rem);
-  line-height: 0.96;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 1;
+  font-weight: 100;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 /* Small edge label, sits in the margin like a magazine caption. */
@@ -155,6 +159,19 @@
   letter-spacing: 0.01em;
 }
 
+.home-selected-works .card-info {
+  min-width: 0;
+}
+
+.home-selected-works .card-info > .display-title {
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  line-height: 1.1;
+  font-weight: 100;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
 /* One shared size for descriptions and all subordinate labels
    (roles, dates, tools, hero overlay). */
 .subtext {
@@ -181,7 +198,7 @@
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -194,7 +211,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
   font-weight: 400;
   letter-spacing: 0;
   cursor: crosshair;
@@ -299,10 +316,6 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
 .home-tagline-role .dot-digits {
   flex: none;
 }
-.home-tagline-glyph {
-  display: inline-flex;
-  position: relative;
-}
 .home-tagline-dots .dot-on {
   fill: currentColor;
 }
@@ -397,8 +410,12 @@ html.route-work-detail .lead {
 }
 
 .ojuju {
-  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  font-weight: 400;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.035em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 h1 {

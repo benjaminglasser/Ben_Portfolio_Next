@@ -37,11 +37,13 @@ const GLYPHS = {
   T: ["11111", "00100", "00100", "00100", "00100", "00100", "00100"],
   U: ["10001", "10001", "10001", "10001", "10001", "10001", "01110"],
   W: ["10001", "10001", "10001", "10101", "10101", "11011", "10001"],
+  V: ["10001", "10001", "10001", "10001", "10001", "01010", "00100"],
+  X: ["10001", "10001", "01010", "00100", "01010", "10001", "10001"],
   Y: ["10001", "10001", "01010", "00100", "00100", "00100", "00100"],
 };
 
 /**
- * Renders a short string as dot-matrix digits.
+ * Renders a short string as dot-matrix letters and digits.
  * `pitch` is the distance between dot centers in px.
  * Unlit dots are drawn faintly (ghost) so it reads like a real display.
  * `blinkColon` lets CSS pulse any ":" for a live clock tick.

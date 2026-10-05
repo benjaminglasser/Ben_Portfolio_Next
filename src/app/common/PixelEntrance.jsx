@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getHomeRevealSpeed } from "./homeRevealTiming";
 
-export default function PixelEntrance({ active, delay = 0, duration = 1800, children, className = "" }) {
+export default function PixelEntrance({ active, delay = 0, duration = 1800, sharedSpeed = false, children, className = "" }) {
   const canvasRef = useRef(null);
   const wrapperRef = useRef(null);
   const [complete, setComplete] = useState(false);
@@ -53,10 +54,12 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, chil
           }
         }
         cells.sort((a, b) => a.threshold - b.threshold);
+        const revealDuration = sharedSpeed ? canvas.height / (0.92 * getHomeRevealSpeed()) : duration;
+        canvas.dataset.duration = String(revealDuration);
         const start = performance.now() + delay;
         let next = 0;
         const tick = (now) => {
-          const progress = Math.max(0, Math.min(1, (now - start) / duration));
+          const progress = Math.max(0, Math.min(1, (now - start) / revealDuration));
           if (progress > 0) started = true;
           while (next < cells.length && cells[next].threshold <= progress) {
             const { x, y } = cells[next++];
@@ -73,7 +76,7 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, chil
       observer.disconnect();
       motion.removeEventListener("change", onMotion);
     };
-  }, [active, delay, duration]);
+  }, [active, delay, duration, sharedSpeed]);
 
   return (
     <div ref={wrapperRef} className={`relative ${className}`} inert={!complete ? "" : undefined}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { getHomeRevealSpeed } from "./homeRevealTiming";
 
 const VERTEX = `
   attribute vec2 aPosition;
@@ -176,6 +177,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
     let lastTime = null;
     let entrance = 0;
     let entranceStarted = false;
+    let entranceDuration = 1600;
     let completed = false;
     let width = 1;
     let height = 1;
@@ -204,7 +206,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
       if (!visible || failed) return;
       const delta = lastTime === null ? 0 : now - lastTime;
       lastTime = now;
-      if (entranceStarted) entrance = Math.min(1, entrance + delta / 1600);
+      if (entranceStarted) entrance = Math.min(1, entrance + delta / entranceDuration);
       ripples.forEach((ripple) => { ripple.age += delta; });
       ripples = ripples.filter((ripple) => ripple.age < ripple.duration);
       if (!ripples.length && entrance === 1) {
@@ -258,6 +260,8 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEn
     const enter = () => {
       if (entranceStarted) return;
       entranceStarted = true;
+      entranceDuration = Math.max(1, canvas.getBoundingClientRect().height) / (0.86 * 0.92 * getHomeRevealSpeed());
+      canvas.dataset.duration = String(entranceDuration);
       if (pixelEntranceRef.current && !motion.matches && (!visibilityKnown || visible)) {
         entrance = 0;
         canvas.style.backgroundColor = "#000000";

@@ -280,6 +280,70 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
 .home-hero-copy[aria-hidden="true"] {
   opacity: 0;
 }
+.ds-a .home-tagline.edge-label::before {
+  content: none;
+}
+.home-tagline-visual {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.home-tagline-role {
+  display: inline-flex;
+  width: 11ch;
+  height: 0.85em;
+  justify-content: flex-end;
+  align-items: center;
+  vertical-align: middle;
+}
+.home-tagline-role .dot-digits {
+  flex: none;
+}
+.home-tagline-glyph {
+  display: inline-flex;
+  position: relative;
+}
+.home-tagline-dots .dot-on {
+  fill: currentColor;
+}
+.home-tagline-dots.is-dissolving .dot-on {
+  animation: home-tagline-dot-dissolve 100ms steps(1, end) both;
+  animation-delay: calc(var(--c) * 10ms);
+}
+@keyframes home-tagline-dot-dissolve {
+  0%,
+  45% {
+    opacity: 1;
+    fill: currentColor;
+  }
+  55% {
+    opacity: 1;
+    fill: var(--rust);
+  }
+  100% {
+    opacity: 0;
+    fill: var(--rust);
+  }
+}
+.home-tagline-dots.is-forming .dot-on {
+  animation: home-tagline-dot-form 100ms steps(1, end) both;
+  animation-delay: calc(var(--c) * 10ms);
+}
+@keyframes home-tagline-dot-form {
+  from {
+    opacity: 0;
+    fill: var(--rust);
+  }
+  to {
+    opacity: 1;
+    fill: currentColor;
+  }
+}
+.home-tagline-fixed {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.75ch;
+}
 .home-sequence[data-home-wave="ready"] .home-selected-works,
 .home-sequence[data-home-wave="ready"] .home-hero-copy {
   transition: none;
@@ -292,6 +356,10 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home-tagline-dots .dot-on {
+    animation: none !important;
+    transition: none !important;
+  }
   .home-loading-screen,
   .home-hero-content,
   .home-selected-works,

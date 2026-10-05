@@ -45,10 +45,10 @@ const FRAGMENT = `
       float progress = ripple.z;
       if (progress < 0.0 || progress >= 1.0) continue;
       vec2 origin = vec2(ripple.x, 1.0 - ripple.y) * uResolution;
-      float spread = (28.0 + 82.0 * progress) * (uCell / 4.5);
+      float spread = (48.0 + 200.0 * progress) * (uCell / 4.5);
       float falloff = 1.0 - smoothstep(spread * 0.25, spread, distance(center, origin));
       float survival = step(progress * 0.85, seed);
-      opacity = max(opacity, 0.14 * falloff * survival * (1.0 - progress));
+      opacity = max(opacity, 0.6 * falloff * survival * (1.0 - progress));
     }
     if (opacity <= 0.0) discard;
 
@@ -58,9 +58,9 @@ const FRAGMENT = `
     vec3 source = texture2D(uVideo, uv).rgb;
     float luma = dot(source, vec3(0.299, 0.587, 0.114));
     float shade = clamp((1.0 - luma - 0.15) / 0.8, 0.0, 1.0);
-    float radius = (0.1 + 0.45 * shade * shade * (3.0 - 2.0 * shade)) * uCell;
+    float radius = (0.2 + 0.35 * shade * shade * (3.0 - 2.0 * shade)) * uCell;
     float ink = 1.0 - smoothstep(radius - 0.75, radius + 0.75, distance(gl_FragCoord.xy, center));
-    gl_FragColor = vec4(vec3(0.7), opacity * ink);
+    gl_FragColor = vec4(vec3(0.9), opacity * ink);
   }
 `;
 
@@ -232,7 +232,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
       if (failed || motion.matches) return;
       ripples.push({
         x, y, age: 0,
-        duration: 1000,
+        duration: 1400,
       });
       ripples = ripples.slice(-4);
       if (lastTime === null && visible) lastTime = performance.now();

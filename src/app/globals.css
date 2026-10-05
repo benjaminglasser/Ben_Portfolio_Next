@@ -230,6 +230,16 @@ html:has(.home-sequence) .site-navbar {
   transition: opacity 800ms ease;
 }
 
+.page-transition {
+  /* A transform here would make BMW's fixed background scroll with the page. */
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    opacity: 1 !important;
+  }
+}
+
 .home-loading-screen {
   color: var(--rust);
   opacity: 1;
@@ -267,11 +277,29 @@ html:has(.home-sequence[data-home-returning="true"]) .site-navbar {
   transition: none;
 }
 
+.home-hero-copy[aria-hidden="true"] {
+  opacity: 0;
+}
+.home-sequence[data-home-returning="true"][data-home-wave="ready"] .home-selected-works,
+.home-sequence[data-home-returning="true"][data-home-wave="ready"] .home-hero-copy {
+  transition: opacity 500ms ease;
+}
+.home-sequence[data-home-returning="true"][data-home-wave="resolving"] .home-selected-works,
+.home-sequence[data-home-returning="true"][data-home-wave="resolving"] .home-hero-copy {
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-loading-screen,
   .home-hero-content,
   .home-selected-works,
   html:has(.home-sequence) .site-navbar {
+    transition: none;
+  }
+  .home-sequence[data-home-returning="true"]:not([data-home-wave="bypass"]) .home-selected-works,
+  .home-sequence[data-home-returning="true"]:not([data-home-wave="bypass"]) .home-hero-copy {
     transition: none;
   }
 }

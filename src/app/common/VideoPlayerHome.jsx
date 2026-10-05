@@ -7,7 +7,7 @@ import { useDesignVersion } from "./design/DesignVersion";
 import DotDigits from "./design/DotDigits";
 import HeroHalftone from "./HeroHalftone";
 
-const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageReady = true, loadingExpired = false, showLoader = true, onEntranceComplete }) => {
+const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageReady = true, loadingExpired = false, showLoader = true, onEntranceComplete, pixelEntrance = false, entranceReady = true }) => {
   const pathname = usePathname();
   const isBMWPage = pathname?.includes("/work-detail/bmw");
   const isPointARPage = pathname?.includes("/work-detail/pointAR");
@@ -163,6 +163,10 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
     }
   }, [loading, onLoadingChange]);
 
+  useEffect(() => {
+    if (error) onEntranceComplete?.();
+  }, [error, onEntranceComplete]);
+
   const videoClassName = "object-cover w-full h-[500px] md:h-[70vh] absolute";
   const fadeStyle = {
     opacity: showVideo ? 1 : 0,
@@ -228,7 +232,8 @@ const VideoPlayerHome = ({ video1, className, centered, onLoadingChange, pageRea
             <HeroHalftone
               videoRef={video1Ref}
               rippleRef={rippleRef}
-              loaded={showVideo}
+              loaded={showVideo && entranceReady}
+              pixelEntrance={pixelEntrance}
               onEntranceComplete={onEntranceComplete}
             />
           </>

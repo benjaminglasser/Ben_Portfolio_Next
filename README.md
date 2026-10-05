@@ -34,6 +34,10 @@ BMW thumbnails add local contrast and retain more highlight detail in the halfto
 
 The BMW detail page uses its floating-car video as a fixed, full-screen background behind the content, not a hero section. Only the matching mobile or desktop video is loaded.
 
+On client navigation, a changed page background fades for 800 milliseconds before the new content fades in for 500 milliseconds. Routes with the same background start their content fade immediately. Home keeps its first-visit loading sequence and skips the extra content fade on return, waiting only for a changed background. Reduced motion makes both transitions instant.
+
+On return navigation to Home, the wave resolves from a pixelated dot field over one second after the background transition, then the tagline and Selected works fade in together over 500 milliseconds. First visits and direct refreshes keep their existing loading behavior. Reduced motion shows the wave, tagline, and works immediately. If you scroll the wave offscreen, or the video or effect fails, the tagline and works still become available.
+
 Local video players reserve a 16:9 loading area until the video's dimensions are known. The loader fills that area until the first frame is ready. Click-to-play videos can show a loaded poster instead, with the play control still available.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.

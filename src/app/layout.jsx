@@ -6,6 +6,7 @@ import Loader from "./common/Loader";
 import GlobalCursor from "./common/GlobalCursor";
 import ClientLayout from "./ClientLayout";
 import BackgroundTransition from "./common/BackgroundTransition";
+import PageTransition from "./common/PageTransition";
 import { Inter, Lato, Fraunces, Courier_Prime } from "next/font/google";
 
 const inter = Inter({
@@ -66,7 +67,7 @@ export default function RootLayout({ children }) {
           <GlobalCursor />
           <Suspense fallback={<Loader />}>
             <Navbar />
-            {children}
+            <PageTransition>{children}</PageTransition>
           </Suspense>
         </ClientLayout>
         </body>

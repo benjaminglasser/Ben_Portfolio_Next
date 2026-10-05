@@ -64,10 +64,12 @@ const FRAGMENT = `
   }
 `;
 
-const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
+const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete, pixelEntrance = false }) => {
   const canvasRef = useRef(null);
   const controlsRef = useRef(null);
   const loadedRef = useRef(loaded);
+  const pixelEntranceRef = useRef(pixelEntrance);
+  pixelEntranceRef.current = pixelEntrance;
   const completionRef = useRef(onEntranceComplete);
   completionRef.current = onEntranceComplete;
 
@@ -79,11 +81,14 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const video = videoRef.current;
+    controlsRef.current = { enter: () => completionRef.current?.() };
+    const cleanupSkipped = () => { controlsRef.current = null; };
     const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false });
     if (!gl || !video) {
       console.warn("Hero halftone skipped: video or WebGL rendering is unavailable.");
       canvas.style.visibility = "hidden";
-      return;
+      completionRef.current?.();
+      return cleanupSkipped;
     }
 
     const shaders = [];
@@ -107,14 +112,16 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
     if (!compile(gl.VERTEX_SHADER, VERTEX) || !compile(gl.FRAGMENT_SHADER, FRAGMENT)) {
       canvas.style.visibility = "hidden";
       deleteProgram();
-      return;
+      completionRef.current?.();
+      return cleanupSkipped;
     }
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
       console.warn("Hero halftone shader could not link:", gl.getProgramInfoLog(program));
       deleteProgram();
       canvas.style.visibility = "hidden";
-      return;
+      completionRef.current?.();
+      return cleanupSkipped;
     }
     gl.useProgram(program);
     const buffer = gl.createBuffer();
@@ -141,6 +148,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let visible = false;
+    let visibilityKnown = false;
     let failed = false;
     let ripples = [];
     let lastTime = null;
@@ -187,6 +195,7 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
           clear();
           canvas.style.visibility = "hidden";
           console.warn("Hero halftone skipped: the video frame could not be sampled.", error);
+          finishEntrance();
           return;
         }
         gl.uniform2f(uniforms.uResolution, width, height);
@@ -217,6 +226,13 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
     const enter = () => {
       if (entranceStarted) return;
       entranceStarted = true;
+      if (pixelEntranceRef.current && !motion.matches && (!visibilityKnown || visible)) {
+        entrance = 0;
+        canvas.style.backgroundColor = "transparent";
+        canvas.dataset.entrance = "resolving";
+        schedule();
+        return;
+      }
       entrance = 1;
       canvas.style.backgroundColor = "transparent";
       canvas.dataset.entrance = "complete";
@@ -253,15 +269,24 @@ const HeroHalftone = ({ videoRef, rippleRef, loaded, onEntranceComplete }) => {
       cancelAnimationFrame(frame);
       canvas.style.visibility = "hidden";
       console.warn("Hero halftone skipped: the WebGL context was lost.");
+      finishEntrance();
     };
     rippleRef.current = { send };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      visibilityKnown = true;
       lastTime = null;
       if (visible) schedule();
       else {
         cancelAnimationFrame(frame);
         frame = 0;
+        if (entranceStarted && entrance < 1) {
+          entrance = 1;
+          clear();
+          canvas.style.backgroundColor = "transparent";
+          canvas.dataset.entrance = "complete";
+          finishEntrance();
+        }
       }
     });
     observer.observe(canvas);

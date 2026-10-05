@@ -7,10 +7,12 @@ import HomePageExtraInfo from "@/app/common/HomePageExtraInfo";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import VideoPlayerHome from "@/app/common/VideoPlayerHome.jsx";
 import DotDigits from "@/app/common/design/DotDigits";
+import { usePageTransition } from "@/app/common/PageTransition";
 
 let homeLoadedOnce = false;
 
 export default function Home() {
+  const routeTransition = usePageTransition();
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [assetsReady, setAssetsReady] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
@@ -18,6 +20,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
   const [revealStarted, setRevealStarted] = useState(false);
   const [returningHome, setReturningHome] = useState(false);
+  const [heroResolved, setHeroResolved] = useState(false);
   const pageRef = useRef(null);
   const readyRef = useRef(false);
   const progressTargetRef = useRef(0);
@@ -97,6 +100,8 @@ export default function Home() {
   }, [returningHome]);
 
   const pageReady = returningHome || timedOut || (assetsReady && !isVideoLoading);
+  const returnEntrance = returningHome && routeTransition.navigating;
+  const selectedWorksReady = revealStarted && (!returnEntrance || heroResolved);
 
   useEffect(() => {
     readyRef.current = pageReady;
@@ -125,7 +130,7 @@ export default function Home() {
   }, [returningHome, revealStarted]);
 
   return (
-    <div ref={pageRef} className="relative home-sequence" data-home-stage={revealStarted ? "ready" : "loading"} data-home-returning={returningHome} aria-busy={!revealStarted}>
+    <div ref={pageRef} className="relative home-sequence" data-home-stage={revealStarted ? "ready" : "loading"} data-home-returning={returningHome} data-home-wave={returnEntrance ? heroResolved ? "ready" : "resolving" : "bypass"} aria-busy={!revealStarted}>
       {!fadeComplete && (
         <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center text-white desc-mono home-loading-screen" aria-hidden={revealStarted}>
           <div className="flex flex-col items-center gap-4" role="progressbar" aria-label="Loading home page" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
@@ -141,12 +146,15 @@ export default function Home() {
           pageReady={revealStarted}
           loadingExpired={timedOut}
           showLoader={false}
+          pixelEntrance={returnEntrance}
+          entranceReady={routeTransition.ready}
+          onEntranceComplete={returnEntrance ? () => setHeroResolved(true) : undefined}
         />
         {/* Tagline, bottom-right of the hero */}
-        <HomePageExtraInfo isLoading={!revealStarted} unifiedEntrance />
+        <HomePageExtraInfo isLoading={!selectedWorksReady} unifiedEntrance />
       </div>
 
-      <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!revealStarted} inert={!revealStarted ? "" : undefined}>
+      <div className="mt-16 md:mt-24 home-selected-works" aria-hidden={!selectedWorksReady} inert={!selectedWorksReady ? "" : undefined}>
         <WorkSection preloadThumbnails />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { createContext, useContext, useLayoutEffect, useRef, useState } from "re
 import { motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { BACKGROUND_DURATION, routeBackground } from "./routeAppearance";
+import { requestPointerHoverCheck } from "./pointerHover";
 
 const PageTransitionContext = createContext({ navigating: false, ready: true });
 export const usePageTransition = () => useContext(PageTransitionContext);
@@ -29,7 +30,10 @@ const PageEntrance = ({ children, pathname, previousPath }) => {
         ease: "easeInOut",
       }}
       inert={!complete && !reducedMotion ? "" : undefined}
-      onAnimationComplete={() => setComplete(true)}
+      onAnimationComplete={() => {
+        setComplete(true);
+        requestPointerHoverCheck();
+      }}
     >
       <PageTransitionContext.Provider value={{ navigating: entrance.navigating, ready: complete || !!reducedMotion }}>
         {children}

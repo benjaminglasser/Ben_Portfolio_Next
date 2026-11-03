@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { getHomeRevealSpeed } from "./homeRevealTiming";
+import { requestPointerHoverCheck } from "./pointerHover";
 
 export default function PixelEntrance({ active, delay = 0, duration = 1800, sharedSpeed = false, children, className = "", onComplete }) {
   const canvasRef = useRef(null);
@@ -58,6 +59,9 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, shar
       if (motion.matches && active) finish();
     };
     motion.addEventListener("change", onMotion);
+    // Content becomes interactive as soon as its entrance starts, so pick up a cursor
+    // already resting on it instead of waiting for the next pointer move.
+    if (active) requestPointerHoverCheck();
     if (active) {
       if (motion.matches) finish();
       else {
@@ -95,7 +99,7 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, shar
   }, [active, delay, duration, sharedSpeed]);
 
   return (
-    <div ref={wrapperRef} className={`relative ${className}`} inert={!complete ? "" : undefined}>
+    <div ref={wrapperRef} className={`relative ${className}`} inert={!active && !complete ? "" : undefined}>
       <div style={{ visibility: active || complete ? "visible" : "hidden" }}>{children}</div>
       {!complete && <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 z-20 h-full w-full pointer-events-none" style={{ background: active ? undefined : "#000" }} />}
     </div>

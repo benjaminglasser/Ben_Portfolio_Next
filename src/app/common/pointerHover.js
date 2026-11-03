@@ -25,6 +25,15 @@ const handleMove = (event) => {
   pointer = { x: event.clientX, y: event.clientY };
 };
 
+// Browsers fire over events after load or layout changes without any movement, so
+// they seed the position of a cursor that was already resting on the page.
+const handleOver = (event) => {
+  if (event.pointerType === "touch" || (!event.clientX && !event.clientY)) return;
+  const unknown = !pointer;
+  pointer = { x: event.clientX, y: event.clientY };
+  if (unknown) requestCheck();
+};
+
 const handleLeave = (event) => {
   if (event.relatedTarget) return;
   pointer = null;
@@ -36,6 +45,8 @@ const listen = () => {
   listening = true;
   window.addEventListener("pointermove", handleMove, { passive: true });
   window.addEventListener("pointerdown", handleMove, { passive: true });
+  document.addEventListener("pointerover", handleOver, { passive: true });
+  document.addEventListener("mouseover", handleOver, { passive: true });
   document.addEventListener("pointerout", handleLeave, { passive: true });
   window.addEventListener("scroll", requestCheck, { passive: true, capture: true });
   window.addEventListener("resize", requestCheck, { passive: true });
@@ -48,6 +59,8 @@ const unlisten = () => {
   frame = 0;
   window.removeEventListener("pointermove", handleMove);
   window.removeEventListener("pointerdown", handleMove);
+  document.removeEventListener("pointerover", handleOver);
+  document.removeEventListener("mouseover", handleOver);
   document.removeEventListener("pointerout", handleLeave);
   window.removeEventListener("scroll", requestCheck, { capture: true });
   window.removeEventListener("resize", requestCheck);

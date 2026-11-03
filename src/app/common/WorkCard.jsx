@@ -94,7 +94,15 @@ const WorkCard = ({
   useEffect(() => subscribePointerHover((target, pointer) => {
     const card = cardRef.current;
     if (!card) return;
-    const inside = Boolean(pointer && target && card.contains(target));
+    if (!pointer) {
+      // Position unknown (fresh load, no movement yet): trust the browser's hover state.
+      if (card.matches(":hover") && !hoveredRef.current) {
+        const rect = frameRef.current.getBoundingClientRect();
+        startHoverRef.current(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      } else if (!card.matches(":hover") && hoveredRef.current) endHover();
+      return;
+    }
+    const inside = Boolean(target && card.contains(target));
     if (inside && !hoveredRef.current) startHoverRef.current(pointer.x, pointer.y);
     else if (!inside && hoveredRef.current) endHover();
   }), []);

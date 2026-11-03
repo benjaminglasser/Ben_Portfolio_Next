@@ -115,9 +115,10 @@ const Work = () => {
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for voyager record label",
-      thumbnail: "/Media/Voyager/satelliteGlitch.gif",
+      thumbnail: "/Media/Voyager/voyagerText.gif",
       tone: "keep",
-      levels: { black: 0.08, white: 0.8, steepness: 1.4 },
+      levels: { black: 0.025, white: 0.22, steepness: 1.8 },
+      cleanSilhouette: true,
       path: "work-detail/voyager",
       tools: [
         "HTML",
@@ -194,6 +195,7 @@ const Work = () => {
         <Grid key={idx} xs={12} md={6}>
           <Section>
             <WorkCard
+              number={String(idx + 1).padStart(2, "0")}
               role={content?.role}
               path={content?.path}
               time={content?.time}
@@ -204,6 +206,8 @@ const Work = () => {
               halftoneDetail={content?.halftoneDetail}
               tone={content?.tone}
               levels={content?.levels}
+              simplifyPattern={content?.simplifyPattern}
+              cleanSilhouette={content?.cleanSilhouette}
               extendedDescription={content?.extendedDescription}
               workDetail={content?.workDetail}
               externalLink={content?.externalLink}

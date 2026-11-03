@@ -3,7 +3,6 @@ import "./assets/fonts/index.css";
 import Navbar from "./common/navbar";
 import { Suspense } from "react";
 import Loader from "./common/Loader";
-import GlobalCursor from "./common/GlobalCursor";
 import GlobalClickRipple from "./common/GlobalClickRipple";
 import ClientLayout from "./ClientLayout";
 import BackgroundTransition from "./common/BackgroundTransition";
@@ -64,7 +63,6 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} ${lato.variable} ${display.variable} ${courierPrime.variable} px-5 pt-3 pb-36 md:px-10 md:pb-10 relative`}>
         <ClientLayout>
           <BackgroundTransition />
-          <GlobalCursor />
           <GlobalClickRipple />
           <Suspense fallback={<Loader />}>
             <Navbar />

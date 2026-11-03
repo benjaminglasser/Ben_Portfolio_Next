@@ -24,7 +24,11 @@ Verified GIF conversions are listed in `src/app/common/gifMedia.json`. The origi
 
 The same manifest includes a forward-and-backward loop of Adobe's animated WebP so its halftone thumbnail also animates before hover. The original WebP remains the fallback.
 
-Voyager's Home and Work thumbnail uses the supplied `TDMovieOut.7.mov` satellite animation, with a 480-pixel, 24-frame-per-second MP4 (about 1.6 MB), a poster, and a 320-pixel, 12-frame-per-second GIF fallback (about 7 MB). The moving halftone keeps the source tones with levels of 0.08 to 0.8. The planet remains visible in both the cover and full-color reveal; isolating the moving satellite requires a satellite-only render.
+Work thumbnails use a four-pixel tonal glyph grid: dots, outlined squares, line textures, crosshatching, and solid highlights. Shapes follow brightness while retaining some original shading to preserve detail in clipped tones. The black background, animated media, and circular full-color hover reveal stay unchanged; the hero retains its dot treatment.
+
+Home thumbnails 04 (DTLA Marriott) and 07 (Beyond The Infinite) use a quieter four-shape palette, lightly smoothed sampling, and stronger project-specific contrast. This suppresses competing texture without changing their full-color source media.
+
+Voyager's Home and Work thumbnail uses the supplied `voyagerText.mov` lettering animation at twice the original speed, producing an approximately eight-second loop. The 720-pixel, 24-frame-per-second MP4 is about 481 KB, with an 11 KB poster and a 480-pixel, 12-frame-per-second GIF fallback of about 899 KB. Its cover uses tightly packed two-pixel dots, one-cell stroke expansion, and levels of 0.025 to 0.22 to brighten fine lettering without mixed glyph textures. Hover reveals the unchanged green lettering. Earlier satellite assets remain available but are not used by the work cards.
 
 Shared media components load videos within 200 pixels of the viewport and pause playback offscreen. Desktop Home thumbnails preload for the first-page loader, while return visits use lazy loading; the home wave remains eager. On screens narrower than 768 pixels, work cards load only near the viewport and show a screen-sized still preview with halftone while their animation loads. The mobile Home loader waits for the wave and fonts, not offscreen thumbnails. Desktop cards and full-quality work-detail media stay unchanged. Public images and media use a one-day browser cache with background revalidation.
 

@@ -106,6 +106,31 @@ export const PLAY_FEATURES = [
       "Animated posters for events and shows, including a rave for Section Studio at François Ghebaly and a poster animation for The Canary Test.",
     meta: ["2021–2023"],
   },
+  {
+    id: "planstrument",
+    title: "Planstrument",
+    kind: "Musical instrument",
+    category: "object",
+    rows: [
+      [
+        {
+          embed: "https://www.youtube.com/embed/QPqFVQ77BWg",
+          alt: "Playing Planstrument with plants, fruit, and touch controls",
+          ratio: 16 / 9,
+        },
+      ],
+      [
+        {
+          embed: "https://www.youtube.com/embed/MfHfZkrkM6s",
+          alt: "Planstrument final performance",
+          ratio: 16 / 9,
+        },
+      ],
+    ],
+    description:
+      "A custom plant-based musical instrument that turns touch into sound and animation. Plants, fruit, and other water- or metal-based objects act as touch sensors, triggering notes in a C major scale and visuals in Processing. A slider controls the octave, while knobs adjust how each note begins and fades.",
+    meta: ["Fall 2021", "Arduino, MPR121 capacitive touch sensor, Processing"],
+  },
 ];
 
 // Experiments: quick studies shown in the mosaic. Add a `category` to

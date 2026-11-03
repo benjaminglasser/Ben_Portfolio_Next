@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "../common/MediaImage";
 import LazyVideo from "../common/LazyVideo";
+import VideoPlayerExternal from "../common/VideoPlayerExternal";
 import ImageWithLoader from "../common/ImageWithLoader";
 import DotDigits from "../common/design/DotDigits";
 import {
@@ -151,7 +152,13 @@ const FeatureSection = ({ feature, labelNo }) => {
                   className="feature-bento__cell"
                   style={{ flexGrow: img.ratio, aspectRatio: img.ratio }}
                 >
-                  {img.video ? (
+                  {img.embed ? (
+                    <VideoPlayerExternal
+                      src={img.embed}
+                      className="h-full"
+                      poster={img.poster}
+                    />
+                  ) : img.video ? (
                     <LazyVideo
                       src={img.video}
                       aria-label={img.alt}

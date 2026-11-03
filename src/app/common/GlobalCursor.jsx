@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const GlobalCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const [shouldBounce, setShouldBounce] = useState(false);
@@ -12,6 +11,8 @@ const GlobalCursor = () => {
   const [isClicking, setIsClicking] = useState(false);
   const [isInviting, setIsInviting] = useState(false);
   const wasVisibleRef = useRef(true);
+  const positionRef = useRef({ x: 0, y: 0 });
+  const cursorRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
   const mountTimeoutRef = useRef(null);
@@ -156,48 +157,11 @@ const GlobalCursor = () => {
       // Add global style to hide all cursor types
       const style = document.createElement('style');
       style.innerHTML = `
-        html, body {
+        html, body, *, *::before, *::after {
           cursor: none !important;
         }
-        * {
-          cursor: none !important;
-        }
-        *:active {
-          cursor: none !important;
-        }
-        *:focus {
-          cursor: none !important;
+        *:focus, *:focus-visible {
           outline: none !important;
-        }
-        *:hover {
-          cursor: none !important;
-        }
-        *:focus-visible {
-          outline: none !important;
-        }
-        *:focus-within {
-          cursor: none !important;
-        }
-        *:active * {
-          cursor: none !important;
-        }
-        *:focus * {
-          cursor: none !important;
-        }
-        *:hover * {
-          cursor: none !important;
-        }
-        a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]) {
-          cursor: none !important;
-        }
-        a:active, button:active, [role="button"]:active, input:active, select:active, textarea:active, [tabindex]:not([tabindex="-1"]):active {
-          cursor: none !important;
-        }
-        a:focus, button:focus, [role="button"]:focus, input:focus, select:focus, textarea:focus, [tabindex]:not([tabindex="-1"]):focus {
-          cursor: none !important;
-        }
-        a:hover, button:hover, [role="button"]:hover, input:hover, select:hover, textarea:hover, [tabindex]:not([tabindex="-1"]):hover {
-          cursor: none !important;
         }
       `;
       document.head.appendChild(style);
@@ -214,25 +178,26 @@ const GlobalCursor = () => {
         attributeFilter: ['style']
       });
 
-      const handleMouseMove = (e) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-        
-        // Get the element under the cursor
-        const element = document.elementFromPoint(e.clientX, e.clientY);
-        
-        // Check if the element is interactive
-        const isInteractive = element?.matches('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3') ||
-                             element?.closest('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3');
-        
-        // Additional check for navbar elements
-        const isNavbarElement = element?.closest('.navbar') && 
-                              (element?.matches('a, h3') || 
-                               element?.closest('a, h3'));
-        
+      let moveFrame = 0;
+      let latestEvent = null;
+      const updateHover = () => {
+        moveFrame = 0;
+        const e = latestEvent;
+        const node = cursorRef.current;
+        if (node) node.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+
+        // The cursor ignores pointer events, so the event target is the element under it.
+        const element = e.target instanceof Element ? e.target : null;
+        const isInteractive = element?.closest('a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"]), [class*="cursor-pointer"], [class*="hover:text-pink"], [class*="navbar"] a, [class*="navbar"] h3');
+        const isNavbarElement = element?.closest('.navbar') && element?.closest('a, h3');
         const isPlain = element?.closest('[data-cursor="plain"]');
         setIsInviting(!!element?.closest('[data-cursor-invite]'));
-
-        setIsHovering(!isPlain && (isInteractive || isNavbarElement));
+        setIsHovering(!isPlain && !!(isInteractive || isNavbarElement));
+      };
+      const handleMouseMove = (e) => {
+        latestEvent = e;
+        positionRef.current = { x: e.clientX, y: e.clientY };
+        if (!moveFrame) moveFrame = requestAnimationFrame(updateHover);
       };
 
       const handleMouseDown = () => {
@@ -264,6 +229,7 @@ const GlobalCursor = () => {
         style.remove();
         // Disconnect the observer
         observer.disconnect();
+        cancelAnimationFrame(moveFrame);
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
@@ -282,12 +248,14 @@ const GlobalCursor = () => {
 
   return (
     <div
-      className="fixed pointer-events-none"
+      ref={(node) => {
+        cursorRef.current = node;
+        if (node) node.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%)`;
+      }}
+      className="fixed pointer-events-none left-0 top-0"
       style={{
-        left: mousePosition.x,
-        top: mousePosition.y,
-        transform: 'translate(-50%, -50%)',
         zIndex: 9999,
+        willChange: 'transform',
       }}
     >
       <div

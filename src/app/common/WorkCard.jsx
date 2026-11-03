@@ -19,6 +19,8 @@ const WorkCard = ({
   halftoneDetail = 0,
   tone = "auto",
   levels,
+  simplifyPattern = false,
+  cleanSilhouette = false,
   animateThumbnail = true,
   prepareThumbnail = true,
   preload = false,
@@ -105,6 +107,8 @@ const WorkCard = ({
                 key={typeof thumbnail === "string" ? thumbnail : thumbnail?.src}
                 tone={tone}
                 levels={levels}
+                simplifyPattern={simplifyPattern}
+                cleanSilhouette={cleanSilhouette}
                 liveEnabled={animateThumbnail}
                 prepareEnabled={prepareThumbnail}
                 detailEnhancement={halftoneDetail}

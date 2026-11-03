@@ -56,7 +56,8 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       time: "Fall 2025",
       title: "DTLA Marriott Artist Spotlight",
       tone: "keep",
-      levels: { black: 0.08, white: 0.9, steepness: 1 },
+      levels: { black: 0.12, white: 0.85, steepness: 1.5 },
+      simplifyPattern: true,
       description: "Public art animation on large scale display in Downtown LA",
       thumbnail: "/images/dtlaMarriott/MarriotThumb.gif",
       path: "work-detail/dtlaMarriott",
@@ -147,6 +148,8 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       role: "Virtual Production, In Camera VFX",
       time: "Spring 2023",
       title: "Beyond The Infinite",
+      levels: { black: 0.08, white: 0.8, steepness: 1.5 },
+      simplifyPattern: true,
       description: "A Virtual Production Odyssey",
       thumbnail: "/Media/Odyssey/odysseyThumb.gif",
       path: "work-detail/odyssey",
@@ -174,9 +177,10 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       title: "Voyager",
       description:
         "Interactive gamefied website, branding, and album art for the Voyager record label",
-      thumbnail: "/Media/Voyager/satelliteGlitch.gif",
+      thumbnail: "/Media/Voyager/voyagerText.gif",
       tone: "keep",
-      levels: { black: 0.08, white: 0.8, steepness: 1.4 },
+      levels: { black: 0.025, white: 0.22, steepness: 1.8 },
+      cleanSilhouette: true,
       path: "work-detail/voyager",
       tools: [
         "HTML",
@@ -281,6 +285,8 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
                 halftoneDetail={item.halftoneDetail}
                 tone={item.tone}
                 levels={item.levels}
+                simplifyPattern={item.simplifyPattern}
+                cleanSilhouette={item.cleanSilhouette}
                 preload={mobile === false && preloadThumbnails}
                 animateThumbnail={animateThumbnails}
                 prepareThumbnail={prepareThumbnails}

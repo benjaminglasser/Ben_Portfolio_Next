@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { cancelHalftoneUpdate, requestHalftoneUpdate } from "./halftoneScheduler";
 
-const CELL = 5;
 const DURATION = 650;
 const INK = "#e8e8e8";
 const EFFECT_INK = "#8e2115";
 
-const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
+const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
@@ -37,6 +37,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
   }, [revealed, origin]);
 
   useEffect(() => {
+    const CELL = cleanSilhouette ? 2 : 4;
     const canvas = canvasRef.current;
     const video = image.tagName === "VIDEO" ? image : videoRef.current;
     const sharedVideo = video === image;
@@ -45,7 +46,9 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
     const sampleContext = sample.getContext("2d", { willReadFrequently: true });
     const paper = document.createElement("canvas");
     const paperContext = paper.getContext("2d");
-    if (!context || !sampleContext || !paperContext) {
+    const glyphs = document.createElement("canvas");
+    const glyphContext = glyphs.getContext("2d");
+    if (!context || !sampleContext || !paperContext || !glyphContext) {
       console.warn("Thumbnail halftone skipped: canvas rendering is unavailable.");
       canvas.dataset.ready = "true";
       return;
@@ -54,7 +57,10 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let progress = progressRef.current;
-    let cells = [];
+    let cols = 0;
+    let rows = 0;
+    let seeds;
+    let radii;
     let remainingByCell;
     let width = 0;
     let height = 0;
@@ -63,9 +69,11 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
     let failed = false;
     let visible = false;
     let liveFrame = 0;
-    let lastSample = 0;
+    let liveTimer = 0;
+    let videoFrame = 0;
     let lastVideoTime = -1;
     let playPending = false;
+    const frameCallbacks = video && "requestVideoFrameCallback" in video;
     const playVideo = () => {
       if (!video || !video.paused || playPending || failed) return;
       playPending = true;
@@ -75,23 +83,36 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
       }).finally(() => { playPending = false; });
     };
 
-    const updateLive = (now) => {
-      liveFrame = 0;
-      if (!animated || !liveEnabledRef.current || !visible || failed || progress === 1) {
+    const liveActive = () => animated && liveEnabledRef.current && visible && !failed && progress < 1 && !motion.matches;
+    const stopLive = () => {
+      cancelHalftoneUpdate(sampleLive);
+      cancelAnimationFrame(liveFrame);
+      clearTimeout(liveTimer);
+      if (videoFrame) video.cancelVideoFrameCallback(videoFrame);
+      liveFrame = liveTimer = videoFrame = 0;
+    };
+    // Resample only when the video presents a new frame, through a shared per-frame budget.
+    const sampleLive = () => {
+      if (!liveActive()) return;
+      prepare(true);
+    };
+    const updateLive = () => {
+      liveFrame = liveTimer = videoFrame = 0;
+      if (!liveActive()) {
         if (!sharedVideo) video?.pause();
         return;
       }
-      if (now - lastSample >= 32 && (!video || video.currentTime !== lastVideoTime)) {
-        prepare(true);
-        lastSample = now;
+      if (!video || video.currentTime !== lastVideoTime) {
         lastVideoTime = video?.currentTime ?? -1;
+        requestHalftoneUpdate(sampleLive);
       }
-      if (!failed) liveFrame = requestAnimationFrame(updateLive);
+      if (frameCallbacks) videoFrame = video.requestVideoFrameCallback(updateLive);
+      else liveTimer = setTimeout(() => { liveFrame = requestAnimationFrame(updateLive); }, 32);
     };
     const startLive = () => {
-      if (animated && liveEnabledRef.current && visible && !failed && progress < 1 && !liveFrame) {
+      if (liveActive() && !liveFrame && !liveTimer && !videoFrame) {
         playVideo();
-        liveFrame = requestAnimationFrame(updateLive);
+        updateLive();
       }
     };
 
@@ -118,30 +139,28 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
         context.moveTo(ox + core, oy);
         context.arc(ox, oy, core, 0, Math.PI * 2);
       }
-      for (let index = 0; index < cells.length; index++) {
-        const cell = cells[index];
-        const distance = Math.hypot(cell.x + CELL / 2 - ox, cell.y + CELL / 2 - oy);
-        const noisyDistance = distance + (cell.seed - 0.5) * CELL * 5;
+      for (let index = 0; index < radii.length; index++) {
+        const cx = (index % cols) * CELL + CELL / 2;
+        const cy = Math.floor(index / cols) * CELL + CELL / 2;
+        const distance = Math.hypot(cx - ox, cy - oy);
+        const noisyDistance = distance + (seeds[index] - 0.5) * CELL * 5;
         const remaining = Math.max(0, Math.min(1, (noisyDistance - radius + band) / band));
         remainingByCell[index] = remaining;
         if (distance + CELL < core || remaining === 1) continue;
         const fade = remaining * remaining * (3 - 2 * remaining);
         const opening = CELL / Math.SQRT2 * (1 - fade);
-        const cx = cell.x + CELL / 2;
-        const cy = cell.y + CELL / 2;
         context.moveTo(cx + opening, cy);
         context.arc(cx, cy, opening, 0, Math.PI * 2);
       }
       context.fill();
       context.restore();
       context.fillStyle = EFFECT_INK;
-      for (let index = 0; index < cells.length; index++) {
-        const cell = cells[index];
+      for (let index = 0; index < radii.length; index++) {
         const remaining = remainingByCell[index];
         if (remaining === 0 || remaining === 1) continue;
         context.globalAlpha = 0.95 * Math.sin(remaining * Math.PI);
         context.beginPath();
-        context.arc(cell.x + CELL / 2, cell.y + CELL / 2, Math.max(cell.radius, CELL * 0.35) * remaining, 0, Math.PI * 2);
+        context.arc((index % cols) * CELL + CELL / 2, Math.floor(index / cols) * CELL + CELL / 2, Math.max(radii[index], CELL * 0.35) * remaining, 0, Math.PI * 2);
         context.fill();
       }
       context.globalAlpha = 1;
@@ -193,13 +212,56 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
         canvas.height = paper.height = Math.ceil(height * dpr);
         context.setTransform(dpr, 0, 0, dpr, 0, 0);
         paperContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const tile = Math.ceil(CELL * dpr);
+        glyphs.width = tile * 8;
+        glyphs.height = tile;
+        glyphContext.fillStyle = INK;
+        glyphContext.strokeStyle = INK;
+        for (let glyph = 0; glyph < 8; glyph++) {
+          glyphContext.save();
+          glyphContext.translate(glyph * tile, 0);
+          glyphContext.scale(tile / CELL, tile / CELL);
+          glyphContext.lineWidth = 0.45;
+          if (glyph < 2) {
+            glyphContext.beginPath();
+            glyphContext.arc(CELL / 2, CELL / 2, glyph ? 0.65 : 0.25, 0, Math.PI * 2);
+            glyphContext.fill();
+          } else if (glyph === 2) {
+            glyphContext.strokeRect(0.7, 0.7, CELL - 1.4, CELL - 1.4);
+          } else if (glyph < 6) {
+            glyphContext.beginPath();
+            for (let line = 0; line < 3; line++) {
+              const p = 0.65 + line * 1.35;
+              glyphContext.moveTo(glyph === 4 ? p : 0.3, glyph === 4 ? 0.3 : p);
+              glyphContext.lineTo(glyph === 4 ? p : CELL - 0.3, glyph === 4 ? CELL - 0.3 : p);
+              if (glyph === 5) {
+                glyphContext.moveTo(p, 0.3);
+                glyphContext.lineTo(p, CELL - 0.3);
+              }
+            }
+            glyphContext.stroke();
+          } else {
+            const inset = glyph === 6 ? 0.55 : 0.15;
+            glyphContext.fillRect(inset, inset, CELL - inset * 2, CELL - inset * 2);
+          }
+          glyphContext.restore();
+        }
       }
-      const cols = Math.ceil(width / CELL);
-      const rows = Math.ceil(height / CELL);
-      if (resized) {
+      const nextCols = Math.ceil(width / CELL);
+      const nextRows = Math.ceil(height / CELL);
+      if (resized || nextCols !== cols || nextRows !== rows) {
+        cols = nextCols;
+        rows = nextRows;
+        const count = cols * rows;
         sample.width = cols;
         sample.height = rows;
-        remainingByCell = new Float32Array(cols * rows);
+        remainingByCell = new Float32Array(count);
+        radii = new Float32Array(count);
+        seeds = new Float32Array(count);
+        for (let index = 0; index < count; index++) {
+          const noise = Math.sin((index % cols) * 127.1 + Math.floor(index / cols) * 311.7) * 43758.5453;
+          seeds[index] = noise - Math.floor(noise);
+        }
       }
       sampleContext.clearRect(0, 0, cols, rows);
 
@@ -235,7 +297,6 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
         return;
       }
 
-      cells = [];
       const luminance = (col, row) => {
         const offset = (Math.max(0, Math.min(rows - 1, row)) * cols + Math.max(0, Math.min(cols - 1, col))) * 4;
         return (pixels[offset] * 0.299 + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114) / 255;
@@ -299,13 +360,24 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
       paperContext.fillStyle = "#000000";
       paperContext.fillRect(0, 0, paper.width / dpr, paper.height / dpr);
       paperContext.fillStyle = INK;
-      const opacityGroups = Array.from({ length: 17 }, () => []);
+      const tile = glyphs.height;
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const index = row * cols + col;
           const offset = index * 4;
           const alpha = pixels[offset + 3] / 255;
           let luma = luminance(col, row);
+          if (cleanSilhouette) {
+            // Expand fine wireframe strokes by one small cell before tonal mapping.
+            luma = Math.max(luma, luminance(col - 1, row), luminance(col + 1, row),
+              luminance(col, row - 1), luminance(col, row + 1));
+          } else if (simplifyPattern) {
+            const neighborhood = (
+              luminance(col - 1, row) + luminance(col + 1, row) +
+              luminance(col, row - 1) + luminance(col, row + 1)
+            ) / 4;
+            luma = luma * 0.5 + neighborhood * 0.5;
+          }
           if (detailEnhancement > 0) {
             const surrounding = (
               luminance(col - 2, row) + luminance(col + 2, row) +
@@ -317,25 +389,34 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
           const normalized = Math.max(0, Math.min(1, (brightness - black) / (white - black)));
           const light = normalized ** curve;
           const dark = (1 - normalized) ** curve;
-          const shade = light / (light + dark);
-          const radius = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
+          // Retain source shading even where project-specific levels clip to black or white.
+          const sourceWeight = cleanSilhouette ? 0 : simplifyPattern ? 0.1 : 0.3;
+          const shade = (1 - sourceWeight) * light / (light + dark) + sourceWeight * brightness;
+          radii[index] = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
           const x = col * CELL;
           const y = row * CELL;
-          const noise = Math.sin(col * 127.1 + row * 311.7) * 43758.5453;
-          cells.push({ x, y, radius, seed: noise - Math.floor(noise) });
-          opacityGroups[Math.round(Math.min(1, shade / 0.18) * 16)].push({ x, y, radius });
+          if (cleanSilhouette) {
+            if (shade > 0) {
+              paperContext.globalAlpha = 1;
+              paperContext.beginPath();
+              paperContext.arc(x + CELL / 2, y + CELL / 2, CELL * 0.5 * Math.sqrt(shade), 0, Math.PI * 2);
+              paperContext.fill();
+            }
+            continue;
+          }
+          const glyph = simplifyPattern ?
+            shade < 0.12 ? 0 : shade < 0.3 ? 1 : shade < 0.65 ? 3 : 7 :
+            shade < 0.08 ? 0 : shade < 0.2 ? 1 : shade < 0.34 ? 2 :
+            shade < 0.55 ? 3 + (col + row) % 2 : shade < 0.72 ? 5 : shade < 0.88 ? 6 : 7;
+          paperContext.globalAlpha = simplifyPattern ?
+            shade < 0.12 ? shade * 4 : shade < 0.3 ? 0.45 + shade :
+              shade < 0.65 ? 0.55 + shade * 0.6 : 0.6 + shade * 0.4 :
+            shade < 0.08 ? 0.15 + shade * 6 : 1;
+          paperContext.drawImage(glyphs, glyph * tile, 0, tile, tile, x, y, CELL, CELL);
         }
       }
-      opacityGroups.forEach((dots, index) => {
-        paperContext.globalAlpha = 0.12 + 0.88 * index / 16;
-        paperContext.beginPath();
-        for (const { x, y, radius } of dots) {
-          paperContext.moveTo(x + CELL / 2 + radius, y + CELL / 2);
-          paperContext.arc(x + CELL / 2, y + CELL / 2, radius, 0, Math.PI * 2);
-        }
-        paperContext.fill();
-      });
       paperContext.globalAlpha = 1;
+      canvas.dataset.pattern = cleanSilhouette ? "clean-silhouette-dots" : simplifyPattern ? "simplified-tonal-glyphs" : "tonal-glyphs";
       ready = true;
       canvas.dataset.ready = "true";
       if (live) draw();
@@ -351,8 +432,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
       if (visible) startLive();
       else {
         if (!sharedVideo) video?.pause();
-        cancelAnimationFrame(liveFrame);
-        liveFrame = 0;
+        stopLive();
       }
     });
     visibility.observe(canvas);
@@ -368,7 +448,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
     return () => {
       progressRef.current = progress;
       cancelAnimationFrame(frame);
-      cancelAnimationFrame(liveFrame);
+      stopLive();
       if (!sharedVideo) video?.pause();
       video?.removeEventListener("error", handleVideoError);
       observer.disconnect();
@@ -377,7 +457,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, animate
       motion.removeEventListener("change", animate);
       controlsRef.current = null;
     };
-  }, [image, animated, animationSource, detailEnhancement, tone, blackOverride, whiteOverride, steepness]);
+  }, [image, animated, animationSource, detailEnhancement, tone, blackOverride, whiteOverride, steepness, simplifyPattern, cleanSilhouette]);
 
   return (
     <>

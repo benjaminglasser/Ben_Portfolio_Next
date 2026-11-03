@@ -26,7 +26,7 @@ The same manifest includes a forward-and-backward loop of Adobe's animated WebP 
 
 Work thumbnails use a four-pixel tonal glyph grid: dots, outlined squares, line textures, crosshatching, and solid highlights. Shapes follow brightness while retaining some original shading to preserve detail in clipped tones. The black background, animated media, and circular full-color hover reveal stay unchanged; the hero retains its dot treatment.
 
-Home thumbnails 04 (DTLA Marriott) and 07 (Beyond The Infinite) use a quieter four-shape palette, lightly smoothed sampling, and stronger project-specific contrast. This suppresses competing texture without changing their full-color source media.
+Home thumbnails 04 (DTLA Marriott) and 07 (Beyond The Infinite) use the full character palette and automatic tonal levels, matching the Beyond The Infinite treatment on Work. Neither applies extra smoothing or fixed contrast overrides.
 
 Voyager's Home and Work thumbnail uses the supplied `voyagerText.mov` lettering animation at twice the original speed, producing an approximately eight-second loop. The 720-pixel, 24-frame-per-second MP4 is about 481 KB, with an 11 KB poster and a 480-pixel, 12-frame-per-second GIF fallback of about 899 KB. Its cover uses tightly packed two-pixel dots, one-cell stroke expansion, and levels of 0.025 to 0.22 to brighten fine lettering without mixed glyph textures. Hover reveals the unchanged green lettering. Earlier satellite assets remain available but are not used by the work cards.
 

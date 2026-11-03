@@ -7,6 +7,7 @@ import DotDigits from "./design/DotDigits";
 import { useCallback, useEffect, useRef, useState } from "react";
 import HalftoneCover from "./HalftoneCover";
 import useMobileThumbnails from "./useMobileThumbnails";
+import { subscribePointerHover } from "./pointerHover";
 
 const WorkCard = ({
   path,
@@ -31,11 +32,24 @@ const WorkCard = ({
   const { level } = useDesignVersion();
   const mobile = useMobileThumbnails();
   const frameRef = useRef(null);
+  const cardRef = useRef(null);
+  const hoveredRef = useRef(false);
   const [loadedImage, setLoadedImage] = useState(null);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [touchVisible, setTouchVisible] = useState(false);
   const [origin, setOrigin] = useState({ x: 0.5, y: 0.5 });
+  const startHover = (x, y) => {
+    const rect = frameRef.current.getBoundingClientRect();
+    setOrigin({
+      x: Math.max(0, Math.min(1, (x - rect.left) / rect.width)),
+      y: Math.max(0, Math.min(1, (y - rect.top) / rect.height)),
+    });
+    hoveredRef.current = true;
+    setHovered(true);
+  };
+  const startHoverRef = useRef(startHover);
+  startHoverRef.current = startHover;
   const handleImageReady = useCallback((element) => {
     setLoadedImage({ element, source: thumbnail });
   }, [thumbnail]);
@@ -62,13 +76,28 @@ const WorkCard = ({
 
   const handleEnter = (event) => {
     if (event.pointerType === "touch") return;
-    const rect = frameRef.current.getBoundingClientRect();
-    setOrigin({
-      x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)),
-      y: Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)),
-    });
-    setHovered(true);
+    startHover(event.clientX, event.clientY);
   };
+
+  // Catch the cursor resting over a card that scrolled, resized or loaded beneath it,
+  // and any move that the browser didn't report as an enter.
+  const handleMove = (event) => {
+    if (event.pointerType === "touch" || hoveredRef.current) return;
+    startHover(event.clientX, event.clientY);
+  };
+
+  const endHover = () => {
+    hoveredRef.current = false;
+    setHovered(false);
+  };
+
+  useEffect(() => subscribePointerHover((target, pointer) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const inside = Boolean(pointer && target && card.contains(target));
+    if (inside && !hoveredRef.current) startHoverRef.current(pointer.x, pointer.y);
+    else if (!inside && hoveredRef.current) endHover();
+  }), []);
 
   return (
     <Link
@@ -77,11 +106,14 @@ const WorkCard = ({
       }}
       target={externalLink ? "_blank" : "_self"}
       onPointerEnter={handleEnter}
-      onPointerLeave={() => setHovered(false)}
+      onPointerMove={handleMove}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== "touch") endHover();
+      }}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
     >
-      <div className="group cursor-pointer w-full workcard">
+      <div ref={cardRef} className="group cursor-pointer w-full workcard">
         <div ref={frameRef} className="card-frame">
           <div className="card-ticks" aria-hidden="true">
             <span />

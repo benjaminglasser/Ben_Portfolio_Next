@@ -226,6 +226,48 @@ body {
   letter-spacing: 0;
 }
 
+/* Red spinning ring replaces the cursor while a clicked page is loading. */
+html.is-navigating,
+html.is-navigating * {
+  cursor: none !important;
+}
+
+.navigation-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: none;
+  pointer-events: none;
+}
+
+.navigation-cursor::before {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid #b02b1a;
+  border-bottom-color: transparent;
+  border-radius: 9999px;
+  animation: navigation-cursor-spin 1s linear infinite;
+}
+
+html.is-navigating .navigation-cursor {
+  display: block;
+}
+
+@keyframes navigation-cursor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover: none) {
+  html.is-navigating .navigation-cursor {
+    display: none;
+  }
+}
+
 /* ---- Theme text colors, keyed to page background ----
    Light (white-bg) pages: rust text.
    Dark (black-bg) pages: white text.

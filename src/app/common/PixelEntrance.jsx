@@ -37,8 +37,10 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, shar
         onCompleteRef.current?.();
       }
     };
+    const wrapper = wrapperRef.current;
     const paint = () => {
-      const { width, height } = wrapperRef.current.getBoundingClientRect();
+      if (!wrapper?.isConnected) return;
+      const { width, height } = wrapper.getBoundingClientRect();
       if (canvas.width === Math.ceil(width) && canvas.height === Math.ceil(height)) return;
       if (started) {
         finish();
@@ -51,7 +53,7 @@ export default function PixelEntrance({ active, delay = 0, duration = 1800, shar
     };
     paint();
     const observer = new ResizeObserver(paint);
-    observer.observe(wrapperRef.current);
+    observer.observe(wrapper);
     const onMotion = () => {
       if (motion.matches && active) finish();
     };

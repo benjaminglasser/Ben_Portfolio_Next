@@ -17,20 +17,24 @@ const Odyssey = () => {
 
   return (
     <div className="w-full text-white">
-      {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop">
-        <VideoPlayerInternal video="/Media/Odyssey/odysseyHero.mp4" />
+      {/* Full-height hero with the masthead overlaid at the bottom */}
+      <div className="full-bleed relative">
+        <div className="hero-full">
+          <VideoPlayerInternal video="/Media/Odyssey/odysseyHero.mp4" />
+        </div>
+        {/* Bottom scrim for legibility */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
+          <ZigzagHeader
+            title="Beyond The Infinite"
+            description="A Virtual Production Odyssey"
+            extendedDescription="For the 2023 Cinegear Expo in Los Angeles, our team showcased our in-house soundstage's capabilities by blending physical and digital elements to recreate &quot;2001: A Space Odyssey's&quot; opening sequence. Using Unreal Engine, I crafted a realistic desert scene that integrated with physical props, demonstrating the fusion of traditional and innovative filmmaking techniques. This immersive experience paid homage to cinema's history while previewing the future of storytelling."
+            time="2023 // Standard Vision"
+            role="Virtual Production, In Camera VFX"
+            tools={["Unreal Engine"]}
+          />
+        </div>
       </div>
-
-      {/* Masthead */}
-      <ZigzagHeader
-        title="Beyond The Infinite"
-        description="A Virtual Production Odyssey"
-        extendedDescription="For the 2023 Cinegear Expo in Los Angeles, our team showcased our in-house soundstage's capabilities by blending physical and digital elements to recreate &quot;2001: A Space Odyssey's&quot; opening sequence. Using Unreal Engine, I crafted a realistic desert scene that integrated with physical props, demonstrating the fusion of traditional and innovative filmmaking techniques. This immersive experience paid homage to cinema's history while previewing the future of storytelling."
-        time="2023 // Standard Vision"
-        role="Virtual Production, In Camera VFX"
-        tools={["Unreal Engine"]}
-      />
 
       <Media className="mt-16 md:mt-24">
         <div className="relative w-full aspect-[16/9] bg-black">

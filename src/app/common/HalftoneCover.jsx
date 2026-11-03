@@ -5,6 +5,8 @@ import { cancelHalftoneUpdate, requestHalftoneUpdate } from "./halftoneScheduler
 
 const DURATION = 650;
 const INK = "#e8e8e8";
+const INK_LEVEL = 0xe8;
+const DISC_LEVELS = 64;
 const EFFECT_INK = "#8e2115";
 
 const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
@@ -62,6 +64,9 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
     let seeds;
     let radii;
     let remainingByCell;
+    let masks;
+    let paperImage;
+    let paperPixels;
     let width = 0;
     let height = 0;
     let pixelRatio = 0;
@@ -213,16 +218,22 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
         context.setTransform(dpr, 0, 0, dpr, 0, 0);
         paperContext.setTransform(dpr, 0, 0, dpr, 0, 0);
         const tile = Math.ceil(CELL * dpr);
-        glyphs.width = tile * 8;
+        glyphs.width = tile * (cleanSilhouette ? DISC_LEVELS : 8);
         glyphs.height = tile;
         glyphContext.fillStyle = INK;
         glyphContext.strokeStyle = INK;
-        for (let glyph = 0; glyph < 8; glyph++) {
+        for (let glyph = 0; glyph < (cleanSilhouette ? DISC_LEVELS : 8); glyph++) {
           glyphContext.save();
           glyphContext.translate(glyph * tile, 0);
           glyphContext.scale(tile / CELL, tile / CELL);
           glyphContext.lineWidth = 0.45;
-          if (glyph < 2) {
+          if (cleanSilhouette) {
+            if (glyph) {
+              glyphContext.beginPath();
+              glyphContext.arc(CELL / 2, CELL / 2, CELL * 0.5 * Math.sqrt(glyph / (DISC_LEVELS - 1)), 0, Math.PI * 2);
+              glyphContext.fill();
+            }
+          } else if (glyph < 2) {
             glyphContext.beginPath();
             glyphContext.arc(CELL / 2, CELL / 2, glyph ? 0.65 : 0.25, 0, Math.PI * 2);
             glyphContext.fill();
@@ -246,6 +257,20 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
           }
           glyphContext.restore();
         }
+        // Keep each glyph's coverage so live frames are stamped into one pixel buffer
+        // instead of thousands of individual canvas draw calls.
+        const atlas = glyphContext.getImageData(0, 0, glyphs.width, tile).data;
+        const count = glyphs.width / tile;
+        masks = new Float32Array(count * tile * tile);
+        for (let glyph = 0; glyph < count; glyph++) {
+          for (let py = 0; py < tile; py++) {
+            for (let px = 0; px < tile; px++) {
+              masks[(glyph * tile + py) * tile + px] = atlas[(py * glyphs.width + glyph * tile + px) * 4 + 3] / 255;
+            }
+          }
+        }
+        paperImage = paperContext.createImageData(paper.width, paper.height);
+        paperPixels = new Uint32Array(paperImage.data.buffer);
       }
       const nextCols = Math.ceil(width / CELL);
       const nextRows = Math.ceil(height / CELL);
@@ -357,10 +382,29 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       canvas.dataset.brightness = toneRef.current.average.toFixed(3);
       canvas.dataset.blackPoint = black.toFixed(3);
       canvas.dataset.whitePoint = white.toFixed(3);
-      paperContext.fillStyle = "#000000";
-      paperContext.fillRect(0, 0, paper.width / dpr, paper.height / dpr);
-      paperContext.fillStyle = INK;
       const tile = glyphs.height;
+      const paperWidth = paper.width;
+      const paperHeight = paper.height;
+      const cellPixels = CELL * dpr;
+      paperPixels.fill(0xff000000);
+      const stamp = (mask, opacity, col, row) => {
+        const x0 = Math.round(col * cellPixels);
+        const y0 = Math.round(row * cellPixels);
+        const spanX = Math.min(tile, paperWidth - x0);
+        const spanY = Math.min(tile, paperHeight - y0);
+        const factor = Math.min(1, opacity);
+        for (let py = 0; py < spanY; py++) {
+          let target = (y0 + py) * paperWidth + x0;
+          let source = (mask * tile + py) * tile;
+          for (let px = 0; px < spanX; px++, target++, source++) {
+            const coverage = masks[source] * factor;
+            if (coverage <= 0) continue;
+            const current = paperPixels[target] & 255;
+            const value = (current + (INK_LEVEL - current) * coverage + 0.5) | 0;
+            paperPixels[target] = 0xff000000 | (value << 16) | (value << 8) | value;
+          }
+        }
+      };
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const index = row * cols + col;
@@ -393,29 +437,22 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
           const sourceWeight = cleanSilhouette ? 0 : simplifyPattern ? 0.1 : 0.3;
           const shade = (1 - sourceWeight) * light / (light + dark) + sourceWeight * brightness;
           radii[index] = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
-          const x = col * CELL;
-          const y = row * CELL;
           if (cleanSilhouette) {
-            if (shade > 0) {
-              paperContext.globalAlpha = 1;
-              paperContext.beginPath();
-              paperContext.arc(x + CELL / 2, y + CELL / 2, CELL * 0.5 * Math.sqrt(shade), 0, Math.PI * 2);
-              paperContext.fill();
-            }
+            const disc = Math.round(Math.min(1, shade) * (DISC_LEVELS - 1));
+            if (disc > 0) stamp(disc, 1, col, row);
             continue;
           }
           const glyph = simplifyPattern ?
             shade < 0.12 ? 0 : shade < 0.3 ? 1 : shade < 0.65 ? 3 : 7 :
             shade < 0.08 ? 0 : shade < 0.2 ? 1 : shade < 0.34 ? 2 :
             shade < 0.55 ? 3 + (col + row) % 2 : shade < 0.72 ? 5 : shade < 0.88 ? 6 : 7;
-          paperContext.globalAlpha = simplifyPattern ?
+          stamp(glyph, simplifyPattern ?
             shade < 0.12 ? shade * 4 : shade < 0.3 ? 0.45 + shade :
               shade < 0.65 ? 0.55 + shade * 0.6 : 0.6 + shade * 0.4 :
-            shade < 0.08 ? 0.15 + shade * 6 : 1;
-          paperContext.drawImage(glyphs, glyph * tile, 0, tile, tile, x, y, CELL, CELL);
+            shade < 0.08 ? 0.15 + shade * 6 : 1, col, row);
         }
       }
-      paperContext.globalAlpha = 1;
+      paperContext.putImageData(paperImage, 0, 0);
       canvas.dataset.pattern = cleanSilhouette ? "clean-silhouette-dots" : simplifyPattern ? "simplified-tonal-glyphs" : "tonal-glyphs";
       ready = true;
       canvas.dataset.ready = "true";

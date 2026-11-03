@@ -9,20 +9,24 @@ import ZigzagHeader from "../../common/zigzagHeader";
 const DTLAMarriott = () => {
   return (
     <div className="w-full text-white">
-      {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop">
-        <VideoPlayerInternal video="/Media/DTLAMarriott/MarriotHero.mp4" />
+      {/* Full-height hero with the masthead overlaid at the bottom */}
+      <div className="full-bleed relative">
+        <div className="hero-full">
+          <VideoPlayerInternal video="/Media/DTLAMarriott/MarriotHero.mp4" />
+        </div>
+        {/* Bottom scrim for legibility */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
+          <ZigzagHeader
+            title="DTLA Marriott Artist Spotlight"
+            description="Public art animation on large scale display in Downtown LA"
+            extendedDescription="Selected to create a custom animation interspersed between advertisements on a large-scale display in downtown Los Angeles near LA Live. The goal was to bring a sense of joy, wonder, and beauty back into the urban landscape. In a world where our attention is constantly harvested for capitalistic gain, it's vital not to lose these qualities and to pause amidst the chaos and allow our imagination to run free."
+            time="Fall 2025"
+            role="3D Artist"
+            tools={["Blender"]}
+          />
+        </div>
       </div>
-
-      {/* Masthead */}
-      <ZigzagHeader
-        title="DTLA Marriott Artist Spotlight"
-        description="Public art animation on large scale display in Downtown LA"
-        extendedDescription="Selected to create a custom animation interspersed between advertisements on a large-scale display in downtown Los Angeles near LA Live. The goal was to bring a sense of joy, wonder, and beauty back into the urban landscape. In a world where our attention is constantly harvested for capitalistic gain, it's vital not to lose these qualities and to pause amidst the chaos and allow our imagination to run free."
-        time="Fall 2025"
-        role="3D Artist"
-        tools={["Blender"]}
-      />
 
       {/* Final render (contained) */}
       <Contained className="mt-16 md:mt-24">

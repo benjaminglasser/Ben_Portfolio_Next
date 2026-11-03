@@ -8,6 +8,9 @@ const INK = "#e8e8e8";
 const INK_LEVEL = 0xe8;
 const DISC_LEVELS = 64;
 const EFFECT_INK = "#8e2115";
+// Live frames are shrunk to the cell grid by the browser before they are read, so the
+// page never copies a full-size video frame. Turned off if the browser ignores resizing.
+let bitmapSampling = typeof createImageBitmap === "function";
 
 const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
@@ -79,6 +82,9 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
     let videoFrame = 0;
     let lastVideoTime = -1;
     let playPending = false;
+    let disposed = false;
+    let frameBitmap = null;
+    let bitmapPending = false;
     const frameCallbacks = video && "requestVideoFrameCallback" in video;
     const playVideo = () => {
       if (!video || !video.paused || playPending || failed) return;
@@ -98,9 +104,55 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       liveFrame = liveTimer = videoFrame = 0;
     };
     // Resample only when the video presents a new frame, through a shared per-frame budget.
+    const videoCrop = () => {
+      const scale = Math.max(width / video.videoWidth, height / video.videoHeight);
+      const cropWidth = width / scale;
+      const cropHeight = height / scale;
+      // Cover whole cells so the shrunk frame lines up with the grid one pixel per cell.
+      return [
+        (video.videoWidth - cropWidth) / 2,
+        (video.videoHeight - cropHeight) / 2,
+        cropWidth * cols * CELL / width,
+        cropHeight * rows * CELL / height,
+      ];
+    };
+    const applyBitmap = () => {
+      if (!frameBitmap) return;
+      if (liveActive()) prepare(true);
+      frameBitmap?.close();
+      frameBitmap = null;
+    };
     const sampleLive = () => {
       if (!liveActive()) return;
-      prepare(true);
+      if (!bitmapSampling || !ready || !cols || !rows || !video || video.readyState < 2) {
+        prepare(true);
+        return;
+      }
+      if (bitmapPending) return;
+      bitmapPending = true;
+      const [x, y, w, h] = videoCrop();
+      const targetCols = cols;
+      const targetRows = rows;
+      createImageBitmap(video, x, y, w, h, { resizeWidth: targetCols, resizeHeight: targetRows, resizeQuality: "low" }).then((bitmap) => {
+        bitmapPending = false;
+        if (bitmap.width !== targetCols || bitmap.height !== targetRows) {
+          bitmapSampling = false;
+          bitmap.close();
+          if (!disposed) requestHalftoneUpdate(sampleLive);
+          return;
+        }
+        if (disposed || !liveActive()) {
+          bitmap.close();
+          return;
+        }
+        frameBitmap?.close();
+        frameBitmap = bitmap;
+        requestHalftoneUpdate(applyBitmap);
+      }, () => {
+        bitmapPending = false;
+        bitmapSampling = false;
+        if (!disposed) requestHalftoneUpdate(sampleLive);
+      });
     };
     const updateLive = () => {
       liveFrame = liveTimer = videoFrame = 0;
@@ -291,25 +343,29 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       }
       sampleContext.clearRect(0, 0, cols, rows);
 
-      // Sample the same centered object-cover crop as the image underneath.
-      const scale = Math.max(width / imageWidth, height / imageHeight);
-      const source = video?.readyState >= 2 ? video : image;
-      const sourceWidth = source === image ? imageWidth : video.videoWidth;
-      const sourceHeight = source === image ? imageHeight : video.videoHeight;
-      const sourceScale = source === image ? scale : Math.max(width / sourceWidth, height / sourceHeight);
-      const cropWidth = width / sourceScale;
-      const cropHeight = height / sourceScale;
-      sampleContext.drawImage(
-        source,
-        (sourceWidth - cropWidth) / 2,
-        (sourceHeight - cropHeight) / 2,
-        cropWidth,
-        cropHeight,
-        0,
-        0,
-        width / CELL,
-        height / CELL
-      );
+      if (live && frameBitmap && frameBitmap.width === cols && frameBitmap.height === rows) {
+        sampleContext.drawImage(frameBitmap, 0, 0);
+      } else {
+        // Sample the same centered object-cover crop as the image underneath.
+        const scale = Math.max(width / imageWidth, height / imageHeight);
+        const source = video?.readyState >= 2 ? video : image;
+        const sourceWidth = source === image ? imageWidth : video.videoWidth;
+        const sourceHeight = source === image ? imageHeight : video.videoHeight;
+        const sourceScale = source === image ? scale : Math.max(width / sourceWidth, height / sourceHeight);
+        const cropWidth = width / sourceScale;
+        const cropHeight = height / sourceScale;
+        sampleContext.drawImage(
+          source,
+          (sourceWidth - cropWidth) / 2,
+          (sourceHeight - cropHeight) / 2,
+          cropWidth,
+          cropHeight,
+          0,
+          0,
+          width / CELL,
+          height / CELL
+        );
+      }
       let pixels;
       try {
         pixels = sampleContext.getImageData(0, 0, cols, rows).data;
@@ -486,8 +542,12 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
     prepare();
     return () => {
       progressRef.current = progress;
+      disposed = true;
       cancelAnimationFrame(frame);
       stopLive();
+      cancelHalftoneUpdate(applyBitmap);
+      frameBitmap?.close();
+      frameBitmap = null;
       if (!sharedVideo) video?.pause();
       video?.removeEventListener("error", handleVideoError);
       observer.disconnect();

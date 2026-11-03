@@ -92,6 +92,8 @@ const Work = () => {
       role: "3D Graphics and Simulation",
       time: "Fall 2023",
       title: "Circa DeepScreen",
+      tone: "swap",
+      levels: { black: 0.72, white: 0.95, steepness: 1.4, clipBackground: true },
       description:
         "Innovative DeepScreen Advertising Concept for Polestar on Downtown LA's Circa's Curved Display",
       thumbnail: "/Media/DeepScreen/_WaterTest.gif",
@@ -116,9 +118,6 @@ const Work = () => {
       description:
         "Interactive gamefied website, branding, and album art for voyager record label",
       thumbnail: "/Media/Voyager/voyagerText.gif",
-      tone: "keep",
-      levels: { black: 0.025, white: 0.22, steepness: 1.8 },
-      cleanSilhouette: true,
       path: "work-detail/voyager",
       tools: [
         "HTML",

@@ -19,6 +19,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
   const blackOverride = levels?.black;
   const whiteOverride = levels?.white;
   const steepness = levels?.steepness ?? 1.4;
+  const clipBackground = levels?.clipBackground === true;
   const targetRef = useRef({ revealed, origin });
   const liveEnabledRef = useRef(liveEnabled);
   const prepareEnabledRef = useRef(prepareEnabled);
@@ -434,9 +435,10 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
           const light = normalized ** curve;
           const dark = (1 - normalized) ** curve;
           // Retain source shading even where project-specific levels clip to black or white.
-          const sourceWeight = cleanSilhouette ? 0 : simplifyPattern ? 0.1 : 0.3;
+          const sourceWeight = cleanSilhouette || clipBackground ? 0 : simplifyPattern ? 0.1 : 0.3;
           const shade = (1 - sourceWeight) * light / (light + dark) + sourceWeight * brightness;
           radii[index] = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
+          if (clipBackground && normalized === 0) continue;
           if (cleanSilhouette) {
             const disc = Math.round(Math.min(1, shade) * (DISC_LEVELS - 1));
             if (disc > 0) stamp(disc, 1, col, row);
@@ -494,7 +496,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       motion.removeEventListener("change", animate);
       controlsRef.current = null;
     };
-  }, [image, animated, animationSource, detailEnhancement, tone, blackOverride, whiteOverride, steepness, simplifyPattern, cleanSilhouette]);
+  }, [image, animated, animationSource, detailEnhancement, tone, blackOverride, whiteOverride, steepness, clipBackground, simplifyPattern, cleanSilhouette]);
 
   return (
     <>

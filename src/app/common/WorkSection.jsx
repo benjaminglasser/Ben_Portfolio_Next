@@ -175,9 +175,6 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
       description:
         "Interactive gamefied website, branding, and album art for the Voyager record label",
       thumbnail: "/Media/Voyager/voyagerText.gif",
-      tone: "keep",
-      levels: { black: 0.025, white: 0.22, steepness: 1.8 },
-      cleanSilhouette: true,
       path: "work-detail/voyager",
       tools: [
         "HTML",

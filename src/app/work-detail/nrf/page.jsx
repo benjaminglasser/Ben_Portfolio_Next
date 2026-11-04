@@ -25,7 +25,7 @@ const NRF = () => {
   return (
     <div className="w-full text-white">
       {/* Full-height hero with the masthead overlaid at the bottom */}
-      <div className="full-bleed relative">
+      <div className="full-bleed relative -mt-3">
         <div className="hero-full">
           <VideoPlayerInternal video="/Media/NRF/NRF_Hero.mp4" />
         </div>

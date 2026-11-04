@@ -14,7 +14,7 @@ const plantasia = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
-        className="md:h-[600px]"
+        className="-mt-3 md:h-[600px]"
         video="/Media/Plantasia/plantasiaHero.mp4"
       />
 

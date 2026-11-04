@@ -18,7 +18,7 @@ const Canary = () => {
   return (
     <div className="w-full text-white">
       {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop">
+      <div className="full-bleed hero-crop -mt-3">
         <VideoPlayerInternal video="/Media/Canary/canaryHero.mp4" />
       </div>
 

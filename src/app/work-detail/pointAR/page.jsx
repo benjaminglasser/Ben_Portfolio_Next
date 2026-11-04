@@ -25,20 +25,24 @@ const PointAR = () => {
 
   return (
     <div className="w-full text-white">
-      {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop">
-        <VideoPlayerInternal video="/Media/Pointar/PointAR2_Hero.mp4" />
+      {/* Full-height hero with the masthead overlaid at the bottom */}
+      <div className="full-bleed relative -mt-3">
+        <div className="hero-full">
+          <VideoPlayerInternal video="/Media/Pointar/PointAR2_Hero.mp4" />
+        </div>
+        {/* Bottom scrim for legibility */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
+          <ZigzagHeader
+            title="PointAR"
+            description="Your personal museum tour guide"
+            extendedDescription="An Augmented Reality museum guide tailor-made to each user. It can be experienced throughout the museum or remotely at any other location."
+            time="Fall 2022"
+            role="AR UX / UI Design"
+            tools={["Unity", "Unreal Engine", "Blender"]}
+          />
+        </div>
       </div>
-
-      {/* Masthead */}
-      <ZigzagHeader
-        title="PointAR"
-        description="Your personal museum tour guide"
-        extendedDescription="An Augmented Reality museum guide tailor-made to each user. It can be experienced throughout the museum or remotely at any other location."
-        time="Fall 2022"
-        role="AR UX / UI Design"
-        tools={["Unity", "Unreal Engine", "Blender"]}
-      />
 
       <Media className="mt-16 md:mt-24">
         <VideoPlayerExternal src="https://www.youtube.com/embed/fvOwZU6CShI" />

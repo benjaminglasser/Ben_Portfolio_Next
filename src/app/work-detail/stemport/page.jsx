@@ -22,7 +22,7 @@ const stemport = () => {
   return (
     <div className="w-full text-white">
       <VideoPlayerInternal
-        className="mt-20"
+        className="-mt-3"
         video="/Media/Stemport/stemportHeroCompressed.mp4"
       />
 

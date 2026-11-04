@@ -17,32 +17,36 @@ const voyager = () => {
 
   return (
     <div className="w-full text-white">
-      {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop">
-        <VideoPlayerInternal video="/Media/Voyager/voyagerPlanetHero.mp4" />
+      {/* Full-height hero with the masthead overlaid at the bottom */}
+      <div className="full-bleed relative -mt-3">
+        <div className="hero-full">
+          <VideoPlayerInternal video="/Media/Voyager/voyagerPlanetHero.mp4" />
+        </div>
+        {/* Bottom scrim for legibility */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
+          <ZigzagHeader
+            title="Voyager"
+            description="Interactive gamefied website, branding, and album art for voyager record label"
+            extendedDescription="Artwork, album layouts, and an interactive website for a label called Voyager. Currently, the website is a simple tour announcement website with plans to build out a gamefied universe for users to navigate through 3D space. Planets will be added when musical releases come out. As users navigate to each planet, they can experience the released music, merch, etc."
+            time="2022 // Freelance"
+            role="Web Development, Designs, 3D Models"
+            tools={[
+              "HTML",
+              "CSS",
+              "JavaScript",
+              "Next.js",
+              "Three.js",
+              "p5.js",
+              "Blender",
+              "TouchDesigner",
+              "Figma",
+              "Photoshop",
+              "Illustrator",
+            ]}
+          />
+        </div>
       </div>
-
-      {/* Masthead */}
-      <ZigzagHeader
-        title="Voyager"
-        description="Interactive gamefied website, branding, and album art for voyager record label"
-        extendedDescription="Artwork, album layouts, and an interactive website for a label called Voyager. Currently, the website is a simple tour announcement website with plans to build out a gamefied universe for users to navigate through 3D space. Planets will be added when musical releases come out. As users navigate to each planet, they can experience the released music, merch, etc."
-        time="2022 // Freelance"
-        role="Web Development, Designs, 3D Models"
-        tools={[
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "Next.js",
-          "Three.js",
-          "p5.js",
-          "Blender",
-          "TouchDesigner",
-          "Figma",
-          "Photoshop",
-          "Illustrator",
-        ]}
-      />
 
       <Contained
         className="mt-16 md:mt-24"

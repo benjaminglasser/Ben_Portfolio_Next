@@ -272,6 +272,7 @@ const PlayLab = ({ beforePosters }) => {
   const [viewing, setViewing] = useState(null);
 
   const features = PLAY_FEATURES;
+  const postersIndex = features.findIndex((feature) => feature.id === "posters");
   const builds = PLAY_BUILDS;
   const experiments = PLAY_EXPERIMENTS;
   const rows = toRows(experiments);
@@ -370,8 +371,8 @@ const PlayLab = ({ beforePosters }) => {
 
       {features.map((f, i) => (
         <div key={f.id} className="contents">
-        {f.id === "posters" && beforePosters}
-        <FeatureSection key={f.id} feature={f} labelNo={pad((SHOW_BENCH ? 3 : 2) + i)} />
+        {f.id === "posters" && beforePosters?.(pad((SHOW_BENCH ? 3 : 2) + i))}
+        <FeatureSection key={f.id} feature={f} labelNo={pad((SHOW_BENCH ? 3 : 2) + i + (beforePosters && postersIndex >= 0 && i >= postersIndex ? 1 : 0))} />
         </div>
       ))}
 

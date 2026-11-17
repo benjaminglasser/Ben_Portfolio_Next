@@ -50,7 +50,7 @@ BMW thumbnails use local contrast enhancement of 0.6 and a lower shadow cutoff t
 
 The BMW detail page uses its floating-car video as a fixed, full-screen background behind the content, not a hero section. Only the matching mobile or desktop video is loaded.
 
-On mobile, Clear Canvas, Beyond The Infinite, Voyager, and PointAR show a shorter hero video followed by the title, description, and metadata on solid black, matching the stacked Circa presentation. Desktop retains its full-height video and overlaid masthead. The fixed scroll hint is hidden on these mobile pages so it cannot cover the text. On other mobile detail pages, the hint has an opaque black panel around its label and arrow; it still disappears on scroll. Desktop keeps the existing prompt.
+On mobile, Clear Canvas, Beyond The Infinite, Voyager, and PointAR show a shorter hero video followed by the title, description, and metadata on solid black, matching the stacked Circa presentation. Desktop retains its full-height video and overlaid masthead. The fixed scroll hint is hidden on these mobile pages so it cannot cover the text. Wherever it appears, the hint has an opaque black panel around its label and arrow at every screen size; it still disappears on scroll.
 
 All work-detail pages that begin with a video place it flush with the top edge on mobile, without changing desktop spacing.
 

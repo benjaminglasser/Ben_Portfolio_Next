@@ -56,12 +56,12 @@
     "sourceHeight": 678
   },
   "/Media/Odyssey/odysseyThumb.gif": {
-    "video": "/Media/Odyssey/odysseyThumb.gif.hq.mp4",
-    "poster": "/Media/Odyssey/odysseyThumb.gif.poster.jpg",
-    "width": 738,
-    "height": 416,
-    "sourceWidth": 738,
-    "sourceHeight": 416
+    "video": "/Media/Odyssey/monolith-thumbnail.mp4",
+    "poster": "/Media/Odyssey/monolith-thumbnail.poster.jpg",
+    "width": 960,
+    "height": 540,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
   },
   "/Media/Voyager/VoyagerThumb.gif": {
     "video": "/Media/Voyager/VoyagerThumb.gif.hq.mp4",
@@ -112,12 +112,12 @@
     "sourceHeight": 677
   },
   "/images/PointAR/pointAR_Home.gif": {
-    "video": "/images/PointAR/pointAR_Home.gif.hq.mp4",
-    "poster": "/images/PointAR/pointAR_Home.gif.poster.jpg",
-    "width": 640,
-    "height": 360,
-    "sourceWidth": 640,
-    "sourceHeight": 360
+    "video": "/Media/Pointar/pointar-thumbnail.mp4",
+    "poster": "/Media/Pointar/pointar-thumbnail.poster.jpg",
+    "width": 960,
+    "height": 540,
+    "sourceWidth": 1920,
+    "sourceHeight": 1080
   },
   "/images/PointAR/start.gif": {
     "video": "/images/PointAR/start.gif.hq.mp4",

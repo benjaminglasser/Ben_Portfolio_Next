@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { cancelHalftoneUpdate, requestHalftoneUpdate } from "./halftoneScheduler";
 
-const DURATION = 650;
+const DURATION = 250;
 const INK = "#e8e8e8";
 const INK_LEVEL = 0xe8;
 const DISC_LEVELS = 64;
@@ -12,7 +12,7 @@ const EFFECT_INK = "#8e2115";
 // page never copies a full-size video frame. Turned off if the browser ignores resizing.
 let bitmapSampling = typeof createImageBitmap === "function";
 
-const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
+const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
@@ -23,7 +23,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
   const whiteOverride = levels?.white;
   const steepness = levels?.steepness ?? 1.4;
   const clipBackground = levels?.clipBackground === true;
-  const targetRef = useRef({ revealed, origin });
+  const targetRef = useRef({ revealed, origin, followCursor });
   const liveEnabledRef = useRef(liveEnabled);
   const prepareEnabledRef = useRef(prepareEnabled);
 
@@ -38,9 +38,15 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
   }, [liveEnabled]);
 
   useEffect(() => {
-    targetRef.current = { revealed, origin };
+    targetRef.current.origin = origin;
+    controlsRef.current?.move();
+  }, [origin]);
+
+  useEffect(() => {
+    targetRef.current.revealed = revealed;
+    if (revealed) targetRef.current.followCursor = followCursor;
     controlsRef.current?.animate();
-  }, [revealed, origin]);
+  }, [revealed, followCursor]);
 
   useEffect(() => {
     const CELL = cleanSilhouette ? 2 : 4;
@@ -62,6 +68,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
+    let pointerFrame = 0;
     let progress = progressRef.current;
     let cols = 0;
     let rows = 0;
@@ -95,7 +102,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       }).finally(() => { playPending = false; });
     };
 
-    const liveActive = () => animated && liveEnabledRef.current && visible && !failed && progress < 1 && !motion.matches;
+    const liveActive = () => animated && liveEnabledRef.current && visible && !failed && (progress < 1 || targetRef.current.followCursor) && !motion.matches;
     const stopLive = () => {
       cancelHalftoneUpdate(sampleLive);
       cancelAnimationFrame(liveFrame);
@@ -176,7 +183,8 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
 
     const draw = () => {
       context.clearRect(0, 0, canvas.width / pixelRatio, canvas.height / pixelRatio);
-      if (!ready || progress === 1) return;
+      const following = targetRef.current.followCursor;
+      if (!ready || progress === 1 && !following) return;
       context.drawImage(paper, 0, 0, canvas.width / pixelRatio, canvas.height / pixelRatio);
       if (progress === 0) return;
       const { x, y } = targetRef.current.origin;
@@ -187,7 +195,8 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
         Math.max(oy, height - oy)
       );
       const band = CELL * 3;
-      const radius = progress * (farthest + band * 2) - band;
+      const revealRadius = following ? Math.hypot(width, height) * 0.6 : farthest + band;
+      const radius = progress * (revealRadius + band) - band;
       if (radius <= 0) return;
       context.save();
       context.globalCompositeOperation = "destination-out";
@@ -231,7 +240,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
         progress = target;
         draw();
         startLive();
-        if (progress === 1 && !sharedVideo) video?.pause();
+        if (progress === 1 && !targetRef.current.followCursor && !sharedVideo) video?.pause();
         return;
       }
       if (!ready || progress === target) {
@@ -518,7 +527,14 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       else animate();
     };
 
-    controlsRef.current = { animate, prepare };
+    const move = () => {
+      if (pointerFrame) return;
+      pointerFrame = requestAnimationFrame(() => {
+        pointerFrame = 0;
+        draw();
+      });
+    };
+    controlsRef.current = { animate, prepare, move };
     const resize = () => prepare();
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
@@ -544,6 +560,7 @@ const HalftoneCover = ({ image, revealed, origin, tone = "auto", levels, simplif
       progressRef.current = progress;
       disposed = true;
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(pointerFrame);
       stopLive();
       cancelHalftoneUpdate(applyBitmap);
       frameBitmap?.close();

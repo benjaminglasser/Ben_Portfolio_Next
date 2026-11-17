@@ -18,7 +18,7 @@ const Odyssey = () => {
   return (
     <div className="w-full text-white">
       {/* Full-height hero with the masthead overlaid at the bottom */}
-      <div className="full-bleed relative -mt-3">
+      <div className="full-bleed relative">
         <div className="hero-full">
           <VideoPlayerInternal video="/Media/Odyssey/odysseyHero.mp4" />
         </div>
@@ -114,7 +114,9 @@ const Odyssey = () => {
         description="The project was a resounding success, achieving its aim of demonstrating the potential of in-house virtual production technologies and attracting interest from industry professionals. It highlighted the benefits of using LED volumes for enhanced realism and storytelling, sparking interest in the future of virtual production. The positive reception affirmed the industry's readiness for innovative filmmaking technologies."
       />
 
-      <div className="h-16 md:h-24" />
+      <div className="full-bleed mt-16 md:mt-24 -mb-36 md:-mb-10">
+        <VideoPlayerInternal video="/Media/Odyssey/monolith-1920x1080.mp4" />
+      </div>
     </div>
   );
 };

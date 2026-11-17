@@ -34,6 +34,8 @@ const WorkCard = ({
   const frameRef = useRef(null);
   const cardRef = useRef(null);
   const hoveredRef = useRef(false);
+  const pointerFrameRef = useRef(0);
+  const pointerPositionRef = useRef(null);
   const [loadedImage, setLoadedImage] = useState(null);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -82,14 +84,24 @@ const WorkCard = ({
   // Catch the cursor resting over a card that scrolled, resized or loaded beneath it,
   // and any move that the browser didn't report as an enter.
   const handleMove = (event) => {
-    if (event.pointerType === "touch" || hoveredRef.current) return;
-    startHover(event.clientX, event.clientY);
+    if (event.pointerType === "touch") return;
+    pointerPositionRef.current = { x: event.clientX, y: event.clientY };
+    if (pointerFrameRef.current) return;
+    pointerFrameRef.current = requestAnimationFrame(() => {
+      pointerFrameRef.current = 0;
+      const pointer = pointerPositionRef.current;
+      startHoverRef.current(pointer.x, pointer.y);
+    });
   };
 
   const endHover = () => {
+    cancelAnimationFrame(pointerFrameRef.current);
+    pointerFrameRef.current = 0;
     hoveredRef.current = false;
     setHovered(false);
   };
+
+  useEffect(() => () => cancelAnimationFrame(pointerFrameRef.current), []);
 
   useEffect(() => subscribePointerHover((target, pointer) => {
     const card = cardRef.current;
@@ -103,7 +115,7 @@ const WorkCard = ({
       return;
     }
     const inside = Boolean(target && card.contains(target));
-    if (inside && !hoveredRef.current) startHoverRef.current(pointer.x, pointer.y);
+    if (inside) startHoverRef.current(pointer.x, pointer.y);
     else if (!inside && hoveredRef.current) endHover();
   }), []);
 
@@ -118,7 +130,7 @@ const WorkCard = ({
       onPointerLeave={(event) => {
         if (event.pointerType !== "touch") endHover();
       }}
-      onFocus={() => setFocused(true)}
+      onFocus={(event) => setFocused(event.currentTarget.matches(":focus-visible"))}
       onBlur={() => setFocused(false)}
     >
       <div ref={cardRef} className="group cursor-pointer w-full workcard">
@@ -159,6 +171,7 @@ const WorkCard = ({
                   typeof thumbnail === "string" ? thumbnail : thumbnail?.src || thumbnail?.default || ""
                 )}
                 revealed={hovered || focused || touchVisible}
+                followCursor={hovered && !focused && !touchVisible}
                 origin={origin}
               />
             )}

@@ -20,6 +20,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Play includes Meaningful Pursuits as a standalone album-visuals section after the experiments and feature projects, with project context and a compact 11-video carousel. Previous and Next controls wrap through the videos; changing the selection unmounts the previous player to stop playback. It shares the video list with the existing detail page, which retains its stacked layout. Video embeds load only when selected.
 
+Play's introduction is unnumbered. Numbered sections start at 01 for Digital experiments, followed immediately by 02 Public art with DTLA Marriott Artist Spotlight, then The Canary Test. Spotlight retains the display, final-render, and process videos, project context, date, role, and tool. It no longer appears as a Home work card; the former `/work-detail/dtlaMarriott` address redirects to `/play#dtla-artist-spotlight`.
+
 Verified GIF conversions are listed in `src/app/common/gifMedia.json`. The original GIFs remain available as fallbacks. Converted animations keep their original resolution and frame timing, with a full-size poster for loading.
 
 The same manifest includes a forward-and-backward loop of Adobe's animated WebP so its halftone thumbnail also animates before hover. The original WebP remains the fallback.
@@ -28,7 +30,9 @@ Work thumbnails use a four-pixel tonal glyph grid: dots, outlined squares, line 
 
 On pointer hover, the thumbnail reveal follows the cursor with a radius of 60 percent of the frame diagonal, retaining the noisy, rust-edged border. Entry and exit grow and shrink the window over 250 milliseconds; moving the cursor does not restart that animation. Keyboard focus and touch visibility still reveal the whole thumbnail, and reduced motion switches instantly.
 
-Home thumbnails 04 (DTLA Marriott) and 07 (Beyond The Infinite) use the full character palette and automatic tonal levels, matching the Beyond The Infinite treatment on Work. Neither applies extra smoothing or fixed contrast overrides.
+Animated covers sample directly into the cell grid, reuse unchanged samples and glyph tiles, and precompute opaque glyph rows. This avoids the asynchronous bitmap readback pipeline without changing the character palette or hover behavior. Sustained profiling shows improvements under load, but not a consistent 24 updates per second across all cards.
+
+The Beyond The Infinite Home thumbnail uses the full character palette and automatic tonal levels, matching its treatment on Work. It applies no extra smoothing or fixed contrast overrides.
 
 Voyager's Home and Work thumbnail uses the supplied `voyagerText.mov` lettering animation at twice the original speed, trimmed to a 7.42-second loop with nearly all blank padding removed from both ends. The 720-pixel, 24-frame-per-second MP4 is about 505 KB, with an 11 KB poster and a 480-pixel, 12-frame-per-second GIF fallback of about 928 KB. Its cover uses the same full character palette and automatic tonal levels as Beyond The Infinite, without stroke expansion or fixed contrast overrides. Hover reveals the unchanged green lettering. Earlier satellite assets remain available but are not used by the work cards.
 
@@ -45,6 +49,10 @@ After choosing the tone, each cover locks a brightness histogram from that same 
 BMW thumbnails use local contrast enhancement of 0.6 and a lower shadow cutoff to retain detail in the new light-dot mapping so the car's parts read more clearly. This adjustment does not affect the full-color animation or other thumbnails.
 
 The BMW detail page uses its floating-car video as a fixed, full-screen background behind the content, not a hero section. Only the matching mobile or desktop video is loaded.
+
+On mobile, Clear Canvas, Beyond The Infinite, Voyager, and PointAR show a shorter hero video followed by the title, description, and metadata on solid black, matching the stacked Circa presentation. Desktop retains its full-height video and overlaid masthead. The fixed scroll hint is hidden on these mobile pages so it cannot cover the text. On other mobile detail pages, the hint has an opaque black panel around its label and arrow; it still disappears on scroll. Desktop keeps the existing prompt.
+
+All work-detail pages that begin with a video place it flush with the top edge on mobile, without changing desktop spacing.
 
 On client navigation, a changed page background fades for 800 milliseconds before the new content fades in for 500 milliseconds. Routes with the same background start their content fade immediately. Home keeps its first-visit loading sequence and skips the extra content fade on return, waiting only for a changed background. Reduced motion makes both transitions instant.
 

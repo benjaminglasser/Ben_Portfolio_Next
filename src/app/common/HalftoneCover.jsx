@@ -8,10 +8,6 @@ const INK = "#e8e8e8";
 const INK_LEVEL = 0xe8;
 const DISC_LEVELS = 64;
 const EFFECT_INK = "#8e2115";
-// Live frames are shrunk to the cell grid by the browser before they are read, so the
-// page never copies a full-size video frame. Turned off if the browser ignores resizing.
-let bitmapSampling = typeof createImageBitmap === "function";
-
 const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "auto", levels, simplifyPattern = false, cleanSilhouette = false, animated = false, animationSource, preload = false, detailEnhancement = 0, liveEnabled = true, prepareEnabled = true }) => {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
@@ -78,6 +74,12 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
     let masks;
     let paperImage;
     let paperPixels;
+    let solidTiles;
+    let solidRows;
+    let previousGlyphs;
+    let previousOpacities;
+    let luminances;
+    let previousSamples;
     let width = 0;
     let height = 0;
     let pixelRatio = 0;
@@ -89,9 +91,6 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
     let videoFrame = 0;
     let lastVideoTime = -1;
     let playPending = false;
-    let disposed = false;
-    let frameBitmap = null;
-    let bitmapPending = false;
     const frameCallbacks = video && "requestVideoFrameCallback" in video;
     const playVideo = () => {
       if (!video || !video.paused || playPending || failed) return;
@@ -110,56 +109,10 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
       if (videoFrame) video.cancelVideoFrameCallback(videoFrame);
       liveFrame = liveTimer = videoFrame = 0;
     };
-    // Resample only when the video presents a new frame, through a shared per-frame budget.
-    const videoCrop = () => {
-      const scale = Math.max(width / video.videoWidth, height / video.videoHeight);
-      const cropWidth = width / scale;
-      const cropHeight = height / scale;
-      // Cover whole cells so the shrunk frame lines up with the grid one pixel per cell.
-      return [
-        (video.videoWidth - cropWidth) / 2,
-        (video.videoHeight - cropHeight) / 2,
-        cropWidth * cols * CELL / width,
-        cropHeight * rows * CELL / height,
-      ];
-    };
-    const applyBitmap = () => {
-      if (!frameBitmap) return;
-      if (liveActive()) prepare(true);
-      frameBitmap?.close();
-      frameBitmap = null;
-    };
+    // Read only the cell-sized sample. ImageBitmap readback can stall on a GPU
+    // fence and adds another scheduled frame before the dots can be updated.
     const sampleLive = () => {
-      if (!liveActive()) return;
-      if (!bitmapSampling || !ready || !cols || !rows || !video || video.readyState < 2) {
-        prepare(true);
-        return;
-      }
-      if (bitmapPending) return;
-      bitmapPending = true;
-      const [x, y, w, h] = videoCrop();
-      const targetCols = cols;
-      const targetRows = rows;
-      createImageBitmap(video, x, y, w, h, { resizeWidth: targetCols, resizeHeight: targetRows, resizeQuality: "low" }).then((bitmap) => {
-        bitmapPending = false;
-        if (bitmap.width !== targetCols || bitmap.height !== targetRows) {
-          bitmapSampling = false;
-          bitmap.close();
-          if (!disposed) requestHalftoneUpdate(sampleLive);
-          return;
-        }
-        if (disposed || !liveActive()) {
-          bitmap.close();
-          return;
-        }
-        frameBitmap?.close();
-        frameBitmap = bitmap;
-        requestHalftoneUpdate(applyBitmap);
-      }, () => {
-        bitmapPending = false;
-        bitmapSampling = false;
-        if (!disposed) requestHalftoneUpdate(sampleLive);
-      });
+      if (liveActive()) prepare(true);
     };
     const updateLive = () => {
       liveFrame = liveTimer = videoFrame = 0;
@@ -264,7 +217,7 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
 
     const prepare = (live = false) => {
       if (!prepareEnabledRef.current) return;
-      const rect = canvas.getBoundingClientRect();
+      const rect = live && ready ? { width, height } : canvas.getBoundingClientRect();
       const imageWidth = image.naturalWidth || image.videoWidth;
       const imageHeight = image.naturalHeight || image.videoHeight;
       if (!rect.width || !rect.height || !imageWidth || !imageHeight) return;
@@ -324,15 +277,22 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
         const atlas = glyphContext.getImageData(0, 0, glyphs.width, tile).data;
         const count = glyphs.width / tile;
         masks = new Float32Array(count * tile * tile);
+        solidTiles = new Uint32Array(masks.length);
         for (let glyph = 0; glyph < count; glyph++) {
           for (let py = 0; py < tile; py++) {
             for (let px = 0; px < tile; px++) {
-              masks[(glyph * tile + py) * tile + px] = atlas[(py * glyphs.width + glyph * tile + px) * 4 + 3] / 255;
+              const index = (glyph * tile + py) * tile + px;
+              masks[index] = atlas[(py * glyphs.width + glyph * tile + px) * 4 + 3] / 255;
+              const value = (INK_LEVEL * masks[index] + 0.5) | 0;
+              solidTiles[index] = 0xff000000 | (value << 16) | (value << 8) | value;
             }
           }
         }
+        solidRows = Array.from({ length: count * tile }, (_, row) =>
+          solidTiles.subarray(row * tile, (row + 1) * tile));
         paperImage = paperContext.createImageData(paper.width, paper.height);
         paperPixels = new Uint32Array(paperImage.data.buffer);
+        paperPixels.fill(0xff000000);
       }
       const nextCols = Math.ceil(width / CELL);
       const nextRows = Math.ceil(height / CELL);
@@ -345,6 +305,10 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
         remainingByCell = new Float32Array(count);
         radii = new Float32Array(count);
         seeds = new Float32Array(count);
+        luminances = new Float64Array(count);
+        previousSamples = new Uint32Array(count);
+        previousGlyphs = new Int16Array(count).fill(-2);
+        previousOpacities = new Float64Array(count);
         for (let index = 0; index < count; index++) {
           const noise = Math.sin((index % cols) * 127.1 + Math.floor(index / cols) * 311.7) * 43758.5453;
           seeds[index] = noise - Math.floor(noise);
@@ -352,9 +316,7 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
       }
       sampleContext.clearRect(0, 0, cols, rows);
 
-      if (live && frameBitmap && frameBitmap.width === cols && frameBitmap.height === rows) {
-        sampleContext.drawImage(frameBitmap, 0, 0);
-      } else {
+      {
         // Sample the same centered object-cover crop as the image underneath.
         const scale = Math.max(width / imageWidth, height / imageHeight);
         const source = video?.readyState >= 2 ? video : image;
@@ -389,9 +351,18 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
       }
 
       const luminance = (col, row) => {
-        const offset = (Math.max(0, Math.min(rows - 1, row)) * cols + Math.max(0, Math.min(cols - 1, col))) * 4;
-        return (pixels[offset] * 0.299 + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114) / 255;
+        return luminances[Math.max(0, Math.min(rows - 1, row)) * cols + Math.max(0, Math.min(cols - 1, col))];
       };
+      const samples = new Uint32Array(pixels.buffer, pixels.byteOffset, luminances.length);
+      let unchanged = ready && !resized;
+      for (let index = 0; index < luminances.length; index++) {
+        if (previousSamples[index] === samples[index]) continue;
+        unchanged = false;
+        previousSamples[index] = samples[index];
+        const offset = index * 4;
+        luminances[index] = (pixels[offset] * 0.299 + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114) / 255;
+      }
+      if (live && unchanged) return;
       if (!toneRef.current || toneRef.current.requested !== tone) {
         let brightness = 0;
         let weight = 0;
@@ -452,8 +423,15 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
       const paperWidth = paper.width;
       const paperHeight = paper.height;
       const cellPixels = CELL * dpr;
-      paperPixels.fill(0xff000000);
+      // Reuse unchanged cells only when device pixels form non-overlapping tiles.
+      // Fractional DPR keeps the original blended stamping path.
+      const tiled = cellPixels === tile;
+      if (!tiled) paperPixels.fill(0xff000000);
       const stamp = (mask, opacity, col, row) => {
+        const index = row * cols + col;
+        if (tiled && previousGlyphs[index] === mask && previousOpacities[index] === opacity) return;
+        previousGlyphs[index] = mask;
+        previousOpacities[index] = opacity;
         const x0 = Math.round(col * cellPixels);
         const y0 = Math.round(row * cellPixels);
         const spanX = Math.min(tile, paperWidth - x0);
@@ -462,10 +440,19 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
         for (let py = 0; py < spanY; py++) {
           let target = (y0 + py) * paperWidth + x0;
           let source = (mask * tile + py) * tile;
+          if (tiled && mask < 0) {
+            paperPixels.fill(0xff000000, target, target + spanX);
+            continue;
+          }
+          if (tiled && factor === 1) {
+            const values = solidRows[mask * tile + py];
+            paperPixels.set(spanX === tile ? values : values.subarray(0, spanX), target);
+            continue;
+          }
           for (let px = 0; px < spanX; px++, target++, source++) {
             const coverage = masks[source] * factor;
-            if (coverage <= 0) continue;
-            const current = paperPixels[target] & 255;
+            if (!tiled && coverage <= 0) continue;
+            const current = tiled ? 0 : paperPixels[target] & 255;
             const value = (current + (INK_LEVEL - current) * coverage + 0.5) | 0;
             paperPixels[target] = 0xff000000 | (value << 16) | (value << 8) | value;
           }
@@ -476,7 +463,7 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
           const index = row * cols + col;
           const offset = index * 4;
           const alpha = pixels[offset + 3] / 255;
-          let luma = luminance(col, row);
+          let luma = luminances[index];
           if (cleanSilhouette) {
             // Expand fine wireframe strokes by one small cell before tonal mapping.
             luma = Math.max(luma, luminance(col - 1, row), luminance(col + 1, row),
@@ -503,10 +490,14 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
           const sourceWeight = cleanSilhouette || clipBackground ? 0 : simplifyPattern ? 0.1 : 0.3;
           const shade = (1 - sourceWeight) * light / (light + dark) + sourceWeight * brightness;
           radii[index] = Math.min(CELL / 2, (0.025 + 0.475 * shade) * CELL);
-          if (clipBackground && normalized === 0) continue;
+          if (clipBackground && normalized === 0) {
+            if (tiled) stamp(-1, 0, col, row);
+            continue;
+          }
           if (cleanSilhouette) {
             const disc = Math.round(Math.min(1, shade) * (DISC_LEVELS - 1));
             if (disc > 0) stamp(disc, 1, col, row);
+            else if (tiled) stamp(-1, 0, col, row);
             continue;
           }
           const glyph = simplifyPattern ?
@@ -558,13 +549,9 @@ const HalftoneCover = ({ image, revealed, origin, followCursor = false, tone = "
     prepare();
     return () => {
       progressRef.current = progress;
-      disposed = true;
       cancelAnimationFrame(frame);
       cancelAnimationFrame(pointerFrame);
       stopLive();
-      cancelHalftoneUpdate(applyBitmap);
-      frameBitmap?.close();
-      frameBitmap = null;
       if (!sharedVideo) video?.pause();
       video?.removeEventListener("error", handleVideoError);
       observer.disconnect();

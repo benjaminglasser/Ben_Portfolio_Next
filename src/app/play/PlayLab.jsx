@@ -111,7 +111,7 @@ const BuildCard = ({ build, index }) => {
 // A standalone project: title in the label rail, bento of images, then text.
 const FeatureSection = ({ feature, labelNo }) => {
   return (
-    <section className="grid-ed mt-20 md:mt-28" aria-labelledby={`feature-${feature.id}`}>
+    <section id={feature.id} className="grid-ed mt-20 md:mt-28 scroll-mt-24" aria-labelledby={`feature-${feature.id}`}>
       <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
         <div className="md:sticky md:top-24">
           <h4 className="edge-label text-mute whitespace-nowrap">
@@ -125,7 +125,10 @@ const FeatureSection = ({ feature, labelNo }) => {
       </div>
       <div className="col-span-12 md:col-span-10">
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6 mb-6">
-          <p className="md:col-span-6 subtext desc-mono text-white/80">{feature.description}</p>
+          <div className="md:col-span-6 subtext desc-mono text-white/80 space-y-4">
+            <p>{feature.description}</p>
+            {feature.context && <p>{feature.context}</p>}
+          </div>
           <div className="md:col-span-4 flex flex-col gap-4 md:items-end">
             {feature.meta?.length > 0 && (
               <div className="desc-mono uppercase tracking-wide text-[0.68rem] text-mute md:text-right leading-relaxed">
@@ -150,7 +153,7 @@ const FeatureSection = ({ feature, labelNo }) => {
                 <div
                   key={img.alt}
                   className="feature-bento__cell"
-                  style={{ flexGrow: img.ratio, aspectRatio: img.ratio }}
+                  style={{ flexGrow: img.ratio, aspectRatio: img.naturalHeight ? undefined : img.ratio }}
                 >
                   {img.embed ? (
                     <VideoPlayerExternal
@@ -162,7 +165,7 @@ const FeatureSection = ({ feature, labelNo }) => {
                     <LazyVideo
                       src={img.video}
                       aria-label={img.alt}
-                      className="block w-full h-full object-cover bg-[#0d0d0d]"
+                      className={`block w-full bg-[#0d0d0d] ${img.naturalHeight ? "h-auto" : "h-full object-cover"}`}
                     />
                   ) : (
                   <ImageWithLoader
@@ -289,7 +292,7 @@ const PlayLab = ({ beforePosters }) => {
         <div className="grid-ed mt-16 md:mt-20">
           <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
             <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
-              <span className="label-index">02</span>On the bench
+              <span className="label-index">01</span>On the bench
             </h4>
           </div>
           <div className="col-span-12 md:col-span-10">
@@ -306,7 +309,7 @@ const PlayLab = ({ beforePosters }) => {
       <div className="grid-ed mt-20 md:mt-28">
         <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
           <h4 className="edge-label text-mute md:sticky md:top-24 whitespace-nowrap">
-            <span className="label-index">{pad(SHOW_BENCH ? 3 : 2)}</span>Digital experiments
+            <span className="label-index">{pad(SHOW_BENCH ? 2 : 1)}</span>Digital experiments
           </h4>
         </div>
         <div className="col-span-12 md:col-span-10">
@@ -368,7 +371,7 @@ const PlayLab = ({ beforePosters }) => {
       {features.map((f, i) => (
         <div key={f.id} className="contents">
         {f.id === "posters" && beforePosters}
-        <FeatureSection key={f.id} feature={f} labelNo={pad((SHOW_BENCH ? 4 : 3) + i)} />
+        <FeatureSection key={f.id} feature={f} labelNo={pad((SHOW_BENCH ? 3 : 2) + i)} />
         </div>
       ))}
 

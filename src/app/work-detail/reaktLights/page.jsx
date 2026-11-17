@@ -22,7 +22,7 @@ const reaktLights = () => {
   return (
     <div className="w-full text-white">
       {/* Full-bleed cropped hero */}
-      <div className="full-bleed hero-crop -mt-3">
+      <div className="detail-video-hero full-bleed hero-crop -mt-3">
         <VideoPlayerInternal video="/Media/Reakt/reaktHero.mp4" />
       </div>
 

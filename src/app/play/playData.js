@@ -49,6 +49,35 @@ export const PLAY_BUILDS = [
 //   link    – optional { label, href } shown as a button under the text
 export const PLAY_FEATURES = [
   {
+    id: "dtla-artist-spotlight",
+    title: "DTLA Marriott Artist Spotlight",
+    kind: "Public art",
+    category: "digital",
+    rows: [
+      [{
+        video: "/Media/DTLAMarriott/MarriotHero.mp4",
+        alt: "DTLA Artist Spotlight animation on the Marriott display near LA Live",
+        ratio: 1900 / 1080,
+        naturalHeight: true,
+      }],
+      [{
+        video: "/Media/DTLAMarriott/MarriotFinalVidMain.mp4",
+        alt: "Final render of the DTLA Artist Spotlight animation",
+        ratio: 16 / 9,
+      }],
+      [{
+        video: "/Media/DTLAMarriott/MarriotProcess.mp4",
+        alt: "Process behind the DTLA Artist Spotlight animation",
+        ratio: 2128 / 640,
+      }],
+    ],
+    description:
+      "Selected to create a custom animation interspersed between advertisements on a large-scale display in downtown Los Angeles near LA Live. The goal was to bring a sense of joy, wonder, and beauty back into the urban landscape. In a world where our attention is constantly harvested for capitalistic gain, it's vital not to lose these qualities and to pause amidst the chaos and allow our imagination to run free.",
+    context:
+      "Los Angeles maintains a public art fund dedicated to spotlighting local artists throughout the city, bringing creative works to prominent urban spaces and fostering cultural engagement within the community. This initiative provided the opportunity to bring an original animation to a large-scale display near LA Live, reaching thousands of people each day.",
+    meta: ["Fall 2025", "3D Artist", "Blender"],
+  },
+  {
     id: "canary",
     title: "The Canary Test",
     kind: "Web design",

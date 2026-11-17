@@ -13,10 +13,12 @@ import VideoPlayerInternal from "@/app/common/VideoPlayerInternal.jsx";
 const plantasia = () => {
   return (
     <div className="w-full text-white">
-      <VideoPlayerInternal
-        className="-mt-3 md:h-[600px]"
-        video="/Media/Plantasia/plantasiaHero.mp4"
-      />
+      <div className="detail-video-hero">
+        <VideoPlayerInternal
+          className="md:-mt-3 md:h-[600px]"
+          video="/Media/Plantasia/plantasiaHero.mp4"
+        />
+      </div>
 
       <ZigzagHeader
         title="Plantasia"

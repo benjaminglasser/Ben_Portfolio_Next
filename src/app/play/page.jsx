@@ -99,7 +99,7 @@ const Play = () => {
       <div className="grid-ed md:items-start">
         <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
           <h4 className="edge-label text-mute whitespace-nowrap">
-            <span className="label-index">01</span>Play
+            Play
           </h4>
         </div>
         <div className="col-span-12 md:col-span-10">

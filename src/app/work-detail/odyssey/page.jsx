@@ -17,14 +17,14 @@ const Odyssey = () => {
 
   return (
     <div className="w-full text-white">
-      {/* Full-height hero with the masthead overlaid at the bottom */}
-      <div className="full-bleed relative">
+      {/* Desktop overlay; mobile masthead follows the video. */}
+      <div className="detail-video-hero project-video-hero full-bleed relative">
         <div className="hero-full">
           <VideoPlayerInternal video="/Media/Odyssey/odysseyHero.mp4" />
         </div>
         {/* Bottom scrim for legibility */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
+        <div className="project-video-hero__scrim pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+        <div className="project-video-hero__caption absolute inset-x-0 bottom-0 px-5 md:px-10 pb-6 md:pb-10">
           <ZigzagHeader
             title="Beyond The Infinite"
             description="A Virtual Production Odyssey"

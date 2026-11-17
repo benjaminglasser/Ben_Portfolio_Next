@@ -150,6 +150,36 @@
   object-fit: cover !important;
 }
 
+@media (max-width: 767px) {
+  body:has(.detail-video-hero) {
+    padding-top: 0;
+  }
+  .detail-video-hero {
+    margin-top: 0;
+  }
+  .scroll-hint {
+    padding: 12px 16px;
+    border: 1px solid #333;
+    background: #000;
+  }
+  .scroll-hint.opacity-70 {
+    opacity: 1;
+  }
+  .project-video-hero .hero-full {
+    height: clamp(315px, calc(55vh + 15px), 775px);
+  }
+  .project-video-hero__caption {
+    position: static;
+    display: flow-root;
+    padding-bottom: 0;
+    background: #000;
+  }
+  .project-video-hero__scrim,
+  body:has(.project-video-hero) .scroll-hint {
+    display: none;
+  }
+}
+
 /* Shared size for the page header, section labels, project titles and
    work-detail headers — same size as body/descriptions. */
 .display-title {

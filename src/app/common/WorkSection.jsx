@@ -50,17 +50,6 @@ const WorkSection = ({ preloadThumbnails = false, animateThumbnails = true, prep
   const gridRef = useRef(null);
   const WORK_CONTENT = [
     {
-      id: 3.5,
-      type: "motion",
-      role: "3D Artist",
-      time: "Fall 2025",
-      title: "DTLA Marriott Artist Spotlight",
-      description: "Public art animation on large scale display in Downtown LA",
-      thumbnail: "/images/dtlaMarriott/MarriotThumb.gif",
-      path: "work-detail/dtlaMarriott",
-      tools: ["Blender"],
-    },
-    {
       id: 4,
       type: "motion",
       role: "3D Graphic Design",

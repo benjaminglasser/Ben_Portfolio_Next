@@ -42,7 +42,7 @@ const ScrollHint = () => {
   return (
     <div
       aria-hidden="true"
-      className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none
+      className={`scroll-hint fixed bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none
                   flex flex-col items-center gap-2 text-white
                   transition-opacity duration-700 ease-in-out
                   ${visible ? "opacity-70" : "opacity-0"}`}

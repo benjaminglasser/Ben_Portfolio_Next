@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Play includes Meaningful Pursuits as a standalone album-visuals section after the experiments and feature projects, with project context and a compact 11-video carousel. Previous and Next controls wrap through the videos; changing the selection unmounts the previous player to stop playback. It shares the video list with the existing detail page, which retains its stacked layout. Video embeds load only when selected.
 
-Play's introduction is unnumbered. Numbered sections start at 01 for Digital experiments, followed immediately by 02 Public art with DTLA Marriott Artist Spotlight, then The Canary Test. Spotlight retains the display, final-render, and process videos, project context, date, role, and tool. It no longer appears as a Home work card; the former `/work-detail/dtlaMarriott` address redirects to `/play#dtla-artist-spotlight`.
+Play's introduction is unnumbered. Numbered sections are 01 Digital experiments, 02 Public art with DTLA Marriott Artist Spotlight, 03 Research, 04 Album visuals, 05 Posters, and 06 Musical instrument. The Canary Test web-design feature is not shown on Play; its standalone detail page and separate poster animation remain available. Spotlight retains the display, final-render, and process videos, project context, date, role, and tool. It no longer appears as a Home work card; the former `/work-detail/dtlaMarriott` address redirects to `/play#dtla-artist-spotlight`.
 
 Verified GIF conversions are listed in `src/app/common/gifMedia.json`. The original GIFs remain available as fallbacks. Converted animations keep their original resolution and frame timing, with a full-size poster for loading.
 

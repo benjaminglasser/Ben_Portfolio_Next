@@ -1,5 +1,4 @@
 import { IMAGES } from "../../../public/images";
-import { CANARY } from "../../../public/images/canary";
 import { SPATIAL } from "../../../public/images/SpatialAge";
 
 // Categories for the play lab. Colors are non-text marks (≥3:1 on black).
@@ -76,33 +75,6 @@ export const PLAY_FEATURES = [
     context:
       "Los Angeles maintains a public art fund dedicated to spotlighting local artists throughout the city, bringing creative works to prominent urban spaces and fostering cultural engagement within the community. This initiative provided the opportunity to bring an original animation to a large-scale display near LA Live, reaching thousands of people each day.",
     meta: ["Fall 2025", "3D Artist", "Blender"],
-  },
-  {
-    id: "canary",
-    title: "The Canary Test",
-    kind: "Web design",
-    category: "web",
-    // Each inner list is one row of the bento. Images in a row share a
-    // height, and each keeps its own shape (ratio = width / height).
-    rows: [
-      [{ src: CANARY.CANARY_THUMB, alt: "The Canary Test website in motion", ratio: 16 / 9 }],
-      [
-        { src: CANARY.UI_CONSIDERATION, alt: "Canary home page", ratio: 16 / 9 },
-        { src: CANARY.MOBILE_VIEW, alt: "Canary on mobile", ratio: 1920 / 1600 },
-      ],
-      [
-        { src: CANARY.TRANS_HOME, alt: "Canary shows page", ratio: 2880 / 2048 },
-        { src: CANARY.INFO, alt: "Canary info page", ratio: 2880 / 2048 },
-        { src: CANARY.PRESS, alt: "Canary press page", ratio: 2880 / 2048 },
-      ],
-    ],
-    description:
-      "Web design and development for The Canary Test, a Los Angeles gallery for sound, video, performance, and installation work. The gallery asked for a sleek, minimal site that lets the many artists moving through its space take center stage.",
-    meta: ["Spring 2022", "Figma, Next.js, Framer Motion, Contentful"],
-    link: {
-      label: "Visit the website",
-      href: "https://canary-alt.vercel.app/",
-    },
   },
   {
     id: "spatial-age",
